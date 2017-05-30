@@ -1,9 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Entities;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use PhpParser\Node\Scalar\Encapsed;
 
 class User extends Authenticatable
 {
