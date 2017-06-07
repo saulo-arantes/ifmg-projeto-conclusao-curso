@@ -3,15 +3,15 @@
 namespace App\Presenters;
 
 use Prettus\Repository\Presenter\FractalPresenter;
-use App\Transformers\LogTransformer;
+use App\Transformers\CityTransformer;
 
 /**
- * Class LogPresenter
+ * Class CityPresenter
  *
  * @author  Bruno Tomé
- * @package namespace TARS\Presenters;
+ * @package namespace App\Presenters;
  */
-class LogPresenter extends FractalPresenter
+class CityPresenter extends FractalPresenter
 {
     /**
      * Transformer
@@ -20,6 +20,6 @@ class LogPresenter extends FractalPresenter
      */
     public function getTransformer()
     {
-        return new LogTransformer();
+        return new CityTransformer();
     }
 }

@@ -7,26 +7,34 @@ use App\Entities\Log;
 
 /**
  * Class LogTransformer
- * @package namespace App\Transformers;
+ *
+ * @author  Bruno Tomé
+ * @package namespace TARS\Transformers;
  */
 class LogTransformer extends TransformerAbstract
 {
 
+    protected $defaultIncludes = ['user'];
+
     /**
      * Transform the \Log entity
-     * @param \Log $model
+     *
+     * @param Log $model
      *
      * @return array
      */
     public function transform(Log $model)
     {
         return [
-            'id'         => (int) $model->id,
-
-            /* place your other model properties here */
-
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'id'          => (int)$model->id,
+            'description' => $model->description,
+            'created_at'  => $model->created_at,
+            'updated_at'  => $model->updated_at
         ];
+    }
+
+    public function includeUser(Log $model)
+    {
+        return $this->item($model->user, new UserTransformer());
     }
 }

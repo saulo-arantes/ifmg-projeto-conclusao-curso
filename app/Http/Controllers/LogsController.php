@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\LogCreateRequest;
-use App\Http\Requests\LogUpdateRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use App\Repositories\LogRepository;
+use App\Services\DataTables\LogsDataTable;
 use App\Validators\LogValidator;
 
-
+/**
+ * Class LogsController
+ *
+ * @author  Bruno Tomé
+ * @package TARS\Http\Controllers
+ */
 class LogsController extends Controller
 {
 
@@ -29,150 +30,43 @@ class LogsController extends Controller
     public function __construct(LogRepository $repository, LogValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param LogsDataTable $dataTable
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function index()
+    public function index(LogsDataTable $dataTable)
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $logs = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $logs,
-            ]);
-        }
-
-        return view('logs.index', compact('logs'));
+        return $dataTable->render('admin.logs.list');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Set the visualized attribute to true.
      *
-     * @param  LogCreateRequest $request
+     * @param $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(LogCreateRequest $request)
+    public function markAsSeen($id)
     {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $log = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'Log created.',
-                'data'    => $log->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        $this->repository->markAsSeen($id);
+        return back();
     }
-
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
+     * Set the visualized attribute to true for all non visualized messages.
      */
-    public function show($id)
+    public function visualizeAll()
     {
-        $log = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $log,
-            ]);
-        }
-
-        return view('logs.show', compact('log'));
+        $this->repository->visualizeAll();
+        return redirect('/admin/logs');
     }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $log = $this->repository->find($id);
-
-        return view('logs.edit', compact('log'));
-    }
-
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  LogUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
-     */
-    public function update(LogUpdateRequest $request, $id)
-    {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $log = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Log updated.',
-                'data'    => $log->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
-    }
-
 
     /**
      * Remove the specified resource from storage.
@@ -183,16 +77,26 @@ class LogsController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        try {
+            $this->repository->delete($id);
+            alert()->success('Log deletado com sucesso.', 'Feito :)');
+            return back();
+        } catch (QueryException $e) {
+            $this->repository->error($e);
 
-        if (request()->wantsJson()) {
+            alert()->error('Log não pode ser deletado pois existem vínculos a ele.', 'Erro :(')
+                ->persistent('Fechar');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            $this->repository->error($e);
 
-            return response()->json([
-                'message' => 'Log deleted.',
-                'deleted' => $deleted,
-            ]);
+            alert()->error('Log não encontrado.', 'Erro :(')->persistent('Fechar');
+            return back();
+        } catch (\Exception $e) {
+            $this->repository->error($e);
+
+            alert()->error('Ocorreu um erro ao deletar o log.', 'Erro :(')->persistent('Fechar');
+            return back();
         }
-
-        return redirect()->back()->with('message', 'Log deleted.');
     }
 }
