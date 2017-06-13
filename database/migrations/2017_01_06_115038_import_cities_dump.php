@@ -23,9 +23,9 @@ class ImportCitiesDump extends Migration
      */
     public function down()
     {
-        Schema::drop('state_capitals');
         Schema::drop('cities');
-        Schema::drop('states');
         Schema::drop('regions');
+        Schema::drop('states');
+        Schema::drop('state_capitals');
     }
 }
