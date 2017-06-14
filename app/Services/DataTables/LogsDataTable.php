@@ -76,7 +76,7 @@ class LogsDataTable extends DataTable
             ->parameters($this->getBuilderParameters())->parameters([
                 'dom'        => 'Blfrtip',
                 'responsive' => true,
-                'language'   => ['url' => '/global/plugins/datatables/portuguese-brasil.json'],
+                'language'   => ['url' => '/assets/global/plugins/datatables/portuguese-brasil.json'],
                 'lengthMenu' => [
                     [
                         5,

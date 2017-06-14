@@ -13,7 +13,7 @@ class ImportCitiesDump extends Migration
      */
     public function up()
     {
-        DB::unprepared(file_get_contents('database/migrations/cities.sql'));
+        //DB::unprepared(file_get_contents('database/migrations/cities.sql'));
     }
 
     /**
@@ -22,10 +22,10 @@ class ImportCitiesDump extends Migration
      * @return void
      */
     public function down()
-    {
+    {/*
         Schema::drop('cities');
         Schema::drop('regions');
         Schema::drop('states');
         Schema::drop('state_capitals');
-    }
+    */}
 }

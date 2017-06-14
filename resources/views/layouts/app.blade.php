@@ -32,6 +32,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="{{ asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/global/plugins/sweet-alert/sweetalert2.min.css') }}" rel="stylesheet">
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="{{ asset('assets/global/css/components-md.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
@@ -40,6 +41,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="{{ asset('assets/layouts/layout/css/layout.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/layouts/layout/css/themes/darkblue.min.css') }}" rel="stylesheet" type="text/css" id="style_color" />
+        @stack('stylesheets')
         <link href="{{ asset('assets/layouts/layout/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
@@ -91,68 +93,10 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
                 <!-- END SIDEBAR -->
                 <!-- BEGIN CONTENT -->
-                <div class="page-content-wrapper">
-                    <!-- BEGIN CONTENT BODY -->
-                    <div class="page-content">
-                        <!-- BEGIN PAGE HEADER-->
-                        <!-- BEGIN THEME PANEL -->
-                        
-                        <!-- END THEME PANEL -->
-                        <!-- BEGIN PAGE BAR -->
-                        <div class="page-bar">
-                            <ul class="page-breadcrumb">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li>
-                                    <a href="#">Blank Page</a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li>
-                                    <span>Page Layouts</span>
-                                </li>
-                            </ul>
-                            <div class="page-toolbar">
-                                <div class="btn-group pull-right">
-                                    <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-bell"></i> Action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-shield"></i> Another action</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-user"></i> Something else here</a>
-                                        </li>
-                                        <li class="divider"> </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="icon-bag"></i> Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END PAGE BAR -->
-                        <!-- BEGIN PAGE TITLE-->
-                        <h1 class="page-title"> Blank Page Layout
-                            <small>blank page layout</small>
-                        </h1>
-                        <!-- END PAGE TITLE-->
-                        <!-- END PAGE HEADER-->
-                        <div class="note note-info">
-                            <p> A black page template with a minimal dependency assets to use as a base for any custom page you create </p>
-                        </div>
-                    </div>
-                    <!-- END CONTENT BODY -->
-                </div>
+
+                        @yield('content')
+
+
                 <!-- END CONTENT -->
                 <!-- BEGIN QUICK SIDEBAR -->
                 <a href="javascript:;" class="page-quick-sidebar-toggler">
@@ -745,6 +689,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="{{ asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/global/plugins/jquery.blockui.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/global/plugins/sweet-alert/sweetalert2.min.js') }}" type="text/javascript"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="{{ asset('assets/global/scripts/app.min.js') }}" type="text/javascript"></script>
@@ -764,6 +709,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 });
             })
         </script>
+        @stack('scripts')
+    @include('sweet::alert')
     </body>
 
 </html>

@@ -14,7 +14,7 @@ use App\Validators\LogValidator;
  * Class LogRepositoryEloquent
  *
  * @author  Bruno Tomé
- * @package namespace TARS\Repositories;
+ * @package namespace App\Repositories;
  */
 class LogRepositoryEloquent extends BaseRepository implements LogRepository
 {

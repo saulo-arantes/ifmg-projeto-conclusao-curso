@@ -163,14 +163,18 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
+        Yajra\Datatables\ButtonsServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
+        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
+        HighIdeas\UsersOnline\UsersOnlineServiceProvider::class,
+        HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
-        Laravel\Tinker\TinkerServiceProvider::class,
-
+        App\Providers\RepositoryServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -230,7 +234,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Alert'        => UxWeb\SweetAlert\SweetAlert::class,
+        'PDF'          => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage'  => Barryvdh\Snappy\Facades\SnappyImage::class,
     ],
 
 ];
