@@ -68,35 +68,4 @@ class LogsController extends Controller
         return redirect('/admin/logs');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        try {
-            $this->repository->delete($id);
-            alert()->success('Log deletado com sucesso.', 'Feito :)');
-            return back();
-        } catch (QueryException $e) {
-            $this->repository->error($e);
-
-            alert()->error('Log não pode ser deletado pois existem vínculos a ele.', 'Erro :(')
-                ->persistent('Fechar');
-            return back();
-        } catch (ModelNotFoundException $e) {
-            $this->repository->error($e);
-
-            alert()->error('Log não encontrado.', 'Erro :(')->persistent('Fechar');
-            return back();
-        } catch (\Exception $e) {
-            $this->repository->error($e);
-
-            alert()->error('Ocorreu um erro ao deletar o log.', 'Erro :(')->persistent('Fechar');
-            return back();
-        }
-    }
 }

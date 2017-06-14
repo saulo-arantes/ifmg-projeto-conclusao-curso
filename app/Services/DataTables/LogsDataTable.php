@@ -21,9 +21,7 @@ class LogsDataTable extends DataTable
     public function dataTable()
     {
         return $this->datatables
-            ->eloquent($this->query())->editColumn('user_id', function (Log $model) {
-                return $model->user->name;
-            })->editColumn('created_at', function (Log $model) {
+            ->eloquent($this->query())->editColumn('created_at', function (Log $model) {
                 return date('d/m/Y H:i:s', strtotime($model->created_at));
             })->editColumn('type', function (Log $model) {
                 switch ($model->type) {
@@ -56,7 +54,7 @@ class LogsDataTable extends DataTable
      */
     public function query()
     {
-        $query = Log::query();
+        $query = Log::query()->with('user');
 
         return $this->applyScopes($query);
     }
@@ -76,7 +74,7 @@ class LogsDataTable extends DataTable
             ->parameters($this->getBuilderParameters())->parameters([
                 'dom'        => 'Blfrtip',
                 'responsive' => true,
-                'language'   => ['url' => '/assets/global/plugins/datatables/portuguese-brasil.json'],
+                'language'   => ['url' => '/assets/global/plugins/datatables/DataTables-1.10.12/portuguese-brasil.json'],
                 'lengthMenu' => [
                     [
                         5,
@@ -111,7 +109,7 @@ class LogsDataTable extends DataTable
     {
         return [
             'id',
-            'user_id'     => ['title' => 'Usuário'],
+            'user.name'     => ['title' => 'Usuário'],
             'visualized'  => ['title' => 'Vizualizado'],
             'type'        => ['title' => 'Tipo'],
             'description' => ['title' => 'Descrição'],
