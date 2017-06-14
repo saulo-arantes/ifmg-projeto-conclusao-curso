@@ -39,7 +39,7 @@ class LogsDataTable extends DataTable
                         return '<span class="label label-sm label-info center-block">Erro desconhecido</span>';
                 }
             })->editColumn('visualized', function (Log $model) {
-                if (!$model->visualized) {
+                if ( ! $model->visualized) {
                     return '<a href="/admin/logs/' . $model->id . '/mark-as-seen" style="color: black" class="btn btn-outline dark center-block"><i class="fa fa-eye" aria-hidden="true"></i></a> <br>Marcar como visualizado';
                 }
 
@@ -67,11 +67,11 @@ class LogsDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->columns($this->getColumns())
-            ->setTableAttributes([
-                'class' => 'table table-bordered table-hover table-responsive table-full-width',
-            ])
-            ->parameters($this->getBuilderParameters())->parameters([
+                    ->columns($this->getColumns())
+                    ->setTableAttributes([
+                        'class' => 'table table-bordered table-hover table-responsive table-full-width',
+                    ])
+                    ->parameters($this->getBuilderParameters())->parameters([
                 'dom'        => 'Blfrtip',
                 'responsive' => true,
                 'language'   => ['url' => '/assets/global/plugins/datatables/DataTables-1.10.12/portuguese-brasil.json'],
@@ -109,7 +109,7 @@ class LogsDataTable extends DataTable
     {
         return [
             'id',
-            'user.name'     => ['title' => 'Usuário'],
+            'user.name'   => ['title' => 'Usuário'],
             'visualized'  => ['title' => 'Vizualizado'],
             'type'        => ['title' => 'Tipo'],
             'description' => ['title' => 'Descrição'],

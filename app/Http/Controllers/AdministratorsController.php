@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\AdministratorCreateRequest;
 use App\Http\Requests\AdministratorUpdateRequest;
 use App\Repositories\AdministratorRepository;
 use App\Validators\AdministratorValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 
 class AdministratorsController extends Controller
@@ -135,7 +132,7 @@ class AdministratorsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  AdministratorUpdateRequest $request
-     * @param  string            $id
+     * @param  string $id
      *
      * @return Response
      */

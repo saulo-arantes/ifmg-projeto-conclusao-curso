@@ -46,11 +46,11 @@ class UsersDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->columns($this->getColumns())
-            ->setTableAttributes([
-                'class' => 'table table-bordered table-hover table-responsive table-full-width',
-            ])
-            ->parameters($this->getBuilderParameters())->parameters([
+                    ->columns($this->getColumns())
+                    ->setTableAttributes([
+                        'class' => 'table table-bordered table-hover table-responsive table-full-width',
+                    ])
+                    ->parameters($this->getBuilderParameters())->parameters([
                 'dom'        => 'Blfrtip',
                 'responsive' => true,
                 'language'   => ['url' => '/assets/global/plugins/datatables/DataTables-1.10.12/portuguese-brasil.json'],
@@ -72,6 +72,7 @@ class UsersDataTable extends DataTable
                 ],
                 'pageLength' => 10,
                 'buttons'    => [
+                    'create',
                     'export',
                     'print',
                     'reload',
@@ -88,12 +89,12 @@ class UsersDataTable extends DataTable
     {
         return [
             'id',
-            'name'          => ['title' => 'Nome'],
-            'email'         => ['title' => 'E-mail'],
-            'address'       => ['title' => 'Endereço'],
-            'neighborhood'  => ['title' => 'Bairro'],
-            'number'        => ['title' => 'Número'],
-            'created_at'    => ['title' => 'Data']
+            'name'         => ['title' => 'Nome'],
+            'email'        => ['title' => 'E-mail'],
+            'address'      => ['title' => 'Endereço'],
+            'neighborhood' => ['title' => 'Bairro'],
+            'number'       => ['title' => 'Número'],
+            'created_at'   => ['title' => 'Data']
         ];
     }
 

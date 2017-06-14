@@ -28,7 +28,7 @@ class UsersController extends Controller
     public function __construct(LogRepository $repository, LogValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator = $validator;
+        $this->validator  = $validator;
     }
 
 

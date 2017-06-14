@@ -27,6 +27,6 @@ class CitiesController extends Controller
     public function __construct(CityRepository $repository, CityValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator = $validator;
+        $this->validator  = $validator;
     }
 }

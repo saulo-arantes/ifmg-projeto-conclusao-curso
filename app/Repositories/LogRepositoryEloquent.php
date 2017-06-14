@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
+use App\Entities\Log;
+use App\Presenters\LogPresenter;
+use App\Validators\LogValidator;
 use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Validator\Exceptions\ValidatorException;
-use App\Entities\Log;
-use App\Presenters\LogPresenter;
-use App\Validators\LogValidator;
 
 /**
  * Class LogRepositoryEloquent

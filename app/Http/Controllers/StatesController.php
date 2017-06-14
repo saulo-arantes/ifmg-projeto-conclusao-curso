@@ -27,6 +27,6 @@ class StatesController extends Controller
     public function __construct(StateRepository $repository, StateValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator = $validator;
+        $this->validator  = $validator;
     }
 }

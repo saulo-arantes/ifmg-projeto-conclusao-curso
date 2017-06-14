@@ -10,7 +10,8 @@
         <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
         <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
         <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-        <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-light" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+        <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-light" data-keep-expanded="false"
+            data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
             <!-- DOC: To remove the sidebar toggler from the sidebar you just need to completely remove the below "sidebar-toggler-wrapper" LI element -->
             <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
             <li class="sidebar-toggler-wrapper hide">
@@ -31,39 +32,64 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
-                                            <a href="javascript:;" class="btn submit">
-                                                <i class="icon-magnifier"></i>
-                                            </a>
-                                        </span>
+                            <a href="javascript:;" class="btn submit">
+                                <i class="icon-magnifier"></i>
+                            </a>
+                        </span>
                     </div>
                 </form>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
             <li class="nav-item start ">
-                <a href="javascript:;" class="nav-link nav-toggle">
+                <a href="index.html" class="nav-link ">
                     <i class="icon-home"></i>
-                    <span class="title">Dashboard</span>
+                    <span class="title">Início</span>
+                </a>
+            </li>
+            <li class="nav-item start ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Usuário</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item start ">
                         <a href="index.html" class="nav-link ">
-                            <i class="icon-bar-chart"></i>
-                            <span class="title">Dashboard 1</span>
+                            <i class="icon-plus"></i>
+                            <span class="title">Adicionar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start ">
+                        <a href="{{ url('/admin/users') }}" class="nav-link ">
+                            <i class="icon-list "></i>
+                            <span class="title">Listar</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item start ">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Log</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start ">
+                        <a href="index.html" class="nav-link ">
+                            <i class="icon-plus"></i>
+                            <span class="title">Adicionar</span>
                         </a>
                     </li>
                     <li class="nav-item start ">
                         <a href="dashboard_2.html" class="nav-link ">
-                            <i class="icon-bulb"></i>
-                            <span class="title">Dashboard 2</span>
-                            <span class="badge badge-success">1</span>
+                            <i class="icon-list "></i>
+                            <span class="title">Listar</span>
                         </a>
                     </li>
                     <li class="nav-item start ">
                         <a href="dashboard_3.html" class="nav-link ">
-                            <i class="icon-graph"></i>
-                            <span class="title">Dashboard 3</span>
-                            <span class="badge badge-danger">5</span>
+                            <i class="icon-pencil"></i>
+                            <span class="title">Editar</span>
                         </a>
                     </li>
                 </ul>

@@ -16,14 +16,14 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'address' => $faker->streetName,
-        'name' => $faker->name,
-        'number' => $faker->buildingNumber,
-        'neighborhood' => $faker->word,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'address'        => $faker->streetName,
+        'name'           => $faker->name,
+        'number'         => $faker->buildingNumber,
+        'neighborhood'   => $faker->word,
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
-        'level' => $faker->numberBetween(0, 2)
+        'level'          => $faker->numberBetween(0, 2)
     ];
 });
 
@@ -43,7 +43,7 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Entities\Log::class, function (Faker\Generator $faker) {
     return [
         'description' => $faker->words(8, true),
-        'type' => $faker->numberBetween(0, 3),
-        'user_id' => $faker->numberBetween(1, 50)
+        'type'        => $faker->numberBetween(0, 3),
+        'user_id'     => $faker->numberBetween(1, 50)
     ];
 });

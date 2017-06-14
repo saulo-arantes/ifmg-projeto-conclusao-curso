@@ -2,11 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Entities\City;
 use App\Presenters\CityPresenter;
+use App\Validators\CityValidator;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
-use App\Entities\City;
-use App\Validators\CityValidator;
 
 /**
  * Class CityRepositoryEloquent

@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class ImportCitiesDump extends Migration
 {
@@ -27,5 +25,6 @@ class ImportCitiesDump extends Migration
         Schema::drop('regions');
         Schema::drop('states');
         Schema::drop('state_capitals');
-    */}
+    */
+    }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Presenters;
 
-use Prettus\Repository\Presenter\FractalPresenter;
 use App\Transformers\RegionTransformer;
+use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
  * Class RegionPresenter

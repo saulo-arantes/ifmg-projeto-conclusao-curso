@@ -2,8 +2,8 @@
 
 namespace App\Presenters;
 
-use Prettus\Repository\Presenter\FractalPresenter;
 use App\Transformers\LogTransformer;
+use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
  * Class LogPresenter

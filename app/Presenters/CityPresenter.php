@@ -2,8 +2,8 @@
 
 namespace App\Presenters;
 
-use Prettus\Repository\Presenter\FractalPresenter;
 use App\Transformers\CityTransformer;
+use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
  * Class CityPresenter

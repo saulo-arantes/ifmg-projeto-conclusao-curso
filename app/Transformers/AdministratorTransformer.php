@@ -2,8 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use App\Entities\Administrator;
+use League\Fractal\TransformerAbstract;
 
 /**
  * Class AdministratorTransformer
@@ -14,6 +14,7 @@ class AdministratorTransformer extends TransformerAbstract
 
     /**
      * Transform the \Administrator entity
+     *
      * @param \Administrator $model
      *
      * @return array
@@ -21,7 +22,7 @@ class AdministratorTransformer extends TransformerAbstract
     public function transform(Administrator $model)
     {
         return [
-            'id'         => (int) $model->id,
+            'id' => (int)$model->id,
 
             /* place your other model properties here */
 

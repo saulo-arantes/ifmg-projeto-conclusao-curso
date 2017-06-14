@@ -2,8 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use App\Entities\City;
+use League\Fractal\TransformerAbstract;
 
 /**
  * Class CityTransformer

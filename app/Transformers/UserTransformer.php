@@ -2,8 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
 use App\Entities\User;
+use League\Fractal\TransformerAbstract;
 
 /**
  * Class LogTransformer
@@ -26,15 +26,15 @@ class UserTransformer extends TransformerAbstract
     public function transform(User $model)
     {
         return [
-            'id'            => (int)$model->id,
-            'name'          => $model->name,
-            'email'         => $model->email,
-            'password'      => $model->password,
-            'address'       => $model->address,
-            'neighborhood'  => $model->neighborhood,
-            'number'        => $model->number,
-            'created_at'    => $model->created_at,
-            'updated_at'    => $model->updated_at
+            'id'           => (int)$model->id,
+            'name'         => $model->name,
+            'email'        => $model->email,
+            'password'     => $model->password,
+            'address'      => $model->address,
+            'neighborhood' => $model->neighborhood,
+            'number'       => $model->number,
+            'created_at'   => $model->created_at,
+            'updated_at'   => $model->updated_at
         ];
     }
 

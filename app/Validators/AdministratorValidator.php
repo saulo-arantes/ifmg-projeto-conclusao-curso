@@ -2,8 +2,8 @@
 
 namespace App\Validators;
 
-use \Prettus\Validator\Contracts\ValidatorInterface;
-use \Prettus\Validator\LaravelValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\LaravelValidator;
 
 class AdministratorValidator extends LaravelValidator
 {
@@ -11,5 +11,5 @@ class AdministratorValidator extends LaravelValidator
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [],
         ValidatorInterface::RULE_UPDATE => [],
-   ];
+    ];
 }

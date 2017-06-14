@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Entities\Log;
+use Illuminate\Database\Seeder;
 
 class LogsTableSeeder extends Seeder
 {

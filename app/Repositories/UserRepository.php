@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use Prettus\Repository\Contracts\RepositoryInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Interface LogRepository

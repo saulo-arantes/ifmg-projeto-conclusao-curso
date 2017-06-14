@@ -18,9 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'],
-    function() {
+    function () {
+        Route::get('home', 'HomeController@index');
         Route::group(['prefix' => 'profile'],
-            function() {
+            function () {
                 Route::get('', 'UsersController@profile');
                 Route::post('', 'UsersController@updateProfile');
                 Route::post('password', 'UsersController@updatePassword');
@@ -29,13 +30,13 @@ Route::group(['middleware' => 'auth'],
 
         Route::group([
             'middleware' => 'admin',
-            'prefix' => 'admin'
-        ], function() {
+            'prefix'     => 'admin'
+        ], function () {
 
             Route::get('dashboard', 'HomeController@dashboard');
 
             Route::group(['prefix' => 'administrators'],
-                function() {
+                function () {
                     Route::get('', 'AdministratorsController@index');
                     Route::get('{id}/edit', 'AdministratorsController@edit');
                     Route::post('{id}/edit', 'AdministratorsController@update');
@@ -45,7 +46,7 @@ Route::group(['middleware' => 'auth'],
                 });
 
             Route::group(['prefix' => 'users'],
-                function() {
+                function () {
                     Route::get('', 'UsersController@index');
                     Route::get('{id}/edit', 'UsersController@edit');
                     Route::post('{id}/edit', 'UsersController@update');
@@ -54,12 +55,12 @@ Route::group(['middleware' => 'auth'],
                     Route::get('create', 'UsersController@create');
                 });
 
-        Route::group(['prefix' => 'logs'],
-            function () {
-                Route::get('', 'LogsController@index');
-                Route::get('{id}/mark-as-seen', 'LogsController@markAsSeen');
-                Route::get('visualize-all', 'LogsController@visualizeAll');
-            });
+            Route::group(['prefix' => 'logs'],
+                function () {
+                    Route::get('', 'LogsController@index');
+                    Route::get('{id}/mark-as-seen', 'LogsController@markAsSeen');
+                    Route::get('visualize-all', 'LogsController@visualizeAll');
+                });
         });
 
-});
+    });

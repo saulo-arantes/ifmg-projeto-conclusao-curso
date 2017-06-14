@@ -2,11 +2,10 @@
 
 namespace App\Repositories;
 
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\AdministratorRepository;
 use App\Entities\Administrator;
 use App\Validators\AdministratorValidator;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class AdministratorRepositoryEloquent
@@ -25,10 +24,10 @@ class AdministratorRepositoryEloquent extends BaseRepository implements Administ
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name
+     *
+     * @return mixed
+     */
     public function validator()
     {
 

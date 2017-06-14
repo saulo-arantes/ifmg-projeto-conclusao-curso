@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
 use App\Repositories\LogRepository;
 use App\Services\DataTables\LogsDataTable;
 use App\Validators\LogValidator;
@@ -30,7 +28,7 @@ class LogsController extends Controller
     public function __construct(LogRepository $repository, LogValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator = $validator;
+        $this->validator  = $validator;
     }
 
 
@@ -56,6 +54,7 @@ class LogsController extends Controller
     public function markAsSeen($id)
     {
         $this->repository->markAsSeen($id);
+
         return back();
     }
 
@@ -65,6 +64,7 @@ class LogsController extends Controller
     public function visualizeAll()
     {
         $this->repository->visualizeAll();
+
         return redirect('/admin/logs');
     }
 
