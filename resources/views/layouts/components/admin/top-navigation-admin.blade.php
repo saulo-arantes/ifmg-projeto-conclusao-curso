@@ -317,23 +317,23 @@
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
                 <img alt="" class="img-circle" src="{{ asset('assets/layouts/layout/img/avatar3_small.jpg') }}"/>
-                <span class="username username-hide-on-mobile"> Nick </span>
+                <span class="username username-hide-on-mobile"> {{ Auth::user()->name }} </span>
                 <i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-default">
                 <li>
-                    <a href="page_user_profile_1.html">
+                    <a onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
                         <i class="icon-user"></i> Perfil </a>
+                    <form id="profile-form"
+                          action="{{ url('/profile') }}"
+                          method="POST"
+                          style="display=none;">
+                        {{ csrf_field() }}
+                    </form>
                 </li>
                 <li>
                     <a href="app_calendar.html">
                         <i class="icon-calendar"></i> My Calendar </a>
-                </li>
-                <li>
-                    <a href="app_inbox.html">
-                        <i class="icon-envelope-open"></i> My Inbox
-                        <span class="badge badge-danger"> 3 </span>
-                    </a>
                 </li>
                 <li>
                     <a href="app_todo.html">

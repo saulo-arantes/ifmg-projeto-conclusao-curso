@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'],
         Route::group(['prefix' => 'profile'],
             function () {
                 Route::get('', 'UsersController@profile');
-                Route::post('', 'UsersController@updateProfile');
+                Route::post('', 'UsersController@update');
                 Route::post('password', 'UsersController@updatePassword');
                 Route::post('upload', 'UsersController@uploadProfilePicture');
             });

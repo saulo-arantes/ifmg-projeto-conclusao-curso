@@ -93,23 +93,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     </label>
                     <a href="javascript:;" id="forget-password" class="forget-password">Esqueceu a Senha?</a>
                 </div>
-                <div class="login-options">
-                    <h4>Ou entre com</h4>
-                    <ul class="social-icons">
-                        <li>
-                            <a class="social-icon-color facebook" data-original-title="facebook" href="javascript:;"></a>
-                        </li>
-                        <li>
-                            <a class="social-icon-color twitter" data-original-title="Twitter" href="javascript:;"></a>
-                        </li>
-                        <li>
-                            <a class="social-icon-color googleplus" data-original-title="Goole Plus" href="javascript:;"></a>
-                        </li>
-                        <li>
-                            <a class="social-icon-color linkedin" data-original-title="Linkedin" href="javascript:;"></a>
-                        </li>
-                    </ul>
-                </div>
             </form>
             <!-- END LOGIN FORM -->
             <!-- BEGIN FORGOT PASSWORD FORM -->

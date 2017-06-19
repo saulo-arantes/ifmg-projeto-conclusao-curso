@@ -17,13 +17,15 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
 
     return [
         'address'        => $faker->streetName,
-        'name'           => $faker->name,
-        'number'         => $faker->buildingNumber,
-        'neighborhood'   => $faker->word,
         'email'          => $faker->unique()->safeEmail,
+        'level'          => $faker->numberBetween(0, 2),
+        'name'           => $faker->name,
+        'neighborhood'   => $faker->word,
+        'number'         => $faker->buildingNumber,
         'password'       => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
-        'level'          => $faker->numberBetween(0, 2)
+        'status'         => $faker->boolean(),
+        'zipcode'        => $faker->numerify('123456789'),
+        'remember_token' => str_random(10)
     ];
 });
 
