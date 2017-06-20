@@ -9,7 +9,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 /**
  * @property int id
  * @property string name
- * @property string avatar
+ * @property string photo
  * @property \DateTime birthday_date
  * @property string sex
  * @property int type
@@ -44,7 +44,7 @@ class Patients extends Model implements Transformable
 
     protected $fillable = [
         'name',
-        'avatar',
+        'photo',
         'birthday_date',
         'sex',
         'type',
@@ -72,6 +72,9 @@ class Patients extends Model implements Transformable
         'naturalness_id'
     ];
 
-
+    public function contacts()
+    {
+        return $this->hasMany(PatientContact::class, 'patient_id', 'id');
+    }
 
 }

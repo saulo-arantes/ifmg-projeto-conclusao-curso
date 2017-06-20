@@ -29,6 +29,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\ContactTypeRepository::class, \App\Repositories\ContactTypeRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\UserContactRepository::class, \App\Repositories\UserContactRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\PatientsRepository::class, \App\Repositories\PatientsRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\PatientContactRepository::class, \App\Repositories\PatientContactRepositoryEloquent::class);
         //:end-bindings:
     }
 }

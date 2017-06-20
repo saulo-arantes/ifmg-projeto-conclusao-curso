@@ -2,22 +2,22 @@
 
 namespace App\Validators;
 
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\LaravelValidator;
+use \Prettus\Validator\Contracts\ValidatorInterface;
+use \Prettus\Validator\LaravelValidator;
 
-class UserContactValidator extends LaravelValidator
+class PatientContactValidator extends LaravelValidator
 {
 
     protected $rules = [
         ValidatorInterface::RULE_CREATE => [
             'description'     => 'required|string|max:150',
-            'user_id'         => 'required|integer|exists:users,id',
+            'patient_id'      => 'required|integer|exists:patients,id',
             'contact_type_id' => 'required|integer|exists:contact_types,id'
         ],
         ValidatorInterface::RULE_UPDATE => [
             'description'     => 'required|string|max:150',
-            'user_id'         => 'required|integer|exists:users,id',
+            'patient_id'      => 'required|integer|exists:patients,id',
             'contact_type_id' => 'required|integer|exists:contact_types,id'
         ],
-    ];
+   ];
 }

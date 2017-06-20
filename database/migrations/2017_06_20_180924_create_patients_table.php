@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePatientsTable extends Migration
 {
@@ -16,7 +17,7 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50);
-            $table->string('avatar', 100)->default('avatar.png');
+            $table->string('photo', 250)->nullable();
             $table->date('birthday_date');
             $table->char('sex', 1);
             $table->unsignedTinyInteger('type')->nullable()->comment('0 = Idoso, 1 = Gestante, 2 = Deficiente, 3 = Lactante');
@@ -30,7 +31,7 @@ class CreatePatientsTable extends Migration
             $table->boolean('allergic')->default(0);
             $table->string('sus_card', 20)->nullable();
             $table->string('observation', 400)->nullable();
-            $table->string('marital_status')->comment('0 = solteiro, 1 = casado, 2 = divorciado, 3 = viúvo, 4 = separado');
+            $table->unsignedTinyInteger('marital_status')->comment('0 = solteiro, 1 = casado, 2 = divorciado, 3 = viúvo, 4 = separado');
             $table->decimal('height', 3, 2);
             $table->decimal('weight', 6, 3);
             $table->decimal('birth_height', 3, 2)->nullable();

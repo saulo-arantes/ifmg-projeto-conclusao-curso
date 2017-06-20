@@ -24,7 +24,7 @@ class PatientsTransformer extends TransformerAbstract
         return [
             'id'                    => (int)$model->id,
             'name'                  => $model->name,
-            'avatar'                => $model->avatar,
+            'photo'                 => $model->photo,
             'birthday_date'         => $model->birthday_date,
             'sex'                   => $model->sex,
             'type'                  => $model->type,
