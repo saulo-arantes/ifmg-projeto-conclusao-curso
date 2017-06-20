@@ -1,0 +1,77 @@
+<?php
+
+namespace App\Entities;
+
+use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
+
+/**
+ * @property int id
+ * @property string name
+ * @property string avatar
+ * @property \DateTime birthday_date
+ * @property string sex
+ * @property int type
+ * @property string cpf
+ * @property string rg
+ * @property string street
+ * @property string neighborhood
+ * @property string number
+ * @property string complement
+ * @property string zipcode
+ * @property boolean allergic
+ * @property string sus_card
+ * @property string observation
+ * @property string marital_status
+ * @property float height
+ * @property float weight
+ * @property float birth_height
+ * @property float birth_weight
+ * @property float birth_cephalic_length
+ * @property float birth_type
+ * @property int blood_type_id
+ * @property int father_id
+ * @property int mother_id
+ * @property int city_id
+ * @property int naturalness_id
+ * @property \DateTime created_at
+ * @property \DateTime updated_at
+ */
+class Patients extends Model implements Transformable
+{
+    use TransformableTrait;
+
+    protected $fillable = [
+        'name',
+        'avatar',
+        'birthday_date',
+        'sex',
+        'type',
+        'cpf',
+        'rg',
+        'street',
+        'neighborhood',
+        'number',
+        'complement',
+        'zipcode',
+        'allergic',
+        'sus_card',
+        'observation',
+        'marital_status',
+        'height',
+        'weight',
+        'birth_height',
+        'birth_weight',
+        'birth_cephalic_length',
+        'birth_type',
+        'blood_type_id',
+        'father_id',
+        'mother_id',
+        'city_id',
+        'naturalness_id'
+    ];
+
+
+
+}
