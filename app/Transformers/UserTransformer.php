@@ -16,9 +16,9 @@ class UserTransformer extends TransformerAbstract
     protected $defaultIncludes = ['contacts'];
 
     /**
-     * Transform the \Log entity
+     * Transform the User entity
      *
-     * @param Log $model
+     * @param User $model
      *
      * @return array
      */
@@ -28,7 +28,6 @@ class UserTransformer extends TransformerAbstract
             'id'           => (int)$model->id,
             'name'         => $model->name,
             'email'        => $model->email,
-            'password'     => $model->password,
             'address'      => $model->address,
             'neighborhood' => $model->neighborhood,
             'number'       => $model->number,

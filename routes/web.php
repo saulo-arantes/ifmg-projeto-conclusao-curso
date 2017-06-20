@@ -22,14 +22,19 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'],
     function () {
-        Route::get('home', 'HomeController@index');
+
+        Route::get('user/{id}/change-user-status', 'UsersController@changeUserStatus');
+
         Route::group(['prefix' => 'profile'],
             function () {
                 Route::get('', 'UsersController@profile');
-                Route::post('', 'UsersController@update');
+                Route::post('', 'UsersController@updateProfile');
                 Route::post('password', 'UsersController@updatePassword');
-                Route::post('upload', 'UsersController@uploadProfilePicture');
             });
+
+        Route::get('home', 'HomeController@index');
+
+        Route::post('upload-avatar', 'UsersController@uploadAnyUserAvatar');
 
         Route::group([
             'middleware' => 'admin',

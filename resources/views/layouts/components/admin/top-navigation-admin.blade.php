@@ -123,9 +123,15 @@
                     <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
                         <li>
                             <a href="#">
-                                                    <span class="photo">
-                                                        <img src="{{ asset('assets/layouts/layout/img/avatar2.jpg') }}"
-                                                             class="img-circle" alt=""> </span>
+                                <span class="photo">
+                                    @if(!empty($user['data']['photo']))
+                                        <img src="{{ asset('uploads/avatars/' . $user['data']['photo']) }}"
+                                             class="img-circle" alt="" style="width: 100%; margin: 20px 0">
+                                    @else
+                                        <img src="{{ asset('assets/global/img/avatar.png') }}"
+                                             class="img-circle" alt="" style="width: 100%; margin: 20px 0">
+                                    @endif
+                                </span>
                                 <span class="subject">
                                                         <span class="from"> Lisa Wong </span>
                                                         <span class="time">Just Now </span>
@@ -322,14 +328,8 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-default">
                 <li>
-                    <a onclick="event.preventDefault(); document.getElementById('profile-form').submit();">
+                    <a href="{{ url('/profile') }}">
                         <i class="icon-user"></i> Perfil </a>
-                    <form id="profile-form"
-                          action="{{ url('/profile') }}"
-                          method="POST"
-                          style="display=none;">
-                        {{ csrf_field() }}
-                    </form>
                 </li>
                 <li>
                     <a href="app_calendar.html">

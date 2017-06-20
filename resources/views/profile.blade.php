@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-    <link href="{{ asset('global/css/dropzone.css') }}"
+    <link href="{{ asset('assets/global/plugins/dropzone/dropzone.min.css') }}"
           rel="stylesheet"
           type="text/css" />
 @endpush
@@ -50,8 +50,13 @@
                                     <div class="row">
                                         <div class="col-lg-5 col-md-4 col-sm-4 col-xs-4"></div>
                                         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+                                            @if(!empty($user['data']['photo']))
                                             <img src="{{ asset('uploads/avatars/' . $user['data']['photo']) }}"
                                                  style="width: 100%; margin: 20px 0">
+                                                @else
+                                                <img src="{{ asset('assets/global/img/avatar.png') }}"
+                                                     style="width: 100%; margin: 20px 0">
+                                            @endif
                                         </div>
                                         <div class="col-lg-5 col-md-4 col-sm-4 col-xs-4"></div>
                                     </div>
@@ -121,7 +126,7 @@
             Dropzone.autoDiscover = false;
             // Dropzone to upload avatar
             $('#avatar').dropzone({
-                url: '/profile/upload',
+                url: '/upload-avatar',
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'post',
                 maxFiles: 1,
@@ -138,4 +143,5 @@
             });
         });
     </script>
+    <script src="{{ asset('assets/global/plugins/dropzone/dropzone.min.js') }}" type="text/javascript"></script>
 @endpush

@@ -5,6 +5,16 @@ namespace App\Entities;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @property integer id
+ * @property string name
+ * @property string email
+ * @property string address
+ * @property string neighborhood
+ * @property string number
+ * @property \DateTime created_at
+ * @property \DateTime updated_at
+ */
 class User extends Authenticatable
 {
     use Notifiable;

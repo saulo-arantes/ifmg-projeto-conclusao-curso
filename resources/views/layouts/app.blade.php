@@ -26,6 +26,9 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="Preview page of Metronic Admin Theme #1 for blank page layout" name="description" />
         <meta content="" name="author" />
+        {{-- CSRF Token --}}
+        <meta name="csrf-token"
+              content="{{ csrf_token() }}">
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/global/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
@@ -93,10 +96,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
                 <!-- END SIDEBAR -->
                 <!-- BEGIN CONTENT -->
-
-                        @yield('content')
-
-
+                @yield('content')
                 <!-- END CONTENT -->
                 <!-- BEGIN QUICK SIDEBAR -->
                 <a href="javascript:;" class="page-quick-sidebar-toggler">

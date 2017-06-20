@@ -2,157 +2,194 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Log;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Repositories\LogRepository;
+use App\Repositories\UserRepository;
 use App\Services\DataTables\UsersDataTable;
-use App\Validators\LogValidator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Services\UserService;
+use App\Validators\UserValidator;
 use Illuminate\Support\Facades\Auth;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
+
 
 /**
- * Class LogsController
+ * Class UsersController
  *
- * @author  Saulo Vinícius
  * @package App\Http\Controllers
  */
 class UsersController extends Controller
 {
-
     /**
-     * @var LogRepository
+     * @var UserRepository
      */
     protected $repository;
 
     /**
-     * @var LogValidator
+     * @var UserValidator
      */
-    protected $validator;
-
-    public function __construct(LogRepository $repository, LogValidator $validator)
-    {
-        $this->repository = $repository;
-        $this->validator  = $validator;
-    }
-
+    protected $service;
 
     /**
-     * Display a listing of the resource.
+     * UsersController constructor.
      *
-     * @param UsersDataTable $dataTable
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @param UserRepository $repository
+     * @param UserService $service
      */
+    public function __construct(UserRepository $repository, UserService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+    }
+
     public function index(UsersDataTable $dataTable)
     {
         return $dataTable->render('admin.users.list');
     }
 
     /**
-     * Show the form for add a new resource.
+     * Stores an user.
      *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param UserCreateRequest $request
+     * @param null $otherController
+     *
+     * @return array|\Illuminate\Http\RedirectResponse
      */
-    public function create()
+    public function store(UserCreateRequest $request, $otherController = null)
     {
-        $user = null;
-        return view('admin.users.create', compact('user'));
+        $resultFromStoreUser = $this->service->store($request, $otherController);
+
+        if (!empty($otherController)) {
+            return $resultFromStoreUser;
+        }
+
+        if (!empty($resultFromStoreUser['error'])) {
+            alert()->error($resultFromStoreUser['message'], 'Erro :(')->persistent('Fechar');
+            return back()->withInput();
+        }
+
+        alert()->success('Usuário adicionado com sucesso!', 'Feito :)');
+        return redirect('/admin/users');
     }
+
     /**
-     * Show the form for editing the specified resource.
+     * Remove the specified resource from storage.
      *
      * @param  int $id
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function changeUserStatus($id)
     {
-        $user = $this->repository->find($id);
-        return view('admin.users.edit', compact('user'));
+        $resultFromChangeUserStatus = $this->service->changeUserStatus($id);
+
+        if (!empty($resultFromChangeUserStatus['error'])) {
+            alert()->error($resultFromChangeUserStatus['message'], 'Erro :(')->persistent('Fechar');
+        }
+
+        alert()->success('Status do usuário alterado com sucesso.', 'Feito :)');
+        return back();
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Upload the fighter profile picture.
      *
-     * @param  UserCreateRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     * @return string
      */
-    public function store(UserCreateRequest $request)
+    public function uploadAnyUserAvatar()
     {
-        try {
-            $data = $request->all();
-            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-            $data['password'] = bcrypt($data['password']);
-            $data['password_confirmation'] = $data['password'];
-            $data['level'] = 0;
-            $this->repository->create($data);
-            alert()->success('Administrador adicionado com sucesso.', 'Feito :)');
-            return redirect('/admin/users');
-        } catch (ValidatorException $e) {
-            Log::create([
-                'user_id'     => Auth::user()->id,
-                'description' => 'Arquivo => ' . $e->getFile() . '<br><br>Linha => ' . $e->getLine() . '<br><br>ValidatorException => ' . $e->getMessageBag()->first(),
-                'type'        => 0
-            ]);
-            alert()->error($e->getMessageBag()->first(),
-                'Erro :(')->persistent('Fechar');
-            return back()->withInput();
-        } catch (\Exception $e) {
-            Log::create([
-                'user_id'     => Auth::user()->id,
-                'description' => 'Arquivo => ' . $e->getFile() . '<br><br>Linha => ' . $e->getLine() . '<br><br>Exception => ' . $e->getMessage(),
-                'type'        => 0
-            ]);
-            alert()->error('Ocorreu um erro ao adicionar o administrador.', 'Erro :(')->persistent('Fechar');
+        $imageName = $this->repository->uploadAvatar();
+
+        if (!empty($imageName['error'])) {
+            return response($imageName['message'], 400);
+        }
+
+        session(['avatar' => $imageName]);
+
+        return response('Foto salva com sucesso.', 200);
+    }
+
+    /**
+     * Upload the users profile picture.
+     *
+     * @return string
+     */
+    public function uploadProfileAvatar()
+    {
+        $imageName = $this->repository->uploadAvatar();
+
+        if (!empty($imageName['error'])) {
+            return response($imageName['message'], 400);
+        }
+
+        Auth::user()->update(['avatar' => $imageName]);
+
+        return response('Foto salva com sucesso.', 200);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function profile()
+    {
+        $user['data']['user'] = $this->repository->find(Auth::user()->id);
+        return view('profile', compact('user'));
+    }
+
+    /**
+     * @param UserUpdateRequest $request
+     *
+     * @return array|bool|\Illuminate\Http\RedirectResponse
+     */
+    public function updateProfile(UserUpdateRequest $request)
+    {
+        return $this->update($request, Auth::user()->id);
+    }
+
+    /**
+     * Updates an usuário.
+     *
+     * @param UserUpdateRequest $request
+     * @param $id
+     * @param null $otherController
+     *
+     * @return array|bool|\Illuminate\Http\RedirectResponse
+     */
+    public function update(UserUpdateRequest $request, $id, $otherController = null)
+    {
+        $resultFromUpdateUser = $this->service->update($request, $id);
+
+        if (!empty($otherController)) {
+            return $resultFromUpdateUser;
+        }
+
+        if (!empty($resultFromUpdateUser['error'])) {
+            alert()->error($resultFromUpdateUser['message'], 'Erro :(')->persistent('Fechar');
             return back()->withInput();
         }
+
+        alert()->success('Usuário atualizado com sucesso!', 'Feito :)');
+        return back()->withInput();
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  UserUpdateRequest $request
-     * @param  string $id
+     * @param $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return array|\Illuminate\Http\RedirectResponse
      */
-    public function update(UserUpdateRequest $request, $id)
+    public function updatePassword(UserUpdateRequest $request)
     {
-        try {
-            $data = $request->except('level');
-            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
-            $this->repository->update($data, $id);
-            alert()->success('Usuário atualizado com sucesso.', 'Feito :)');
-            return redirect('/admin/users');
-        } catch (ValidatorException $e) {
-            Log::create([
-                'user_id'     => Auth::user()->id,
-                'description' => 'Arquivo => ' . $e->getFile() . '<br><br>Linha => ' . $e->getLine() . '<br><br>ValidatorException => ' . $e->getMessageBag()->first(),
-                'type'        => 0
-            ]);
-            alert()->error($e->getMessageBag()->first(),
-                'Erro :(')->persistent('Fechar');
-            return back();
-        } catch (ModelNotFoundException $e) {
-            Log::create([
-                'user_id'     => Auth::user()->id,
-                'description' => 'Arquivo => ' . $e->getFile() . '<br><br>Linha => ' . $e->getLine() . '<br><br>ModelNotFoundException => ' . $e->getMessage(),
-                'type'        => 0
-            ]);
-            alert()->error('Usuário não encontrado.', 'Erro :(')->persistent('Fechar');
-            return back();
-        } catch (\Exception $e) {
-            Log::create([
-                'user_id'     => Auth::user()->id,
-                'description' => 'Arquivo => ' . $e->getFile() . '<br><br>Linha => ' . $e->getLine() . '<br><br>Exception => ' . $e->getMessage(),
-                'type'        => 0
-            ]);
-            alert()->error('Ocorreu um erro ao atualizar o usuário.', 'Erro :(')->persistent('Fechar');
-            return back();
+        $resultFromChangePassword = $this->service->updatePassword($request);
+
+        if ($resultFromChangePassword['error']) {
+            alert()->error($resultFromChangePassword['message'], 'Erro :(')->persistent('Fechar');
+        } else {
+            alert()->success($resultFromChangePassword['message'], 'Feito :)');
         }
+
+        return back();
+
     }
+
+
 }
