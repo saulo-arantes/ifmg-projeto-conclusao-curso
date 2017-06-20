@@ -353,7 +353,7 @@
                     <form id="logout-form"
                           action="{{ url('/logout') }}"
                           method="POST"
-                          style="display=none;">
+                          style="display: none;">
                         {{ csrf_field() }}
                     </form>
                 </li>
