@@ -17,6 +17,7 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
 
     return [
         'address'        => $faker->streetName,
+        'complement'     => $faker->word,
         'email'          => $faker->unique()->safeEmail,
         'level'          => $faker->numberBetween(0, 2),
         'name'           => $faker->name,

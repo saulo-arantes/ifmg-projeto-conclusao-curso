@@ -125,7 +125,7 @@
                             <a href="#">
                                 <span class="photo">
                                     @if(!empty($user['data']['photo']))
-                                        <img src="{{ asset('uploads/avatars/' . $user['data']['photo']) }}"
+                                        <img src="{{ asset('upload-avatar' . $user['data']['photo']) }}"
                                              class="img-circle" alt="" style="width: 100%; margin: 20px 0">
                                     @else
                                         <img src="{{ asset('assets/global/img/avatar.png') }}"

@@ -1,30 +1,22 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: saulo
- * Date: 07/06/17
- * Time: 09:32
- */
-?>
-
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="form-group">
         <label class="control-label"
-               for="name">Nome</label>
+               for="name">CEP</label>
         @include('layouts.components.asterisk')
         <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="fa fa-user"
+                    <i class="fa fa-pencil-square-o"
                        aria-hidden="true"></i>
                 </span>
             <input type="text"
                    class="form-control"
-                   placeholder="Nome"
-                   id="name"
-                   name="name"
-                   title="Name"
+                   placeholder="CEP"
+                   id="zipcode"
+                   name="zipcode"
+                   title="Zipcode"
                    maxlength="255"
-                   value="{{ old('name') ?? $data['data']['name'] ?? $data['data']['user']['data']['name'] ?? null }}"
+                   value="{{ old('zipcode') ?? $data['data']['zipcode'] ?? $data['data']['user']['data']['zipcode'] ?? null }}"
+                   pattern="[0-9]{9}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

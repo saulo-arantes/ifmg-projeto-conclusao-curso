@@ -1,30 +1,21 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: saulo
- * Date: 07/06/17
- * Time: 09:32
- */
-?>
-
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="form-group">
         <label class="control-label"
-               for="name">Nome</label>
+               for="name">Endereço</label>
         @include('layouts.components.asterisk')
         <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="fa fa-user"
+                    <i class="fa fa-building"
                        aria-hidden="true"></i>
                 </span>
             <input type="text"
                    class="form-control"
-                   placeholder="Nome"
-                   id="name"
-                   name="name"
-                   title="Name"
+                   placeholder="Endereço"
+                   id="address"
+                   name="address"
+                   title="Address"
                    maxlength="255"
-                   value="{{ old('name') ?? $data['data']['name'] ?? $data['data']['user']['data']['name'] ?? null }}"
+                   value="{{ old('address') ?? $data['data']['address'] ?? $data['data']['user']['data']['address'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

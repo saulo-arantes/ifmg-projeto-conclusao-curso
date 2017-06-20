@@ -51,7 +51,7 @@
                                         <div class="col-lg-5 col-md-4 col-sm-4 col-xs-4"></div>
                                         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
                                             @if(!empty($user['data']['photo']))
-                                            <img src="{{ asset('uploads/avatars/' . $user['data']['photo']) }}"
+                                            <img src="{{ asset('upload-avatar' . $user['data']['photo']) }}"
                                                  style="width: 100%; margin: 20px 0">
                                                 @else
                                                 <img src="{{ asset('assets/global/img/avatar.png') }}"
@@ -81,6 +81,11 @@
                                             <div class="row">
                                                 @include('layouts.components.name', ['data' => $user])
                                                 @include('layouts.components.email', ['data' => $user])
+                                                @include('layouts.components.edit-address', ['data' => $user])
+                                                @include('layouts.components.edit-number', ['data' => $user])
+                                                @include('layouts.components.edit-neighborhood', ['data' => $user])
+                                                @include('layouts.components.edit-complement', ['data' => $user])
+                                                @include('layouts.components.edit-zipcode', ['data' => $user])
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
