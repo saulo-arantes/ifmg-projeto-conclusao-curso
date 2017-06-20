@@ -13,8 +13,7 @@ use League\Fractal\TransformerAbstract;
  */
 class UserTransformer extends TransformerAbstract
 {
-
-    protected $defaultIncludes = ['user'];
+    protected $defaultIncludes = ['contacts'];
 
     /**
      * Transform the \Log entity
@@ -38,8 +37,12 @@ class UserTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeUser(User $model)
+    public function includeContacts(User $model)
     {
-        return $this->item($model->user, new UserTransformer());
+        if (!empty($model->contacts())){
+            return $this->collection($model->contacts(), new UserContactTransformer());
+        }
+
+        return null;
     }
 }

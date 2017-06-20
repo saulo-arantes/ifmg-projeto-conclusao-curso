@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Entities\User;
+use App\Presenters\UserContactPresenter;
+use App\Presenters\UserPresenter;
 use App\Validators\UserValidator;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -44,5 +46,10 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function presenter()
+    {
+        return UserPresenter::class;
     }
 }
