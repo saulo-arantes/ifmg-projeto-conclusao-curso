@@ -124,66 +124,39 @@
                         <li>
                             <a href="#">
                                 <span class="photo">
-                                    @if(!empty($user['data']['photo']))
-                                        <img src="{{ asset('upload-avatar' . $user['data']['photo']) }}"
-                                             class="img-circle" alt="" style="width: 100%; margin: 20px 0">
-                                    @else
-                                        <img src="{{ asset('assets/global/img/avatar.png') }}"
-                                             class="img-circle" alt="" style="width: 100%; margin: 20px 0">
-                                    @endif
+                                    <img src="{{ asset('assets/layouts/layout/img/avatar1.jpg') }}"
+                                                class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
-                                                        <span class="from"> Lisa Wong </span>
-                                                        <span class="time">Just Now </span>
-                                                    </span>
-                                <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                                    <span class="photo">
-                                                        <img src="{{ asset('assets/layouts/layout/img/avatar3.jpg') }}') }}"
-                                                             class="img-circle" alt=""> </span>
-                                <span class="subject">
-                                                        <span class="from"> Richard Doe </span>
-                                                        <span class="time">16 mins </span>
-                                                    </span>
-                                <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                                    <span class="photo">
-                                                        <img src="{{ asset('assets/layouts/layout/img/avatar1.jpg') }}"
-                                                             class="img-circle" alt=""> </span>
-                                <span class="subject">
-                                                        <span class="from"> Bob Nilson </span>
-                                                        <span class="time">2 hrs </span>
-                                                    </span>
+                                    <span class="from"> Bob Nilson </span>
+                                    <span class="time">2 hrs </span>
+                                </span>
                                 <span class="message"> Vivamus sed nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                                    <span class="photo">
-                                                        <img src="{{ asset('assets/layouts/layout/img/avatar2.jpg') }}"
-                                                             class="img-circle" alt=""> </span>
+                                <span class="photo">
+                                    <img src="{{ asset('assets/layouts/layout/img/avatar2.jpg') }}"
+                                                class="img-circle" alt="">
+                                </span>
                                 <span class="subject">
-                                                        <span class="from"> Lisa Wong </span>
-                                                        <span class="time">40 mins </span>
-                                                    </span>
+                                    <span class="from"> Lisa Wong </span>
+                                    <span class="time">40 mins </span>
+                                </span>
                                 <span class="message"> Vivamus sed auctor 40% nibh congue nibh... </span>
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                                    <span class="photo">
-                                                        <img src="{{ asset('assets/layouts/layout/img/avatar3.jpg') }}"
-                                                             class="img-circle" alt=""> </span>
+                                <span class="photo">
+                                    <img src="{{ asset('assets/layouts/layout/img/avatar3.jpg') }}"
+                                                class="img-circle" alt="">
+                                </span>
                                 <span class="subject">
-                                                        <span class="from"> Richard Doe </span>
-                                                        <span class="time">46 mins </span>
-                                                    </span>
+                                    <span class="from"> Richard Doe </span>
+                                    <span class="time">46 mins </span>
+                                </span>
                                 <span class="message"> Vivamus sed congue nibh auctor nibh congue nibh. auctor nibh auctor nibh... </span>
                             </a>
                         </li>
@@ -322,14 +295,22 @@
         <li class="dropdown dropdown-user">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
-                <img alt="" class="img-circle" src="{{ asset('assets/layouts/layout/img/avatar3_small.jpg') }}"/>
+                @if(!empty($user['data']['photo']))
+                    <img alt=""
+                         class="img-circle"
+                         src="{{ asset('upload-avatar' . $user['data']['photo']) }}">
+                @else
+                    <img alt=""
+                         class="img-circle"
+                         src="{{ asset('assets/global/img/avatar.png') }}">
+                @endif
                 <span class="username username-hide-on-mobile"> {{ Auth::user()->name }} </span>
                 <i class="fa fa-angle-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-default">
                 <li>
                     <a href="{{ url('/profile') }}">
-                        <i class="icon-user"></i> Perfil </a>
+                        <i class="icon-user"></i> Meu perfil </a>
                 </li>
                 <li>
                     <a href="app_calendar.html">
