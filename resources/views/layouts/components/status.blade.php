@@ -1,21 +1,21 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="form-group">
         <label class="control-label"
-               for="name">Endereço</label>
+               for="name">Status</label>
         @include('layouts.components.asterisk')
         <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="fa fa-building"
+                    <i class="fa fa-pencil-square-o"
                        aria-hidden="true"></i>
                 </span>
             <input type="text"
                    class="form-control"
-                   placeholder="Endereço"
-                   id="address"
-                   name="address"
-                   title="Endereço"
+                   placeholder="Status"
+                   id="status"
+                   name="status"
+                   title="Status"
                    maxlength="255"
-                   value="{{ old('address') ?? $data['address'] ?? null }}"
+                   value="{{ old('status') ?? $data['status'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

@@ -22,7 +22,7 @@
                    placeholder="Nome"
                    id="name"
                    name="name"
-                   title="Name"
+                   title="Nome"
                    maxlength="255"
                    value="{{ old('name') ?? $data['name'] ?? null }}"
                    required>

@@ -11,7 +11,7 @@
                            aria-hidden="true"></i>
                     </li>
                     <li>
-                        <span>Administradores</span>
+                        <span>Usuários</span>
                         <i class="fa fa-circle"
                            aria-hidden="true"></i>
                     </li>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="portlet-body form">
-                            <form action="{{ url('/admin/administrators/create') }}"
+                            <form action="{{ url('/admin/users/create') }}"
                                   id="form_sample_2"
                                   method="post"
                                   class="horizontal-form"
@@ -40,15 +40,27 @@
                                 <div class="form-body">
                                     {{ csrf_field() }}
                                     <div class="row">
-                                        @include('layouts.components.name', ['data' => $user])
-                                        @include('layouts.components.email', ['data' => $user])
+                                        @include('layouts.components.name')
+                                        @include('layouts.components.email')
                                     </div>
                                     <div class="row">
-                                        @include('layouts.components.status', ['data' => $user])
+                                        @include('layouts.components.status')
+                                        @include('layouts.components.level')
                                     </div>
                                     <div class="row">
                                         @include('layouts.components.new-password')
                                         @include('layouts.components.password-confirmation')
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.address')
+                                        @include('layouts.components.number')
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.neighborhood')
+                                        @include('layouts.components.complement')
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.zipcode')
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>

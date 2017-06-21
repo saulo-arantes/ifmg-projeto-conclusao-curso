@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\User;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
@@ -49,6 +50,11 @@ class UsersController extends Controller
     {
         $user = $this->repository->find($id);
         return view('admin.users.edit', compact('user'));
+    }
+
+    public function create()
+    {
+        return view('admin.users.create');
     }
 
     /**

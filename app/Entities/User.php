@@ -36,6 +36,7 @@ class User extends Authenticatable
         'number',
         'password',
         'photo',
+        'status',
         'zipcode'
     ];
 

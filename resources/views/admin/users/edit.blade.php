@@ -88,7 +88,7 @@
                                             </div>
                                             <div class="row">
                                                 @include('layouts.components.address', ['data' => $user['data']])
-                                                @include('layouts.components.edit-number', ['data' => $user['data']])
+                                                @include('layouts.components.number', ['data' => $user['data']])
                                             </div>
                                             <div class="row">
                                                 @include('layouts.components.neighborhood', ['data' => $user['data']])
