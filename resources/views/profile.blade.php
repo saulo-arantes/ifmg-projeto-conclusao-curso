@@ -86,6 +86,8 @@
                                                 @include('layouts.components.edit-neighborhood', ['data' => $user])
                                                 @include('layouts.components.edit-complement', ['data' => $user])
                                                 @include('layouts.components.edit-zipcode', ['data' => $user])
+                                                @include('layouts.components.cpf', ['data' => $user])
+                                                @include('layouts.components.birthday-date', ['data' => $user])
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
