@@ -23,7 +23,13 @@ class UsersDataTable extends DataTable
         return $this->datatables
             ->eloquent($this->query())->editColumn('created_at', function (User $model) {
                 return date('d/m/Y H:i:s', strtotime($model->created_at));
-            });
+            })->addColumn('edit', function (User $model) {
+                return '<a href="users/' . $model->id . '/edit" 
+                           class="btn btn-xs btn-primary center-block"> 
+                            <i class="fa fa-pencil-square-o" 
+                               aria-hidden="true"></i>
+                        </a>';
+            })->escapeColumns([]);
     }
 
     /**
@@ -94,7 +100,8 @@ class UsersDataTable extends DataTable
             'address'      => ['title' => 'Endereço'],
             'neighborhood' => ['title' => 'Bairro'],
             'number'       => ['title' => 'Número'],
-            'created_at'   => ['title' => 'Data']
+            'created_at'   => ['title' => 'Data'],
+            'edit'         => ['title' => 'Editar']
         ];
     }
 

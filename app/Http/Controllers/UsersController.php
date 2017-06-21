@@ -45,6 +45,12 @@ class UsersController extends Controller
         return $dataTable->render('admin.users.list');
     }
 
+    public function edit($id)
+    {
+        $user = $this->repository->find($id);
+        return view('admin.users.edit', compact('user'));
+    }
+
     /**
      * Stores an user.
      *
@@ -130,7 +136,7 @@ class UsersController extends Controller
      */
     public function profile()
     {
-        $user['data']['user'] = $this->repository->find(Auth::user()->id);
+        $user = $this->repository->find(Auth::user()->id);
         return view('profile', compact('user'));
     }
 

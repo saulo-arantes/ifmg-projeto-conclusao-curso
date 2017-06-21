@@ -43,16 +43,6 @@ Route::group(['middleware' => 'auth'],
 
             Route::get('dashboard', 'HomeController@dashboard');
 
-            Route::group(['prefix' => 'administrators'],
-                function () {
-                    Route::get('', 'AdministratorsController@index');
-                    Route::get('{id}/edit', 'AdministratorsController@edit');
-                    Route::post('{id}/edit', 'AdministratorsController@update');
-                    Route::get('{id}/delete', 'AdministratorsController@destroy');
-                    Route::post('create', 'AdministratorsController@store');
-                    Route::get('create', 'AdministratorsController@create');
-                });
-
             Route::group(['prefix' => 'users'],
                 function () {
                     Route::get('', 'UsersController@index');

@@ -51,8 +51,8 @@
                                         <div class="col-lg-5 col-md-4 col-sm-4 col-xs-4"></div>
                                         <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
 
-                                            @if(!empty($user['data']['user']['data']['photo']))
-                                                <img src="{{ asset('uploads/' . $user['data']['user']['data']['photo']) }}"
+                                            @if(!empty($user['data']['photo']))
+                                                <img src="{{ asset('uploads/' . $user['data']['photo']) }}"
                                                      style="width: 100%; margin: 20px 0">
                                             @else
                                                 <img src="{{ asset('assets/global/img/avatar.png') }}"
@@ -84,19 +84,19 @@
                                         {{ csrf_field() }}
                                         <div class="form-body">
                                             <div class="row">
-                                                @include('layouts.components.name', ['data' => $user['data']['user']['data']])
-                                                @include('layouts.components.email', ['data' => $user['data']['user']['data']])
+                                                @include('layouts.components.name', ['data' => $user['data']])
+                                                @include('layouts.components.email', ['data' => $user['data']])
                                             </div>
                                             <div class="row">
-                                                @include('layouts.components.address', ['data' => $user['data']['user']['data']])
-                                                @include('layouts.components.edit-number', ['data' => $user['data']['user']['data']])
+                                                @include('layouts.components.address', ['data' => $user['data']])
+                                                @include('layouts.components.edit-number', ['data' => $user['data']])
                                             </div>
                                             <div class="row">
-                                                @include('layouts.components.neighborhood', ['data' => $user['data']['user']['data']])
-                                                @include('layouts.components.complement', ['data' => $user['data']['user']['data']])
+                                                @include('layouts.components.neighborhood', ['data' => $user['data']])
+                                                @include('layouts.components.complement', ['data' => $user['data']])
                                             </div>
                                             <div class="row">
-                                                @include('layouts.components.zipcode', ['data' => $user['data']['user']['data']])
+                                                @include('layouts.components.zipcode', ['data' => $user['data']])
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>

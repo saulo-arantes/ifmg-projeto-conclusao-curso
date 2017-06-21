@@ -82,7 +82,7 @@
             </li>
             <li class="nav-item start ">
                 <a href="{{ url('/admin/logs') }}">
-                    <i class="icon-user"></i>
+                    <i class="icon-calendar"></i>
                     <span class="title">Log</span>
                 </a>
             </li>
