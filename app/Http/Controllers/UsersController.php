@@ -102,7 +102,7 @@ class UsersController extends Controller
             return response($imageName['message'], 400);
         }
 
-        session(['avatar' => $imageName]);
+        session(['photo' => $imageName]);
 
         return response('Foto salva com sucesso.', 200);
     }
@@ -120,7 +120,7 @@ class UsersController extends Controller
             return response($imageName['message'], 400);
         }
 
-        Auth::user()->update(['avatar' => $imageName]);
+        Auth::user()->update(['photo' => $imageName]);
 
         return response('Foto salva com sucesso.', 200);
     }
@@ -145,7 +145,7 @@ class UsersController extends Controller
     }
 
     /**
-     * Updates an usuário.
+     * Updates an user.
      *
      * @param UserUpdateRequest $request
      * @param $id

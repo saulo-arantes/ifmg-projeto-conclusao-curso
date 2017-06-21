@@ -26,11 +26,13 @@ class UserTransformer extends TransformerAbstract
     {
         return [
             'id'           => (int)$model->id,
-            'name'         => $model->name,
-            'email'        => $model->email,
             'address'      => $model->address,
+            'email'        => $model->email,
+            'name'         => $model->name,
             'neighborhood' => $model->neighborhood,
             'number'       => $model->number,
+            'photo'        => $model->photo,
+            'zipcode'      => $model->zipcode,
             'created_at'   => $model->created_at,
             'updated_at'   => $model->updated_at
         ];
@@ -38,7 +40,7 @@ class UserTransformer extends TransformerAbstract
 
     public function includeContacts(User $model)
     {
-        if (!empty($model->contacts())){
+        if (!empty($model->contacts())) {
             return $this->collection($model->contacts(), new UserContactTransformer());
         }
 

@@ -295,10 +295,10 @@
         <li class="dropdown dropdown-user">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
-                @if(!empty($user['data']['photo']))
+                @if(!empty($user['data']['user']['data']['photo']))
                     <img alt=""
                          class="img-circle"
-                         src="{{ asset('upload-avatar' . $user['data']['photo']) }}">
+                         src="{{ asset('uploads/' . $user['data']['user']['data']['photo']) }}">
                 @else
                     <img alt=""
                          class="img-circle"

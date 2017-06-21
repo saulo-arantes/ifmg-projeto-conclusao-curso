@@ -67,16 +67,16 @@ class UserService
             $data['password_confirmation'] = 'senha123';
             $data['status']                = 0;
 
-            $data['cpf'] = ! empty($data['icpf']) ? $data['icpf'] : null;
-            $data['rg']  = ! empty($data['rg']) ? $data['rg'] : null;
+            $data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
+            $data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
 
-            $data['birthday_date'] = ! empty($data['birthday_date']) ? date('Y-m-d',
+            $data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
                 strtotime($data['birthday_date'])) : null;
 
-            if ( ! empty(session('avatar'))) {
-                $data['avatar'] = session('avatar');
+            if (!empty(session('photo'))) {
+                $data['photo'] = session('photo');
             } else {
-                $data['avatar'] = ! empty(session('avatar')) ? session('avatar') : 'avatar.png';
+                $data['photo'] = !empty(session('photo')) ? session('photo') : 'update-avatar.png';
             }
 
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
@@ -84,7 +84,7 @@ class UserService
             $user = $this->repository->create($data);
             $this->repository->updateContacts($data, $user['data']['id']);
 
-            session()->forget('avatar');
+            session()->forget('photo');
 
             return $user['data']['id'];
 
@@ -118,20 +118,20 @@ class UserService
         try {
             $data = $request->except('level');
 
-            $data['cpf'] = ! empty($data['icpf']) ? $data['icpf'] : null;
-            $data['rg']  = ! empty($data['rg']) ? $data['rg'] : null;
+            $data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
+            $data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
 
-            if ( ! empty($data['birthday_date'])) {
+            if (!empty($data['birthday_date'])) {
                 $dateTime              = date_create_from_format('d/m/Y', $data['birthday_date']);
                 $data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
             } else {
                 $data['birthday_date'] = null;
             }
 
-            if ( ! empty(session('avatar'))) {
-                $data['avatar'] = session('avatar');
+            if (!empty(session('photo'))) {
+                $data['photo'] = session('photo');
             } else {
-                $data['avatar'] = ! empty(session('avatar')) ? session('avatar') : 'avatar.png';
+                $data['photo'] = !empty(session('photo')) ? session('photo') : 'upload-avatar.png';
             }
 
             $this->validator->setId($id);
@@ -139,7 +139,7 @@ class UserService
             $this->repository->update($data, $id);
             $this->repository->updateContacts($data, $id);
 
-            session()->forget('avatar');
+            session()->forget('photo');
 
             return true;
         } catch (ValidatorException $e) {

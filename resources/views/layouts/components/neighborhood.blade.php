@@ -15,7 +15,7 @@
                    name="neighborhood"
                    title="Neighborhood"
                    maxlength="255"
-                   value="{{ old('neighborhood') ?? $data['data']['neighborhood'] ?? $data['data']['user']['data']['neighborhood'] ?? null }}"
+                   value="{{ old('neighborhood') ?? $data['neighborhood'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

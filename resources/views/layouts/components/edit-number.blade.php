@@ -13,9 +13,9 @@
                    placeholder="Número"
                    id="number"
                    name="number"
-                   title="Number"
+                   title="Número"
                    maxlength="255"
-                   value="{{ old('number') ?? $data['data']['number'] ?? $data['data']['user']['data']['number'] ?? null }}"
+                   value="{{ old('number') ?? $data['number'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

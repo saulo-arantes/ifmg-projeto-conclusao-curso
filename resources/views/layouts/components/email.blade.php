@@ -24,7 +24,7 @@
                name="email"
                title="E-mail"
                maxlength="255"
-               value="{{ old('email') ?? $data['data']['email'] ?? $data['data']['user']['data']['email'] ?? null }}"
+               value="{{ old('email') ?? $data['email'] ?? null }}"
                required>
     </div>
     <div class="help-block with-errors"></div>

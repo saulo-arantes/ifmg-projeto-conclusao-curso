@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'],
 
         Route::get('home', 'HomeController@index');
 
-        Route::post('upload-avatar', 'UsersController@uploadAnyUserAvatar');
+        Route::post('uploads/upload-avatar', 'UsersController@uploadAnyUserAvatar');
 
         Route::group([
             'middleware' => 'admin',

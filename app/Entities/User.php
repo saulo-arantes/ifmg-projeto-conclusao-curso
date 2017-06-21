@@ -7,11 +7,13 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * @property integer id
- * @property string name
- * @property string email
  * @property string address
+ * @property string email
+ * @property string photo
+ * @property string name
  * @property string neighborhood
  * @property string number
+ * @property string zipcode
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
@@ -25,10 +27,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'address',
+        'complement',
         'email',
+        'level',
+        'name',
+        'neighborhood',
+        'number',
         'password',
-        'level'
+        'photo',
+        'zipcode'
     ];
 
     /**

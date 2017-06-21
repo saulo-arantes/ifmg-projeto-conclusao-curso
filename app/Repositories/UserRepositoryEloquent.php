@@ -185,7 +185,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
         # Catch the imagedata
         $imageName = md5(uniqid(time())) . '.jpg';
-        $imagePath = 'upload-avatar' . $imageName;
+        $imagePath = 'uploads/' . $imageName;
         imagejpeg($new, $imagePath, 90);
 
         # Destroy resources

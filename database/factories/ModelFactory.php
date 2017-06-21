@@ -25,7 +25,7 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
         'number'         => $faker->buildingNumber,
         'password'       => $password ?: $password = bcrypt('secret'),
         'status'         => $faker->boolean(),
-        'zipcode'        => $faker->numerify('123456789'),
+        'zipcode'        => $faker->numerify('12.345-678'),
         'remember_token' => str_random(10)
     ];
 });

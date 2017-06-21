@@ -38,8 +38,8 @@ class CreatePatientsTable extends Migration
             $table->decimal('birth_weight', 6, 3)->nullable();
             $table->decimal('birth_cephalic_length', 4, 2)->nullable();
             $table->boolean('birth_type')->comment('0 = normal, 1 = cesária');
-            $table->unsignedInteger('blood_type_id');
-            $table->foreign('blood_type_id')->references('id')->on('blood_types');
+            //$table->unsignedInteger('blood_type_id');
+            //$table->foreign('blood_type_id')->references('id')->on('blood_types');
             $table->unsignedInteger('father_id')->nullable();
             $table->foreign('father_id')->references('id')->on('patients');
             $table->unsignedInteger('mother_id')->nullable();

@@ -24,7 +24,7 @@
                    name="name"
                    title="Name"
                    maxlength="255"
-                   value="{{ old('name') ?? $data['data']['name'] ?? $data['data']['user']['data']['name'] ?? null }}"
+                   value="{{ old('name') ?? $data['name'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

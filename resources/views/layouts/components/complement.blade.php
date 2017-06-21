@@ -2,7 +2,6 @@
     <div class="form-group">
         <label class="control-label"
                for="name">Complemento</label>
-        @include('layouts.components.asterisk')
         <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-pencil-square-o"
@@ -15,8 +14,7 @@
                    name="complement"
                    title="Complement"
                    maxlength="255"
-                   value="{{ old('complement') ?? $data['data']['complement'] ?? $data['data']['user']['data']['complement'] ?? null }}"
-                   required>
+                   value="{{ old('complement') ?? $data['complement'] ?? null }}">
         </div>
         <div class="help-block with-errors"></div>
     </div>

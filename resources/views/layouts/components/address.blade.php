@@ -15,7 +15,7 @@
                    name="address"
                    title="Address"
                    maxlength="255"
-                   value="{{ old('address') ?? $data['data']['address'] ?? $data['data']['user']['data']['address'] ?? null }}"
+                   value="{{ old('address') ?? $data['address'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>
