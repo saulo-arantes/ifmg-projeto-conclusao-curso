@@ -35,43 +35,34 @@ class PatientsController extends Controller
         return $dataTable->render('admin.patients.list');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  PatientsCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PatientsCreateRequest $request)
+    public function create()
     {
+        return view('admin.patients.create');
+    }
 
-        try {
+    /**
+     * Stores a patient.
+     *
+     * @param PatientsCreateRequest $request
+     * @param null $otherController
+     *
+     * @return array|\Illuminate\Http\RedirectResponse
+     */
+    public function store(PatientsCreateRequest $request, $otherController = null)
+    {
+        $resultFromStoreUser = $this->service->store($request, $otherController);
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $patient = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'Patients created.',
-                'data'    => $patient->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        if (!empty($otherController)) {
+            return $resultFromStoreUser;
         }
+
+        if (!empty($resultFromStoreUser['error'])) {
+            alert()->error($resultFromStoreUser['message'], 'Erro :(')->persistent('Fechar');
+            return back()->withInput();
+        }
+
+        alert()->success('Paciente adicionado com sucesso!', 'Feito :)');
+        return redirect('/admin/patients');
     }
 
 
@@ -87,7 +78,7 @@ class PatientsController extends Controller
 
         $patient = $this->repository->find($id);
 
-        return view('patients.edit', compact('patient'));
+        return view('admin.patients.edit', compact('patient'));
     }
 
 

@@ -89,7 +89,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item start ">
-                        <a href="{{ url('/admin/users/create') }}"
+                        <a href="{{ url('/admin/patients/create') }}"
                            class="nav-link ">
                             <i class="icon-plus"></i>
                             <span class="title">Adicionar</span>
