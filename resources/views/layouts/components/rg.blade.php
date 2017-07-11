@@ -15,7 +15,7 @@
                    name="rg"
                    title="RG"
                    maxlength="10"
-                   value="{{ old('rg') ?? $data['rg'] ?? nulls }}"
+                   value="{{ old('rg') ?? $data['rg'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

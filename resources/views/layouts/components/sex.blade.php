@@ -10,7 +10,7 @@
 
                     <div class="md-radio">
                         <input type="radio" id="male" name="sex"
-                               class="md-radiobtn" {{ $data['sex'] === 0 ? 'checked' : '' }} >
+                               class="md-radiobtn" {{ $data['sex'] == 0 ? 'checked' : '' }} >
                         <label for="male">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="md-radio">
                         <input type="radio" id="female" name="sex"
-                               class="md-radiobtn" {{ $data['sex'] === 1 ? 'checked' : '' }} >
+                               class="md-radiobtn" {{ $data['sex'] == 1 ? 'checked' : '' }} >
                         <label for="female">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -29,7 +29,7 @@
 
                     <div class="md-radio">
                         <input type="radio" id="male" name="sex"
-                               class="md-radiobtn" {{ old('sex') === 0 ? 'checked' : '' }} >
+                               class="md-radiobtn" {{ old('sex') == 0 ? 'checked' : '' }} >
                         <label for="male">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="md-radio">
                         <input type="radio" id="female" name="sex"
-                               class="md-radiobtn" {{ old('sex') === 1 ? 'checked' : '' }} >
+                               class="md-radiobtn" {{ old('sex') == 1 ? 'checked' : '' }} >
                         <label for="female">
                             <span class="inc"></span>
                             <span class="check"></span>

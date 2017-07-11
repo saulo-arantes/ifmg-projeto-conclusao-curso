@@ -15,7 +15,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property int type
  * @property string cpf
  * @property string rg
- * @property string street
+ * @property string address
  * @property string neighborhood
  * @property string number
  * @property string complement
@@ -30,7 +30,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property float birth_weight
  * @property float birth_cephalic_length
  * @property float birth_type
- * @property int blood_type_id
+ * @property string blood_type
  * @property int father_id
  * @property int mother_id
  * @property int city_id
@@ -50,7 +50,7 @@ class Patients extends Model implements Transformable
         'type',
         'cpf',
         'rg',
-        'street',
+        'address',
         'neighborhood',
         'number',
         'complement',
@@ -65,7 +65,6 @@ class Patients extends Model implements Transformable
         'birth_weight',
         'birth_cephalic_length',
         'birth_type',
-        'blood_type_id',
         'father_id',
         'mother_id',
         'city_id',

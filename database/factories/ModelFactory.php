@@ -25,7 +25,7 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
         'number'         => $faker->buildingNumber,
         'password'       => $password ?: $password = bcrypt('secret'),
         'status'         => $faker->boolean,
-        'zipcode'        => $faker->numerify('12.345-678'),
+        'zipcode'        => rand(10000, 99999) . '-' . rand(100, 999),
         'remember_token' => str_random(10)
     ];
 });
@@ -80,14 +80,15 @@ $factory->define(App\Entities\Patients::class, function (Faker\Generator $faker)
         'name'                  => $faker->name,
         'birthday_date'         => $faker->dateTime,
         'sex'                   => $faker->boolean,
-        'cpf'                   => rand(1, 999).'.'.rand(1,999).'.'.rand(1,999).'-'.rand(1, 99),
-        'rg'                    => rand(1, 99).'.'.rand(1, 999).'.'.rand(1, 999),
-        'street'                => $faker->streetName,
+        'cpf'                   => rand(100, 999) . '.' . rand(100, 999) . '.' . rand(100, 999) . '-' . rand(10, 99),
+        'rg'                    => rand(10, 99) . '.' . rand(100, 999) . '.' . rand(100, 999),
+        'address'               => $faker->streetName,
         'neighborhood'          => $faker->word,
         'number'                => $faker->buildingNumber,
         'zipcode'               => $faker->numerify('12345-678'),
         'allergic'              => $faker->boolean,
-        'sus_card'              => rand(1, 999).'.'.rand(1, 9999).'.'.rand(1, 9999).'.'.rand(1, 9999),
+        'sus_card'              => rand(100, 999) . '.' . rand(1000, 9999) . '.' . rand(1000, 9999) . '.' . rand(1000,
+                9999),
         'marital_status'        => $faker->numberBetween(0, 4),
         'height'                => $faker->randomFloat(2, 0, 2.5),
         'weight'                => $faker->randomFloat(2, 0, 300),

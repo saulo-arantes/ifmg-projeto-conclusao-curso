@@ -23,7 +23,7 @@ class CreatePatientsTable extends Migration
             $table->unsignedTinyInteger('type')->nullable()->comment('0 = Idoso, 1 = Gestante, 2 = Deficiente, 3 = Lactante');
             $table->string('cpf', 14)->nullable()->unique();
             $table->string('rg', 20)->nullable()->unique();
-            $table->string('street');
+            $table->string('address');
             $table->string('neighborhood');
             $table->string('number', 10);
             $table->string('complement')->nullable();

@@ -15,7 +15,7 @@
                    name="cpf"
                    title="cpf"
                    maxlength="255"
-                   value="{{ old('zipcode') ?? $data['data']['zipcode'] ?? $data['data']['user']['data']['zipcode'] ?? null }}"
+                   value="{{ old('cpf') ?? $data['cpf'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

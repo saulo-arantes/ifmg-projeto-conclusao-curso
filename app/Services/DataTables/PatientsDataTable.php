@@ -52,11 +52,11 @@ class PatientsDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->columns($this->getColumns())
-                    ->setTableAttributes([
-                        'class' => 'table table-bordered table-hover table-responsive table-full-width',
-                    ])
-                    ->parameters($this->getBuilderParameters())->parameters([
+            ->columns($this->getColumns())
+            ->setTableAttributes([
+                'class' => 'table table-bordered table-hover table-responsive table-full-width',
+            ])
+            ->parameters($this->getBuilderParameters())->parameters([
                 'dom'        => 'Blfrtip',
                 'responsive' => true,
                 'language'   => ['url' => '/assets/global/plugins/datatables/DataTables-1.10.12/portuguese-brasil.json'],
@@ -96,7 +96,7 @@ class PatientsDataTable extends DataTable
         return [
             'id',
             'name'         => ['title' => 'Nome'],
-            'street'       => ['title' => 'Endereço'],
+            'address'      => ['title' => 'Endereço'],
             'neighborhood' => ['title' => 'Bairro'],
             'number'       => ['title' => 'Número'],
             'height'       => ['title' => 'Altura'],
