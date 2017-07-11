@@ -13,6 +13,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string name
  * @property string neighborhood
  * @property string number
+ * @property boolean status
  * @property string zipcode
  * @property \DateTime created_at
  * @property \DateTime updated_at

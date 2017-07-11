@@ -28,7 +28,7 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="fa fa-edit"></i>
-                                <span class="caption-subject bold uppercase">Adicionar administrador</span>
+                                <span class="caption-subject bold uppercase">Adicionar usuário</span>
                             </div>
                         </div>
                         <div class="portlet-body form">

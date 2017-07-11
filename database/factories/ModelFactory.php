@@ -24,7 +24,7 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
         'neighborhood'   => $faker->word,
         'number'         => $faker->buildingNumber,
         'password'       => $password ?: $password = bcrypt('secret'),
-        'status'         => $faker->boolean(),
+        'status'         => $faker->boolean,
         'zipcode'        => $faker->numerify('12.345-678'),
         'remember_token' => str_random(10)
     ];
@@ -48,5 +48,55 @@ $factory->define(App\Entities\Log::class, function (Faker\Generator $faker) {
         'description' => $faker->words(8, true),
         'type'        => $faker->numberBetween(0, 3),
         'user_id'     => $faker->numberBetween(1, 50)
+    ];
+});
+
+
+/*
+|--------------------------------------------------------------------------
+| Model Factories
+|--------------------------------------------------------------------------
+|
+| Here you may define all of your model factories. Model factories give
+| you a convenient way to create models for testing and seeding your
+| database. Just tell the factory how a default model should look.
+|
+*/
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Entities\Patients::class, function (Faker\Generator $faker) {
+    $bloodTypes = [
+        'A+',
+        'A-',
+        'B+',
+        'B-',
+        'AB+',
+        'AB-',
+        'O+',
+        'O-'
+    ];
+
+    return [
+        'name'                  => $faker->name,
+        'birthday_date'         => $faker->dateTime,
+        'sex'                   => $faker->boolean,
+        'cpf'                   => rand(1, 999).'.'.rand(1,999).'.'.rand(1,999).'-'.rand(1, 99),
+        'rg'                    => rand(1, 99).'.'.rand(1, 999).'.'.rand(1, 999),
+        'street'                => $faker->streetName,
+        'neighborhood'          => $faker->word,
+        'number'                => $faker->buildingNumber,
+        'zipcode'               => $faker->numerify('12345-678'),
+        'allergic'              => $faker->boolean,
+        'sus_card'              => $faker->numerify('1234567890'),
+        'marital_status'        => $faker->numberBetween(0, 4),
+        'height'                => $faker->randomFloat(2, 0, 2.5),
+        'weight'                => $faker->randomFloat(2, 0, 300),
+        'birth_height'          => $faker->randomFloat(2, 0, 0.5),
+        'birth_weight'          => $faker->randomFloat(2, 0, 10),
+        'birth_cephalic_length' => $faker->randomFloat(2, 0, 40),
+        'birth_type'            => $faker->boolean,
+        'blood_type'            => $faker->randomElement($bloodTypes),
+        'city_id'               => $faker->numberBetween(1, 5570),
+        'naturalness_id'        => $faker->numberBetween(1, 5570)
     ];
 });
