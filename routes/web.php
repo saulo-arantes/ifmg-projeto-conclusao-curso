@@ -53,6 +53,16 @@ Route::group(['middleware' => 'auth'],
                     Route::get('create', 'UsersController@create');
                 });
 
+            Route::group(['prefix' => 'patients'],
+                function () {
+                    Route::get('', 'PatientsController@index');
+                    Route::get('{id}/edit', 'PatientsController@edit');
+                    Route::post('{id}/edit', 'PatientsController@update');
+                    Route::get('{id}/delete', 'PatientsController@destroy');
+                    Route::post('create', 'PatientsController@store');
+                    Route::get('create', 'PatientsController@create');
+                });
+
             Route::group(['prefix' => 'logs'],
                 function () {
                     Route::get('', 'LogsController@index');

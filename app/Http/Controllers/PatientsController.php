@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\PatientsCreateRequest;
 use App\Http\Requests\PatientsUpdateRequest;
 use App\Repositories\PatientsRepository;
+use App\Services\DataTables\PatientsDataTable;
 use App\Validators\PatientsValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 
 class PatientsController extends Controller
@@ -32,25 +30,9 @@ class PatientsController extends Controller
         $this->validator  = $validator;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(PatientsDataTable $dataTable)
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $patients = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $patients,
-            ]);
-        }
-
-        return view('patients.index', compact('patients'));
+        return $dataTable->render('admin.patients.list');
     }
 
     /**
@@ -94,28 +76,6 @@ class PatientsController extends Controller
 
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $patient = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $patient,
-            ]);
-        }
-
-        return view('patients.show', compact('patient'));
-    }
-
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int $id
@@ -135,7 +95,7 @@ class PatientsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  PatientsUpdateRequest $request
-     * @param  string            $id
+     * @param  string $id
      *
      * @return Response
      */

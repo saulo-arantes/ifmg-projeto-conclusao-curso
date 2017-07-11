@@ -81,6 +81,30 @@
                 </ul>
             </li>
             <li class="nav-item start ">
+                <a href="javascript:;"
+                   class="nav-link nav-toggle">
+                    <i class="icon-user"></i>
+                    <span class="title">Paciente</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start ">
+                        <a href="{{ url('/admin/users/create') }}"
+                           class="nav-link ">
+                            <i class="icon-plus"></i>
+                            <span class="title">Adicionar</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start ">
+                        <a href="{{ url('/admin/patients') }}"
+                           class="nav-link ">
+                            <i class="icon-list "></i>
+                            <span class="title">Listar</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item start ">
                 <a href="{{ url('/admin/logs') }}">
                     <i class="icon-calendar"></i>
                     <span class="title">Log</span>
