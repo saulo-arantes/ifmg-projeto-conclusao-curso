@@ -41,6 +41,15 @@
                                     {{ csrf_field() }}
                                     <div class="row">
                                         @include('layouts.components.name')
+                                        @include('layouts.components.sex')
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.rg')
+                                        @include('layouts.components.cpf')
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.marital-status')
+                                        @include('layouts.components.blood-type')
                                     </div>
                                     <div class="row">
                                         @include('layouts.components.address')
@@ -52,6 +61,14 @@
                                     </div>
                                     <div class="row">
                                         @include('layouts.components.zipcode' )
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.height')
+                                        @include('layouts.components.weight')
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.allergic')
+
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>

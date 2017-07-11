@@ -24,12 +24,12 @@ class CreatePatientsTable extends Migration
             $table->string('cpf', 14)->nullable()->unique();
             $table->string('rg', 20)->nullable()->unique();
             $table->string('street');
-            $table->string('neighborhood')->nullable();
-            $table->string('number', 10)->nullable();
+            $table->string('neighborhood');
+            $table->string('number', 10);
             $table->string('complement')->nullable();
             $table->string('zipcode', 20);
             $table->boolean('allergic')->default(0);
-            $table->string('sus_card', 20)->nullable();
+            $table->string('sus_card', 25)->nullable();
             $table->string('observation', 400)->nullable();
             $table->unsignedTinyInteger('marital_status')->comment('0 = solteiro, 1 = casado, 2 = divorciado, 3 = viúvo, 4 = separado');
             $table->decimal('height', 3, 2);
@@ -38,7 +38,7 @@ class CreatePatientsTable extends Migration
             $table->decimal('birth_weight', 6, 3)->nullable();
             $table->decimal('birth_cephalic_length', 4, 2)->nullable();
             $table->boolean('birth_type')->comment('0 = normal, 1 = cesária');
-            $table->string('blood_type', 2);
+            $table->string('blood_type', 3);
             $table->unsignedInteger('father_id')->nullable();
             $table->foreign('father_id')->references('id')->on('patients');
             $table->unsignedInteger('mother_id')->nullable();

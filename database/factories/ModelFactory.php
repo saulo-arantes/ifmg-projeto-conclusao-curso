@@ -87,7 +87,7 @@ $factory->define(App\Entities\Patients::class, function (Faker\Generator $faker)
         'number'                => $faker->buildingNumber,
         'zipcode'               => $faker->numerify('12345-678'),
         'allergic'              => $faker->boolean,
-        'sus_card'              => $faker->numerify('1234567890'),
+        'sus_card'              => rand(1, 999).'.'.rand(1, 9999).'.'.rand(1, 9999).'.'.rand(1, 9999),
         'marital_status'        => $faker->numberBetween(0, 4),
         'height'                => $faker->randomFloat(2, 0, 2.5),
         'weight'                => $faker->randomFloat(2, 0, 300),
