@@ -48,8 +48,7 @@
                                         @include('layouts.components.cpf')
                                     </div>
                                     <div class="row">
-                                        @include('layouts.components.marital-status')
-                                        @include('layouts.components.blood-type')
+                                        @include('layouts.components.birthday-date')
                                     </div>
                                     <div class="row">
                                         @include('layouts.components.address')
@@ -60,7 +59,12 @@
                                         @include('layouts.components.complement')
                                     </div>
                                     <div class="row">
-                                        @include('layouts.components.zipcode' )
+                                        @include('layouts.components.number')
+                                        @include('layouts.components.zipcode')
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.marital-status')
+                                        @include('layouts.components.blood-type')
                                     </div>
                                     <div class="row">
                                         @include('layouts.components.height')
@@ -68,7 +72,9 @@
                                     </div>
                                     <div class="row">
                                         @include('layouts.components.allergic')
-
+                                    </div>
+                                    <div class="row">
+                                        @include('layouts.components.observation')
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>

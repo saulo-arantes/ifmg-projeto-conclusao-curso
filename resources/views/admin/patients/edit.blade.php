@@ -91,19 +91,23 @@
                                                 @include('layouts.components.cpf', ['data' => $patient['data']])
                                             </div>
                                             <div class="row">
-                                                @include('layouts.components.address', ['data' => $patient['data']])
-                                                @include('layouts.components.number', ['data' => $patient['data']])
+                                                @include('layouts.components.birthday-date', ['data' => $patient['data']])
                                             </div>
                                             <div class="row">
-                                                @include('layouts.components.marital-status', ['data' => $patient['data']])
-                                                @include('layouts.components.blood-type', ['data' => $patient['data']])
+                                                @include('layouts.components.address', ['data' => $patient['data']])
+                                                @include('layouts.components.number', ['data' => $patient['data']])
                                             </div>
                                             <div class="row">
                                                 @include('layouts.components.neighborhood', ['data' => $patient['data']])
                                                 @include('layouts.components.complement', ['data' => $patient['data']])
                                             </div>
                                             <div class="row">
+                                                @include('layouts.components.number', ['data' => $patient['data']])
                                                 @include('layouts.components.zipcode', ['data' => $patient['data']])
+                                            </div>
+                                            <div class="row">
+                                                @include('layouts.components.marital-status', ['data' => $patient['data']])
+                                                @include('layouts.components.blood-type', ['data' => $patient['data']])
                                             </div>
                                             <div class="row">
                                                 @include('layouts.components.height', ['data' => $patient['data']])
@@ -111,6 +115,9 @@
                                             </div>
                                             <div class="row">
                                                 @include('layouts.components.allergic', ['data' => $patient['data']])
+                                            </div>
+                                            <div class="row">
+                                                @include('layouts.components.observation', ['data' => $patient['data']])
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>

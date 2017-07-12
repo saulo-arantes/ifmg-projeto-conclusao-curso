@@ -5,17 +5,17 @@
         @include('layouts.components.asterisk')
         <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="fa fa-pencil-square-o"
+                    <i class="fa fa-calendar"
                        aria-hidden="true"></i>
                 </span>
             <input type="text"
                    class="form-control"
-                   placeholder="Data de Aniverssário"
+                   placeholder="Data de Nascimento"
                    id="birthday-date"
                    name="birthday-date"
-                   title="BirthdayDate"
+                   title="Data de Nascimento"
                    maxlength="255"
-                   value="{{ old('zipcode') ?? $data['data']['zipcode'] ?? $data['data']['user']['data']['zipcode'] ?? null }}"
+                   value="{{ old('birthday_date') ?? $data['birthday_date'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>
@@ -23,11 +23,7 @@
 </div>
 
 @push('scripts')
+
 <script src="{{ asset('assets/global/scripts/jquery-1.2.6.pack.js') }}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#birthday-date").mask("99/99/9999");
-    });
-</script>
-<script src="{{ asset('assets/global/scripts/jquery.maskedinput-1.1.4.pack.js') }}" type="text/javascript"></script>
+
 @endpush

@@ -23,11 +23,7 @@
 </div>
 
 @push('scripts')
+
 <script src="{{ asset('assets/global/scripts/jquery-1.2.6.pack.js') }}" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#cpf").mask("999.999.999-99");
-    });
-</script>
-<script src="{{ asset('assets/global/scripts/jquery.maskedinput-1.1.4.pack.js') }}" type="text/javascript"></script>
+
 @endpush

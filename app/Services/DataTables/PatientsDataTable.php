@@ -57,9 +57,9 @@ class PatientsDataTable extends DataTable
                 'class' => 'table table-bordered table-hover table-responsive table-full-width',
             ])
             ->parameters($this->getBuilderParameters())->parameters([
-                'dom'        => 'Blfrtip',
+                'dom' => 'Blfrtip',
                 'responsive' => true,
-                'language'   => ['url' => '/assets/global/plugins/datatables/DataTables-1.10.12/portuguese-brasil.json'],
+                'language' => ['url' => '/assets/global/plugins/datatables/DataTables-1.10.12/portuguese-brasil.json'],
                 'lengthMenu' => [
                     [
                         5,
@@ -77,7 +77,7 @@ class PatientsDataTable extends DataTable
                     ]
                 ],
                 'pageLength' => 10,
-                'buttons'    => [
+                'buttons' => [
                     'create',
                     'export',
                     'print',
