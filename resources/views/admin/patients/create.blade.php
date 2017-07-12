@@ -59,7 +59,6 @@
                                         @include('layouts.components.complement')
                                     </div>
                                     <div class="row">
-                                        @include('layouts.components.number')
                                         @include('layouts.components.zipcode')
                                     </div>
                                     <div class="row">
