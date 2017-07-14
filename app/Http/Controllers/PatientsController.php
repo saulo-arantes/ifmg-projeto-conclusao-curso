@@ -6,6 +6,7 @@ use App\Http\Requests\PatientsCreateRequest;
 use App\Http\Requests\PatientsUpdateRequest;
 use App\Repositories\PatientsRepository;
 use App\Services\DataTables\PatientsDataTable;
+use App\Services\PatientService;
 use App\Validators\PatientsValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -20,14 +21,14 @@ class PatientsController extends Controller
     protected $repository;
 
     /**
-     * @var PatientsValidator
+     * @var PatientService
      */
-    protected $validator;
+    protected $service;
 
-    public function __construct(PatientsRepository $repository, PatientsValidator $validator)
+    public function __construct(PatientsRepository $repository, PatientService $service)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->service  = $service;
     }
 
     public function index(PatientsDataTable $dataTable)
@@ -77,51 +78,36 @@ class PatientsController extends Controller
     {
 
         $patient = $this->repository->find($id);
+        $extraData = $this->repository->getExtraData();
 
-        return view('admin.patients.edit', compact('patient'));
+        return view('admin.patients.edit', compact('patient'), compact('extraData'));
     }
 
 
     /**
-     * Update the specified resource in storage.
+     * Updates an user.
      *
-     * @param  PatientsUpdateRequest $request
-     * @param  string $id
+     * @param PatientsUpdateRequest $request
+     * @param $id
+     * @param null $otherController
      *
-     * @return Response
+     * @return array|bool|\Illuminate\Http\RedirectResponse
      */
-    public function update(PatientsUpdateRequest $request, $id)
+    public function update(PatientsUpdateRequest $request, $id, $otherController = null)
     {
+        $resultFromUpdateUser = $this->service->update($request, $id);
 
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $patient = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'Patients updated.',
-                'data'    => $patient->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+        if (!empty($otherController)) {
+            return $resultFromUpdateUser;
         }
+
+        if (!empty($resultFromUpdateUser['error'])) {
+            alert()->error($resultFromUpdateUser['message'], 'Erro :(')->persistent('Fechar');
+            return back()->withInput();
+        }
+
+        alert()->success('Paciente atualizado com sucesso!', 'Feito :)');
+        return back()->withInput();
     }
 
 

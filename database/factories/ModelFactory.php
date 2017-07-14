@@ -76,10 +76,12 @@ $factory->define(App\Entities\Patients::class, function (Faker\Generator $faker)
         'O-'
     ];
 
+    $sex = ['m', 's'];
+
     return [
         'name'                  => $faker->name,
         'birthday_date'         => $faker->dateTime,
-        'sex'                   => $faker->boolean,
+        'sex'                   => $faker->randomElement($sex),
         'cpf'                   => rand(100, 999) . '.' . rand(100, 999) . '.' . rand(100, 999) . '-' . rand(10, 99),
         'rg'                    => rand(10, 99) . '.' . rand(100, 999) . '.' . rand(100, 999),
         'address'               => $faker->streetName,

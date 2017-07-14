@@ -13,6 +13,8 @@ use League\Fractal\TransformerAbstract;
 class PatientsTransformer extends TransformerAbstract
 {
 
+    protected $defaultIncludes = ['city', 'naturalness'];
+
     /**
      * Transform the Patients entity
      *
@@ -54,5 +56,19 @@ class PatientsTransformer extends TransformerAbstract
             'created_at'            => $model->created_at,
             'updated_at'            => $model->updated_at
         ];
+    }
+
+    public function includeCity(Patients $model)
+    {
+        if (!empty($model->city)){
+            return $this->item($model->city, new CityTransformer());
+        }
+    }
+
+    public function includeNaturalness(Patients $model)
+    {
+        if (!empty($model->naturalness)){
+            return $this->item($model->naturalness, new CityTransformer());
+        }
     }
 }

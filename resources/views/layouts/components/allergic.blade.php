@@ -10,7 +10,7 @@
 
                     <div class="md-radio">
                         <input type="radio" id="positive" name="allergic"
-                               class="md-radiobtn" {{ $data['allergic'] == 0 ? 'checked' : '' }} >
+                               class="md-radiobtn" value="0" {{ $data['allergic'] == 0 ? 'checked' : '' }} >
                         <label for="positive">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="md-radio">
                         <input type="radio" id="negative" name="allergic"
-                               class="md-radiobtn" {{ $data['allergic'] == 1 ? 'checked' : '' }} >
+                               class="md-radiobtn" value="1" {{ $data['allergic'] == 1 ? 'checked' : '' }} >
                         <label for="negative">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -29,7 +29,7 @@
 
                     <div class="md-radio">
                         <input type="radio" id="positive" name="allergic"
-                               class="md-radiobtn" {{ old('allergic') == 0 ? 'checked' : '' }} >
+                               class="md-radiobtn" value="0" {{ old('allergic') == 0 ? 'checked' : '' }} >
                         <label for="positive">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="md-radio">
                         <input type="radio" id="negative" name="allergic"
-                               class="md-radiobtn" {{ old('allergic') == 1 ? 'checked' : '' }} >
+                               class="md-radiobtn" value="1" {{ old('allergic') == 1 ? 'checked' : '' }} >
                         <label for="negative">
                             <span class="inc"></span>
                             <span class="check"></span>

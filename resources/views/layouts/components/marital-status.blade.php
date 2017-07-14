@@ -8,10 +8,10 @@
                     <i class="fa fa-users"
                        aria-hidden="true"></i>
                 </span>
-            <select class="form-control">
+            <select class="form-control" id="marital_status" name="marital_status">
                 <option value=""></option>
                 @if(!empty($data['marital_status']))
-                    <option value="0" >Solteiro</option>
+                    <option value="0" {{ $data['marital_status'] === 0 ? 'selected' : '' }}>Solteiro</option>
                     <option value="1" {{ $data['marital_status'] === 1 ? 'selected' : '' }}>Casado</option>
                     <option value="2" {{ $data['marital_status'] === 2 ? 'selected' : '' }}>Divorciado</option>
                     <option value="3" {{ $data['marital_status'] === 3 ? 'selected' : '' }}>Viúvo</option>

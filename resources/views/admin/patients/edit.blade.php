@@ -93,6 +93,16 @@
                                             <div class="row">
                                                 @include('layouts.components.birthday-date', ['data' => $patient['data']])
                                             </div>
+                                            <h4 class="form-section">Naturalidade</h4>
+                                            <div class="row">
+                                                @include('layouts.components.state', ['data' => $patient['data']['naturalness']['data'], 'extraData' => $extraData, 'city' => false])
+                                                @include('layouts.components.naturalness', ['data' => $patient['data']['naturalness']['data']])
+                                            </div>
+                                            <h4 class="form-section">Endereço</h4>
+                                            <div class="row">
+                                                @include('layouts.components.state', ['data' => $patient['data']['city']['data'], 'extraData' => $extraData, 'city' => true])
+                                                @include('layouts.components.city', ['data' => $patient['data']['city']['data']])
+                                            </div>
                                             <div class="row">
                                                 @include('layouts.components.address', ['data' => $patient['data']])
                                                 @include('layouts.components.number', ['data' => $patient['data']])

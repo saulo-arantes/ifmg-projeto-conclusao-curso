@@ -36,6 +36,8 @@ Route::group(['middleware' => 'auth'],
 
         Route::post('uploads/upload-avatar', 'UsersController@uploadAnyUserAvatar');
 
+        Route::post('get-cities/{id}', 'StatesController@getCities');
+
         Route::group([
             'middleware' => 'admin',
             'prefix'     => 'admin'

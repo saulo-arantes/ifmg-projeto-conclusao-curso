@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\State;
 use App\Repositories\StateRepository;
 use App\Validators\StateValidator;
 
@@ -28,5 +29,22 @@ class StatesController extends Controller
     {
         $this->repository = $repository;
         $this->validator  = $validator;
+    }
+
+    /**
+     * Get all cities of a given state.
+     *
+     * @param $stateID
+     *
+     * @return string
+     */
+    public function getCities($stateID)
+    {
+        $cities = State::find($stateID)->cities;
+        $options = '';
+        foreach ($cities as $city) {
+            $options .= '<option value="' . $city['id'] . '">' . $city['name'] . '</option>';
+        }
+        return $options;
     }
 }

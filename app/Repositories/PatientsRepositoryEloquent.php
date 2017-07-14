@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Presenters\PatientsPresenter;
-use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\PatientsRepository;
 use App\Entities\Patients;
+use App\Entities\State;
+use App\Presenters\PatientsPresenter;
 use App\Validators\PatientsValidator;
+use Prettus\Repository\Criteria\RequestCriteria;
+use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class PatientsRepositoryEloquent
@@ -26,10 +26,10 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
     }
 
     /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
+     * Specify Validator class name
+     *
+     * @return mixed
+     */
     public function validator()
     {
 
@@ -48,5 +48,27 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
     public function presenter()
     {
         return PatientsPresenter::class;
+    }
+
+    /**
+     * This method return extra arrays to use in views.
+     *
+     * @param $id
+     *
+     * @return array
+     */
+    public function getExtraData($id = null): array
+    {
+        $extraData['states'] = State::all();
+        if (!empty($id)) {
+            $data = $this->find($id);
+            if (!empty($data['data']['city']['data']['id'])) {
+                $extraData['cities'] = State::find($data['data']['city']['data']['state']['id'])->cities;
+            }
+            if (!empty($data['data']['naturalness']['data']['id'])) {
+                $extraData['naturalnessCities'] = State::find($data['data']['naturalness']['data']['state']['id'])->cities;
+            }
+        }
+        return $extraData;
     }
 }
