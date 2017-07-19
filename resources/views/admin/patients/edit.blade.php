@@ -93,6 +93,8 @@
                                             <div class="row">
                                                 @include('layouts.components.birthday-date', ['data' => $patient['data']])
                                             </div>
+                                            <h4 class="form-section">Contato</h4>
+                                                @include('layouts.components.contact', ['contacts' => $patient['data']['contacts']['data']])
                                             <h4 class="form-section">Naturalidade</h4>
                                             <div class="row">
                                                 @include('layouts.components.state', ['data' => $patient['data']['naturalness']['data'], 'extraData' => $extraData, 'city' => false])

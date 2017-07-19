@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Entities\PatientContact;
 use App\Entities\Patients;
 use App\Entities\State;
 use App\Presenters\PatientsPresenter;
@@ -70,5 +71,52 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
             }
         }
         return $extraData;
+    }
+
+    /**
+     * Update the contacts of an patient.
+     *
+     * @param $data
+     * @param $id
+     *
+     * @return array|bool
+     */
+    public function updateContacts($data, $id)
+    {
+        if (!empty($data['contact_type_id']) && !empty($data['description'])) {
+
+            # Check if patient pass the same quantity of contacts and contact types
+            if (count($data['contact_type_id']) == count($data['description'])) {
+
+                $contacts = PatientContact::where('patient_id', $id)->get()->toArray();
+                foreach ($contacts as $contact) {
+                    PatientContact::destroy($contact['id']);
+                }
+
+                $i = 0;
+                foreach ($data['contact_type_id'] as $contact) {
+                    if (!empty($data['description'][$i])) {
+                        PatientContact::create([
+                            'patient_id'         => $id,
+                            'contact_type_id' => $contact,
+                            'description'     => $data['description'][$i]
+                        ]);
+                    }
+                    $i++;
+                }
+
+                return true;
+            }
+
+            return [
+                'error'   => true,
+                'message' => 'Adicione um contato'
+            ];
+        }
+
+        return [
+            'error'   => true,
+            'message' => 'Adicione um contato'
+        ];
     }
 }

@@ -50,6 +50,8 @@
                                     <div class="row">
                                         @include('layouts.components.birthday-date')
                                     </div>
+                                    <h4 class="form-section">Contato</h4>
+                                    @include('layouts.components.contact')
                                     <h4 class="form-section">Naturalidade</h4>
                                     <div class="row">
                                         @include('layouts.components.state')

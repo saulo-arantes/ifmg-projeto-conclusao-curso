@@ -11,4 +11,14 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface PatientsRepository extends RepositoryInterface
 {
     public function getExtraData($id = null): array;
+
+    /**
+     * Update the contacts of an patient.
+     *
+     * @param $data
+     * @param $id
+     *
+     * @return array|bool
+     */
+    public function updateContacts($data, $id);
 }

@@ -36,56 +36,53 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property int city_id
  * @property City city
  * @property City naturalness
+ * @property PatientContact contacts
  * @property int naturalness_id
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class Patients extends Model implements Transformable
-{
-    use TransformableTrait;
+class Patients extends Model implements Transformable {
+	use TransformableTrait;
 
-    protected $fillable = [
-        'name',
-        'photo',
-        'birthday_date',
-        'sex',
-        'type',
-        'cpf',
-        'rg',
-        'address',
-        'neighborhood',
-        'number',
-        'complement',
-        'zipcode',
-        'allergic',
-        'sus_card',
-        'observation',
-        'marital_status',
-        'height',
-        'weight',
-        'birth_height',
-        'birth_weight',
-        'birth_cephalic_length',
-        'birth_type',
-        'father_id',
-        'mother_id',
-        'city_id',
-        'naturalness_id'
-    ];
+	protected $fillable = [
+		'name',
+		'photo',
+		'birthday_date',
+		'sex',
+		'type',
+		'cpf',
+		'rg',
+		'address',
+		'neighborhood',
+		'number',
+		'complement',
+		'zipcode',
+		'allergic',
+		'sus_card',
+		'observation',
+		'marital_status',
+		'height',
+		'weight',
+		'birth_height',
+		'birth_weight',
+		'birth_cephalic_length',
+		'birth_type',
+		'father_id',
+		'mother_id',
+		'city_id',
+		'naturalness_id'
+	];
 
-    public function contacts()
-    {
-        return $this->hasMany(PatientContact::class, 'patient_id', 'id');
-    }
+	public function contacts() {
+		return $this->hasMany( PatientContact::class, 'patient_id', 'id' );
+	}
 
-    public function naturalness()
-    {
-        return $this->belongsTo(City::class, 'naturalness_id', 'id');
-    }
+	public function naturalness() {
+		return $this->belongsTo( City::class, 'naturalness_id', 'id' );
+	}
 
-    public function city()
-    {
-        return $this->belongsTo(City::class, 'city_id', 'id');
-    }
+	public function city() {
+		return $this->belongsTo( City::class, 'city_id', 'id' );
+	}
 
 }
