@@ -112,7 +112,6 @@
                                                 @include('layouts.components.complement', ['data' => $patient['data']])
                                             </div>
                                             <div class="row">
-                                                @include('layouts.components.number', ['data' => $patient['data']])
                                                 @include('layouts.components.zipcode', ['data' => $patient['data']])
                                             </div>
                                             <div class="row">

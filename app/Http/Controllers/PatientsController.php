@@ -38,7 +38,8 @@ class PatientsController extends Controller
 
     public function create()
     {
-        return view('admin.patients.create');
+        $extraData = $this->repository->getExtraData();
+        return view('admin.patients.create', compact('extraData'));
     }
 
     /**
@@ -79,6 +80,7 @@ class PatientsController extends Controller
 
         $patient = $this->repository->find($id);
         $extraData = $this->repository->getExtraData();
+        $patient['data']['birthday_date'] = date('d/m/Y', strtotime($patient['data']['birthday_date']));
 
         return view('admin.patients.edit', compact('patient'), compact('extraData'));
     }

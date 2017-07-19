@@ -11,8 +11,8 @@ use Prettus\Repository\Eloquent\BaseRepository;
 /**
  * Class StateRepositoryEloquent
  *
- * @author  Bruno Tomé
- * @package namespace TARS\Repositories;
+ * @author  Saulo Vinícius
+ * @package namespace App\Repositories;
  */
 class StateRepositoryEloquent extends BaseRepository implements StateRepository
 {

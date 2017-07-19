@@ -9,7 +9,7 @@ use Prettus\Repository\Traits\TransformableTrait;
 /**
  * Class State
  *
- * @author Bruno Tomé
+ * @author Saulo Vinícius
  * @property int id
  * @property string initials
  * @property string name
@@ -26,6 +26,11 @@ class State extends Model implements Transformable
     public function region()
     {
         return $this->belongsTo(Region::class);
+    }
+
+    public function cities()
+    {
+        return $this->hasMany(City::class, 'state_id', 'id');
     }
 
 }

@@ -12,6 +12,8 @@ use App\Repositories\PatientContactRepository;
 use App\Repositories\PatientContactRepositoryEloquent;
 use App\Repositories\PatientsRepository;
 use App\Repositories\PatientsRepositoryEloquent;
+use App\Repositories\StateRepository;
+use App\Repositories\StateRepositoryEloquent;
 use App\Repositories\UserContactRepository;
 use App\Repositories\UserContactRepositoryEloquent;
 use App\Repositories\UserRepository;
@@ -44,6 +46,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserContactRepository::class, UserContactRepositoryEloquent::class);
         $this->app->bind(PatientsRepository::class, PatientsRepositoryEloquent::class);
         $this->app->bind(PatientContactRepository::class, PatientContactRepositoryEloquent::class);
+        $this->app->bind(StateRepository::class, StateRepositoryEloquent::class);
         $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
         //:end-bindings:
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\State;
 use App\Repositories\StateRepository;
 use App\Validators\StateValidator;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class StatesController
@@ -40,6 +41,7 @@ class StatesController extends Controller
      */
     public function getCities($stateID)
     {
+        Log::alert($stateID);
         $cities = State::find($stateID)->cities;
         $options = '';
         foreach ($cities as $city) {
