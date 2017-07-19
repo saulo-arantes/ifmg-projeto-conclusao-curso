@@ -9,6 +9,8 @@ use Prettus\Repository\Traits\TransformableTrait;
 /**
  * @property int id
  * @property string description
+ * @property int user_id
+ * @property int contact_type_id
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */

@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string number
  * @property boolean status
  * @property string zipcode
+ * @property UserContact contacts
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */

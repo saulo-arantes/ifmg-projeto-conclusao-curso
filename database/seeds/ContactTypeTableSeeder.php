@@ -16,5 +16,6 @@ class ContactTypeTableSeeder extends Seeder
 	    factory(ContactType::class)->create(['name' => 'Celular']);
 	    factory(ContactType::class)->create(['name' => 'E-mail']);
 	    factory(ContactType::class)->create(['name' => 'Skype']);
+	    factory(ContactType::class)->create(['name' => 'Facebook']);
     }
 }
