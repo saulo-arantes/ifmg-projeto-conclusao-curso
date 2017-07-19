@@ -12,7 +12,11 @@ use League\Fractal\TransformerAbstract;
  */
 class PatientsTransformer extends TransformerAbstract {
 
-	protected $defaultIncludes = ['city', 'naturalness', 'contacts'];
+	protected $defaultIncludes = [
+		'city',
+		'naturalness',
+		'contacts'
+	];
 
 	/**
 	 * Transform the Patients entity
