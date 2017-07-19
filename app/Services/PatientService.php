@@ -72,8 +72,6 @@ class PatientService
 
             if (!empty(session('photo'))) {
                 $data['photo'] = session('photo');
-            } else {
-                $data['photo'] = !empty(session('photo')) ? session('photo') : 'update-avatar.png';
             }
 
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
@@ -125,8 +123,6 @@ class PatientService
 
             if (!empty(session('photo'))) {
                 $data['photo'] = session('photo');
-            } else {
-                $data['photo'] = !empty(session('photo')) ? session('photo') : 'upload-avatar.png';
             }
 
             $this->validator->setId($id);

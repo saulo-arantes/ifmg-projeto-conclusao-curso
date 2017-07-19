@@ -52,14 +52,14 @@
             <li class="nav-item start ">
                 <a href="{{ url('/') }}"
                    class="nav-link ">
-                    <i class="icon-home"></i>
+                    <i class="fa fa-home" aria-hidden="true"></i>
                     <span class="title">Início</span>
                 </a>
             </li>
             <li class="nav-item start ">
                 <a href="javascript:;"
                    class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                    <i class="fa fa-user" aria-hidden="true"></i>
                     <span class="title">Usuário</span>
                     <span class="arrow"></span>
                 </a>
@@ -67,14 +67,14 @@
                     <li class="nav-item start ">
                         <a href="{{ url('/admin/users/create') }}"
                            class="nav-link ">
-                            <i class="icon-plus"></i>
+                            <i class="fa fa-plus-square" aria-hidden="true"></i>
                             <span class="title">Adicionar</span>
                         </a>
                     </li>
                     <li class="nav-item start ">
                         <a href="{{ url('/admin/users') }}"
                            class="nav-link ">
-                            <i class="icon-list "></i>
+                            <i class="fa fa-list" aria-hidden="true"></i>
                             <span class="title">Listar</span>
                         </a>
                     </li>
@@ -83,7 +83,7 @@
             <li class="nav-item start ">
                 <a href="javascript:;"
                    class="nav-link nav-toggle">
-                    <i class="icon-user"></i>
+                    <i class="fa fa-wheelchair" aria-hidden="true"></i>
                     <span class="title">Paciente</span>
                     <span class="arrow"></span>
                 </a>
@@ -91,14 +91,14 @@
                     <li class="nav-item start ">
                         <a href="{{ url('/admin/patients/create') }}"
                            class="nav-link ">
-                            <i class="icon-plus"></i>
+                            <i class="fa fa-plus-square" aria-hidden="true"></i>
                             <span class="title">Adicionar</span>
                         </a>
                     </li>
                     <li class="nav-item start ">
                         <a href="{{ url('/admin/patients') }}"
                            class="nav-link ">
-                            <i class="icon-list "></i>
+                            <i class="fa fa-list" aria-hidden="true"></i>
                             <span class="title">Listar</span>
                         </a>
                     </li>
@@ -106,7 +106,7 @@
             </li>
             <li class="nav-item start ">
                 <a href="{{ url('/admin/logs') }}">
-                    <i class="icon-calendar"></i>
+                    <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
                     <span class="title">Log</span>
                 </a>
             </li>

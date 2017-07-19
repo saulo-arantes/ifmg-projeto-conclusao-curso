@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="portlet-body form">
-                            <form action="{{ url('/admin/users/create') }}"
+                            <form action="{{ url('/admin/patients/create') }}"
                                   id="form_sample_2"
                                   method="post"
                                   class="horizontal-form"

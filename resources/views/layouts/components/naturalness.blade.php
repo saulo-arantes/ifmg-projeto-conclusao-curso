@@ -10,8 +10,8 @@
                 data-error="Campo obrigatório. Preencha o estado e depois a cidade."
                 required>
             <option value="">Selecionar cidade natal (selecione o estado primeiro)</option>
-            @if(!empty($extraData['naturalnessCities']))
-                @foreach ($extraData['naturalnessCities'] as $city)
+            @if(!empty($extraData['naturalness']))
+                @foreach ($extraData['naturalness'] as $city)
                     @if(!empty($data['id']) && $city->id == $data['id'])
                         <option value="{{ $city->id }}"
                                 selected>{{ $city->name }}</option>

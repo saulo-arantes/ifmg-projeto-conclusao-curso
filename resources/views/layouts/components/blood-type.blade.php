@@ -2,7 +2,6 @@
     <div class="form-group">
         <label class="control-label"
                for="name">Tipo Sanguíneo</label>
-        @include('layouts.components.asterisk')
         <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-tint"

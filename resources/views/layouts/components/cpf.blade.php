@@ -5,7 +5,7 @@
         @include('layouts.components.asterisk')
         <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="fa fa-pencil-square-o"
+                    <i class="fa fa-id-card"
                        aria-hidden="true"></i>
                 </span>
             <input type="text"

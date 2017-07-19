@@ -79,7 +79,7 @@ class PatientsController extends Controller
     {
 
         $patient = $this->repository->find($id);
-        $extraData = $this->repository->getExtraData();
+        $extraData = $this->repository->getExtraData($id);
         $patient['data']['birthday_date'] = date('d/m/Y', strtotime($patient['data']['birthday_date']));
 
         return view('admin.patients.edit', compact('patient'), compact('extraData'));

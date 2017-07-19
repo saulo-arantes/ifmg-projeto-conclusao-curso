@@ -66,7 +66,7 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
                 $extraData['cities'] = State::find($data['data']['city']['data']['state']['id'])->cities;
             }
             if (!empty($data['data']['naturalness']['data']['id'])) {
-                $extraData['naturalnessCities'] = State::find($data['data']['naturalness']['data']['state']['id'])->cities;
+                $extraData['naturalness'] = State::find($data['data']['naturalness']['data']['state']['id'])->cities;
             }
         }
         return $extraData;
