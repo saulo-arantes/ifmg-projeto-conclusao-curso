@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Patients;
+use App\Entities\Patient;
 use Illuminate\Database\Seeder;
 
 class PatientsTableSeeder extends Seeder
@@ -13,6 +13,6 @@ class PatientsTableSeeder extends Seeder
     public function run()
     {
 
-        factory(Patients::class, 100)->create();
+        factory(Patient::class, 100)->create();
     }
 }

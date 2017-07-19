@@ -2,7 +2,7 @@
 
 namespace App\Transformers;
 
-use App\Entities\Patients;
+use App\Entities\Patient;
 use League\Fractal\TransformerAbstract;
 
 /**
@@ -17,11 +17,11 @@ class PatientsTransformer extends TransformerAbstract {
 	/**
 	 * Transform the Patients entity
 	 *
-	 * @param Patients $model
+	 * @param Patient $model
 	 *
 	 * @return array
 	 */
-	public function transform( Patients $model ) {
+	public function transform( Patient $model ) {
 		return [
 			'id'                    => (int) $model->id,
 			'name'                  => $model->name,
@@ -56,7 +56,7 @@ class PatientsTransformer extends TransformerAbstract {
 		];
 	}
 
-	public function includeCity( Patients $model ) {
+	public function includeCity( Patient $model ) {
 
 		if ( ! empty( $model->city ) ) {
 
@@ -66,7 +66,7 @@ class PatientsTransformer extends TransformerAbstract {
 		return null;
 	}
 
-	public function includeNaturalness( Patients $model ) {
+	public function includeNaturalness( Patient $model ) {
 
 		if ( ! empty( $model->naturalness ) ) {
 
@@ -76,7 +76,7 @@ class PatientsTransformer extends TransformerAbstract {
 		return null;
 	}
 
-	public function includeContacts( Patients $model ) {
+	public function includeContacts( Patient $model ) {
 		if ( ! empty( $model->contacts ) ) {
 
 			return $this->collection( $model->contacts, new PatientContactTransformer() );

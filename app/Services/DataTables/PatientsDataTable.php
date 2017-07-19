@@ -2,7 +2,7 @@
 
 namespace App\Services\DataTables;
 
-use App\Entities\Patients;
+use App\Entities\Patient;
 use Yajra\Datatables\Services\DataTable;
 
 /**
@@ -21,9 +21,9 @@ class PatientsDataTable extends DataTable
     public function dataTable()
     {
         return $this->datatables
-            ->eloquent($this->query())->editColumn('created_at', function (Patients $model) {
+            ->eloquent($this->query())->editColumn('created_at', function (Patient $model) {
                 return date('d/m/Y H:i:s', strtotime($model->created_at));
-            })->addColumn('edit', function (Patients $model) {
+            })->addColumn('edit', function (Patient $model) {
                 return '<a href="patients/' . $model->id . '/edit" 
                            class="btn btn-xs btn-primary center-block"> 
                             <i class="fa fa-pencil-square-o" 
@@ -39,7 +39,7 @@ class PatientsDataTable extends DataTable
      */
     public function query()
     {
-        $query = Patients::query();
+        $query = Patient::query();
 
         return $this->applyScopes($query);
     }

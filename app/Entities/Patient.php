@@ -41,7 +41,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class Patients extends Model implements Transformable {
+class Patient extends Model implements Transformable {
 	use TransformableTrait;
 
 	protected $fillable = [

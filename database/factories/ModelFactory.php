@@ -64,7 +64,7 @@ $factory->define( App\Entities\Log::class, function ( Faker\Generator $faker ) {
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define( App\Entities\Patients::class, function ( Faker\Generator $faker ) {
+$factory->define( App\Entities\Patient::class, function ( Faker\Generator $faker ) {
 	$bloodTypes = [
 		'A+',
 		'A-',

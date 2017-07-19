@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Entities\PatientContact;
-use App\Entities\Patients;
+use App\Entities\Patient;
 use App\Entities\State;
 use App\Presenters\PatientsPresenter;
 use App\Validators\PatientsValidator;
@@ -23,7 +23,7 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
      */
     public function model()
     {
-        return Patients::class;
+        return Patient::class;
     }
 
     /**
