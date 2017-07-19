@@ -7,8 +7,8 @@
                     <i class="fa fa-users"
                        aria-hidden="true"></i>
                 </span>
-            <select class="form-control" id="marital_status" name="marital_status">
-                <option value=""></option>
+            <select class="form-control" id="marital_status" name="marital_status" title="Estado Civil">
+                <option value="">Selecione o estado civil</option>
                 @if(!empty($data['marital_status']))
                     <option value="0" {{ $data['marital_status'] === 0 ? 'selected' : '' }}>Solteiro</option>
                     <option value="1" {{ $data['marital_status'] === 1 ? 'selected' : '' }}>Casado</option>

@@ -7,8 +7,8 @@
                     <i class="fa fa-tint"
                        aria-hidden="true"></i>
                 </span>
-            <select class="form-control" id="blood_type" name="blood_type">
-                <option value=""></option>
+            <select class="form-control" id="blood_type" name="blood_type" title="Tipo Sanguíneo">
+                <option value="">Selecione o tipo sanguíneo</option>
                 @if(!empty($data['blood_type']))
                     <option value="A+" {{ $data['blood_type'] == 'A+' ? 'selected' : '' }} >A+</option>
                     <option value="A-" {{ $data['blood_type'] == 'A-' ? 'selected' : '' }} >A-</option>

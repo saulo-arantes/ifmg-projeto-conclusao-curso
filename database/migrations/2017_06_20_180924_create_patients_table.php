@@ -44,7 +44,7 @@ class CreatePatientsTable extends Migration
             $table->unsignedInteger('mother_id')->nullable();
             $table->foreign('mother_id')->references('id')->on('patients');
             $table->integer('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('city_id')->references('id')->on('cities')->cascade();
             $table->integer('naturalness_id');
             $table->foreign('naturalness_id')->references('id')->on('cities');
             $table->timestamps();
