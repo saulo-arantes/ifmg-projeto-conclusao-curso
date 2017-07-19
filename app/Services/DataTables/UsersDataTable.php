@@ -27,6 +27,17 @@ class UsersDataTable extends DataTable {
                             <i class="fa fa-pencil-square-o" 
                                aria-hidden="true"></i>
                         </a>';
+			})->editColumn('level', function (User $model) {
+				switch ($model->level) {
+					case User::ADMIN:
+						return '<label class="label label-sm label-danger center-block">Admin</label>';
+					case User::DOCTOR:
+						return '<label class="label label-sm label-info center-block">Médico</label>';
+					case User::SECRETARY:
+						return '<label class="label label-sm label-default center-block">Secretário</label>';
+					default:
+						return '<label class="label label-sm label-warning center-block">Desconhecido</label>';
+				}
 			})->escapeColumns([]);
 	}
 
@@ -95,8 +106,13 @@ class UsersDataTable extends DataTable {
 			'address'      => ['title' => 'Endereço'],
 			'neighborhood' => ['title' => 'Bairro'],
 			'number'       => ['title' => 'Número'],
+			'level'        => ['title' => 'Nível'],
 			'created_at'   => ['title' => 'Data'],
-			'edit'         => ['title' => 'Editar']
+			'edit'         => [
+				'title'      => 'Editar',
+				'searchable' => false,
+				'orderable'  => false
+			]
 		];
 	}
 

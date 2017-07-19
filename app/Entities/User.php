@@ -18,9 +18,14 @@ use Illuminate\Notifications\Notifiable;
  * @property UserContact contacts
  * @property \DateTime created_at
  * @property \DateTime updated_at
+ * @property int level
  */
 class User extends Authenticatable {
 	use Notifiable;
+
+	const ADMIN = 0;
+	const DOCTOR = 1;
+	const SECRETARY = 2;
 
 	/**
 	 * The attributes that are mass assignable.

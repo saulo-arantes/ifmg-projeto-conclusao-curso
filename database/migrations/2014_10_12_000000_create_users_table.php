@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('complement', 100)->nullable();
             $table->string('email')->unique();
-            $table->unsignedTinyInteger('level');
+            $table->unsignedTinyInteger('level')->comment();
             $table->string('name');
             $table->string('neighborhood', 100);
             $table->string('number', 10);
