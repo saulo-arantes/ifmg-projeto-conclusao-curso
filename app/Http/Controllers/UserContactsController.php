@@ -2,197 +2,186 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\UserContactCreateRequest;
 use App\Http\Requests\UserContactUpdateRequest;
 use App\Repositories\UserContactRepository;
 use App\Validators\UserContactValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 
-class UserContactsController extends Controller
-{
+class UserContactsController extends Controller {
 
-    /**
-     * @var UserContactRepository
-     */
-    protected $repository;
+	/**
+	 * @var UserContactRepository
+	 */
+	protected $repository;
 
-    /**
-     * @var UserContactValidator
-     */
-    protected $validator;
+	/**
+	 * @var UserContactValidator
+	 */
+	protected $validator;
 
-    public function __construct(UserContactRepository $repository, UserContactValidator $validator)
-    {
-        $this->repository = $repository;
-        $this->validator  = $validator;
-    }
+	public function __construct(UserContactRepository $repository, UserContactValidator $validator) {
+		$this->repository = $repository;
+		$this->validator  = $validator;
+	}
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $userContacts = $this->repository->all();
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index() {
+		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+		$userContacts = $this->repository->all();
 
-        if (request()->wantsJson()) {
+		if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $userContacts,
-            ]);
-        }
+			return response()->json([
+				'data' => $userContacts,
+			]);
+		}
 
-        return view('userContacts.index', compact('userContacts'));
-    }
+		return view('userContacts.index', compact('userContacts'));
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  UserContactCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(UserContactCreateRequest $request)
-    {
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  UserContactCreateRequest $request
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(UserContactCreateRequest $request) {
 
-        try {
+		try {
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+			$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $userContact = $this->repository->create($request->all());
+			$userContact = $this->repository->create($request->all());
 
-            $response = [
-                'message' => 'UserContact created.',
-                'data'    => $userContact->toArray(),
-            ];
+			$response = [
+				'message' => 'UserContact created.',
+				'data'    => $userContact->toArray(),
+			];
 
-            if ($request->wantsJson()) {
+			if ($request->wantsJson()) {
 
-                return response()->json($response);
-            }
+				return response()->json($response);
+			}
 
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
+			return redirect()->back()->with('message', $response['message']);
+		} catch (ValidatorException $e) {
+			if ($request->wantsJson()) {
+				return response()->json([
+					'error'   => true,
+					'message' => $e->getMessageBag()
+				]);
+			}
 
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
-    }
+			return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+		}
+	}
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $userContact = $this->repository->find($id);
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id) {
+		$userContact = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+		if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $userContact,
-            ]);
-        }
+			return response()->json([
+				'data' => $userContact,
+			]);
+		}
 
-        return view('userContacts.show', compact('userContact'));
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $userContact = $this->repository->find($id);
-
-        return view('userContacts.edit', compact('userContact'));
-    }
+		return view('userContacts.show', compact('userContact'));
+	}
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  UserContactUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
-     */
-    public function update(UserContactUpdateRequest $request, $id)
-    {
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id) {
 
-        try {
+		$userContact = $this->repository->find($id);
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $userContact = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'UserContact updated.',
-                'data'    => $userContact->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
-    }
+		return view('userContacts.edit', compact('userContact'));
+	}
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $deleted = $this->repository->delete($id);
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  UserContactUpdateRequest $request
+	 * @param  string $id
+	 *
+	 * @return Response
+	 */
+	public function update(UserContactUpdateRequest $request, $id) {
 
-        if (request()->wantsJson()) {
+		try {
 
-            return response()->json([
-                'message' => 'UserContact deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
+			$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
 
-        return redirect()->back()->with('message', 'UserContact deleted.');
-    }
+			$userContact = $this->repository->update($request->all(), $id);
+
+			$response = [
+				'message' => 'UserContact updated.',
+				'data'    => $userContact->toArray(),
+			];
+
+			if ($request->wantsJson()) {
+
+				return response()->json($response);
+			}
+
+			return redirect()->back()->with('message', $response['message']);
+		} catch (ValidatorException $e) {
+
+			if ($request->wantsJson()) {
+
+				return response()->json([
+					'error'   => true,
+					'message' => $e->getMessageBag()
+				]);
+			}
+
+			return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+		}
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id) {
+		$deleted = $this->repository->delete($id);
+
+		if (request()->wantsJson()) {
+
+			return response()->json([
+				'message' => 'UserContact deleted.',
+				'deleted' => $deleted,
+			]);
+		}
+
+		return redirect()->back()->with('message', 'UserContact deleted.');
+	}
 }

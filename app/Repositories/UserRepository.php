@@ -9,29 +9,28 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  *
  * @package namespace App\Repositories;
  */
-interface UserRepository extends RepositoryInterface
-{
-    /**
-     * Change the user status.
-     *
-     * @param $userID
-     */
-    public function changeUserStatus($userID);
+interface UserRepository extends RepositoryInterface {
+	/**
+	 * Change the user status.
+	 *
+	 * @param $userID
+	 */
+	public function changeUserStatus($userID);
 
-    /**
-     * Update the contacts of an user.
-     *
-     * @param $data
-     * @param $id
-     *
-     * @return array|bool
-     */
-    public function updateContacts($data, $id);
+	/**
+	 * Update the contacts of an user.
+	 *
+	 * @param $data
+	 * @param $id
+	 *
+	 * @return array|bool
+	 */
+	public function updateContacts($data, $id);
 
-    /**
-     * Upload a picture to use as avatar.
-     *
-     * @return array|string
-     */
-    public function uploadAvatar();
+	/**
+	 * Upload a picture to use as avatar.
+	 *
+	 * @return array|string
+	 */
+	public function uploadAvatar();
 }

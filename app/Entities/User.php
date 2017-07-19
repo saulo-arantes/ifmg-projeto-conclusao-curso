@@ -19,41 +19,39 @@ use Illuminate\Notifications\Notifiable;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class User extends Authenticatable
-{
-    use Notifiable;
+class User extends Authenticatable {
+	use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'address',
-        'complement',
-        'email',
-        'level',
-        'name',
-        'neighborhood',
-        'number',
-        'password',
-        'photo',
-        'status',
-        'zipcode'
-    ];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'address',
+		'complement',
+		'email',
+		'level',
+		'name',
+		'neighborhood',
+		'number',
+		'password',
+		'photo',
+		'status',
+		'zipcode'
+	];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+		'password',
+		'remember_token',
+	];
 
-    public function contacts()
-    {
-        return $this->hasMany(UserContact::class, 'user_id', 'id');
-    }
+	public function contacts() {
+		return $this->hasMany(UserContact::class, 'user_id', 'id');
+	}
 }

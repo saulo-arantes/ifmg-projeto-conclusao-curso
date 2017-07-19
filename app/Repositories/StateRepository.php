@@ -9,7 +9,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  *
  * @package namespace TARS\Repositories;
  */
-interface StateRepository extends RepositoryInterface
-{
-    //
+interface StateRepository extends RepositoryInterface {
+	//
 }

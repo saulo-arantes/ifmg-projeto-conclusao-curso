@@ -14,21 +14,18 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class PatientContact extends Model implements Transformable
-{
-    use TransformableTrait;
+class PatientContact extends Model implements Transformable {
+	use TransformableTrait;
 
-    protected $fillable = [
-        'description',
-        'patient_id',
-        'contact_type_id'
-    ];
+	protected $fillable = [
+		'description',
+		'patient_id',
+		'contact_type_id'
+	];
 
-    public function contactType()
-    {
-        return $this->hasOne(ContactType::class, 'contact_type_id', 'id');
-    }
-
+	public function contactType() {
+		return $this->hasOne(ContactType::class, 'contact_type_id', 'id');
+	}
 
 
 }

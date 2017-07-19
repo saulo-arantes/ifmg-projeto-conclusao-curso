@@ -12,7 +12,7 @@ use League\Fractal\TransformerAbstract;
  * @package namespace App\Transformers;
  */
 class UserTransformer extends TransformerAbstract {
-	protected $defaultIncludes = [ 'contacts' ];
+	protected $defaultIncludes = ['contacts'];
 
 	/**
 	 * Transform the User entity
@@ -21,7 +21,7 @@ class UserTransformer extends TransformerAbstract {
 	 *
 	 * @return array
 	 */
-	public function transform( User $model ) {
+	public function transform(User $model) {
 		return [
 			'id'           => (int) $model->id,
 			'address'      => $model->address,
@@ -37,9 +37,9 @@ class UserTransformer extends TransformerAbstract {
 		];
 	}
 
-	public function includeContacts( User $model ) {
-		if ( !empty( $model->contacts ) ) {
-			return $this->collection( $model->contacts, new UserContactTransformer() );
+	public function includeContacts(User $model) {
+		if (!empty($model->contacts)) {
+			return $this->collection($model->contacts, new UserContactTransformer());
 		}
 
 		return null;

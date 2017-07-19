@@ -10,15 +10,13 @@ use Prettus\Repository\Presenter\FractalPresenter;
  *
  * @package namespace App\Presenters;
  */
-class UserContactPresenter extends FractalPresenter
-{
-    /**
-     * Transformer
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new UserContactTransformer();
-    }
+class UserContactPresenter extends FractalPresenter {
+	/**
+	 * Transformer
+	 *
+	 * @return \League\Fractal\TransformerAbstract
+	 */
+	public function getTransformer() {
+		return new UserContactTransformer();
+	}
 }

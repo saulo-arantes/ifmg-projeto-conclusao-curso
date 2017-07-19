@@ -9,25 +9,23 @@ use League\Fractal\TransformerAbstract;
  * Class AdministratorTransformer
  * @package namespace App\Transformers;
  */
-class AdministratorTransformer extends TransformerAbstract
-{
+class AdministratorTransformer extends TransformerAbstract {
 
-    /**
-     * Transform the \Administrator entity
-     *
-     * @param \Administrator $model
-     *
-     * @return array
-     */
-    public function transform(Administrator $model)
-    {
-        return [
-            'id' => (int)$model->id,
+	/**
+	 * Transform the \Administrator entity
+	 *
+	 * @param \Administrator $model
+	 *
+	 * @return array
+	 */
+	public function transform(Administrator $model) {
+		return [
+			'id' => (int) $model->id,
 
-            /* place your other model properties here */
+			/* place your other model properties here */
 
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
-        ];
-    }
+			'created_at' => $model->created_at,
+			'updated_at' => $model->updated_at
+		];
+	}
 }

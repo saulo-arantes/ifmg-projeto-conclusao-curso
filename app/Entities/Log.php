@@ -19,19 +19,17 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property \DateTime updated_at
  * @property User user
  */
-class Log extends Model implements Transformable
-{
-    use TransformableTrait;
+class Log extends Model implements Transformable {
+	use TransformableTrait;
 
-    protected $fillable = [
-        'description',
-        'user_id',
-        'type',
-        'visualized'
-    ];
+	protected $fillable = [
+		'description',
+		'user_id',
+		'type',
+		'visualized'
+	];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+	public function user() {
+		return $this->belongsTo(User::class);
+	}
 }

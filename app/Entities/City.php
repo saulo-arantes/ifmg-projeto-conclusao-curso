@@ -16,16 +16,14 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property int state_id
  * @property State state
  */
-class City extends Model implements Transformable
-{
-    use TransformableTrait;
+class City extends Model implements Transformable {
+	use TransformableTrait;
 
-    public $timestamps = false;
-    protected $fillable = [];
+	public $timestamps = false;
+	protected $fillable = [];
 
-    public function state()
-    {
-        return $this->belongsTo(State::class);
-    }
+	public function state() {
+		return $this->belongsTo(State::class);
+	}
 
 }

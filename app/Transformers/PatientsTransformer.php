@@ -12,7 +12,7 @@ use League\Fractal\TransformerAbstract;
  */
 class PatientsTransformer extends TransformerAbstract {
 
-	protected $defaultIncludes = [ 'city', 'naturalness', 'contacts' ];
+	protected $defaultIncludes = ['city', 'naturalness', 'contacts'];
 
 	/**
 	 * Transform the Patients entity
@@ -21,7 +21,7 @@ class PatientsTransformer extends TransformerAbstract {
 	 *
 	 * @return array
 	 */
-	public function transform( Patient $model ) {
+	public function transform(Patient $model) {
 		return [
 			'id'                    => (int) $model->id,
 			'name'                  => $model->name,
@@ -56,30 +56,30 @@ class PatientsTransformer extends TransformerAbstract {
 		];
 	}
 
-	public function includeCity( Patient $model ) {
+	public function includeCity(Patient $model) {
 
-		if ( ! empty( $model->city ) ) {
+		if (!empty($model->city)) {
 
-			return $this->item( $model->city, new CityTransformer() );
+			return $this->item($model->city, new CityTransformer());
 		}
 
 		return null;
 	}
 
-	public function includeNaturalness( Patient $model ) {
+	public function includeNaturalness(Patient $model) {
 
-		if ( ! empty( $model->naturalness ) ) {
+		if (!empty($model->naturalness)) {
 
-			return $this->item( $model->naturalness, new CityTransformer() );
+			return $this->item($model->naturalness, new CityTransformer());
 		}
 
 		return null;
 	}
 
-	public function includeContacts( Patient $model ) {
-		if ( ! empty( $model->contacts ) ) {
+	public function includeContacts(Patient $model) {
+		if (!empty($model->contacts)) {
 
-			return $this->collection( $model->contacts, new PatientContactTransformer() );
+			return $this->collection($model->contacts, new PatientContactTransformer());
 		}
 
 		return null;

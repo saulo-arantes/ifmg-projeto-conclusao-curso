@@ -74,15 +74,15 @@ class Patient extends Model implements Transformable {
 	];
 
 	public function contacts() {
-		return $this->hasMany( PatientContact::class, 'patient_id', 'id' );
+		return $this->hasMany(PatientContact::class, 'patient_id', 'id');
 	}
 
 	public function naturalness() {
-		return $this->belongsTo( City::class, 'naturalness_id', 'id' );
+		return $this->belongsTo(City::class, 'naturalness_id', 'id');
 	}
 
 	public function city() {
-		return $this->belongsTo( City::class, 'city_id', 'id' );
+		return $this->belongsTo(City::class, 'city_id', 'id');
 	}
 
 }

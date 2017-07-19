@@ -10,7 +10,6 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * @author  Bruno Tomé
  * @package namespace TARS\Repositories;
  */
-interface RegionRepository extends RepositoryInterface
-{
-    //
+interface RegionRepository extends RepositoryInterface {
+	//
 }

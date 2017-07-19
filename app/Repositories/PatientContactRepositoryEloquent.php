@@ -37,7 +37,7 @@ class PatientContactRepositoryEloquent extends BaseRepository implements Patient
 	 * Boot up the repository, pushing criteria
 	 */
 	public function boot() {
-		$this->pushCriteria( app( RequestCriteria::class ) );
+		$this->pushCriteria(app(RequestCriteria::class));
 	}
 
 	public function presenter() {

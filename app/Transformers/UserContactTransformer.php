@@ -18,7 +18,7 @@ class UserContactTransformer extends TransformerAbstract {
 	 *
 	 * @return array
 	 */
-	public function transform( UserContact $model ) {
+	public function transform(UserContact $model) {
 		return [
 			'id'              => (int) $model->id,
 			'description'     => $model->description,

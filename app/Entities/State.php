@@ -16,21 +16,18 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property int region_id
  * @property Region region
  */
-class State extends Model implements Transformable
-{
-    use TransformableTrait;
+class State extends Model implements Transformable {
+	use TransformableTrait;
 
-    public $timestamps = false;
-    protected $fillable = [];
+	public $timestamps = false;
+	protected $fillable = [];
 
-    public function region()
-    {
-        return $this->belongsTo(Region::class);
-    }
+	public function region() {
+		return $this->belongsTo(Region::class);
+	}
 
-    public function cities()
-    {
-        return $this->hasMany(City::class, 'state_id', 'id');
-    }
+	public function cities() {
+		return $this->hasMany(City::class, 'state_id', 'id');
+	}
 
 }

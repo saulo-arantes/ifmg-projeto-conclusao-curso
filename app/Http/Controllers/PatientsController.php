@@ -7,131 +7,126 @@ use App\Http\Requests\PatientsUpdateRequest;
 use App\Repositories\PatientsRepository;
 use App\Services\DataTables\PatientsDataTable;
 use App\Services\PatientService;
-use App\Validators\PatientsValidator;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 
 
-class PatientsController extends Controller
-{
+class PatientsController extends Controller {
 
-    /**
-     * @var PatientsRepository
-     */
-    protected $repository;
+	/**
+	 * @var PatientsRepository
+	 */
+	protected $repository;
 
-    /**
-     * @var PatientService
-     */
-    protected $service;
+	/**
+	 * @var PatientService
+	 */
+	protected $service;
 
-    public function __construct(PatientsRepository $repository, PatientService $service)
-    {
-        $this->repository = $repository;
-        $this->service  = $service;
-    }
+	public function __construct(PatientsRepository $repository, PatientService $service) {
+		$this->repository = $repository;
+		$this->service    = $service;
+	}
 
-    public function index(PatientsDataTable $dataTable)
-    {
-        return $dataTable->render('admin.patients.list');
-    }
+	public function index(PatientsDataTable $dataTable) {
+		return $dataTable->render('admin.patients.list');
+	}
 
-    public function create()
-    {
-        $extraData = $this->repository->getExtraData();
-        return view('admin.patients.create', compact('extraData'));
-    }
+	public function create() {
+		$extraData = $this->repository->getExtraData();
 
-    /**
-     * Stores a patient.
-     *
-     * @param PatientsCreateRequest $request
-     * @param null $otherController
-     *
-     * @return array|\Illuminate\Http\RedirectResponse
-     */
-    public function store(PatientsCreateRequest $request, $otherController = null)
-    {
-        $resultFromStoreUser = $this->service->store($request, $otherController);
+		return view('admin.patients.create', compact('extraData'));
+	}
 
-        if (!empty($otherController)) {
-            return $resultFromStoreUser;
-        }
+	/**
+	 * Stores a patient.
+	 *
+	 * @param PatientsCreateRequest $request
+	 * @param null $otherController
+	 *
+	 * @return array|\Illuminate\Http\RedirectResponse
+	 */
+	public function store(PatientsCreateRequest $request, $otherController = null) {
+		$resultFromStoreUser = $this->service->store($request, $otherController);
 
-        if (!empty($resultFromStoreUser['error'])) {
-            alert()->error($resultFromStoreUser['message'], 'Erro :(')->persistent('Fechar');
-            return back()->withInput();
-        }
+		if (!empty($otherController)) {
+			return $resultFromStoreUser;
+		}
 
-        alert()->success('Paciente adicionado com sucesso!', 'Feito :)');
-        return redirect('/admin/patients');
-    }
+		if (!empty($resultFromStoreUser['error'])) {
+			alert()->error($resultFromStoreUser['message'], 'Erro :(')->persistent('Fechar');
+
+			return back()->withInput();
+		}
+
+		alert()->success('Paciente adicionado com sucesso!', 'Feito :)');
+
+		return redirect('/admin/patients');
+	}
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id) {
 
-        $patient = $this->repository->find($id);
-        $extraData = $this->repository->getExtraData($id);
-        $patient['data']['birthday_date'] = date('d/m/Y', strtotime($patient['data']['birthday_date']));
-        return view('admin.patients.edit', compact('patient'), compact('extraData'));
-    }
+		$patient                          = $this->repository->find($id);
+		$extraData                        = $this->repository->getExtraData($id);
+		$patient['data']['birthday_date'] = date('d/m/Y', strtotime($patient['data']['birthday_date']));
 
-
-    /**
-     * Updates an user.
-     *
-     * @param PatientsUpdateRequest $request
-     * @param $id
-     * @param null $otherController
-     *
-     * @return array|bool|\Illuminate\Http\RedirectResponse
-     */
-    public function update(PatientsUpdateRequest $request, $id, $otherController = null)
-    {
-
-        $resultFromUpdateUser = $this->service->update($request, $id);
-
-        if (!empty($otherController)) {
-            return $resultFromUpdateUser;
-        }
-
-        if (!empty($resultFromUpdateUser['error'])) {
-            alert()->error($resultFromUpdateUser['message'], 'Erro :(')->persistent('Fechar');
-            return back()->withInput();
-        }
-
-        alert()->success('Paciente atualizado com sucesso!', 'Feito :)');
-        return back()->withInput();
-    }
+		return view('admin.patients.edit', compact('patient'), compact('extraData'));
+	}
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $deleted = $this->repository->delete($id);
+	/**
+	 * Updates an user.
+	 *
+	 * @param PatientsUpdateRequest $request
+	 * @param $id
+	 * @param null $otherController
+	 *
+	 * @return array|bool|\Illuminate\Http\RedirectResponse
+	 */
+	public function update(PatientsUpdateRequest $request, $id, $otherController = null) {
 
-        if (request()->wantsJson()) {
+		$resultFromUpdateUser = $this->service->update($request, $id);
 
-            return response()->json([
-                'message' => 'Patients deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
+		if (!empty($otherController)) {
+			return $resultFromUpdateUser;
+		}
 
-        return redirect()->back()->with('message', 'Patients deleted.');
-    }
+		if (!empty($resultFromUpdateUser['error'])) {
+			alert()->error($resultFromUpdateUser['message'], 'Erro :(')->persistent('Fechar');
+
+			return back()->withInput();
+		}
+
+		alert()->success('Paciente atualizado com sucesso!', 'Feito :)');
+
+		return back()->withInput();
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id) {
+		$deleted = $this->repository->delete($id);
+
+		if (request()->wantsJson()) {
+
+			return response()->json([
+				'message' => 'Patients deleted.',
+				'deleted' => $deleted,
+			]);
+		}
+
+		return redirect()->back()->with('message', 'Patients deleted.');
+	}
 }
