@@ -138,6 +138,6 @@ $factory->define( App\Entities\ContactType::class, function ( Faker\Generator $f
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define( App\Entities\Doctor::class, function ( Faker\Generator $faker ) {
 	return [
-		'crm' => $faker->word
+		'crm' => rand(10000000, 99999999) . '-' . rand(1,9) . '/BR'
 	];
 } );

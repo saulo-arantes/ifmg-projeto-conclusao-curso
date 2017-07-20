@@ -2,11 +2,15 @@
 
 namespace App\Repositories;
 
+use App\Entities\ContactType;
+use App\Entities\Doctor;
 use App\Entities\Patient;
 use App\Entities\PatientContact;
 use App\Entities\State;
+use App\Entities\User;
 use App\Presenters\PatientsPresenter;
 use App\Validators\PatientsValidator;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
@@ -55,6 +59,10 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
 	 */
 	public function getExtraData($id = null): array {
 		$extraData['states'] = State::all();
+		$extraData['contact_types'] = ContactType::all();
+		$extraData['doctors'] = Doctor::with('user')->get();
+		$extraData['middleware'] = User::getUserMiddleware();
+
 		if (!empty($id)) {
 			$data = $this->find($id);
 			if (!empty($data['data']['city']['data']['id'])) {
@@ -63,6 +71,11 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
 			if (!empty($data['data']['naturalness']['data']['id'])) {
 				$extraData['naturalness'] = State::find($data['data']['naturalness']['data']['state']['id'])->cities;
 			}
+		}
+
+		if (Auth::user()->level == User::DOCTOR) {
+			$doctor = Doctor::where('user_id', Auth::user()->id)->first();
+			$extraData['doctor_id'] = $doctor->id;
 		}
 
 		return $extraData;

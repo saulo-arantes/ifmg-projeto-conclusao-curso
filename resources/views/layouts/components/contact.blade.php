@@ -14,7 +14,7 @@
                                     data-error="Campo obrigatório. Preencha um contato seu ou de um responsável."
                                     title="Preencha o tipo de contato">
                                 <option value="">Selecione o tipo de contato</option>
-                                @foreach (\App\Entities\ContactType::all() as $c)
+                                @foreach ($extraData['contact_types'] as $c)
                                     <option value="{{ $c->id }}" {{ $c->id == $contact['contact_type_id'] ? 'selected' : '' }}>{{ $c->name }}</option>
                                 @endforeach
                             </select>
@@ -60,7 +60,7 @@
                                 data-error="Campo obrigatório. Preencha um contato seu ou de um responsável."
                                 title="Preencha o tipo de contato">
                             <option value="">Selecione o tipo de contato</option>
-                            @foreach (\App\Entities\ContactType::all() as $c)
+                            @foreach ($extraData['contact_types'] as $c)
                                 <option value="{{ $c->id }}">{{ $c->name }}</option>
                             @endforeach
                         </select>

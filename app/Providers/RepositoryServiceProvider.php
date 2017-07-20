@@ -6,12 +6,18 @@ use App\Repositories\AdministratorRepository;
 use App\Repositories\AdministratorRepositoryEloquent;
 use App\Repositories\ContactTypeRepository;
 use App\Repositories\ContactTypeRepositoryEloquent;
+use App\Repositories\DoctorPatientRepository;
+use App\Repositories\DoctorPatientRepositoryEloquent;
+use App\Repositories\DoctorRepository;
+use App\Repositories\DoctorRepositoryEloquent;
 use App\Repositories\LogRepository;
 use App\Repositories\LogRepositoryEloquent;
 use App\Repositories\PatientContactRepository;
 use App\Repositories\PatientContactRepositoryEloquent;
 use App\Repositories\PatientsRepository;
 use App\Repositories\PatientsRepositoryEloquent;
+use App\Repositories\ScheduleRepository;
+use App\Repositories\ScheduleRepositoryEloquent;
 use App\Repositories\StateRepository;
 use App\Repositories\StateRepositoryEloquent;
 use App\Repositories\UserContactRepository;
@@ -45,9 +51,9 @@ class RepositoryServiceProvider extends ServiceProvider {
 		$this->app->bind(PatientContactRepository::class, PatientContactRepositoryEloquent::class);
 		$this->app->bind(StateRepository::class, StateRepositoryEloquent::class);
 		$this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
-		$this->app->bind(\App\Repositories\ScheduleRepository::class,
-			\App\Repositories\ScheduleRepositoryEloquent::class);
-		$this->app->bind(\App\Repositories\DoctorRepository::class, \App\Repositories\DoctorRepositoryEloquent::class);
-        //:end-bindings:
+		$this->app->bind(ScheduleRepository::class, ScheduleRepositoryEloquent::class);
+		$this->app->bind(DoctorRepository::class, DoctorRepositoryEloquent::class);
+		$this->app->bind(DoctorPatientRepository::class, DoctorPatientRepositoryEloquent::class);
+		//:end-bindings:
 	}
 }

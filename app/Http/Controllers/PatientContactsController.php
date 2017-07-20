@@ -93,7 +93,8 @@ class PatientContactsController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id) {
+	public function show($id)
+	{
 		$patientContact = $this->repository->find($id);
 
 		if (request()->wantsJson()) {

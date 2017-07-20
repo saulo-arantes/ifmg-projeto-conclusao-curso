@@ -37,6 +37,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="{{ asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/global/plugins/sweet-alert/sweetalert2.min.css') }}" rel="stylesheet">
         <!-- END GLOBAL MANDATORY STYLES -->
+        <link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="{{ asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link href="{{ asset('assets/global/css/components-md.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
         <link href="{{ asset('assets/global/css/plugins-md.min.css') }}" rel="stylesheet" type="text/css" />
@@ -70,11 +72,11 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span></span>
                     </a>
                     <!-- END RESPONSIVE MENU TOGGLER -->
-                    @if (Auth::user()->level == 0)
+                    @if (Auth::user()->level == \App\Entities\User::ADMIN)
                         @include ('../layouts.components.admin.top-navigation-admin')
-                    @elseif (Auth::user()->level == 1)
+                    @elseif (Auth::user()->level == \App\Entities\User::DOCTOR)
                         @include ('../layouts.components.doctor.top-navigation-doctor')
-                    @elseif (Auth::user()->level == 2)
+                    @elseif (Auth::user()->level == \App\Entities\User::SECRETARY)
                         @include ('../layouts.components.secretary.top-navigation-secretary')
                     @endif
                 </div>
@@ -87,12 +89,12 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN CONTAINER -->
             <div class="page-container">
                 <!-- BEGIN SIDEBAR -->
-                @if (Auth::user()->level == 0)
+                @if (Auth::user()->level == \App\Entities\User::ADMIN)
                     @include ('../layouts.components.admin.side-bar-admin')
-                @elseif (Auth::user()->level == 1)
-                    @include ('../layouts.components.doctor.top-navigation-doctor')
-                @elseif (Auth::user()->level == 2)
-                    @include ('../layouts.components.secretary.top-navigation-secretary')
+                @elseif (Auth::user()->level == \App\Entities\User::DOCTOR)
+                    @include ('../layouts.components.doctor.side-bar-doctor')
+                @elseif (Auth::user()->level == \App\Entities\User::SECRETARY)
+                    @include ('../layouts.components.secretary.side-bar-secretary')
                 @endif
                 <!-- END SIDEBAR -->
                 <!-- BEGIN CONTENT -->
@@ -693,9 +695,11 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END CORE PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script src="{{ asset('assets/global/scripts/app.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/global/plugins/select2/js/select2.full.min.js') }}" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{ asset('assets/layouts/layout/scripts/layout.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/pages/scripts/components-select2.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/layouts/layout/scripts/demo.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/layouts/global/scripts/quick-nav.min.js') }}" type="text/javascript"></script>

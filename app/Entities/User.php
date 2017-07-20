@@ -4,6 +4,7 @@ namespace App\Entities;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @property integer id
@@ -15,10 +16,10 @@ use Illuminate\Notifications\Notifiable;
  * @property string number
  * @property boolean status
  * @property string zipcode
+ * @property int level
  * @property UserContact contacts
  * @property \DateTime created_at
  * @property \DateTime updated_at
- * @property int level
  */
 class User extends Authenticatable {
 	use Notifiable;
@@ -58,5 +59,18 @@ class User extends Authenticatable {
 
 	public function contacts() {
 		return $this->hasMany(UserContact::class, 'user_id', 'id');
+	}
+
+	public static function getUserMiddleware() {
+		switch (Auth::user()->level) {
+			case User::ADMIN:
+				return 'admin';
+			case User::DOCTOR:
+				return 'doctor';
+			case User::SECRETARY:
+				return 'secretary';
+			default:
+				return 'secretary';
+		}
 	}
 }

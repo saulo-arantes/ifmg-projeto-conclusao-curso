@@ -38,6 +38,9 @@ Route::group(['middleware' => 'auth'],
 
         Route::post('get-cities/{id}', 'StatesController@getCities');
 
+	    ########################################
+	    # Admin
+	    ########################################
         Route::group([
             'middleware' => 'admin',
             'prefix'     => 'admin'
@@ -72,5 +75,33 @@ Route::group(['middleware' => 'auth'],
                     Route::get('visualize-all', 'LogsController@visualizeAll');
                 });
         });
+
+        ########################################
+	    # Doctor
+	    ########################################
+	    Route::group([
+		    'middleware' => 'doctor',
+		    'prefix'     => 'doctor'
+	    ], function () {
+
+		    Route::get('dashboard', 'HomeController@dashboard');
+
+		    Route::group(['prefix' => 'patients'],
+			    function () {
+				    Route::get('', 'PatientsController@index');
+				    Route::get('{id}/edit', 'PatientsController@edit');
+				    Route::post('{id}/edit', 'PatientsController@update');
+				    Route::get('{id}/delete', 'PatientsController@destroy');
+				    Route::post('create', 'PatientsController@store');
+				    Route::get('create', 'PatientsController@create');
+			    });
+
+		    Route::group(['prefix' => 'logs'],
+			    function () {
+				    Route::get('', 'LogsController@index');
+				    Route::get('{id}/mark-as-seen', 'LogsController@markAsSeen');
+				    Route::get('visualize-all', 'LogsController@visualizeAll');
+			    });
+	    });
 
     });

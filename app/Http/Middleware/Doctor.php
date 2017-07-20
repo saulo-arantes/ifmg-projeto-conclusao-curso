@@ -6,7 +6,7 @@ use App\Entities\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Admin {
+class Doctor {
 	/**
 	 * Handle an incoming request.
 	 *
@@ -16,7 +16,7 @@ class Admin {
 	 * @return mixed
 	 */
 	public function handle($request, Closure $next) {
-		if (Auth::user()->level == User::ADMIN) {
+		if (Auth::user()->level == User::DOCTOR) {
 			return $next($request);
 		}
 

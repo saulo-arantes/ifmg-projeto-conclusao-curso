@@ -9,7 +9,9 @@
 namespace App\Http\Requests;
 
 
+use App\Entities\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserUpdateRequest extends FormRequest {
 	/**
@@ -18,7 +20,7 @@ class UserUpdateRequest extends FormRequest {
 	 * @return bool
 	 */
 	public function authorize() {
-		return true;
+		return Auth::user()->level == User::ADMIN;
 	}
 
 	/**

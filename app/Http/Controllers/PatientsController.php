@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\User;
 use App\Http\Requests\PatientsCreateRequest;
 use App\Http\Requests\PatientsUpdateRequest;
 use App\Repositories\PatientsRepository;
@@ -32,8 +33,7 @@ class PatientsController extends Controller {
 
 	public function create() {
 		$extraData = $this->repository->getExtraData();
-
-		return view('admin.patients.create', compact('extraData'));
+		return view(User::getUserMiddleware().'.patients.create', compact('extraData'));
 	}
 
 	/**

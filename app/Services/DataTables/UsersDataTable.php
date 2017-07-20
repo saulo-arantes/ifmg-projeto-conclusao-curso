@@ -34,9 +34,9 @@ class UsersDataTable extends DataTable {
 					case User::DOCTOR:
 						return '<label class="label label-sm label-info center-block">Médico</label>';
 					case User::SECRETARY:
-						return '<label class="label label-sm label-default center-block">Secretário</label>';
+						return '<label class="label label-sm label-warning center-block">Secretário</label>';
 					default:
-						return '<label class="label label-sm label-warning center-block">Desconhecido</label>';
+						return '<label class="label label-sm label-default center-block">Desconhecido</label>';
 				}
 			})->escapeColumns([]);
 	}

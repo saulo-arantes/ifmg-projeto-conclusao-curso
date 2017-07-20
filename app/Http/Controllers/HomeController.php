@@ -16,6 +16,7 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return redirect('admin/users');
+
+		return redirect('profile');
 	}
 }
