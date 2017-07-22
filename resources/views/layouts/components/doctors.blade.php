@@ -7,7 +7,11 @@
                 <i class="fa fa-user-md"
                    aria-hidden="true"></i>
             </span>
-            <select id="doctors" name="doctors[]" class="form-control select2" multiple title="Associe médicos a esse paciente">
+            <select id="doctors"
+                    name="doctors[]"
+                    class="form-control select2"
+                    multiple
+                    title="Associe médicos a esse paciente">
                 <option value="">Selecionar</option>
                 @if(!empty($extraData['doctors']))
                     @if(!empty($extraData['doctor_id']))
