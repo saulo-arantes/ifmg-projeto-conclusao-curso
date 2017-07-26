@@ -27,7 +27,14 @@ class PatientsDataTable extends DataTable {
                             <i class="fa fa-pencil-square-o" 
                                aria-hidden="true"></i>
                         </a>';
-			})->escapeColumns([]);
+			})->addColumn('doctors', function (Patient $model) {
+					$doctors = '';
+					foreach ($model->doctors as $doctor) {
+						$doctors .= $doctor->doctor->user->name . '<br>';
+					}
+
+					return $doctors;
+			})->rawColumns(['doctors.doctor.user.name'])->escapeColumns([]);
 	}
 
 	/**
@@ -36,7 +43,7 @@ class PatientsDataTable extends DataTable {
 	 * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Support\Collection
 	 */
 	public function query() {
-		$query = Patient::query();
+		$query = Patient::query()->with('doctors.doctor.user')->select('patients.*');
 
 		return $this->applyScopes($query);
 	}
@@ -91,13 +98,18 @@ class PatientsDataTable extends DataTable {
 		return [
 			'id',
 			'name'         => ['title' => 'Nome'],
+			'doctors'      => ['title' => 'Médicos'],
 			'address'      => ['title' => 'Endereço'],
 			'neighborhood' => ['title' => 'Bairro'],
 			'number'       => ['title' => 'Número'],
 			'height'       => ['title' => 'Altura'],
 			'weight'       => ['title' => 'Peso'],
 			'created_at'   => ['title' => 'Data'],
-			'edit'         => ['title' => 'Editar']
+			'edit'         => [
+				'title'      => 'Editar',
+				'searchable' => false,
+				'orderable'  => false
+			]
 		];
 	}
 

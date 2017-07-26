@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Presenters\DoctorPatientPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\DoctorPatientRepository;
@@ -35,6 +36,14 @@ class DoctorPatientRepositoryEloquent extends BaseRepository implements DoctorPa
         return DoctorPatientValidator::class;
     }
 
+	/**
+	 * Specify Presenter class name
+	 *
+	 * @return string
+	 */
+	public function presenter() {
+		return DoctorPatientPresenter::class;
+	}
 
     /**
      * Boot up the repository, pushing criteria

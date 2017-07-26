@@ -18,7 +18,7 @@ interface PatientsRepository extends RepositoryInterface {
 	public function getExtraData($id = null): array;
 
 	/**
-	 * Update the contacts of an patient.
+	 * Update the contacts of a patient.
 	 *
 	 * @param $data
 	 * @param $id
@@ -26,4 +26,14 @@ interface PatientsRepository extends RepositoryInterface {
 	 * @return array|bool
 	 */
 	public function updateContacts($data, $id);
+
+	/**
+	 * Update the doctors of a patient.
+	 *
+	 * @param $data
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
+	public function updateDoctors($data, $id);
 }

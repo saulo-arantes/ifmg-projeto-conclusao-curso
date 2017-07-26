@@ -35,7 +35,7 @@ class PatientsValidator extends LaravelValidator {
 			'father_id'             => 'integer|exists:patients,id',
 			'mother_id'             => 'integer|exists:patients,id',
 			'city_id'               => 'required|integer|exists:cities,id',
-			'naturalness_id'        => 'required|integer|exists:cities,id'
+			'naturalness_id'        => 'required|integer|exists:cities,id',
 		],
 		ValidatorInterface::RULE_UPDATE => [
 			'name'                  => 'required|string|max:50',
@@ -64,7 +64,7 @@ class PatientsValidator extends LaravelValidator {
 			'father_id'             => 'integer|exists:patients,id',
 			'mother_id'             => 'integer|exists:patients,id',
 			'city_id'               => 'required|integer|exists:cities,id',
-			'naturalness_id'        => 'required|integer|exists:cities,id'
+			'naturalness_id'        => 'required|integer|exists:cities,id',
 		],
 	];
 }

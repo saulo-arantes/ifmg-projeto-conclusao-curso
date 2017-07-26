@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Entities\ContactType;
 use App\Entities\Doctor;
+use App\Entities\DoctorPatient;
 use App\Entities\Patient;
 use App\Entities\PatientContact;
 use App\Entities\State;
@@ -58,12 +59,18 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
 	 * @return array
 	 */
 	public function getExtraData($id = null): array {
-		$extraData['states'] = State::all();
-		$extraData['contact_types'] = ContactType::all();
-		$extraData['doctors'] = Doctor::with('user')->get();
-		$extraData['middleware'] = User::getUserMiddleware();
+		$extraData['states']         = State::all();
+		$extraData['contact_types']  = ContactType::all();
+		$extraData['doctors']        = Doctor::with('user')->get();
+		$extraData['middleware']     = User::getUserMiddleware();
 
 		if (!empty($id)) {
+			$extraData['doctor_patient'] = DoctorPatient::where('patient_id', $id)->get();
+			$patientDoctors = [];
+			foreach ($extraData['doctor_patient'] as $doctors) {
+				$patientDoctors[] = $doctors->doctor_id;
+			}
+			$extraData['doctor_patient'] = $patientDoctors;
 			$data = $this->find($id);
 			if (!empty($data['data']['city']['data']['id'])) {
 				$extraData['cities'] = State::find($data['data']['city']['data']['state']['id'])->cities;
@@ -74,7 +81,7 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
 		}
 
 		if (Auth::user()->level == User::DOCTOR) {
-			$doctor = Doctor::where('user_id', Auth::user()->id)->first();
+			$doctor                 = Doctor::where('user_id', Auth::user()->id)->first();
 			$extraData['doctor_id'] = $doctor->id;
 		}
 
@@ -82,7 +89,7 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
 	}
 
 	/**
-	 * Update the contacts of an patient.
+	 * Update the contacts of a patient.
 	 *
 	 * @param $data
 	 * @param $id
@@ -126,4 +133,37 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
 			'message' => 'Adicione um contato'
 		];
 	}
+
+	/**
+	 * Update the doctors of a patient
+	 *
+	 * @param $data
+	 * @param $id
+	 *
+	 * @return array|bool
+	 */
+	public function updateDoctors($data, $id) {
+		if (!empty($data['doctors'])) {
+
+			$doctorPatients = DoctorPatient::where('patient_id', $id)->get()->toArray();
+			foreach ($doctorPatients as $doctorPatient) {
+				DoctorPatient::destroy($doctorPatient['id']);
+			}
+
+			foreach ($data['doctors'] as $doctor) {
+				DoctorPatient::create([
+					'patient_id' => $id,
+					'doctor_id'  => $doctor
+				]);
+			}
+
+			return true;
+		}
+
+		return [
+			'error'   => true,
+			'message' => 'Adicione um Médico'
+		];
+	}
+
 }

@@ -76,6 +76,7 @@ class PatientService {
 
 			$user = $this->repository->create($data);
 			$this->repository->updateContacts($data, $user['data']['id']);
+			$this->repository->updateDoctors($data, $user['data']['id']);
 
 			session()->forget('photo');
 
@@ -126,6 +127,7 @@ class PatientService {
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 			$this->repository->update($data, $id);
 			$this->repository->updateContacts($data, $id);
+			$this->repository->updateDoctors($data, $id);
 
 			session()->forget('photo');
 

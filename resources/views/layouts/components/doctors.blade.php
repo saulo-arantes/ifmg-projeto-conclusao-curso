@@ -13,11 +13,12 @@
                     multiple
                     title="Associe médicos a esse paciente">
                 <option value="">Selecionar</option>
+
                 @if(!empty($extraData['doctors']))
-                    @if(!empty($extraData['doctor_id']))
+                    @if(!empty($extraData['doctor_patient']))
                         @foreach ($extraData['doctors'] as $doctor)
                             <option value="{{ $doctor->id }}"
-                                    {{ $doctor->id == $extraData['doctor_id'] ? 'selected' : '' }}>{{ $doctor->user->name }}</option>
+                                    {{ in_array($doctor->id, $extraData['doctor_patient']) ? 'selected' : '' }}>{{ $doctor->user->name }}</option>
                         @endforeach
                     @else
                         @foreach ($extraData['doctors'] as $doctor)
