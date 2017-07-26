@@ -9,6 +9,12 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * @package namespace App\Repositories;
  */
 interface PatientsRepository extends RepositoryInterface {
+
+	/**
+	 * @param null $id
+	 *
+	 * @return array
+	 */
 	public function getExtraData($id = null): array;
 
 	/**

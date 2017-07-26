@@ -37,6 +37,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property City city
  * @property City naturalness
  * @property PatientContact contacts
+ * @property DoctorPatient doctors
  * @property int naturalness_id
  * @property \DateTime created_at
  * @property \DateTime updated_at
@@ -83,6 +84,11 @@ class Patient extends Model implements Transformable {
 
 	public function city() {
 		return $this->belongsTo(City::class, 'city_id', 'id');
+	}
+
+	public function doctors()
+	{
+		return $this->hasMany(DoctorPatient::class, 'patient_id', 'id');
 	}
 
 }

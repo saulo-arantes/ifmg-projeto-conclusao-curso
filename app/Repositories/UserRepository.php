@@ -33,4 +33,11 @@ interface UserRepository extends RepositoryInterface {
 	 * @return array|string
 	 */
 	public function uploadAvatar();
+
+	/**
+	 * @param null $id
+	 *
+	 * @return array
+	 */
+	public function getExtraData($id = null): array;
 }

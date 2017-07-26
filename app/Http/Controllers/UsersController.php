@@ -44,12 +44,13 @@ class UsersController extends Controller {
 
 	public function edit($id) {
 		$user = $this->repository->find($id);
-
+		$extraData = $this->repository->getExtraData();
 		return view('admin.users.edit', compact('user'), compact('extraData'));
 	}
 
 	public function create() {
-		return view('admin.users.create');
+		$extraData = $this->repository->getExtraData();
+		return view('admin.users.create', compact('extraData'));
 	}
 
 	/**

@@ -10,7 +10,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property integer id
  * @property string crm
  * @property User user
- * @property Patient patients
+ * @property DoctorPatient patients
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
@@ -27,7 +27,7 @@ class Doctor extends Model implements Transformable
 
 	public function patients()
 	{
-		return $this->hasMany(Patient::class, 'patient_id', 'id');
+		return $this->hasMany(DoctorPatient::class, 'doctor_id', 'id');
 	}
 
 }

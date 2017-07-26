@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Entities\ContactType;
 use App\Entities\Log;
 use App\Entities\User;
 use App\Entities\UserContact;
@@ -185,5 +186,16 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository {
 		imagedestroy($new);
 
 		return $imageName;
+	}
+
+	/**
+	 * @param null $id
+	 *
+	 * @return array
+	 */
+	public function getExtraData($id = null): array {
+		$extraData['contact_types'] = ContactType::all();
+
+		return $extraData;
 	}
 }
