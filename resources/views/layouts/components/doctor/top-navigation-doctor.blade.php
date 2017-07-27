@@ -314,18 +314,18 @@
                 </li>
                 <li>
                     <a href="app_calendar.html">
-                        <i class="icon-calendar"></i> My Calendar </a>
+                        <i class="icon-calendar"></i> Calendário </a>
                 </li>
                 <li>
                     <a href="app_todo.html">
-                        <i class="icon-rocket"></i> My Tasks
+                        <i class="icon-rocket"></i> Agendamentos
                         <span class="badge badge-success"> 7 </span>
                     </a>
                 </li>
                 <li class="divider"></li>
                 <li>
                     <a href="page_user_lock_1.html">
-                        <i class="icon-lock"></i> Lock Screen </a>
+                        <i class="icon-lock"></i> Bloquear Tela </a>
                 </li>
                 <li>
                     <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

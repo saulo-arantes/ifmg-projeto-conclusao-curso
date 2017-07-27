@@ -81,8 +81,15 @@
                 </ul>
             </li>
             <li class="nav-item start ">
+                <a href="{{ url('/doctor/schedules') }}"
+                   class="nav-link ">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <span class="title">Calendário</span>
+                </a>
+            </li>
+            <li class="nav-item start ">
                 <a href="{{ url('/doctor/logs') }}">
-                    <i class="fa fa-calendar-times-o" aria-hidden="true"></i>
+                    <i class="fa fa-warning" aria-hidden="true"></i>
                     <span class="title">Log</span>
                 </a>
             </li>
@@ -179,29 +186,6 @@
                             <i class="icon-bar-chart"></i> Item 3 </a>
                     </li>
                 </ul>
-            </li>
-            <li class="nav-item start ">
-                <a href="index.html"
-                   class="nav-link ">
-                    <i class="icon-bar-chart"></i>
-                    <span class="title">Dashboard 1</span>
-                </a>
-            </li>
-            <li class="nav-item start ">
-                <a href="dashboard_2.html"
-                   class="nav-link ">
-                    <i class="icon-bulb"></i>
-                    <span class="title">Dashboard 2</span>
-                    <span class="badge badge-success">1</span>
-                </a>
-            </li>
-            <li class="nav-item start ">
-                <a href="dashboard_3.html"
-                   class="nav-link ">
-                    <i class="icon-graph"></i>
-                    <span class="title">Dashboard 3</span>
-                    <span class="badge badge-danger">5</span>
-                </a>
             </li>
         </ul>
         <!-- END SIDEBAR MENU -->

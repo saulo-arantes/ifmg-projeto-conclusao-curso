@@ -28,12 +28,12 @@ class PatientsDataTable extends DataTable {
                                aria-hidden="true"></i>
                         </a>';
 			})->addColumn('doctors', function (Patient $model) {
-					$doctors = '';
-					foreach ($model->doctors as $doctor) {
-						$doctors .= $doctor->doctor->user->name . '<br>';
-					}
+				$doctors = '';
+				foreach ($model->doctors as $doctor) {
+					$doctors .= $doctor->doctor->user->name . '<br>';
+				}
 
-					return $doctors;
+				return $doctors;
 			})->rawColumns(['doctors.doctor.user.name'])->escapeColumns([]);
 	}
 
@@ -98,7 +98,10 @@ class PatientsDataTable extends DataTable {
 		return [
 			'id',
 			'name'         => ['title' => 'Nome'],
-			'doctors'      => ['title' => 'Médicos'],
+			'doctors'      => [
+				'title'     => 'Médicos',
+				'orderable' => false
+			],
 			'address'      => ['title' => 'Endereço'],
 			'neighborhood' => ['title' => 'Bairro'],
 			'number'       => ['title' => 'Número'],

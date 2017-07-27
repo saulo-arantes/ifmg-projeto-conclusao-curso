@@ -102,6 +102,11 @@ Route::group(['middleware' => 'auth'],
 				    Route::get('{id}/mark-as-seen', 'LogsController@markAsSeen');
 				    Route::get('visualize-all', 'LogsController@visualizeAll');
 			    });
+
+		    Route::group(['prefix' => 'schedules'],
+			    function () {
+				    Route::get('', 'SchedulesController@index');
+			    });
 	    });
 
     });

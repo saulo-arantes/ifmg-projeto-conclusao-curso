@@ -34,17 +34,8 @@ class SchedulesController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-		$schedules = $this->repository->all();
 
-		if (request()->wantsJson()) {
-
-			return response()->json([
-				'data' => $schedules,
-			]);
-		}
-
-		return view('schedules.index', compact('schedules'));
+		return view('layouts.components.calendar');
 	}
 
 	/**
