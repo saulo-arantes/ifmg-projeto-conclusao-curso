@@ -313,12 +313,12 @@
                         <i class="icon-user"></i> Meu perfil </a>
                 </li>
                 <li>
-                    <a href="app_calendar.html">
+                    <a href="{{ url('/doctor/schedules') }}">
                         <i class="icon-calendar"></i> Calendário </a>
                 </li>
                 <li>
                     <a href="app_todo.html">
-                        <i class="icon-rocket"></i> Agendamentos
+                        <i class="icon-rocket"></i> Compromissos
                         <span class="badge badge-success"> 7 </span>
                     </a>
                 </li>
