@@ -61,92 +61,42 @@
 
 <div class="page-wrapper">
     <div class="page-wrapper-row">
-        <div class="page-wrapper-top">
-            <!-- BEGIN HEADER -->
 
-            <!-- BEGIN HEADER MENU -->
-            <div class="page-header-top"
-                 style="background-color: #444d58">
-                <div class="container">
-                    <!-- BEGIN MEGA MENU -->
-                    <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
-                    <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
-                    <div class="hor-menu">
-                        <ul class="nav navbar-nav">
-                            <li aria-haspopup="true">
-                                <a href="{{ url('/home') }}">
-                                    <img src="{{ asset('assets/layouts/layout3/img/logo-green-haze.png') }}"
-                                         alt="logo"
-                                         class="logo-default">
-                                </a>
-                            </li>
-                        </ul>
-                        <a class="btn btn-success pull-right"
+        <!-- BEGIN HEADER -->
+
+        <!-- BEGIN HEADER MENU -->
+        <div class="page-header-top"
+             style="background-color: #444d58">
+            <div class="container">
+                <!-- BEGIN MEGA MENU -->
+                <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+                <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+                <div>
+                    <ul class="pull-left">
+                        <img src="{{ asset('assets/layouts/layout3/img/logo-green-haze.png') }}"
+                             alt="logo"
+                             class="logo-default"
+                             style="margin-top: 16px;">
+                    </ul>
+
+                    <ul class="pull-right">
+                        <a class="btn btn-success "
                            href="{{ url('login') }}"
-                           style="margin: 8px auto;">Login</a></li>
+                           style="margin-top: 9px;">Login</a>
+                    </ul>
 
-
-                    </div>
-                    <!-- END MEGA MENU -->
 
                 </div>
-                <!-- END HEADER MENU -->
+                <!-- END MEGA MENU -->
+
             </div>
-            <!-- END HEADER -->
+            <!-- END HEADER MENU -->
         </div>
+        <!-- END HEADER -->
+
     </div>
-    <div class="page-wrapper-row full-height">
-        <div class="page-wrapper-middle">
-            <!-- BEGIN CONTAINER -->
-            <div class="page-container">
-                <!-- BEGIN CONTENT -->
-                <div class="page-content-wrapper">
-                    <!-- BEGIN CONTENT BODY -->
-                    <!-- BEGIN PAGE HEAD-->
-                    <div class="page-head">
-                        <div class="container">
-                            <!-- BEGIN PAGE TITLE -->
-                            <div class="page-title">
-                                <h1>Blank Page </h1>
-                            </div>
-                            <!-- END PAGE TITLE -->
-                            <!-- BEGIN PAGE TOOLBAR -->
-                            <div class="page-toolbar"></div>
-                            <!-- END PAGE TOOLBAR -->
-                        </div>
-                    </div>
-                    <!-- END PAGE HEAD-->
-                    <!-- BEGIN PAGE CONTENT BODY -->
-                    <div class="page-content">
-                        <div class="container">
-                            <!-- BEGIN PAGE BREADCRUMBS -->
-                            <ul class="page-breadcrumb breadcrumb">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li>
-                                    <span>Layouts</span>
-                                </li>
-                            </ul>
-                            <!-- END PAGE BREADCRUMBS -->
-                            <!-- BEGIN PAGE CONTENT INNER -->
-                            <div class="page-content-inner">
-                                <div class="note note-info">
-                                    <p> A black page template with a minimal dependency assets to use as a base for any
-                                        custom page you create </p>
-                                </div>
-                            </div>
-                            <!-- END PAGE CONTENT INNER -->
-                        </div>
-                    </div>
-                    <!-- END PAGE CONTENT BODY -->
-                    <!-- END CONTENT BODY -->
-                </div>
-                <!-- END CONTENT -->
-            </div>
-            <!-- END CONTAINER -->
-        </div>
+    <div class="page-wrapper-row full-height"
+         style="overflow: hidden;">
     </div>
     <div class="page-wrapper-row">
         <div class="page-wrapper-bottom">
@@ -168,9 +118,9 @@
                                                placeholder="mail@email.com"
                                                class="form-control">
                                         <span class="input-group-btn">
-                                                    <button class="btn"
-                                                            type="submit">Submit</button>
-                                                </span>
+                                            <button class="btn"
+                                                    type="submit">Submit</button>
+                                        </span>
                                     </div>
                                 </form>
                             </div>

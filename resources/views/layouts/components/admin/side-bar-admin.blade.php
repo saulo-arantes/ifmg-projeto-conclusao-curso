@@ -50,7 +50,7 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
             <li class="nav-item start ">
-                <a href="{{ url('/') }}"
+                <a href="{{ url('/profile') }}"
                    class="nav-link ">
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span class="title">Início</span>
