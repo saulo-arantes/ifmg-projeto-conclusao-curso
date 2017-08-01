@@ -72,18 +72,15 @@
                 <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
                 <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
                 <div>
-                    <ul class="pull-left">
-                        <img src="{{ asset('assets/layouts/layout3/img/logo-green-haze.png') }}"
-                             alt="logo"
-                             class="logo-default"
-                             style="margin-top: 16px;">
-                    </ul>
 
-                    <ul class="pull-right">
-                        <a class="btn btn-success "
-                           href="{{ url('login') }}"
-                           style="margin-top: 9px;">Login</a>
-                    </ul>
+                    <img src="{{ asset('assets/layouts/layout3/img/logo-green-haze.png') }}"
+                         alt="logo"
+                         class="logo-default"
+                         style="margin-top: 16px;">
+
+                    <a class="btn btn-success pull-right"
+                       href="{{ url('login') }}"
+                       style="margin: 8px;">Login</a>
 
 
                 </div>
@@ -97,6 +94,7 @@
     </div>
     <div class="page-wrapper-row full-height"
          style="overflow: hidden;">
+
     </div>
     <div class="page-wrapper-row">
         <div class="page-wrapper-bottom">
@@ -106,8 +104,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
-                            <h2>About</h2>
-                            <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam dolore. </p>
+                            <h2>Sobre</h2>
+                            <p> Este sistema tem como funcionalidade a manipulação de agendamentos e
+                                compromissos de uma clínica médica. </p>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs12 footer-block">
                             <h2>Subscribe Email</h2>
@@ -146,10 +145,10 @@
                             </ul>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12 footer-block">
-                            <h2>Contacts</h2>
-                            <address class="margin-bottom-40"> Phone: 800 123 3456
+                            <h2>Contato</h2>
+                            <address class="margin-bottom-40"> Phone: (37) 9 9984-0481
                                 <br> Email:
-                                <a href="mailto:info@metronic.com">info@metronic.com</a>
+                                <a href="mailto:info@metronic.com">saulovinicius987@gmail.com</a>
                             </address>
                         </div>
                     </div>
@@ -164,6 +163,8 @@
                     <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes"
                        title="Purchase Metronic just for 27$ and get lifetime updates for free"
                        target="_blank">Purchase Metronic!</a>
+                    <label title="Desenvolvedor. Em caso de dúvidas, entre em contato."
+                           class="pull-right"> Desenvolvido por: Saulo Vinícius | Técnico Informática IV </label>
                 </div>
             </div>
             <div class="scroll-to-top">

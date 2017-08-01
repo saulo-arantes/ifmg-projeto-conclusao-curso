@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-<link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.css') }}" rel='stylesheet' />
-<link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.print.min.css') }}" rel='stylesheet' media='print' />
+<link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.css') }}"
+      rel='stylesheet'/>
+<link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.print.min.css') }}"
+      rel='stylesheet'
+      media='print'/>
 <style>
 
     #calendar {
@@ -38,7 +41,8 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <span class="caption-subject bold uppercase">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    <i class="fa fa-calendar"
+                                       aria-hidden="true"></i>
                                     Calendário</span>
                             </div>
                         </div>
@@ -56,18 +60,24 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/global/plugins/fullcalendar/lib/moment.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/global/plugins/fullcalendar/lib/moment.min.js') }}"
+        type="text/javascript"></script>
 
-<script src="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.js') }}"
+        type="text/javascript"></script>
+
+<script src="{{ asset('assets/global/plugins/fullcalendar/locale/pt-br.js') }}"
+        type="text/javascript"></script>
+
 <script>
 
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'month,basicWeek,basicDay'
+                right: 'month,basicWeek,basicDay,list'
             },
             defaultDate: '2017-05-12',
             navLinks: true, // can click day/week names to navigate views
