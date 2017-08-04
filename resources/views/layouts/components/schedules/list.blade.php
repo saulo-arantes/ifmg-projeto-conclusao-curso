@@ -8,6 +8,12 @@
       rel="stylesheet">
 <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/responsive/dataTables.responsive.min.css') }}"
       rel="stylesheet">
+<style>
+    .button {
+        width: 200px;
+        padding: 5px;
+    }
+</style>
 @endpush
 
 @section('content')
@@ -33,64 +39,45 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-calendar"
-                                   aria-hidden="true"></i>
-                                <span class="caption-subject bold uppercase">
+                                <span class="caption-subject bold uppercase"><i class="fa fa-address-book"
+                                                                                aria-hidden="true"></i>
                                     Agenda</span>
                             </div>
                         </div>
-
-                        <div class="portlet-body form">
-                            <div class="x_panel"
-                                 style="padding: 10px 15px;">
-                                <div class="nav navbar-right panel_toolbox"
-                                     style="margin-bottom: 5px;">
-                                    <a class="btn btn-success"
-                                       href="{{ url(App\Entities\User::getUserMiddleware().'/schedules') }}">
-                                        <i class="fa fa-clock-o"
-                                        ></i> Novo compromisso
-                                    </a>
-                                    <a class="btn btn-info"
-                                       href="{{ url('/manager/schedules/create/scheduling') }}">
-                                        <i class="fa fa-medkit"
-                                        ></i> Nova consulta
-                                    </a>
-                                    <a class="btn btn-default"
-                                       href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/calendar') }}"
-                                       style="margin-right: 15px">
-                                        <i class="fa fa-list"
-                                        ></i> Formato Calendário
-                                    </a>
-                                </div>
-                                <div class="clearfix"></div>
-                                {!! $dataTable->table() !!}
+                        <div class="portlet-body">
+                            <div class="panel_toolbox"
+                                 style="float: right; margin-bottom: 20px;">
+                                <a class="btn btn-success button"
+                                   href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/create/appointment') }}">
+                                    <i class="fa fa-clock-o"></i> Novo compromisso
+                                </a>
+                                <a class="btn btn-info button"
+                                   href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/create/scheduling') }}">
+                                    <i class="fa fa-medkit"></i> Nova consulta
+                                </a>
+                                <a class="btn btn-default button"
+                                   href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/calendar') }}">
+                                    <i class="fa fa-list"></i> Formato Calendário
+                                </a>
                             </div>
+                            {!! $dataTable->table() !!}
+                            <h2>Legenda</h2>
+                            <i class="fa fa-circle"
+                               aria-hidden="true"
+                               style="color: #36c6d3; font-size: 20px;"></i> Compromisso futuro<br>
+                            <i class="fa fa-circle"
+                               aria-hidden="true"
+                               style="color: #659be0; font-size: 20px;"></i> Agendamento futuro<br>
+                            <i class="fa fa-circle"
+                               aria-hidden="true"
+                               style="color: #333; font-size: 20px;"></i> Passado
                         </div>
                     </div>
-                    <h2>Legenda</h2>
-                    <table>
-                        <tr>
-                            <td style="padding:0 15px 0 15px;">
-                                <label class="label label-xs label-success">Verde</label></td>
-                            <td>Compromisso futuro</td>
-                        </tr>
-                        <tr>
-                            <td style="padding:0 15px 0 15px;">
-                                <label class="label label-xs alert-info">Azul</label></td>
-                            <td>Agendamento futuro</td>
-                        </tr>
-                        <tr>
-                            <td style="padding:0 15px 0 15px;">
-                                <label class="label label-xs label-default">Preto</label></td>
-                            <td>Passado</td>
-                        </tr>
-                    </table>
-
                 </div>
             </div>
         </div>
     </div>
-    </div>
+
 @endsection
 
 @push('scripts')
