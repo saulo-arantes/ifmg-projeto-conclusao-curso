@@ -78,6 +78,10 @@ Route::group(['middleware' => 'auth'],
 		        Route::group(['prefix' => 'schedules'],
 		        function () {
 			        Route::get('', 'SchedulesController@index');
+			        Route::get('calendar', 'SchedulesController@calendar');
+			        Route::post('calendar-ajax', 'SchedulesController@calendar');
+			        Route::post('create', 'SchedulesController@store');
+			        Route::get('create', 'SchedulesController@create');
 		        });
         });
 
@@ -111,6 +115,8 @@ Route::group(['middleware' => 'auth'],
 		    Route::group(['prefix' => 'schedules'],
 			    function () {
 				    Route::get('', 'SchedulesController@index');
+				    Route::get('calendar', 'SchedulesController@calendar');
+				    Route::post('calendar-ajax', 'SchedulesController@calendar');
 			    });
 	    });
 
