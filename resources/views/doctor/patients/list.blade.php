@@ -28,8 +28,11 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="icon-layers"></i>
-                                <span class="caption-subject bold uppercase">Pacientes</span>
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-wheelchair-alt"
+                                       aria-hidden="true"></i>
+                                    Pacientes
+                                </span>
                             </div>
                         </div>
                         <div class="portlet-body">

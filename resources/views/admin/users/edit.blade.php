@@ -31,8 +31,11 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-edit"></i>
-                                <span class="caption-subject bold uppercase"> Editar </span>
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-user"
+                                       aria-hidden="true"></i>
+                                    Editar usuário
+                                </span>
                             </div>
                             <ul class="nav nav-tabs">
                                 <li class="active">

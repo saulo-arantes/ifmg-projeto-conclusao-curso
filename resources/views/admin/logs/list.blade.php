@@ -28,8 +28,11 @@
                 <div class="portlet box blue-dark">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="icon-layers"></i>
-                            <span class="caption-subject bold uppercase">Logs</span>
+                            <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-warning"
+                                       aria-hidden="true"></i>
+                                    Logs
+                                </span>
                         </div>
                     </div>
                     <div class="portlet-body">

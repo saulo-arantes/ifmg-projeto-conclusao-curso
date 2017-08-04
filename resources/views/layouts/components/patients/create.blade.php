@@ -27,8 +27,11 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-edit"></i>
-                                <span class="caption-subject bold uppercase">Adicionar paciente</span>
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-wheelchair"
+                                       aria-hidden="true"></i>
+                                    Adicionar paciente
+                                </span>
                             </div>
                         </div>
                         <div class="portlet-body form">
@@ -106,10 +109,10 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
-            type="text/javascript"></script>
-    <script src="{{ asset('pages/scripts/form-validation.min.js') }}"
-            type="text/javascript"></script>
-    <script src="{{ asset('global/plugins/jquery-validation/js/jquery.validate.min.js') }}"
-            type="text/javascript"></script>
+<script src="{{ asset('global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
+        type="text/javascript"></script>
+<script src="{{ asset('pages/scripts/form-validation.min.js') }}"
+        type="text/javascript"></script>
+<script src="{{ asset('global/plugins/jquery-validation/js/jquery.validate.min.js') }}"
+        type="text/javascript"></script>
 @endpush

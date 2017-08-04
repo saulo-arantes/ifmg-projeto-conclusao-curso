@@ -8,7 +8,7 @@
         <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
-                <i class="icon-bell"></i>
+                <i class="fa fa-bell-o"></i>
                 <span class="badge badge-default"> 7 </span>
             </a>
             <ul class="dropdown-menu">
@@ -110,7 +110,7 @@
         <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
-                <i class="icon-envelope-open"></i>
+                <i class="fa fa-envelope-open-o"></i>
                 <span class="badge badge-default"> 4 </span>
             </a>
             <ul class="dropdown-menu">
@@ -170,7 +170,7 @@
         <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
-                <i class="icon-calendar"></i>
+                <i class="fa fa-calendar-o"></i>
                 <span class="badge badge-default"> 3 </span>
             </a>
             <ul class="dropdown-menu extended tasks">
@@ -310,26 +310,26 @@
             <ul class="dropdown-menu dropdown-menu-default">
                 <li>
                     <a href="{{ url('/profile') }}">
-                        <i class="icon-user"></i> Meu perfil </a>
+                        <i class="fa fa-user"></i> Meu perfil </a>
                 </li>
                 <li>
-                    <a href="{{ url('admin/schedules') }}">
+                    <a href="{{ url('admin/schedules/calendar') }}">
                         <i class="fa fa-calendar"></i> Calendário </a>
                 </li>
                 <li>
-                    <a href="app_todo.html">
-                        <i class="icon-rocket"></i> Compromissos
+                    <a href="{{ url('admin/schedules/') }}">
+                        <i class="fa fa-address-book-o"></i> Agenda
                         <span class="badge badge-success"> 7 </span>
                     </a>
                 </li>
                 <li class="divider"></li>
                 <li>
                     <a href="page_user_lock_1.html">
-                        <i class="icon-lock"></i> Bloquear Tela </a>
+                        <i class="fa fa-lock"></i> Bloquear Tela </a>
                 </li>
                 <li>
                     <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="icon-key"></i> Sair
+                        <i class="fa fa-sign-out"></i> Sair
                     </a>
                     <form id="logout-form"
                           action="{{ url('/logout') }}"

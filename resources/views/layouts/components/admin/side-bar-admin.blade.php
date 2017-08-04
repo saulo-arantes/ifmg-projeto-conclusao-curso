@@ -106,8 +106,8 @@
             </li>
             <li class="nav-item start ">
                 <a href="{{ url('/admin/schedules') }}">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <span class="title">Calendário</span>
+                    <i class="fa fa-address-book" aria-hidden="true"></i>
+                    <span class="title">Agenda</span>
                 </a>
             </li>
             <li class="nav-item start ">

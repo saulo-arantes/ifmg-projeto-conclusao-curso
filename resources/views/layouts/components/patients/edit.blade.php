@@ -31,8 +31,11 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-edit"></i>
-                                <span class="caption-subject bold uppercase"> Editar </span>
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-wheelchair"
+                                       aria-hidden="true"></i>
+                                    Editar
+                                </span>
                             </div>
                             <ul class="nav nav-tabs">
                                 <li class="active">
@@ -97,7 +100,7 @@
                                                 @include('layouts.components.birthday-date', ['data' => $patient['data']])
                                             </div>
                                             <h4 class="form-section">Contato</h4>
-                                                @include('layouts.components.contact', ['contacts' => $patient['data']['contacts']['data']])
+                                            @include('layouts.components.contact', ['contacts' => $patient['data']['contacts']['data']])
                                             <h4 class="form-section">Naturalidade</h4>
                                             <div class="row">
                                                 @include('layouts.components.state', ['data' => $patient['data']['naturalness']['data'], 'extraData' => $extraData, 'city' => false])
@@ -171,5 +174,6 @@
         });
     });
 </script>
-<script src="{{ asset('assets/global/plugins/dropzone/dropzone.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/global/plugins/dropzone/dropzone.min.js') }}"
+        type="text/javascript"></script>
 @endpush
