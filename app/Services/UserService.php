@@ -21,6 +21,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
  * @package App\Services
  */
 class UserService {
+
 	/**
 	 * @var UserRepository
 	 */

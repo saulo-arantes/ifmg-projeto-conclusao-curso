@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'],
                     Route::get('visualize-all', 'LogsController@visualizeAll');
                 });
 
-	        Route::group(['prefix' => 'schedules'],
+		        Route::group(['prefix' => 'schedules'],
 		        function () {
 			        Route::get('', 'SchedulesController@index');
 		        });

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\User;
 use App\Http\Requests\ScheduleCreateRequest;
 use App\Http\Requests\ScheduleUpdateRequest;
 use App\Repositories\ScheduleRepository;
-use App\Validators\ScheduleValidator;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
-
+use App\Services\DataTables\SchedulesDataTable;
+use App\Services\ScheduleService;
+use Illuminate\Support\Facades\Request;
 
 class SchedulesController extends Controller {
 
@@ -16,26 +16,53 @@ class SchedulesController extends Controller {
 	 * @var ScheduleRepository
 	 */
 	protected $repository;
-
 	/**
-	 * @var ScheduleValidator
+	 * @var ScheduleService
 	 */
-	protected $validator;
-
-	public function __construct(ScheduleRepository $repository, ScheduleValidator $validator) {
+	protected $service;
+	/**
+	 * SchedulesController constructor.
+	 *
+	 * @param ScheduleRepository $repository
+	 * @param ScheduleService $service
+	 */
+	public function __construct(ScheduleRepository $repository, ScheduleService $service)
+	{
 		$this->repository = $repository;
-		$this->validator  = $validator;
+		$this->service = $service;
 	}
-
-
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index() {
-
-		return view('layouts.components.calendar');
+	public function calendar()
+	{
+		$extraData['middleware'] = User::getUserMiddleware();
+		return view($extraData['middleware'] . '.schedules.list-calendar', compact('schedules'), compact('extraData'));
+	}
+	/**
+	 * Return events by date range.
+	 *
+	 * @param Request|Request $request
+	 *
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function calendarAjax(Request $request)
+	{
+		$schedules = $this->repository->getSchedulesForCalendar($request);
+		return response()->json($schedules);
+	}
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @param SchedulesDataTable $dataTable
+	 *
+	 * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
+	 */
+	public function index(SchedulesDataTable $dataTable)
+	{
+		return $dataTable->render(User::getUserMiddleware() . '.schedules.list');
 	}
 
 	/**
@@ -45,35 +72,24 @@ class SchedulesController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(ScheduleCreateRequest $request) {
+	public function store(ScheduleCreateRequest $request, $otherController = null) {
 
-		try {
 
-			$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+		$resultFromStoreSchedule = $this->service->store($request, $otherController);
 
-			$schedule = $this->repository->create($request->all());
-
-			$response = [
-				'message' => 'Schedule created.',
-				'data'    => $schedule->toArray(),
-			];
-
-			if ($request->wantsJson()) {
-
-				return response()->json($response);
-			}
-
-			return redirect()->back()->with('message', $response['message']);
-		} catch (ValidatorException $e) {
-			if ($request->wantsJson()) {
-				return response()->json([
-					'error'   => true,
-					'message' => $e->getMessageBag()
-				]);
-			}
-
-			return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+		if (!empty($otherController)) {
+			return $resultFromStoreSchedule;
 		}
+
+		if (!empty($resultFromStoreSchedule['error'])) {
+			alert()->error($resultFromStoreSchedule['message'], 'Erro :(')->persistent('Fechar');
+
+			return back()->withInput();
+		}
+
+		alert()->success('Agendamento adicionado com sucesso!', 'Feito :)');
+
+		return redirect('/'.User::getUserMiddleware().'/schedules');
 	}
 
 
@@ -123,35 +139,21 @@ class SchedulesController extends Controller {
 	 */
 	public function update(ScheduleUpdateRequest $request, $id) {
 
-		try {
+		$resultFromUpdateSchedule = $this->service->update($request, $id);
 
-			$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-			$schedule = $this->repository->update($request->all(), $id);
-
-			$response = [
-				'message' => 'Schedule updated.',
-				'data'    => $schedule->toArray(),
-			];
-
-			if ($request->wantsJson()) {
-
-				return response()->json($response);
-			}
-
-			return redirect()->back()->with('message', $response['message']);
-		} catch (ValidatorException $e) {
-
-			if ($request->wantsJson()) {
-
-				return response()->json([
-					'error'   => true,
-					'message' => $e->getMessageBag()
-				]);
-			}
-
-			return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+		if (!empty($otherController)) {
+			return $resultFromUpdateSchedule;
 		}
+
+		if (!empty($resultFromUpdateSchedule['error'])) {
+			alert()->error($resultFromUpdateSchedule['message'], 'Erro :(')->persistent('Fechar');
+
+			return back()->withInput();
+		}
+
+		alert()->success('Agendamento atualizado com sucesso!', 'Feito :)');
+
+		return back()->withInput();
 	}
 
 

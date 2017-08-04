@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Facades\Request;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
@@ -9,5 +10,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * @package namespace App\Repositories;
  */
 interface ScheduleRepository extends RepositoryInterface {
-	//
+
+	public function getExtraData($id = null);
+
 }

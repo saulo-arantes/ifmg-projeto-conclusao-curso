@@ -62,6 +62,7 @@ class UsersController extends Controller {
 	 * @return array|\Illuminate\Http\RedirectResponse
 	 */
 	public function store(UserCreateRequest $request, $otherController = null) {
+
 		$resultFromStoreUser = $this->service->store($request, $otherController);
 
 		if (!empty($otherController)) {
@@ -160,6 +161,7 @@ class UsersController extends Controller {
 	 * @return array|bool|\Illuminate\Http\RedirectResponse
 	 */
 	public function update(UserUpdateRequest $request, $id, $otherController = null) {
+
 		$resultFromUpdateUser = $this->service->update($request, $id);
 
 		if (!empty($otherController)) {
