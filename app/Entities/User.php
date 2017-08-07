@@ -5,6 +5,8 @@ namespace App\Entities;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 /**
  * @property integer id
@@ -21,7 +23,8 @@ use Illuminate\Support\Facades\Auth;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class User extends Authenticatable {
+class User extends Authenticatable implements AuditableContract {
+    use Auditable;
 	use Notifiable;
 
 	const ADMIN = 0;

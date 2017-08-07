@@ -3,6 +3,8 @@
 namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Auditable;
+use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
@@ -16,8 +18,9 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property int region_id
  * @property Region region
  */
-class State extends Model implements Transformable
+class State extends Model implements Transformable, AuditableContract
 {
+    use Auditable;
 	use TransformableTrait;
 
 	public $timestamps = false;
