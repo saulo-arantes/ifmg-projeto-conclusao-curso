@@ -3,6 +3,11 @@
 use App\Entities\Log;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class LogsTableSeeder
+ *
+ * @author Saulo Vinícius
+ */
 class LogsTableSeeder extends Seeder
 {
     /**

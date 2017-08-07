@@ -3,6 +3,11 @@
 use App\Entities\User;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class UsersTableSeeder
+ *
+ * @author Saulo Vinícius
+ */
 class UsersTableSeeder extends Seeder
 {
     /**

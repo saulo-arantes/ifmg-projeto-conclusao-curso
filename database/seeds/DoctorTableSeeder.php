@@ -4,6 +4,11 @@ use App\Entities\Doctor;
 use App\Entities\User;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class DoctorTableSeeder
+ *
+ * @author Saulo Vinícius
+ */
 class DoctorTableSeeder extends Seeder
 {
     /**

@@ -30,18 +30,6 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\Log::class, function (Faker\Generator $faker) {
     return [
@@ -50,18 +38,6 @@ $factory->define(App\Entities\Log::class, function (Faker\Generator $faker) {
         'user_id'     => $faker->numberBetween(1, 50)
     ];
 });
-
-
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\Patient::class, function (Faker\Generator $faker) {
@@ -109,17 +85,6 @@ $factory->define(App\Entities\Patient::class, function (Faker\Generator $faker) 
     ];
 });
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\ContactType::class, function (Faker\Generator $faker) {
     return [
@@ -127,20 +92,19 @@ $factory->define(App\Entities\ContactType::class, function (Faker\Generator $fak
     ];
 });
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\Doctor::class, function (Faker\Generator $faker) {
     return [
         'crm' => rand(10000000, 99999999) . '-' . rand(1, 9) . '/BR'
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Entities\Schedule::class, function (Faker\Generator $faker) {
+    return [
+        'start_at'    => $faker->dateTime,
+        'finish_at'   => $faker->dateTime,
+        'description' => $faker->text,
+        'status'      => rand(1, 4)
     ];
 });

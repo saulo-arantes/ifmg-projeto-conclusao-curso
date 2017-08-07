@@ -3,6 +3,11 @@
 use App\Entities\ContactType;
 use Illuminate\Database\Seeder;
 
+/**
+ * Class ContactTypeTableSeeder
+ *
+ * @author Saulo Vinícius
+ */
 class ContactTypeTableSeeder extends Seeder
 {
     /**
