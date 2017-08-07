@@ -8,6 +8,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * Interface AdministratorRepository
  * @package namespace App\Repositories;
  */
-interface AdministratorRepository extends RepositoryInterface {
-	//
+interface AdministratorRepository extends RepositoryInterface
+{
+    //
 }

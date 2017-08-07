@@ -8,8 +8,9 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * Interface RegionRepository
  *
  * @author  Bruno Tomé
- * @package namespace TARS\Repositories;
+ * @package namespace App\Repositories;
  */
-interface RegionRepository extends RepositoryInterface {
-	//
+interface RegionRepository extends RepositoryInterface
+{
+    //
 }

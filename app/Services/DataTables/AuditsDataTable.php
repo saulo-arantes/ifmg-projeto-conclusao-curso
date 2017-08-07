@@ -2,16 +2,17 @@
 
 namespace App\Services\DataTables;
 
-use App\Entities\Log;
+use App\Entities\Audit;
 use Yajra\Datatables\Services\DataTable;
 
 /**
- * Class LogsDataTable
+ * Class AuditsDataTable
  *
  * @author  Bruno Tomé
+ * @since 07/08/2017
  * @package App\Services\DataTables
  */
-class LogsDataTable extends DataTable
+class AuditsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -21,30 +22,14 @@ class LogsDataTable extends DataTable
     public function dataTable()
     {
         return $this->datatables
-            ->eloquent($this->query())->editColumn('created_at', function (Log $model) {
+            ->eloquent($this->query()->with('user'))
+            ->editColumn('user.name', function (Audit $model) {
+                return $model->user->name ?? '';
+            })
+            ->editColumn('created_at', function (Audit $model) {
                 return date('d/m/Y H:i:s', strtotime($model->created_at));
-            })->editColumn('type', function (Log $model) {
-                switch ($model->type) {
-                    case 0:
-                        return '<span class="label label-sm label-danger center-block">Exception</span>';
-                    case 1:
-                        return '<span class="label label-sm label-warning center-block">Alerta de recursos</span>';
-                    case 2:
-                        return '<span class="label label-sm label-success center-block">Novo jogador adicionado</span>';
-                    case 3:
-                        return '<span class="label label-sm label-info center-block">Créditos insuficientes</span>';
-                    case 4:
-                        return '<span class="label label-sm label-warning center-block">Permissão negada</span>';
-                    default:
-                        return '<span class="label label-sm label-info center-block">Erro desconhecido</span>';
-                }
-            })->editColumn('visualized', function (Log $model) {
-                if (!$model->visualized) {
-                    return '<a href="/admin/logs/' . $model->id . '/mark-as-seen" style="color: black" class="btn btn-outline dark center-block"><i class="fa fa-eye" aria-hidden="true"></i></a> <br>Marcar como visualizado';
-                }
-
-                return '<div style="text-align: center;"><span class="label label-sm label-success center-block">Sim</span></div>';
-            })->escapeColumns([0]);
+            })
+            ->escapeColumns([0]);
     }
 
     /**
@@ -54,8 +39,7 @@ class LogsDataTable extends DataTable
      */
     public function query()
     {
-        $query = Log::query()->with('user');
-
+        $query = Audit::query();
         return $this->applyScopes($query);
     }
 
@@ -109,11 +93,15 @@ class LogsDataTable extends DataTable
     {
         return [
             'id',
-            'user.name'   => ['title' => 'Usuário'],
-            'visualized'  => ['title' => 'Vizualizado'],
-            'type'        => ['title' => 'Tipo'],
-            'description' => ['title' => 'Descrição'],
-            'created_at'  => ['title' => 'Data']
+            'user.name'      => ['title' => 'Usuário'],
+            'event'          => ['title' => 'Título'],
+            'auditable_type' => ['title' => 'Entidade'],
+            'old_values'     => ['title' => 'Antes'],
+            'new_values'     => ['title' => 'Depois'],
+            'url',
+            'ip_address'     => ['title' => 'IP'],
+            'user_agent',
+            'created_at'     => ['title' => 'Criado em']
         ];
     }
 
@@ -124,6 +112,6 @@ class LogsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'logs_' . time();
+        return 'audits_' . time();
     }
 }

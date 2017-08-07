@@ -21,31 +21,32 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class Schedule extends Model implements Transformable, AuditableContract {
-	use Auditable;
+class Schedule extends Model implements Transformable, AuditableContract
+{
+    use Auditable;
     use TransformableTrait;
 
-	const CREATED = 1;
-	const CONFIRMED = 2;
-	const CANCELED = 3;
-	const ACCOMPLISHED = 4;
+    const CREATED = 1;
+    const CONFIRMED = 2;
+    const CANCELED = 3;
+    const ACCOMPLISHED = 4;
 
-	protected $fillable = [
-		'star_at',
-		'finish_at',
-		'status',
-		'description',
-		'doctor_id',
-		'patient_id'
-	];
+    protected $fillable = [
+        'star_at',
+        'finish_at',
+        'status',
+        'description',
+        'doctor_id',
+        'patient_id'
+    ];
 
-	public function doctor()
-	{
-		return $this->hasOne(Doctor::class, 'id', 'doctor_id');
-	}
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class, 'id', 'doctor_id');
+    }
 
-	public function patient()
-	{
-		return $this->hasOne(Patient::class, 'id', 'patient_id');
-	}
+    public function patient()
+    {
+        return $this->hasOne(Patient::class, 'id', 'patient_id');
+    }
 }

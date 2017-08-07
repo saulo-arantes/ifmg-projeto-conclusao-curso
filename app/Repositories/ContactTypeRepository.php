@@ -8,6 +8,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * Interface ContactTypeRepository
  * @package namespace App\Repositories;
  */
-interface ContactTypeRepository extends RepositoryInterface {
-	//
+interface ContactTypeRepository extends RepositoryInterface
+{
+    //
 }

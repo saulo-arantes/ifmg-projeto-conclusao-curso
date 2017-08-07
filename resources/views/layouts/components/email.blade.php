@@ -11,22 +11,22 @@
     <div class="form-group">
         <label class="control-label"
                for="email">E-mail</label>
-    @include('layouts.components.asterisk')
-    <div class="input-group">
+        @include('layouts.components.asterisk')
+        <div class="input-group">
                 <span class="input-group-addon">
                     <i class="fa fa-envelope"
                        aria-hidden="true"></i>
                 </span>
-        <input type="email"
-               class="form-control"
-               placeholder="E-mail"
-               id="email"
-               name="email"
-               title="E-mail"
-               maxlength="255"
-               value="{{ old('email') ?? $data['email'] ?? null }}"
-               required>
-    </div>
-    <div class="help-block with-errors"></div>
+            <input type="email"
+                   class="form-control"
+                   placeholder="E-mail"
+                   id="email"
+                   name="email"
+                   title="E-mail"
+                   maxlength="255"
+                   value="{{ old('email') ?? $data['email'] ?? null }}"
+                   required>
+        </div>
+        <div class="help-block with-errors"></div>
     </div>
 </div>

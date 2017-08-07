@@ -2,16 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Entities\Patient;
 use App\Entities\Schedule;
 use App\Entities\Stock;
-use App\Entities\User;
 use App\Entities\Vaccine;
 use App\Presenters\SchedulePresenter;
 use App\Validators\ScheduleValidator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 

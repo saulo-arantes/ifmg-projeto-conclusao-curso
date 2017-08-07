@@ -17,7 +17,7 @@
                            aria-hidden="true"></i>
                     </li>
                     <li>
-                        <span>Pacientes</span>
+                        <span>Usuários</span>
                     </li>
                 </ul>
                 @include('layouts.components.back')
@@ -29,7 +29,7 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <span class="caption-subject bold uppercase">
-                                    <i class="fa fa-wheelchair-alt"
+                                    <i class="fa fa-wheelchair"
                                        aria-hidden="true"></i>
                                     Pacientes
                                 </span>
@@ -57,4 +57,4 @@
         type="text/javascript"></script>
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 {!! $dataTable->scripts() !!}
-@endpushF
+@endpush

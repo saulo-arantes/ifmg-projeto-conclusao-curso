@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\DoctorCreateRequest;
 use App\Http\Requests\DoctorUpdateRequest;
 use App\Repositories\DoctorRepository;
 use App\Validators\DoctorValidator;
+use Prettus\Validator\Contracts\ValidatorInterface;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 
 class DoctorsController extends Controller
@@ -29,7 +26,7 @@ class DoctorsController extends Controller
     public function __construct(DoctorRepository $repository, DoctorValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
 
@@ -135,7 +132,7 @@ class DoctorsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  DoctorUpdateRequest $request
-     * @param  string            $id
+     * @param  string $id
      *
      * @return Response
      */

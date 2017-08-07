@@ -17,7 +17,7 @@
                            aria-hidden="true"></i>
                     </li>
                     <li>
-                        <span>Logs</span>
+                        <span>Auditoria</span>
                     </li>
                 </ul>
                 @include('layouts.components.back')
@@ -29,10 +29,10 @@
                         <div class="portlet-title">
                             <div class="caption">
                             <span class="caption-subject bold uppercase">
-                                    <i class="fa fa-warning"
+                                    <i class="fa fa-list"
                                        aria-hidden="true"></i>
-                                    Logs
-                                </span>
+                                Auditoria
+                            </span>
                             </div>
                         </div>
                         <div class="portlet-body">

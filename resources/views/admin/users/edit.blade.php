@@ -101,7 +101,7 @@
                                                 @include('layouts.components.zipcode', ['data' => $user['data']])
                                             </div>
                                             <h4 class="form-section">Contato</h4>
-                                                @include('layouts.components.contact', ['contacts' => $user['data']['contacts']['data']])
+                                            @include('layouts.components.contact', ['contacts' => $user['data']['contacts']['data']])
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"></div>
                                                 @include('layouts.components.required')

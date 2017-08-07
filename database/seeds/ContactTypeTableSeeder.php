@@ -12,10 +12,10 @@ class ContactTypeTableSeeder extends Seeder
      */
     public function run()
     {
-	    factory(ContactType::class)->create(['name' => 'Telefone']);
-	    factory(ContactType::class)->create(['name' => 'Celular']);
-	    factory(ContactType::class)->create(['name' => 'E-mail']);
-	    factory(ContactType::class)->create(['name' => 'Skype']);
-	    factory(ContactType::class)->create(['name' => 'Facebook']);
+        factory(ContactType::class)->create(['name' => 'Telefone']);
+        factory(ContactType::class)->create(['name' => 'Celular']);
+        factory(ContactType::class)->create(['name' => 'E-mail']);
+        factory(ContactType::class)->create(['name' => 'Skype']);
+        factory(ContactType::class)->create(['name' => 'Facebook']);
     }
 }

@@ -10,6 +10,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  * @author  Bruno Tomé
  * @package namespace App\Repositories;
  */
-interface CityRepository extends RepositoryInterface {
-	//
+interface CityRepository extends RepositoryInterface
+{
+    //
 }

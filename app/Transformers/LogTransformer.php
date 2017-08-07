@@ -9,29 +9,32 @@ use League\Fractal\TransformerAbstract;
  * Class LogTransformer
  *
  * @author  Bruno Tomé
- * @package namespace TARS\Transformers;
+ * @package namespace App\Transformers;
  */
-class LogTransformer extends TransformerAbstract {
+class LogTransformer extends TransformerAbstract
+{
 
-	protected $defaultIncludes = ['user'];
+    protected $defaultIncludes = ['user'];
 
-	/**
-	 * Transform the \Log entity
-	 *
-	 * @param Log $model
-	 *
-	 * @return array
-	 */
-	public function transform(Log $model) {
-		return [
-			'id'          => (int) $model->id,
-			'description' => $model->description,
-			'created_at'  => $model->created_at,
-			'updated_at'  => $model->updated_at
-		];
-	}
+    /**
+     * Transform the \Log entity
+     *
+     * @param Log $model
+     *
+     * @return array
+     */
+    public function transform(Log $model)
+    {
+        return [
+            'id'          => (int)$model->id,
+            'description' => $model->description,
+            'created_at'  => $model->created_at,
+            'updated_at'  => $model->updated_at
+        ];
+    }
 
-	public function includeUser(Log $model) {
-		return $this->item($model->user, new UserTransformer());
-	}
+    public function includeUser(Log $model)
+    {
+        return $this->item($model->user, new UserTransformer());
+    }
 }

@@ -17,105 +17,108 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
-class ScheduleService {
+class ScheduleService
+{
 
-	/**
-	 * @var UserRepository
-	 */
-	protected $repository;
+    /**
+     * @var UserRepository
+     */
+    protected $repository;
 
-	/**
-	 * @var UserValidator
-	 */
-	protected $validator;
+    /**
+     * @var UserValidator
+     */
+    protected $validator;
 
-	/**
-	 * @var LogRepository
-	 */
-	protected $log;
+    /**
+     * @var LogRepository
+     */
+    protected $log;
 
-	/**
-	 * ScheduleService constructor.
-	 *
-	 * @param UserRepository $repository
-	 * @param UserValidator $validator
-	 * @param LogRepository $log
-	 */
-	public function __construct(UserRepository $repository, UserValidator $validator, LogRepository $log) {
-		$this->repository = $repository;
-		$this->validator  = $validator;
-		$this->log        = $log;
-	}
+    /**
+     * ScheduleService constructor.
+     *
+     * @param UserRepository $repository
+     * @param UserValidator $validator
+     * @param LogRepository $log
+     */
+    public function __construct(UserRepository $repository, UserValidator $validator, LogRepository $log)
+    {
+        $this->repository = $repository;
+        $this->validator = $validator;
+        $this->log = $log;
+    }
 
-	/**
-	 *
-	 * @param ScheduleCreateRequest $request
-	 *
-	 * @return array
-	 */
-	public function store(ScheduleCreateRequest $request) {
-		try {
+    /**
+     *
+     * @param ScheduleCreateRequest $request
+     *
+     * @return array
+     */
+    public function store(ScheduleCreateRequest $request)
+    {
+        try {
 
-			$data = $request->all();;
+            $data = $request->all();;
 
-			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-			$schedule = $this->repository->create($data);
+            $schedule = $this->repository->create($data);
 
-			return $schedule['data']['id'];
+            return $schedule['data']['id'];
 
-		} catch (ValidatorException $e) {
-			$this->log->validatorException($e);
+        } catch (ValidatorException $e) {
+            $this->log->validatorException($e);
 
-			return [
-				'error'   => true,
-				'message' => $e->getMessageBag()->first()
-			];
-		} catch (\Exception $e) {
-			$this->log->error($e);
+            return [
+                'error'   => true,
+                'message' => $e->getMessageBag()->first()
+            ];
+        } catch (\Exception $e) {
+            $this->log->error($e);
 
-			return [
-				'error'   => true,
-				'message' => 'Ocorreu um erro ao adicionar agendamento.'
-			];
-		}
-	}
+            return [
+                'error'   => true,
+                'message' => 'Ocorreu um erro ao adicionar agendamento.'
+            ];
+        }
+    }
 
-	public function update(ScheduleCreateRequest $request, $id)
-	{
-		try{
-			$data = $request->except('level');
+    public function update(ScheduleCreateRequest $request, $id)
+    {
+        try {
+            $data = $request->except('level');
 
-			$this->validator->setId($id);
-			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
-			$this->repository->update($data, $id);
+            $this->validator->setId($id);
+            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+            $this->repository->update($data, $id);
 
-			return true;
-		} catch (ValidatorException $e) {
-			$this->log->validatorException($e);
+            return true;
+        } catch (ValidatorException $e) {
+            $this->log->validatorException($e);
 
-			return [
-				'error'   => true,
-				'message' => $e->getMessageBag()->first()
-			];
-		} catch (ModelNotFoundException $e) {
-			$this->log->error($e);
+            return [
+                'error'   => true,
+                'message' => $e->getMessageBag()->first()
+            ];
+        } catch (ModelNotFoundException $e) {
+            $this->log->error($e);
 
-			return [
-				'error'   => true,
-				'message' => 'Agendamento não encontrado.'
-			];
+            return [
+                'error'   => true,
+                'message' => 'Agendamento não encontrado.'
+            ];
 
-		} catch (\Exception $e) {
-			$this->log->error($e);
+        } catch (\Exception $e) {
+            $this->log->error($e);
 
-			return [
-				'error'   => true,
-				'message' => 'Ocorreu um erro ao editar o agendamento.'
-			];
+            return [
+                'error'   => true,
+                'message' => 'Ocorreu um erro ao editar o agendamento.'
+            ];
 
-		}
-	}
+        }
+    }
 
 
 }

@@ -14,12 +14,13 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class ContactType extends Model implements Transformable, AuditableContract {
+class ContactType extends Model implements Transformable, AuditableContract
+{
     use Auditable;
-	use TransformableTrait;
+    use TransformableTrait;
 
-	protected $fillable = [
-		'name'
-	];
+    protected $fillable = [
+        'name'
+    ];
 
 }

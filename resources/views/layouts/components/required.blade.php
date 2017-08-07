@@ -2,5 +2,6 @@
     <small class="pull-right">
         <i class="fa fa-asterisk"
            style="color: red"
-           aria-hidden="true"></i> são campos obrigatórios.</small>
+           aria-hidden="true"></i> são campos obrigatórios.
+    </small>
 </div>

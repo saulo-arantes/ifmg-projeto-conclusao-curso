@@ -10,13 +10,15 @@ use Prettus\Repository\Presenter\FractalPresenter;
  *
  * @package namespace App\Presenters;
  */
-class SchedulePresenter extends FractalPresenter {
-	/**
-	 * Transformer
-	 *
-	 * @return \League\Fractal\TransformerAbstract
-	 */
-	public function getTransformer() {
-		return new ScheduleTransformer();
-	}
+class SchedulePresenter extends FractalPresenter
+{
+    /**
+     * Transformer
+     *
+     * @return \League\Fractal\TransformerAbstract
+     */
+    public function getTransformer()
+    {
+        return new ScheduleTransformer();
+    }
 }

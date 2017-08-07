@@ -109,7 +109,7 @@ return [
             ]
         ],
 
-        'params'     => [
+        'params'  => [
             /*
             |--------------------------------------------------------------------------
             | Skip Cache Params
@@ -137,7 +137,7 @@ return [
        |
        | 'except'  =>['find'],
        */
-        'allowed'    => [
+        'allowed' => [
             'only'   => null,
             'except' => null
         ]
@@ -222,15 +222,15 @@ return [
         'basePath'      => app_path(),
         'rootNamespace' => 'App\\',
         'paths'         => [
-            'models'       => 'Entities',
-            'repositories' => 'Repositories',
-            'interfaces'   => 'Repositories',
-            'transformers' => 'Transformers',
-            'presenters'   => 'Presenters',
-            'validators'   => 'Validators',
-            'controllers'  => 'Http/Controllers',
-            'provider'     => 'RepositoryServiceProvider',
-            'criteria'     => 'Criteria',
+            'models'            => 'Entities',
+            'repositories'      => 'Repositories',
+            'interfaces'        => 'Repositories',
+            'transformers'      => 'Transformers',
+            'presenters'        => 'Presenters',
+            'validators'        => 'Validators',
+            'controllers'       => 'Http/Controllers',
+            'provider'          => 'RepositoryServiceProvider',
+            'criteria'          => 'Criteria',
             'stubsOverridePath' => app_path()
         ]
     ]

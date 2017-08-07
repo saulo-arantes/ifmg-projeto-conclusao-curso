@@ -16,188 +16,201 @@ use Illuminate\Support\Facades\Auth;
  *
  * @package App\Http\Controllers
  */
-class UsersController extends Controller {
-	/**
-	 * @var UserRepository
-	 */
-	protected $repository;
+class UsersController extends Controller
+{
+    /**
+     * @var UserRepository
+     */
+    protected $repository;
 
-	/**
-	 * @var UserValidator
-	 */
-	protected $service;
+    /**
+     * @var UserValidator
+     */
+    protected $service;
 
-	/**
-	 * UsersController constructor.
-	 *
-	 * @param UserRepository $repository
-	 * @param UserService $service
-	 */
-	public function __construct(UserRepository $repository, UserService $service) {
-		$this->repository = $repository;
-		$this->service    = $service;
-	}
+    /**
+     * UsersController constructor.
+     *
+     * @param UserRepository $repository
+     * @param UserService $service
+     */
+    public function __construct(UserRepository $repository, UserService $service)
+    {
+        $this->repository = $repository;
+        $this->service = $service;
+    }
 
-	public function index(UsersDataTable $dataTable) {
-		return $dataTable->render('admin.users.list');
-	}
+    public function index(UsersDataTable $dataTable)
+    {
+        return $dataTable->render('admin.users.list');
+    }
 
-	public function edit($id) {
-		$user = $this->repository->find($id);
-		$extraData = $this->repository->getExtraData();
-		return view('admin.users.edit', compact('user'), compact('extraData'));
-	}
+    public function edit($id)
+    {
+        $user = $this->repository->find($id);
+        $extraData = $this->repository->getExtraData();
+        return view('admin.users.edit', compact('user'), compact('extraData'));
+    }
 
-	public function create() {
-		$extraData = $this->repository->getExtraData();
-		return view('admin.users.create', compact('extraData'));
-	}
+    public function create()
+    {
+        $extraData = $this->repository->getExtraData();
+        return view('admin.users.create', compact('extraData'));
+    }
 
-	/**
-	 * Stores an user.
-	 *
-	 * @param UserCreateRequest $request
-	 * @param null $otherController
-	 *
-	 * @return array|\Illuminate\Http\RedirectResponse
-	 */
-	public function store(UserCreateRequest $request, $otherController = null) {
+    /**
+     * Stores an user.
+     *
+     * @param UserCreateRequest $request
+     * @param null $otherController
+     *
+     * @return array|\Illuminate\Http\RedirectResponse
+     */
+    public function store(UserCreateRequest $request, $otherController = null)
+    {
 
-		$resultFromStoreUser = $this->service->store($request, $otherController);
+        $resultFromStoreUser = $this->service->store($request, $otherController);
 
-		if (!empty($otherController)) {
-			return $resultFromStoreUser;
-		}
+        if (!empty($otherController)) {
+            return $resultFromStoreUser;
+        }
 
-		if (!empty($resultFromStoreUser['error'])) {
-			alert()->error($resultFromStoreUser['message'], 'Erro :(')->persistent('Fechar');
+        if (!empty($resultFromStoreUser['error'])) {
+            alert()->error($resultFromStoreUser['message'], 'Erro :(')->persistent('Fechar');
 
-			return back()->withInput();
-		}
+            return back()->withInput();
+        }
 
-		alert()->success('Usuário adicionado com sucesso!', 'Feito :)');
+        alert()->success('Usuário adicionado com sucesso!', 'Feito :)');
 
-		return redirect('/admin/users');
-	}
+        return redirect('/admin/users');
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function changeUserStatus($id) {
-		$resultFromChangeUserStatus = $this->service->changeUserStatus($id);
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function changeUserStatus($id)
+    {
+        $resultFromChangeUserStatus = $this->service->changeUserStatus($id);
 
-		if (!empty($resultFromChangeUserStatus['error'])) {
-			alert()->error($resultFromChangeUserStatus['message'], 'Erro :(')->persistent('Fechar');
-		}
+        if (!empty($resultFromChangeUserStatus['error'])) {
+            alert()->error($resultFromChangeUserStatus['message'], 'Erro :(')->persistent('Fechar');
+        }
 
-		alert()->success('Status do usuário alterado com sucesso.', 'Feito :)');
+        alert()->success('Status do usuário alterado com sucesso.', 'Feito :)');
 
-		return back();
-	}
+        return back();
+    }
 
-	/**
-	 * Upload the fighter profile picture.
-	 *
-	 * @return string
-	 */
-	public function uploadAnyUserAvatar() {
-		$imageName = $this->repository->uploadAvatar();
+    /**
+     * Upload the fighter profile picture.
+     *
+     * @return string
+     */
+    public function uploadAnyUserAvatar()
+    {
+        $imageName = $this->repository->uploadAvatar();
 
-		if (!empty($imageName['error'])) {
-			return response($imageName['message'], 400);
-		}
+        if (!empty($imageName['error'])) {
+            return response($imageName['message'], 400);
+        }
 
-		session(['photo' => $imageName]);
+        session(['photo' => $imageName]);
 
-		return response('Foto salva com sucesso.', 200);
-	}
+        return response('Foto salva com sucesso.', 200);
+    }
 
-	/**
-	 * Upload the users profile picture.
-	 *
-	 * @return string
-	 */
-	public function uploadProfileAvatar() {
-		$imageName = $this->repository->uploadAvatar();
+    /**
+     * Upload the users profile picture.
+     *
+     * @return string
+     */
+    public function uploadProfileAvatar()
+    {
+        $imageName = $this->repository->uploadAvatar();
 
-		if (!empty($imageName['error'])) {
-			return response($imageName['message'], 400);
-		}
+        if (!empty($imageName['error'])) {
+            return response($imageName['message'], 400);
+        }
 
-		Auth::user()->update(['photo' => $imageName]);
+        Auth::user()->update(['photo' => $imageName]);
 
-		return response('Foto salva com sucesso.', 200);
-	}
+        return response('Foto salva com sucesso.', 200);
+    }
 
-	/**
-	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function profile() {
-		$user = $this->repository->find(Auth::user()->id);
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function profile()
+    {
+        $user = $this->repository->find(Auth::user()->id);
 
-		return view('profile', compact('user'));
-	}
+        return view('profile', compact('user'));
+    }
 
-	/**
-	 * @param UserUpdateRequest $request
-	 *
-	 * @return array|bool|\Illuminate\Http\RedirectResponse
-	 */
-	public function updateProfile(UserUpdateRequest $request) {
-		return $this->update($request, Auth::user()->id);
-	}
+    /**
+     * @param UserUpdateRequest $request
+     *
+     * @return array|bool|\Illuminate\Http\RedirectResponse
+     */
+    public function updateProfile(UserUpdateRequest $request)
+    {
+        return $this->update($request, Auth::user()->id);
+    }
 
-	/**
-	 * Updates an user.
-	 *
-	 * @param UserUpdateRequest $request
-	 * @param $id
-	 * @param null $otherController
-	 *
-	 * @return array|bool|\Illuminate\Http\RedirectResponse
-	 */
-	public function update(UserUpdateRequest $request, $id, $otherController = null) {
+    /**
+     * Updates an user.
+     *
+     * @param UserUpdateRequest $request
+     * @param $id
+     * @param null $otherController
+     *
+     * @return array|bool|\Illuminate\Http\RedirectResponse
+     */
+    public function update(UserUpdateRequest $request, $id, $otherController = null)
+    {
 
-		$resultFromUpdateUser = $this->service->update($request, $id);
+        $resultFromUpdateUser = $this->service->update($request, $id);
 
-		if (!empty($otherController)) {
-			return $resultFromUpdateUser;
-		}
+        if (!empty($otherController)) {
+            return $resultFromUpdateUser;
+        }
 
-		if (!empty($resultFromUpdateUser['error'])) {
-			alert()->error($resultFromUpdateUser['message'], 'Erro :(')->persistent('Fechar');
+        if (!empty($resultFromUpdateUser['error'])) {
+            alert()->error($resultFromUpdateUser['message'], 'Erro :(')->persistent('Fechar');
 
-			return back()->withInput();
-		}
+            return back()->withInput();
+        }
 
-		alert()->success('Usuário atualizado com sucesso!', 'Feito :)');
+        alert()->success('Usuário atualizado com sucesso!', 'Feito :)');
 
-		return back()->withInput();
-	}
+        return back()->withInput();
+    }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param $request
-	 *
-	 * @return array|\Illuminate\Http\RedirectResponse
-	 */
-	public function updatePassword(UserUpdateRequest $request) {
-		$resultFromChangePassword = $this->service->updatePassword($request);
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param $request
+     *
+     * @return array|\Illuminate\Http\RedirectResponse
+     */
+    public function updatePassword(UserUpdateRequest $request)
+    {
+        $resultFromChangePassword = $this->service->updatePassword($request);
 
-		if ($resultFromChangePassword['error']) {
-			alert()->error($resultFromChangePassword['message'], 'Erro :(')->persistent('Fechar');
-		} else {
-			alert()->success($resultFromChangePassword['message'], 'Feito :)');
-		}
+        if ($resultFromChangePassword['error']) {
+            alert()->error($resultFromChangePassword['message'], 'Erro :(')->persistent('Fechar');
+        } else {
+            alert()->success($resultFromChangePassword['message'], 'Feito :)');
+        }
 
-		return back();
+        return back();
 
-	}
+    }
 
 
 }

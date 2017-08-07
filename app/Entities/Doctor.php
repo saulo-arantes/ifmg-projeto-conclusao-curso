@@ -19,18 +19,18 @@ use Prettus\Repository\Traits\TransformableTrait;
 class Doctor extends Model implements Transformable, AuditableContract
 {
     use Auditable;
-	use TransformableTrait;
+    use TransformableTrait;
 
-	protected $fillable = ['crm'];
+    protected $fillable = ['crm'];
 
-	public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
-	public function patients()
-	{
-		return $this->hasMany(DoctorPatient::class, 'doctor_id', 'id');
-	}
+    public function patients()
+    {
+        return $this->hasMany(DoctorPatient::class, 'doctor_id', 'id');
+    }
 
 }

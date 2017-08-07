@@ -9,15 +9,17 @@ use Prettus\Repository\Presenter\FractalPresenter;
  * Class RegionPresenter
  *
  * @author  Bruno Tomé
- * @package namespace TARS\Presenters;
+ * @package namespace App\Presenters;
  */
-class RegionPresenter extends FractalPresenter {
-	/**
-	 * Transformer
-	 *
-	 * @return \League\Fractal\TransformerAbstract
-	 */
-	public function getTransformer() {
-		return new RegionTransformer();
-	}
+class RegionPresenter extends FractalPresenter
+{
+    /**
+     * Transformer
+     *
+     * @return \League\Fractal\TransformerAbstract
+     */
+    public function getTransformer()
+    {
+        return new RegionTransformer();
+    }
 }

@@ -17,11 +17,12 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property double pib
  * @property int population
  */
-class Region extends Model implements Transformable, AuditableContract {
+class Region extends Model implements Transformable, AuditableContract
+{
     use Auditable;
-	use TransformableTrait;
+    use TransformableTrait;
 
-	public $timestamps = false;
-	protected $fillable = [];
+    public $timestamps = false;
+    protected $fillable = [];
 
 }

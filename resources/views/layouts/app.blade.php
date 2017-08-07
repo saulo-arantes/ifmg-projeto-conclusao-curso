@@ -184,19 +184,6 @@
         type="text/javascript"></script>
 <script src="{{ asset('assets/pages/scripts/components-select2.min.js') }}"
         type="text/javascript"></script>
-<script src="{{ asset('assets/layouts/layout/scripts/demo.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/layouts/global/scripts/quick-nav.min.js') }}"
-        type="text/javascript"></script>
-<script>
-    $(document).ready(function () {
-        $('#clickmewow').click(function () {
-            $('#radio1003').attr('checked', 'checked');
-        });
-    })
-</script>
 @stack('scripts')
 @include('sweet::alert')
 </body>

@@ -9,6 +9,8 @@ use OwenIt\Auditing\Auditable;
 use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
 /**
+ * Class User
+ *
  * @property integer id
  * @property string address
  * @property string email
@@ -23,57 +25,60 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class User extends Authenticatable implements AuditableContract {
+class User extends Authenticatable implements AuditableContract
+{
     use Auditable;
-	use Notifiable;
+    use Notifiable;
 
-	const ADMIN = 0;
-	const DOCTOR = 1;
-	const SECRETARY = 2;
+    const ADMIN = 0;
+    const DOCTOR = 1;
+    const SECRETARY = 2;
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = [
-		'address',
-		'complement',
-		'email',
-		'level',
-		'name',
-		'neighborhood',
-		'number',
-		'password',
-		'photo',
-		'status',
-		'zipcode'
-	];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'address',
+        'complement',
+        'email',
+        'level',
+        'name',
+        'neighborhood',
+        'number',
+        'password',
+        'photo',
+        'status',
+        'zipcode'
+    ];
 
-	/**
-	 * The attributes that should be hidden for arrays.
-	 *
-	 * @var array
-	 */
-	protected $hidden = [
-		'password',
-		'remember_token',
-	];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
-	public function contacts() {
-		return $this->hasMany(UserContact::class, 'user_id', 'id');
-	}
+    public function contacts()
+    {
+        return $this->hasMany(UserContact::class, 'user_id', 'id');
+    }
 
-	public static function getUserMiddleware() {
-		switch (Auth::user()->level) {
-			case User::ADMIN:
-				return 'admin';
-			case User::DOCTOR:
-				return 'doctor';
-			case User::SECRETARY:
-				return 'secretary';
-			default:
-				return 'secretary';
-		}
-	}
+    public static function getUserMiddleware()
+    {
+        switch (Auth::user()->level) {
+            case User::ADMIN:
+                return 'admin';
+            case User::DOCTOR:
+                return 'doctor';
+            case User::SECRETARY:
+                return 'secretary';
+            default:
+                return 'secretary';
+        }
+    }
 }

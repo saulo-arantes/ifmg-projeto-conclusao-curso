@@ -8,10 +8,11 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Administrator extends Model implements Transformable, AuditableContract {
+class Administrator extends Model implements Transformable, AuditableContract
+{
     use Auditable;
-	use TransformableTrait;
+    use TransformableTrait;
 
-	protected $fillable = [];
+    protected $fillable = [];
 
 }

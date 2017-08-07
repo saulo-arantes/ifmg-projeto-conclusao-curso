@@ -9,15 +9,17 @@ use Prettus\Repository\Presenter\FractalPresenter;
  * Class StatePresenter
  *
  * @author  Bruno Tomé
- * @package namespace TARS\Presenters;
+ * @package namespace App\Presenters;
  */
-class StatePresenter extends FractalPresenter {
-	/**
-	 * Transformer
-	 *
-	 * @return \League\Fractal\TransformerAbstract
-	 */
-	public function getTransformer() {
-		return new StateTransformer();
-	}
+class StatePresenter extends FractalPresenter
+{
+    /**
+     * Transformer
+     *
+     * @return \League\Fractal\TransformerAbstract
+     */
+    public function getTransformer()
+    {
+        return new StateTransformer();
+    }
 }

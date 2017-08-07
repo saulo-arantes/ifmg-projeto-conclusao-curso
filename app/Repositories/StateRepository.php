@@ -7,8 +7,9 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 /**
  * Interface StateRepository
  *
- * @package namespace TARS\Repositories;
+ * @package namespace App\Repositories;
  */
-interface StateRepository extends RepositoryInterface {
-	//
+interface StateRepository extends RepositoryInterface
+{
+    //
 }

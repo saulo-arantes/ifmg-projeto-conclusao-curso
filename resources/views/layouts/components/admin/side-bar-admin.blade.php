@@ -116,6 +116,12 @@
                     <span class="title">Log</span>
                 </a>
             </li>
+            <li class="nav-item start {{ Request::is('admin/audits') ? 'active' : '' }}">
+                <a href="{{ url('/admin/audits') }}">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <span class="title">Auditoria</span>
+                </a>
+            </li>
         </ul>
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->

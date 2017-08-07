@@ -125,7 +125,7 @@
                             <a href="#">
                                 <span class="photo">
                                     <img src="{{ asset('assets/layouts/layout/img/avatar1.jpg') }}"
-                                                class="img-circle" alt="">
+                                         class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
                                     <span class="from"> Bob Nilson </span>
@@ -138,7 +138,7 @@
                             <a href="#">
                                 <span class="photo">
                                     <img src="{{ asset('assets/layouts/layout/img/avatar2.jpg') }}"
-                                                class="img-circle" alt="">
+                                         class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
                                     <span class="from"> Lisa Wong </span>
@@ -151,7 +151,7 @@
                             <a href="#">
                                 <span class="photo">
                                     <img src="{{ asset('assets/layouts/layout/img/avatar3.jpg') }}"
-                                                class="img-circle" alt="">
+                                         class="img-circle" alt="">
                                 </span>
                                 <span class="subject">
                                     <span class="from"> Richard Doe </span>
