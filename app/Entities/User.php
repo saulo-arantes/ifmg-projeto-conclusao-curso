@@ -11,6 +11,10 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 /**
  * Class User
  *
+ * @author Saulo Vinícius
+ * @since 30/05/2017
+ * @package App\Entities
+ *
  * @property integer id
  * @property string address
  * @property string email

@@ -7,9 +7,10 @@ use App\Services\DataTables\LogsDataTable;
 use App\Validators\LogValidator;
 
 /**
- * Class LogsController
+ * Class AuditsController
  *
- * @author  Bruno Tomé
+ * @author Saulo Vinícius
+ * @since 30/05/2017
  * @package App\Http\Controllers
  */
 class LogsController extends Controller

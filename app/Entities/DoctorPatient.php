@@ -9,6 +9,12 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
+ * Class DoctorPatient
+ *
+ * @author Saulo Vinícius
+ * @since 20/07/2017
+ * @package App\Entities
+ *
  * @property int id
  * @property int doctor_id
  * @property int patient_id

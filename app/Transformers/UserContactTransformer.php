@@ -7,6 +7,8 @@ use League\Fractal\TransformerAbstract;
 
 /**
  * Class UserContactTransformer
+ *
+ * @author  Saulo Vinícius
  * @package namespace App\Transformers;
  */
 class UserContactTransformer extends TransformerAbstract

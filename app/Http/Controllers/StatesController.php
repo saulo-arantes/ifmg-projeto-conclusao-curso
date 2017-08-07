@@ -8,9 +8,10 @@ use App\Validators\StateValidator;
 use Illuminate\Support\Facades\Log;
 
 /**
- * Class StatesController
+ * Class AuditsController
  *
- * @author  Bruno Tomé
+ * @author Saulo Vinícius
+ * @since 07/06/2017
  * @package App\Http\Controllers
  */
 class StatesController extends Controller

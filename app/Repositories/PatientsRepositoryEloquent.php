@@ -17,6 +17,8 @@ use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class PatientsRepositoryEloquent
+ *
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepository

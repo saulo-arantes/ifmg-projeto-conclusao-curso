@@ -11,6 +11,10 @@ use Prettus\Repository\Traits\TransformableTrait;
 /**
  * Class Region
  *
+ * @author Saulo Vinícius
+ * @since 07/06/2017
+ * @package App\Entities
+ *
  * @author Bruno Tomé
  * @property int id
  * @property string name

@@ -5,6 +5,12 @@ namespace App\Validators;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\LaravelValidator;
 
+/**
+ * Class PatientContactValidator
+ *
+ * @author  Saulo Vinícius
+ * @package namespace App\Validators;
+ */
 class PatientContactValidator extends LaravelValidator
 {
 

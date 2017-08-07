@@ -9,6 +9,12 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
+ * Class ContactType
+ *
+ * @author Saulo Vinícius
+ * @since 20/06/2017
+ * @package App\Entities
+ *
  * @property int id
  * @property string name
  * @property \DateTime created_at

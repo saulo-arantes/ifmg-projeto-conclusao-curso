@@ -9,6 +9,8 @@ use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class DoctorRepositoryEloquent
+ *
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 class DoctorRepositoryEloquent extends BaseRepository implements DoctorRepository

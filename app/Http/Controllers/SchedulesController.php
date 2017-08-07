@@ -10,6 +10,13 @@ use App\Services\DataTables\SchedulesDataTable;
 use App\Services\ScheduleService;
 use Illuminate\Support\Facades\Request;
 
+/**
+ * Class AuditsController
+ *
+ * @author Saulo Vinícius
+ * @since 19/07/2017
+ * @package App\Http\Controllers
+ */
 class SchedulesController extends Controller
 {
 

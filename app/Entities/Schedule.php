@@ -9,6 +9,12 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
+ * Class Schedule
+ *
+ * @author Saulo Vinícius
+ * @since 19/07/2017
+ * @package App\Entities
+ *
  * @property int id
  * @property \DateTime start_at
  * @property \DateTime finish_at

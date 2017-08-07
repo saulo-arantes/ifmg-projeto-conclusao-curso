@@ -7,6 +7,8 @@ use League\Fractal\TransformerAbstract;
 
 /**
  * Class ContactTypeTransformer
+ *
+ * @author  Saulo Vinícius
  * @package namespace App\Transformers;
  */
 class ContactTypeTransformer extends TransformerAbstract

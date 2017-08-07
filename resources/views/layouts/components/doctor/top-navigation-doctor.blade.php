@@ -1,10 +1,5 @@
-<!-- BEGIN TOP NAVIGATION MENU -->
 <div class="top-menu">
     <ul class="nav navbar-nav pull-right">
-        <!-- BEGIN NOTIFICATION DROPDOWN -->
-        <!-- DOC: Apply "dropdown-dark" class after "dropdown-extended" to change the dropdown styte -->
-        <!-- DOC: Apply "dropdown-hoverable" class after below "dropdown" and remove data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to enable hover dropdown mode -->
-        <!-- DOC: Remove "dropdown-hoverable" and add data-toggle="dropdown" data-hover="dropdown" data-close-others="true" attributes to the below A element with dropdown-toggle class -->
         <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
@@ -104,9 +99,6 @@
                 </li>
             </ul>
         </li>
-        <!-- END NOTIFICATION DROPDOWN -->
-        <!-- BEGIN INBOX DROPDOWN -->
-        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
         <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
@@ -164,9 +156,6 @@
                 </li>
             </ul>
         </li>
-        <!-- END INBOX DROPDOWN -->
-        <!-- BEGIN TODO DROPDOWN -->
-        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
         <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
@@ -289,9 +278,6 @@
                 </li>
             </ul>
         </li>
-        <!-- END TODO DROPDOWN -->
-        <!-- BEGIN USER LOGIN DROPDOWN -->
-        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
         <li class="dropdown dropdown-user">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                data-close-others="true">
@@ -317,7 +303,7 @@
                         <i class="fa fa-calendar"></i> Calendário </a>
                 </li>
                 <li>
-                    <a href="app_todo.html">
+                    <a href="{{ url('/doctor/schedules') }}">
                         <i class="fa fa-address-book-o"></i> Compromissos
                         <span class="badge badge-success"> 7 </span>
                     </a>
@@ -340,10 +326,5 @@
                 </li>
             </ul>
         </li>
-        <!-- END USER LOGIN DROPDOWN -->
-        <!-- BEGIN QUICK SIDEBAR TOGGLER -->
-        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-        <!-- END QUICK SIDEBAR TOGGLER -->
     </ul>
 </div>
-<!-- END TOP NAVIGATION MENU -->

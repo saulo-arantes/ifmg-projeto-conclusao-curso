@@ -28,7 +28,12 @@
                            aria-hidden="true"></i>
                     </li>
                     <li>
-                        <span>Agenda</span>
+                        <span>Agenda e Compromissos</span>
+                        <i class="fa fa-circle"
+                           aria-hidden="true"></i>
+                    </li>
+                    <li>
+                        <span>Tabela</span>
                     </li>
                 </ul>
                 @include('layouts.components.back')
@@ -39,9 +44,9 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <span class="caption-subject bold uppercase"><i class="fa fa-address-book"
+                                <span class="caption-subject bold uppercase"><i class="fa fa-table"
                                                                                 aria-hidden="true"></i>
-                                    Agenda</span>
+                                    Tabela</span>
                             </div>
                         </div>
                         <div class="portlet-body">

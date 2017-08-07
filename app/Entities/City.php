@@ -11,7 +11,10 @@ use Prettus\Repository\Traits\TransformableTrait;
 /**
  * Class City
  *
- * @author Bruno Tomé
+ * @author Saulo Vinícius
+ * @since 07/06/2017
+ * @package App\Entities
+ *
  * @property int id
  * @property string name
  * @property int population

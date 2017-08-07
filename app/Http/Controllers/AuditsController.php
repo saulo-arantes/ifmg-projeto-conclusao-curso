@@ -7,7 +7,7 @@ use App\Services\DataTables\AuditsDataTable;
 /**
  * Class AuditsController
  *
- * @author Bruno Tomé
+ * @author Saulo Vinícius
  * @since 07/08/2017
  * @package App\Http\Controllers
  */

@@ -10,6 +10,8 @@ use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class ContactTypeRepositoryEloquent
+ *
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 class ContactTypeRepositoryEloquent extends BaseRepository implements ContactTypeRepository

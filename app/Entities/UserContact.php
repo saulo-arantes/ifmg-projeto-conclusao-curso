@@ -9,6 +9,12 @@ use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
+ * Class UserContact
+ *
+ * @author Saulo Vinícius
+ * @since 20/06/2017
+ * @package App\Entities
+ *
  * @property int id
  * @property string description
  * @property int user_id

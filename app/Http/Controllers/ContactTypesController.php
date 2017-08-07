@@ -9,7 +9,13 @@ use App\Validators\ContactTypeValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
-
+/**
+ * Class AuditsController
+ *
+ * @author Saulo Vinícius
+ * @since 20/06/2017
+ * @package App\Http\Controllers
+ */
 class ContactTypesController extends Controller
 {
 

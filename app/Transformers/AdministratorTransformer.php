@@ -7,6 +7,8 @@ use League\Fractal\TransformerAbstract;
 
 /**
  * Class AdministratorTransformer
+ *
+ * @author  Saulo Vinícius
  * @package namespace App\Transformers;
  */
 class AdministratorTransformer extends TransformerAbstract

@@ -11,7 +11,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
 /**
  * Class RegionRepositoryEloquent
  *
- * @author  Bruno Tomé
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 class RegionRepositoryEloquent extends BaseRepository implements RegionRepository

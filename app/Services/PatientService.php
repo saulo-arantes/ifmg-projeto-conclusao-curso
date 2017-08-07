@@ -20,6 +20,9 @@ use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class PatientService
+ *
+ * @author Saulo Vinícius
+ * @since 14/07/2017
  * @package App\Services
  */
 class PatientService

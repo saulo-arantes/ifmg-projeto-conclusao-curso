@@ -9,7 +9,13 @@ use App\Repositories\PatientsRepository;
 use App\Services\DataTables\PatientsDataTable;
 use App\Services\PatientService;
 
-
+/**
+ * Class AuditsController
+ *
+ * @author Saulo Vinícius
+ * @since 20/06/2017
+ * @package App\Http\Controllers
+ */
 class PatientsController extends Controller
 {
 

@@ -6,9 +6,10 @@ use App\Repositories\CityRepository;
 use App\Validators\CityValidator;
 
 /**
- * Class CitiesController
+ * Class AuditsController
  *
- * @author  Bruno Tomé
+ * @author Saulo Vinícius
+ * @since 07/06/2017
  * @package App\Http\Controllers
  */
 class CitiesController extends Controller

@@ -9,6 +9,10 @@ use Prettus\Repository\Traits\TransformableTrait;
 /**
  * Class Log
  *
+ * @author Saulo Vinícius
+ * @since 30/05/2017
+ * @package App\Entities
+ *
  * @author Bruno Tomé
  * @property int id
  * @property int user_id

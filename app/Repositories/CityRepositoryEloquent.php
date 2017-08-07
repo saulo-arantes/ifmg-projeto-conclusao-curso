@@ -11,7 +11,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
 /**
  * Class CityRepositoryEloquent
  *
- * @author  Bruno Tomé
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 class CityRepositoryEloquent extends BaseRepository implements CityRepository

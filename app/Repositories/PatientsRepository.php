@@ -6,6 +6,8 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
  * Interface PatientsRepository
+ *
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 interface PatientsRepository extends RepositoryInterface

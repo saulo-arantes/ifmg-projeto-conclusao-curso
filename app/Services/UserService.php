@@ -18,6 +18,8 @@ use Prettus\Validator\Exceptions\ValidatorException;
 /**
  * Class UserService
  *
+ * @author Saulo Vinícius
+ * @since 20/06/2017
  * @package App\Services
  */
 class UserService

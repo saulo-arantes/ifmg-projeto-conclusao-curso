@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 
 /**
- * Class UsersController
+ * Class AuditsController
  *
+ * @author Saulo Vinícius
+ * @since 30/05/2017
  * @package App\Http\Controllers
  */
 class UsersController extends Controller

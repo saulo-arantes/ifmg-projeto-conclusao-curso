@@ -8,7 +8,7 @@ use Yajra\Datatables\Services\DataTable;
 /**
  * Class AuditsDataTable
  *
- * @author  Bruno Tomé
+ * @author  Saulo Vinícius
  * @since 07/08/2017
  * @package App\Services\DataTables
  */

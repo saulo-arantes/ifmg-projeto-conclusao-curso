@@ -8,7 +8,7 @@ use League\Fractal\TransformerAbstract;
 /**
  * Class CityTransformer
  *
- * @author  Bruno Tomé
+ * @author  Saulo Vinícius
  * @package namespace App\Transformers;
  */
 class CityTransformer extends TransformerAbstract

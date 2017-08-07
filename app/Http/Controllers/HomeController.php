@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+/**
+ * Class AuditsController
+ *
+ * @author Saulo Vinícius
+ * @since 30/05/2017
+ * @package App\Http\Controllers
+ */
 class HomeController extends Controller
 {
     /**

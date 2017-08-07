@@ -9,6 +9,8 @@ use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class AdministratorRepositoryEloquent
+ *
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 class AdministratorRepositoryEloquent extends BaseRepository implements AdministratorRepository

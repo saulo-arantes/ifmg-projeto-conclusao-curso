@@ -11,6 +11,7 @@ use Yajra\Datatables\Services\DataTable;
 /**
  * Class SchedulesDataTable
  *
+ * @author  Saulo Vinícius
  * @package App\DataTables
  */
 class SchedulesDataTable extends DataTable

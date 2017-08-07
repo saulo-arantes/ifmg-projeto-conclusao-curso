@@ -8,7 +8,7 @@ use League\Fractal\TransformerAbstract;
 /**
  * Class LogTransformer
  *
- * @author  Bruno Tomé
+ * @author  Saulo Vinícius
  * @package namespace App\Transformers;
  */
 class LogTransformer extends TransformerAbstract

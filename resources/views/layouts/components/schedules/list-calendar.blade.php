@@ -28,6 +28,11 @@
                            aria-hidden="true"></i>
                     </li>
                     <li>
+                        <span>Agenda e Compromissos</span>
+                        <i class="fa fa-circle"
+                           aria-hidden="true"></i>
+                    </li>
+                    <li>
                         <span>Calendário</span>
                     </li>
                 </ul>

@@ -7,7 +7,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 /**
  * Interface CityRepository
  *
- * @author  Bruno Tomé
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 interface CityRepository extends RepositoryInterface

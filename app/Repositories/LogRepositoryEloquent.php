@@ -13,7 +13,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
 /**
  * Class LogRepositoryEloquent
  *
- * @author  Bruno Tomé
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 class LogRepositoryEloquent extends BaseRepository implements LogRepository

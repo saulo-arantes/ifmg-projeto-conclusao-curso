@@ -7,6 +7,8 @@ use League\Fractal\TransformerAbstract;
 
 /**
  * Class DoctorTransformer
+ *
+ * @author  Saulo Vinícius
  * @package namespace App\Transformers;
  */
 class DoctorTransformer extends TransformerAbstract

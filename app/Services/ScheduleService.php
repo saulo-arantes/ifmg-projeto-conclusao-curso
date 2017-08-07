@@ -17,6 +17,13 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
+/**
+ * Class AuditsDataTable
+ *
+ * @author  Saulo Vinícius
+ * @since 04/08/2017
+ * @package App\Services
+ */
 class ScheduleService
 {
 

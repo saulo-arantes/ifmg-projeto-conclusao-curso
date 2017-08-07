@@ -8,7 +8,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
 /**
  * Interface LogRepository
  *
- * @author  Bruno Tomé
+ * @author Saulo Vinícius
  * @package namespace App\Repositories;
  */
 interface LogRepository extends RepositoryInterface

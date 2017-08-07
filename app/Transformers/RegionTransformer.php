@@ -8,7 +8,7 @@ use League\Fractal\TransformerAbstract;
 /**
  * Class RegionTransformer
  *
- * @author  Bruno Tomé
+ * @author  Saulo Vinícius
  * @package namespace App\Transformers;
  */
 class RegionTransformer extends TransformerAbstract

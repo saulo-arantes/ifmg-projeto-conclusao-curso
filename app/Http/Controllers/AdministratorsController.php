@@ -9,7 +9,13 @@ use App\Validators\AdministratorValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
-
+/**
+ * Class AuditsController
+ *
+ * @author Saulo Vinícius
+ * @since 14/06/2017@since 07/08/2017
+ * @package App\Http\Controllers
+ */
 class AdministratorsController extends Controller
 {
 

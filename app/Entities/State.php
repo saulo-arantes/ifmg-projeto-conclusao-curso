@@ -12,6 +12,10 @@ use Prettus\Repository\Traits\TransformableTrait;
  * Class State
  *
  * @author Saulo Vinícius
+ * @since 07/06/2017
+ * @package App\Entities
+ *
+ * @author Saulo Vinícius
  * @property int id
  * @property string initials
  * @property string name
