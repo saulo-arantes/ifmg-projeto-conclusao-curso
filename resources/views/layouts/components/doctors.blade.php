@@ -8,7 +8,7 @@
                    aria-hidden="true"></i>
             </span>
             <select id="doctors"
-                    name="doctors[]"
+                    name="doctors"
                     class="form-control select2"
                     multiple
                     title="Associe médicos a esse paciente">

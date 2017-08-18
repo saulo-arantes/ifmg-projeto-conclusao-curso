@@ -11,6 +11,7 @@
     .button {
         width: 200px;
         padding: 5px;
+        margin: 3px;
     }
 
 </style>
@@ -55,16 +56,16 @@
                             <div class="panel_toolbox"
                                  style="float: right; margin-bottom: 20px;">
                                 <a class="btn btn-success button"
-                                   href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/create/appointment') }}">
+                                   href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/create/scheduling') }}">
                                     <i class="fa fa-clock-o"></i> Novo compromisso
                                 </a>
                                 <a class="btn btn-info button"
-                                   href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/create/scheduling') }}">
+                                   href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/create/appointment') }}">
                                     <i class="fa fa-medkit"></i> Nova consulta
                                 </a>
                                 <a class="btn btn-default button"
                                    href="{{ url(App\Entities\User::getUserMiddleware().'/schedules') }}">
-                                    <i class="fa fa-list"></i> Formato Tabela
+                                    <i class="fa fa-table"></i> Formato Tabela
                                 </a>
                             </div>
                             <div id="schedule"

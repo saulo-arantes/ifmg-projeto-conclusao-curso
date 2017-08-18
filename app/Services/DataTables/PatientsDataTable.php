@@ -49,8 +49,9 @@ class PatientsDataTable extends DataTable
      */
     public function query()
     {
-        $query = Patient::query();
-        return $this->applyScopes($query);
+	    $query = Patient::query();
+
+	    return $this->applyScopes($query);
     }
 
     /**

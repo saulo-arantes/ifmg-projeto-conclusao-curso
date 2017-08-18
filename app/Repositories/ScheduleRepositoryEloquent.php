@@ -2,8 +2,11 @@
 
 namespace App\Repositories;
 
+use App\Entities\Doctor;
+use App\Entities\Patient;
 use App\Entities\Schedule;
 use App\Entities\Stock;
+use App\Entities\User;
 use App\Entities\Vaccine;
 use App\Presenters\SchedulePresenter;
 use App\Validators\ScheduleValidator;
@@ -68,7 +71,11 @@ class ScheduleRepositoryEloquent extends BaseRepository implements ScheduleRepos
      */
     public function getExtraData($id = null)
     {
+	    $extraData['patients'] = Patient::all();
+	    $extraData['doctors'] = Doctor::all();
+	    $extraData['middleware'] = User::getUserMiddleware();
 
+	    return $extraData;
     }
 
     /**

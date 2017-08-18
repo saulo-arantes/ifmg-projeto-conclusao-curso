@@ -41,6 +41,13 @@ class SchedulesController extends Controller
         $this->service = $service;
     }
 
+    public function createAppointment()
+    {
+	    $extraData = $this->repository->getExtraData();
+
+	    return view(User::getUserMiddleware().'.schedules.create.appointment', compact('extraData'));
+    }
+
     /**
      * Display a listing of the resource.
      *
