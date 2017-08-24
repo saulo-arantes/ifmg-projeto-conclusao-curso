@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth'],
                     Route::get('', 'SchedulesController@index');
                     Route::get('calendar', 'SchedulesController@calendar');
                     Route::get('create/appointment', 'SchedulesController@createAppointment');
+                    Route::get('create/scheduling', 'SchedulesController@createScheduling');
                     Route::post('calendar-ajax', 'SchedulesController@calendar');
                     Route::post('create', 'SchedulesController@store');
                     Route::get('create', 'SchedulesController@create');

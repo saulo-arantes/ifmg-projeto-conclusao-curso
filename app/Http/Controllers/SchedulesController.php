@@ -41,11 +41,24 @@ class SchedulesController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function createAppointment()
     {
 	    $extraData = $this->repository->getExtraData();
 
 	    return view(User::getUserMiddleware().'.schedules.create.appointment', compact('extraData'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function createScheduling()
+    {
+        $extraData = $this->repository->getExtraData();
+
+        return view(User::getUserMiddleware().'.schedules.create.scheduling', compact('extraData'));
     }
 
     /**

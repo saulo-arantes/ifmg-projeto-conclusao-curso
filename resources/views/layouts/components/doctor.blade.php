@@ -10,6 +10,7 @@
             <select id="doctor"
                     name="doctor"
                     class="form-control select2"
+                    required
                     title="Selecione um médico para realizar a consuta.">
                 <option value="">Selecionar</option>
                 @foreach ($extraData['doctors'] as $doctor)

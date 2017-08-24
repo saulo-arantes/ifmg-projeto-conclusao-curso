@@ -1,17 +1,14 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-
-<link href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}"
-      rel="stylesheet"
-      type="text/css"/>
-
-<style>
-    textarea {
-        resize: none;
-    }
-</style>
-
+    <link href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}"
+          rel="stylesheet"
+          type="text/css"/>
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -30,7 +27,7 @@
                            aria-hidden="true"></i>
                     </li>
                     <li>
-                        <span>Nova Consulta</span>
+                        <span>Novo Compromisso</span>
                     </li>
                 </ul>
                 @include('layouts.components.back')
@@ -42,9 +39,9 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <span class="caption-subject bold uppercase">
-                                    <i class="fa fa-wheelchair"
+                                    <i class="fa fa-calendar"
                                        aria-hidden="true"></i>
-                                    Nova Consulta
+                                    Novo Compromisso
                                 </span>
                             </div>
                         </div>
@@ -56,10 +53,6 @@
                                   novalidate="novalidate">
                                 <div class="form-body">
                                     {{ csrf_field() }}
-                                    <div class="row">
-                                        @include('layouts.components.doctor')
-                                        @include('layouts.components.patient')
-                                    </div>
                                     <div class="row">
                                         @include('layouts.components.start-at')
                                         @include('layouts.components.finish-at')
@@ -83,18 +76,13 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js') }}"
-        type="text/javascript"></script>
-
-<script>
-    $("#patient").attr("data-placeholder", "Paciente");
-    $("#patient").select2();
-    $("#doctor").attr("data-placeholder", "Médico");
-    $("#doctor").select2();
-</script>
-
+    <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js') }}"
+            type="text/javascript"></script>
+    <script>
+        $('#start_at').datetimepicker();
+    </script>
 @endpush

@@ -14,7 +14,8 @@
                        size="60"
                        class="form-control"
                        title="Defina a data e a hora do término da consulta."
-                       value="{{ old('finish_at') ?? $data['finish_at'] ?? null }}">
+                       value="{{ old('finish_at') ?? $data['finish_at'] ?? null }}"
+                       required>
                 <span class="input-group-addon">
                     <button class="btn default date-set"
                             type="button">

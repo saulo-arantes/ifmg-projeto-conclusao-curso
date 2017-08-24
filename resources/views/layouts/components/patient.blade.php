@@ -9,6 +9,7 @@
             </span>
             <select id="patient"
                     name="patient"
+                    required
                     class="form-control select2"
                     title="Selecione um paciente para a consulta">
                 <option value="">Selecionar</option>
