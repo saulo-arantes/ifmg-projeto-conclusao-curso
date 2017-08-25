@@ -48,7 +48,6 @@
 @push('scripts')
 <script src="{{ asset('assets/global/scripts/datatable.min.js') }}"
         type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.js') }}"
         type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.js') }}"

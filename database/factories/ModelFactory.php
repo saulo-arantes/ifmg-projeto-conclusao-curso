@@ -101,7 +101,7 @@ $factory->define(App\Entities\Schedule::class, function (Faker\Generator $faker)
     return [
         'start_at'    => $date,
         'finish_at'   => $date,
-        'description' => $faker->text,
+        'description' => $faker->words(3, true),
         'status'      => rand(1, 4)
     ];
 });

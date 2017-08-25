@@ -1,20 +1,17 @@
 @extends('layouts.app')
 
 @push('stylesheets')
+    <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.css') }}"
+          rel="stylesheet"
+          type="text/css"/>
 
-<link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.css') }}"
-      rel="stylesheet">
-<link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/buttons/dataTables.buttons.min.css') }}"
-      rel="stylesheet">
-<link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/responsive/dataTables.responsive.min.css') }}"
-      rel="stylesheet">
-<style>
-    .button {
-        width: 200px;
-        padding: 5px;
-        margin: 3px;
-    }
-</style>
+    <style>
+        .button {
+            width: 200px;
+            padding: 5px;
+            margin: 3px;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -51,8 +48,7 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <div class="panel_toolbox"
-                                 style="float: right; margin-bottom: 20px;">
+                            <div class="panel_toolbox">
                                 <a class="btn btn-success button"
                                    href="{{ url(App\Entities\User::getUserMiddleware().'/schedules/create/scheduling') }}">
                                     <i class="fa fa-clock-o"></i> Novo compromisso
@@ -87,16 +83,14 @@
 @endsection
 
 @push('scripts')
-
-<script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/jquery/dataTables.jquery.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/buttons/dataTables.buttons.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/responsive/dataTables.responsive.min.js') }}"
-        type="text/javascript"></script>
-
-
-{!! $dataTable->scripts() !!}
+    <script src="{{ asset('assets/global/scripts/datatable.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/pages/scripts/table-datatables-buttons.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    {!! $dataTable->scripts() !!}
 @endpush
