@@ -30,7 +30,6 @@ $factory->define(App\Entities\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\Log::class, function (Faker\Generator $faker) {
     return [
         'description' => $faker->words(8, true),
@@ -39,7 +38,6 @@ $factory->define(App\Entities\Log::class, function (Faker\Generator $faker) {
     ];
 });
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\Patient::class, function (Faker\Generator $faker) {
     $bloodTypes = [
         'A+',
@@ -85,25 +83,24 @@ $factory->define(App\Entities\Patient::class, function (Faker\Generator $faker) 
     ];
 });
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\ContactType::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->word
     ];
 });
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\Doctor::class, function (Faker\Generator $faker) {
     return [
         'crm' => rand(10000000, 99999999) . '-' . rand(1, 9) . '/BR'
     ];
 });
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Entities\Schedule::class, function (Faker\Generator $faker) {
+    $date = $faker->dateTimeBetween('-30 days', '+30 days');
+
     return [
-        'start_at'    => $faker->dateTime,
-        'finish_at'   => $faker->dateTime,
+        'start_at'    => $date,
+        'finish_at'   => $date,
         'description' => $faker->text,
         'status'      => rand(1, 4)
     ];

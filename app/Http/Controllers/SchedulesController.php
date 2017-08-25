@@ -8,13 +8,14 @@ use App\Http\Requests\ScheduleUpdateRequest;
 use App\Repositories\ScheduleRepository;
 use App\Services\DataTables\SchedulesDataTable;
 use App\Services\ScheduleService;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class AuditsController
  *
- * @author Saulo Vinícius
- * @since 19/07/2017
+ * @author  Saulo Vinícius
+ * @since   19/07/2017
  * @package App\Http\Controllers
  */
 class SchedulesController extends Controller
@@ -46,9 +47,9 @@ class SchedulesController extends Controller
      */
     public function createAppointment()
     {
-	    $extraData = $this->repository->getExtraData();
+        $extraData = $this->repository->getExtraData();
 
-	    return view(User::getUserMiddleware().'.schedules.create.appointment', compact('extraData'));
+        return view(User::getUserMiddleware() . '.schedules.create.appointment', compact('extraData'));
     }
 
     /**
@@ -58,7 +59,7 @@ class SchedulesController extends Controller
     {
         $extraData = $this->repository->getExtraData();
 
-        return view(User::getUserMiddleware().'.schedules.create.scheduling', compact('extraData'));
+        return view(User::getUserMiddleware() . '.schedules.create.scheduling', compact('extraData'));
     }
 
     /**
@@ -82,6 +83,7 @@ class SchedulesController extends Controller
     public function calendarAjax(Request $request)
     {
         $schedules = $this->repository->getSchedulesForCalendar($request);
+        Log::debug($schedules);
         return response()->json($schedules);
     }
 

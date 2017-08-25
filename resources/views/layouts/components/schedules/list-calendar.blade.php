@@ -1,20 +1,18 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-<link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.css') }}"
-      rel='stylesheet'/>
-<link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.print.min.css') }}"
-      rel='stylesheet'
-      media='print'/>
-<style>
+    <link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.css') }}"
+          rel='stylesheet' />
 
-    .button {
-        width: 200px;
-        padding: 5px;
-        margin: 3px;
-    }
+    <style>
 
-</style>
+        .button {
+            width: 200px;
+            padding: 5px;
+            margin: 3px;
+        }
+
+    </style>
 @endpush
 
 @section('content')
@@ -79,15 +77,10 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/global/plugins/fullcalendar/lib/moment.min.js') }}"
-        type="text/javascript"></script>
-
-<script src="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.js') }}"
-        type="text/javascript"></script>
-
-<script src="{{ asset('assets/global/plugins/fullcalendar/locale/pt-br.js') }}"
-        type="text/javascript"></script>
-<script>
+    <script src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('assets/global/plugins/fullcalendar/fullcalendar-pt-br.min.js') }}"></script>
+    <script>
     $('#schedule').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -99,7 +92,7 @@
         eventLimit: true,
         defaultView: 'agendaWeek',
         refetchResourcesOnNavigate: true,
-        events: function (start, end, timezone, callback) {
+        events: function(start, end, timezone, callback) {
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 url: '/{{ $extraData['middleware'] }}/schedules/calendar-ajax',
@@ -109,13 +102,13 @@
                     start: start.unix(),
                     end: end.unix(),
                 },
-                success: function (response) {
+                success: function(response) {
                     var events = [];
                     var color;
                     var finish_at;
                     var now = new Date();
 
-                    $.each(response, function (index, value) {
+                    $.each(response, function(index, value) {
                         finish_at = new Date(value.finish_at.split(' ')[0]);
 
                         if (finish_at < now) {

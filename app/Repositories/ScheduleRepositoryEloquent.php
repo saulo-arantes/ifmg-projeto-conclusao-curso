@@ -9,14 +9,13 @@ use App\Entities\User;
 use App\Presenters\SchedulePresenter;
 use App\Validators\ScheduleValidator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 /**
  * Class ScheduleRepositoryEloquent
  *
- * @author Saulo Vinícius
+ * @author  Saulo Vinícius
  * @package namespace App\Repositories;
  */
 class ScheduleRepositoryEloquent extends BaseRepository implements ScheduleRepository
@@ -69,11 +68,11 @@ class ScheduleRepositoryEloquent extends BaseRepository implements ScheduleRepos
      */
     public function getExtraData($id = null)
     {
-	    $extraData['patients'] = Patient::all();
-	    $extraData['doctors'] = Doctor::all();
-	    $extraData['middleware'] = User::getUserMiddleware();
+        $extraData['patients'] = Patient::all();
+        $extraData['doctors'] = Doctor::all();
+        $extraData['middleware'] = User::getUserMiddleware();
 
-	    return $extraData;
+        return $extraData;
     }
 
     /**
@@ -89,10 +88,11 @@ class ScheduleRepositoryEloquent extends BaseRepository implements ScheduleRepos
         $end = date('Y-m-d H:i:s', $request->get('end'));
 
         try {
-            $schedules = Schedule::with(['patient'])->where('start_at', '>=', $start)->where('finish_at', '<=',
-                $end)->where('unity_id',
-                Auth::user()->last_unity_id)->get()->toArray();
-
+            $schedules = Schedule::with(['patient'])
+                ->where('start_at', '>=', $start)
+                ->where('finish_at', '<=', $end)
+                ->get()
+                ->toArray();
         } catch (\Exception $e) {
             $schedules = [];
         }
