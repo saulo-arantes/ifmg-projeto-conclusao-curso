@@ -20,7 +20,7 @@ class SchedulesDataTable extends DataTable {
 	 */
 	public function dataTable() {
 		return $this->datatables
-			->eloquent($this->query())->editColumn('doctor.name', function (Schedule $model) {
+			->eloquent($this->query())->editColumn('doctor.user.name', function (Schedule $model) {
 				return $model->doctor->user->name ?? '<div style="text-align: center">-</div>';
 			})->editColumn('patient.name', function (Schedule $model) {
 				return $model->patient->name ?? '<div style="text-align: center">-</div>';
@@ -116,7 +116,7 @@ class SchedulesDataTable extends DataTable {
 				'title'     => 'Descrição',
 				'orderable' => false,
 			],
-			'doctor.name'      => [
+			'doctor.user.name' => [
 				'title'     => 'Médico',
 				'orderable' => false,
 			],

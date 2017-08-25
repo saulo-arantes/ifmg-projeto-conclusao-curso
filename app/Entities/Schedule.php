@@ -15,10 +15,10 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @since 19/07/2017
  * @package App\Entities
  *
- * @property int id
+ * @property integer id
  * @property \DateTime start_at
  * @property \DateTime finish_at
- * @property int doctor_id
+ * @property integer doctor_id
  * @property int patient_id
  * @property string description
  * @property int status
