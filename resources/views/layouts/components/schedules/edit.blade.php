@@ -49,13 +49,12 @@
                             </div>
                         </div>
                         <div class="portlet-body form">
-                            <form action="{{ url($extraData['middleware'].'/schedules/'.$schedule['data']['id'].'/edit') }}">
+                            <form action="{{ url($extraData['middleware'].'/schedules/'.$schedule['data']['id'].'/edit') }}"
                                 id="form_sample_2"
                                 method="post"
                                 class="horizontal-form"
                                 novalidate="novalidate">
                                 <div class="form-body">
-                                    {{ dd($schedule['data']['id']) }}
                                     {{ csrf_field() }}
                                     <div class="row">
                                         @include('layouts.components.doctor', ['data' => $schedule['data']])

@@ -70,6 +70,7 @@ class SchedulesController extends Controller
     public function calendar()
     {
         $extraData['middleware'] = User::getUserMiddleware();
+
         return view($extraData['middleware'] . '.schedules.list-calendar', compact('schedules'), compact('extraData'));
     }
 
@@ -159,10 +160,10 @@ class SchedulesController extends Controller
      */
     public function edit($id)
     {
-
+	    $extraData = $this->repository->getExtraData();
         $schedule = $this->repository->find($id);
 
-        return view('schedules.edit', compact('schedule'));
+        return view(User::getUserMiddleware() . '.schedules.edit', compact('schedule'), compact('extraData'));
     }
 
 

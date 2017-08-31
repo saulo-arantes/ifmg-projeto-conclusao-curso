@@ -82,7 +82,7 @@
 </head>
 <!-- END HEAD -->
 
-<body class="page-sidebar-closed-hide-logo page-content-white page-md page-header-fixed page-sidebar-fixed page-footer-fixed">
+<body class="page-header-fixed page-footer-fixed page-sidebar-fixed page-sidebar-closed page-content-white page-md">
 <div class="page-wrapper">
     <!-- BEGIN HEADER -->
     <div class="page-header navbar navbar-fixed-top">

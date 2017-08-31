@@ -11,7 +11,7 @@
                 </div>
             </li>
             <li class="sidebar-search-wrapper">
-                <form class="sidebar-search  sidebar-search-bordered"
+                <form class="page-sidebar-menu page-header-fixed page-sidebar-menu-closed page-sidebar-menu-light hidden-sm hidden-xs"
                       action="page_general_search_3.html"
                       method="POST">
                     <a href="javascript:;"

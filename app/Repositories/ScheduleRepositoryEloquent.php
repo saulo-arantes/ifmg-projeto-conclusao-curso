@@ -16,7 +16,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  * Class ScheduleRepositoryEloquent
  *
  * @author  Saulo Vinícius
- * @package namespace App\Repositories;
+ * @package App\Repositories
  */
 class ScheduleRepositoryEloquent extends BaseRepository implements ScheduleRepository
 {

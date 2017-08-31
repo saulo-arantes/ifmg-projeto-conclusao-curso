@@ -44,7 +44,7 @@ class SchedulesDataTable extends DataTable
             })->setRowAttr([
                 'href' =>
                     function (Schedule $model) {
-                        return '/' . User::getUserMiddleware() . '/schedules/' . $model->id;
+                        return '/' . User::getUserMiddleware() . '/schedules/' . $model->id . '/edit';
                     },
             ])->editColumn('type', function (Schedule $model) {
                 if ($model->start_at < date('Y-m-d')) {

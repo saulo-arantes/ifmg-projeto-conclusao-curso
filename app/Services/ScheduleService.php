@@ -8,7 +8,6 @@
 
 namespace App\Services;
 
-
 use App\Http\Requests\ScheduleCreateRequest;
 use App\Repositories\LogRepository;
 use App\Repositories\ScheduleRepository;

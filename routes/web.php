@@ -75,6 +75,8 @@ Route::group(['middleware' => 'auth'],
                     Route::post('calendar-ajax', 'SchedulesController@calendarAjax');
                     Route::post('create', 'SchedulesController@store');
                     Route::get('create', 'SchedulesController@create');
+	                Route::get('{id}/edit', 'SchedulesController@edit');
+	                Route::post('{id}/edit', 'SchedulesController@update');
                 });
 
             Route::group(['prefix' => 'patients'],
