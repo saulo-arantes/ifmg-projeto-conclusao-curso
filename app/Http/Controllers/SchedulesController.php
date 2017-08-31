@@ -165,7 +165,7 @@ class SchedulesController extends Controller
         $month_ptbr = array(
             'Jan' => 'Janeiro',
             'Feb' => 'Fevereiro',
-            'Mar' => 'Marco',
+            'Mar' => 'Março',
             'Apr' => 'Abril',
             'May' => 'Maio',
             'Jun' => 'Junho',

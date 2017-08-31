@@ -23,11 +23,43 @@ class AuditsDataTable extends DataTable
     {
         return $this->datatables
             ->eloquent($this->query()->with('user'))
-            ->editColumn('user.name', function (Audit $model) {
+            ->editColumn('user.name', function(Audit $model) {
                 return $model->user->name ?? '';
             })
-            ->editColumn('created_at', function (Audit $model) {
+            ->editColumn('created_at', function(Audit $model) {
                 return date('d/m/Y H:i:s', strtotime($model->created_at));
+            })
+            ->editColumn('old_values', function(Audit $model){
+                $beautified = '<ul>';
+
+                foreach (json_decode($model->old_values) as $key => $value) {
+                    if($key == 'reports') {
+                        continue;
+                    }
+
+                    #$key = Translate::PTBR[$key];
+                    $beautified .= '<li><b>' . $key . ':</b>' . $value;
+                }
+
+                $beautified .= '</ul>';
+
+                return $beautified;
+            })
+            ->editColumn('new_values', function(Audit $model){
+                $beautified = '<ul>';
+
+                foreach (json_decode($model->new_values) as $key => $value) {
+                    if($key == 'reports') {
+                        continue;
+                    }
+
+                    #$key = Translate::PTBR['$key'];
+                    $beautified .= '<li><b>' . $key . ':</b>' . $value;
+                }
+
+                $beautified .= '</ul>';
+
+                return $beautified;
             })
             ->escapeColumns([0]);
     }

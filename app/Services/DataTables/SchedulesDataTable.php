@@ -85,7 +85,7 @@ class SchedulesDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->setTableAttributes([
-                'class' => 'table table-bordered table-hover nowrap',
+                'class' => 'table table-bordered table-hover',
                 'style' => 'width: 100%;'
             ])->parameters($this->getBuilderParameters())->parameters([
                 'dom'          => 'Bfrtlip',
@@ -148,6 +148,7 @@ class SchedulesDataTable extends DataTable
             ],
             'patient.name'     => [
                 'title'     => 'Paciente',
+                'style'     => 'width=50px',
                 'orderable' => false,
             ],
             'patient.contacts' => [

@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  * @since 07/08/2017
  * @package App\Entities
  *
+ * @property string old_values
+ * @property string new_values
  * @property \DateTime created_at
  * @property User user
  */
