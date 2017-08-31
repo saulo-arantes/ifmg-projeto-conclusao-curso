@@ -1,17 +1,17 @@
 <div class="page-sidebar-wrapper">
     <div class="page-sidebar navbar-collapse collapse">
-        <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-light"
+        <ul class="page-sidebar-menu page-header-fixed page-sidebar-menu-closed page-sidebar-menu-light hidden-sm hidden-xs"
             data-keep-expanded="false"
             data-auto-scroll="true"
             data-slide-speed="200"
-            style="padding-top: 20px">
+            style="padding-top: 10px">
             <li class="sidebar-toggler-wrapper hide">
                 <div class="sidebar-toggler">
                     <span></span>
                 </div>
             </li>
             <li class="sidebar-search-wrapper">
-                <form class="page-sidebar-menu page-header-fixed page-sidebar-menu-closed page-sidebar-menu-light hidden-sm hidden-xs"
+                <form class="sidebar-search  sidebar-search-bordered"
                       action="page_general_search_3.html"
                       method="POST">
                     <a href="javascript:;"
