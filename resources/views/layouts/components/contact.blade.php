@@ -15,7 +15,8 @@
                                     title="Preencha o tipo de contato">
                                 <option value="">Selecione o tipo de contato</option>
                                 @foreach ($extraData['contact_types'] as $c)
-                                    <option value="{{ $c->id }}" {{ $c->id == $contact['contact_type_id'] ? 'selected' : '' }}>{{ $c->name }}</option>
+                                    <option value="{{ $c->id }}"
+                                            {{ $c->id == $contact['contact_type_id'] ? 'selected' : '' }}>{{ $c->name }}</option>
                                 @endforeach
                             </select>
                         </div>

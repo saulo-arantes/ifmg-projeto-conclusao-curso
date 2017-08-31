@@ -171,9 +171,9 @@ class SchedulesController extends Controller
             'Jun' => 'Junho',
             'Jul' => 'Julho',
             'Aug' => 'Agosto',
-            'Nov' => 'Novembro',
             'Sep' => 'Setembro',
             'Oct' => 'Outubro',
+            'Nov' => 'Novembro',
             'Dec' => 'Dezembro'
         );
         $schedule['data']['start_at'] = strtr(date('d M Y - h:i', strtotime($schedule['data']['start_at'])), $month_ptbr);

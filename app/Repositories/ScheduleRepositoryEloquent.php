@@ -60,8 +60,6 @@ class ScheduleRepositoryEloquent extends BaseRepository implements ScheduleRepos
     }
 
     /**
-     * This method return suppliers and vaccines of the stock
-     *
      * @param null $id
      *
      * @return mixed
@@ -69,7 +67,7 @@ class ScheduleRepositoryEloquent extends BaseRepository implements ScheduleRepos
     public function getExtraData($id = null)
     {
         $extraData['patients'] = Patient::all();
-        $extraData['doctors'] = Doctor::all();
+        $extraData['doctors'] = Doctor::with('user')->get();
         $extraData['middleware'] = User::getUserMiddleware();
 
         return $extraData;
