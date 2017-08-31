@@ -78,11 +78,12 @@
 @push('scripts')
     <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
-            type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js') }}"
             type="text/javascript"></script>
-    <script>
-        $('#start_at').datetimepicker();
+    <script type="text/javascript">
+        $(".form_datetime").datetimepicker({
+            format: "dd MM yyyy - hh:ii",
+            language: 'pt-BR'
+        });
     </script>
 @endpush

@@ -83,18 +83,20 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js') }}"
-        type="text/javascript"></script>
-
-<script>
-    $("#patient").attr("data-placeholder", "Paciente");
-    $("#patient").select2();
-    $("#doctor").attr("data-placeholder", "Médico");
-    $("#doctor").select2();
-</script>
-
+    <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js') }}"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+        $(".form_datetime").datetimepicker({
+            format: "dd MM yyyy - hh:ii",
+            language: 'pt-BR'
+        });
+    </script>
+    <script>
+        $("#patient").attr("data-placeholder", "Paciente");
+        $("#patient").select2();
+        $("#doctor").attr("data-placeholder", "Médico");
+        $("#doctor").select2();
+    </script>
 @endpush

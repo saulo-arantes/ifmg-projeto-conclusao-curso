@@ -162,6 +162,22 @@ class SchedulesController extends Controller
     {
 	    $extraData = $this->repository->getExtraData();
         $schedule = $this->repository->find($id);
+        $month_ptbr = array(
+            'Jan' => 'Janeiro',
+            'Feb' => 'Fevereiro',
+            'Mar' => 'Marco',
+            'Apr' => 'Abril',
+            'May' => 'Maio',
+            'Jun' => 'Junho',
+            'Jul' => 'Julho',
+            'Aug' => 'Agosto',
+            'Nov' => 'Novembro',
+            'Sep' => 'Setembro',
+            'Oct' => 'Outubro',
+            'Dec' => 'Dezembro'
+        );
+        $schedule['data']['start_at'] = strtr(date('d M Y - h:i', strtotime($schedule['data']['start_at'])), $month_ptbr);
+        $schedule['data']['finish_at'] = strtr(date('d M Y - h:i', strtotime($schedule['data']['finish_at'])), $month_ptbr);
 
         return view(User::getUserMiddleware() . '.schedules.edit', compact('schedule'), compact('extraData'));
     }
