@@ -24,6 +24,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property string number
  * @property boolean status
  * @property string zipcode
+ * @property string password
  * @property int level
  * @property UserContact contacts
  * @property \DateTime created_at

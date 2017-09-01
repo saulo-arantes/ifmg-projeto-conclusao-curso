@@ -15,10 +15,10 @@
                 <option value="">Selecionar</option>
                 @if (!$extraData['doctors'])
                     @foreach ($extraData['doctors'] as $doctor)
-                        @if (!$extraData['schedules'])
-                            @foreach($extraData['schedules'] as $s)
-                                <option value="{{ $s['doctor_id'] }}"
-                                        {{ $c['doctor_id'] == $doctor->id ? 'selected' : '' }}>{{ $doctor->user->name }}
+                        @if (!$extraData['schedules_doctors'])
+                            @foreach($extraData['schedules_doctors'] as $d)
+                                <option value="{{ $d }}"
+                                        {{ $d == $doctor->id ? 'selected' : '' }}>{{ $doctor->user->name }}
                                 </option>
                             @endforeach
                         @else

@@ -31,6 +31,7 @@ class UserTransformer extends TransformerAbstract
             'name'         => $model->name,
             'neighborhood' => $model->neighborhood,
             'number'       => $model->number,
+            'password'     => $model->password,
             'photo'        => $model->photo,
             'status'       => $model->status,
             'zipcode'      => $model->zipcode,

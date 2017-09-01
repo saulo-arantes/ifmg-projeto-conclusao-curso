@@ -5,13 +5,6 @@
 <link href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}"
       rel="stylesheet"
       type="text/css"/>
-
-<style>
-    textarea {
-        resize: none;
-    }
-</style>
-
 @endpush
 
 @section('content')
