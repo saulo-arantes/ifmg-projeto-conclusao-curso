@@ -67,6 +67,7 @@ class ScheduleRepositoryEloquent extends BaseRepository implements ScheduleRepos
     public function getExtraData($id = null)
     {
         $extraData['patients'] = Patient::all();
+        $extraData['schedules'] = Schedule::all();
         $extraData['doctors'] = Doctor::with('user')->get();
         $extraData['middleware'] = User::getUserMiddleware();
 

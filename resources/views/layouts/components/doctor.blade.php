@@ -13,9 +13,19 @@
                     required
                     title="Selecione um médico para realizar a consuta.">
                 <option value="">Selecionar</option>
-                @foreach ($extraData['doctors'] as $doctor)
-                    <option value="{{ $doctor->id }}"> {{ $doctor->user->name }} </option>
-                @endforeach
+                @if (!$extraData['doctors'])
+                    @foreach ($extraData['doctors'] as $doctor)
+                        @if (!$extraData['schedules'])
+                            @foreach($extraData['schedules'] as $s)
+                                <option value="{{ $s['doctor_id'] }}"
+                                        {{ $c['doctor_id'] == $doctor->id ? 'selected' : '' }}>{{ $doctor->user->name }}
+                                </option>
+                            @endforeach
+                        @else
+                            <option value="{{ $doctor->id }}"> {{ $doctor->user->name }} </option>
+                        @endif
+                        @endforeach
+                @endif
             </select>
         </div>
     </div>
