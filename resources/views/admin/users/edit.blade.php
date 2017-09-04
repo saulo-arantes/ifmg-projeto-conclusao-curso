@@ -85,10 +85,12 @@
                                           novalidate="novalidate">
                                         {{ csrf_field() }}
                                         <div class="form-body">
+                                            <h4 class="form-section">Informações Básicas</h4>
                                             <div class="row">
                                                 @include('layouts.components.name', ['data' => $user['data']])
                                                 @include('layouts.components.email', ['data' => $user['data']])
                                             </div>
+                                            <h4 class="form-section">Endereço</h4>
                                             <div class="row">
                                                 @include('layouts.components.address', ['data' => $user['data']])
                                                 @include('layouts.components.number', ['data' => $user['data']])

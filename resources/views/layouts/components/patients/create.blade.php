@@ -50,6 +50,7 @@
                                   novalidate="novalidate">
                                 <div class="form-body">
                                     {{ csrf_field() }}
+                                    <h4 class="form-section">Informações Básicas</h4>
                                     <div class="row">
                                         @include('layouts.components.doctors')
                                     </div>
@@ -87,6 +88,7 @@
                                     <div class="row">
                                         @include('layouts.components.zipcode')
                                     </div>
+                                    <h4 class="form-section">Informações Adicionais</h4>
                                     <div class="row">
                                         @include('layouts.components.marital-status')
                                         @include('layouts.components.blood-type')

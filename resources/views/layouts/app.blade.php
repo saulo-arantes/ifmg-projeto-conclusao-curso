@@ -75,7 +75,7 @@
           type="text/css"/>
     <!-- END THEME LAYOUT STYLES -->
     <link rel="shortcut icon"
-          href="favicon.ico"/>
+          href="{{ asset('img/stethoscope-icon.png') }}"/>
 </head>
 <!-- END HEAD -->
 

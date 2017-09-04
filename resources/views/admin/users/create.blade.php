@@ -43,6 +43,7 @@
                                   novalidate="novalidate">
                                 <div class="form-body">
                                     {{ csrf_field() }}
+                                    <h4 class="form-section">Informações Básicas</h4>
                                     <div class="row">
                                         @include('layouts.components.name')
                                         @include('layouts.components.email')
@@ -55,6 +56,7 @@
                                         @include('layouts.components.new-password')
                                         @include('layouts.components.password-confirmation')
                                     </div>
+                                    <h4 class="form-section">Endereço</h4>
                                     <div class="row">
                                         @include('layouts.components.address')
                                         @include('layouts.components.number')

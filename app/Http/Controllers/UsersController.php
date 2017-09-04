@@ -150,8 +150,9 @@ class UsersController extends Controller
     public function profile()
     {
         $user = $this->repository->find(Auth::user()->id);
+        $extraData = $this->repository->getExtraData();
 
-        return view('profile', compact('user'));
+        return view('profile', compact('user'), compact('extraData'));
     }
 
     /**
