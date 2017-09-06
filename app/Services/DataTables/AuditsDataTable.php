@@ -3,7 +3,8 @@
 namespace App\Services\DataTables;
 
 use App\Entities\Audit;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 /**
  * Class AuditsDataTable
@@ -14,16 +15,11 @@ use Yajra\Datatables\Services\DataTable;
  */
 class AuditsDataTable extends DataTable
 {
-    /**
-     * Build DataTable class.
-     *
-     * @return \Yajra\Datatables\Engines\BaseEngine
-     */
+
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query()->with('user'))
-            ->editColumn('user.name', function(Audit $model) {
+	    return (new EloquentDataTable($this->query()))
+	    ->editColumn('user.name', function(Audit $model) {
                 return $model->user->name ?? '';
             })
             ->editColumn('created_at', function(Audit $model) {
@@ -78,7 +74,7 @@ class AuditsDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {

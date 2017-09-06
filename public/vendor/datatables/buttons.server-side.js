@@ -32,7 +32,7 @@
         className: 'buttons-export',
 
         text: function (dt) {
-            return '<i class="fa fa-download"></i> ' + dt.i18n('buttons.export', 'Exportar') + '&nbsp;<span class="caret"/>';
+            return '<i class="fa fa-download"></i> ' + dt.i18n('buttons.export', 'Export') + '&nbsp;<span class="caret"/>';
         },
 
         buttons: ['csv', 'excel', 'pdf']
@@ -68,7 +68,7 @@
         className: 'buttons-print',
 
         text: function (dt) {
-            return  '<i class="fa fa-print"></i> ' + dt.i18n('buttons.print', 'Imprimir');
+            return  '<i class="fa fa-print"></i> ' + dt.i18n('buttons.print', 'Print');
         },
 
         action: function (e, dt, button, config) {
@@ -93,7 +93,7 @@
         className: 'buttons-reload',
 
         text: function (dt) {
-            return '<i class="fa fa-refresh"></i> ' + dt.i18n('buttons.reload', 'Atualizar');
+            return '<i class="fa fa-refresh"></i> ' + dt.i18n('buttons.reload', 'Reload');
         },
 
         action: function (e, dt, button, config) {
@@ -105,7 +105,7 @@
         className: 'buttons-create',
 
         text: function (dt) {
-            return '<i class="fa fa-plus"></i> ' + dt.i18n('buttons.create', 'Adicionar');
+            return '<i class="fa fa-plus"></i> ' + dt.i18n('buttons.create', 'Create');
         },
 
         action: function (e, dt, button, config) {

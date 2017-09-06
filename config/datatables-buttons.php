@@ -4,7 +4,7 @@ return [
     /**
      * Namespaces used by the generator.
      */
-    'namespace'     => [
+    'namespace'       => [
         /**
          * Base namespace/directory to create the new file.
          * This is appended on default Laravel namespace.
@@ -37,12 +37,12 @@ return [
      * Snappy package: barryvdh/laravel-snappy
      * Excel package: maatwebsite/excel
      */
-    'pdf_generator' => 'snappy',
+    'pdf_generator'   => 'snappy',
 
     /**
      * Snappy PDF options.
      */
-    'snappy'        => [
+    'snappy'          => [
         'options'     => [
             'no-outline'    => true,
             'margin-left'   => '0',
@@ -52,4 +52,18 @@ return [
         ],
         'orientation' => 'landscape',
     ],
+
+    /**
+     * Default html builder parameters.
+     */
+    'parameters' => [
+        'order'   => [[0, 'desc']],
+        'buttons' => [
+            'create',
+            'export',
+            'print',
+            'reset',
+            'reload',
+        ],
+    ]
 ];

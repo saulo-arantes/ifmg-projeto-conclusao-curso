@@ -3,7 +3,8 @@
 namespace App\Services\DataTables;
 
 use App\Entities\Patient;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 /**
  * Class PatientsDataTable
@@ -13,15 +14,11 @@ use Yajra\Datatables\Services\DataTable;
  */
 class PatientsDataTable extends DataTable
 {
-    /**
-     * Build DataTable class.
-     *
-     * @return \Yajra\Datatables\Engines\BaseEngine
-     */
+
     public function dataTable()
     {
-        return $this->datatables
-            ->eloquent($this->query())->editColumn('created_at', function (Patient $model) {
+	    return (new EloquentDataTable($this->query()))
+		    ->editColumn('created_at', function (Patient $model) {
                 return date('d/m/Y H:i:s', strtotime($model->created_at));
             })
             ->addColumn('edit', function (Patient $model) {
@@ -57,7 +54,7 @@ class PatientsDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {

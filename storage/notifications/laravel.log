@@ -3840,3 +3840,21 @@ Stack trace:
 #53 /home/saulo/Área de Trabalho/saulo/clinica/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #54 /home/saulo/Área de Trabalho/saulo/clinica/server.php(21): require_once('/home/saulo/\xC3\x81r...')
 #55 {main}  
+[2017-09-06 14:52:26] local.ERROR: ErrorException: include(/home/saulo/Área de Trabalho/saulo/clinica/vendor/fx3costa/laravelchartjs/src/Providers/ChartjsServiceProvider.php): failed to open stream: No such file or directory in /home/saulo/Área de Trabalho/saulo/clinica/vendor/composer/ClassLoader.php:444
+Stack trace:
+#0 /home/saulo/Área de Trabalho/saulo/clinica/vendor/composer/ClassLoader.php(444): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(/home/s...', '/home/saulo/\xC3\x81r...', 444, Array)
+#1 /home/saulo/Área de Trabalho/saulo/clinica/vendor/composer/ClassLoader.php(444): include()
+#2 /home/saulo/Área de Trabalho/saulo/clinica/vendor/composer/ClassLoader.php(322): Composer\Autoload\includeFile('/home/saulo/\xC3\x81r...')
+#3 [internal function]: Composer\Autoload\ClassLoader->loadClass('Fx3costa\\Larave...')
+#4 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(612): spl_autoload_call('Fx3costa\\Larave...')
+#5 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(570): Illuminate\Foundation\Application->resolveProvider('Fx3costa\\Larave...')
+#6 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(75): Illuminate\Foundation\Application->register('Fx3costa\\Larave...')
+#7 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(549): Illuminate\Foundation\ProviderRepository->load(Array)
+#8 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#9 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(208): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#10 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(162): Illuminate\Foundation\Application->bootstrapWith(Array)
+#11 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(146): Illuminate\Foundation\Http\Kernel->bootstrap()
+#12 /home/saulo/Área de Trabalho/saulo/clinica/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#13 /home/saulo/Área de Trabalho/saulo/clinica/public/index.php(53): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#14 /home/saulo/Área de Trabalho/saulo/clinica/server.php(21): require_once('/home/saulo/\xC3\x81r...')
+#15 {main}  

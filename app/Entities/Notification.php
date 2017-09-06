@@ -28,10 +28,10 @@ class Notification extends Model
 
 	use TransformableTrait;
 
-	const ERROR = 'BaseLaravel\Notifications\DeniedNotification';
-	const INFO = 'BaseLaravel\Notifications\InfoNotification';
-	const DENIED = 'BaseLaravel\Notifications\DeniedNotification';
-	const VALIDATOR = 'BaseLaravel\Notifications\ValidatorExceptionNotification';
+	const ERROR = 'App\Notifications\DeniedNotification';
+	const INFO = 'App\Notifications\InfoNotification';
+	const DENIED = 'App\Notifications\DeniedNotification';
+	const VALIDATOR = 'App\Notifications\ValidatorExceptionNotification';
 
 	/**
 	 * Update the notifications count to display into the badges.

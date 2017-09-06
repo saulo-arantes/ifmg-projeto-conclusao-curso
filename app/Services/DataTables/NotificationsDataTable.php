@@ -4,7 +4,8 @@ namespace App\Services\DataTables;
 
 use App\Entities\Notification;
 use Illuminate\Support\Facades\Auth;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 /**
  * Class NotificationsDataTable
@@ -20,8 +21,7 @@ class NotificationsDataTable extends DataTable
 	 */
 	public function dataTable()
 	{
-		return $this->datatables
-			->eloquent($this->query())
+		return (new EloquentDataTable($this->query()))
 			->editColumn('type', function (Notification $model) {
 				switch ($model->type) {
 					case Notification::VALIDATOR:
@@ -66,7 +66,7 @@ class NotificationsDataTable extends DataTable
 	/**
 	 * Optional method if you want to use html builder.
 	 *
-	 * @return \Yajra\Datatables\Html\Builder
+	 * @return \Yajra\DataTables\Html\Builder
 	 */
 	public function html()
 	{

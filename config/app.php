@@ -168,10 +168,9 @@ return [
          */
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-        Yajra\Datatables\DatatablesServiceProvider::class,
-        Yajra\Datatables\ButtonsServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Yajra\DataTables\ButtonsServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
-        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
         HighIdeas\UsersOnline\UsersOnlineServiceProvider::class,
         HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,

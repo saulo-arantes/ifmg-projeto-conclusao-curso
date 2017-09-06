@@ -5,7 +5,8 @@ namespace App\Services\DataTables;
 use App\Entities\Schedule;
 use App\Entities\User;
 use Illuminate\Support\Facades\DB;
-use Yajra\Datatables\Services\DataTable;
+use Yajra\DataTables\EloquentDataTable;
+use Yajra\DataTables\Services\DataTable;
 
 /**
  * Class SchedulesDataTable
@@ -15,14 +16,10 @@ use Yajra\Datatables\Services\DataTable;
  */
 class SchedulesDataTable extends DataTable
 {
-    /**
-     * Build DataTable class.
-     *
-     * @return \Yajra\Datatables\Engines\BaseEngine
-     */
+
     public function dataTable()
     {
-        return $this->datatables
+	    return (new EloquentDataTable($this->query()))
             ->eloquent($this->query())->editColumn('doctor.user.name', function (Schedule $model) {
                 return $model->doctor->user->name ?? '<div style="text-align: center">-</div>';
             })->editColumn('patient.name', function (Schedule $model) {
@@ -78,7 +75,7 @@ class SchedulesDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return \Yajra\Datatables\Html\Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {
