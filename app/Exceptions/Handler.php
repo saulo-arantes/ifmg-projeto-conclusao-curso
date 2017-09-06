@@ -2,13 +2,9 @@
 
 namespace App\Exceptions;
 
-use App\Entities\User;
-use BaseLaravel\Notifications\ValidatorExceptionNotification;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\Facades\Notification;
-use Prettus\Validator\Exceptions\ValidatorException;
 
 class Handler extends ExceptionHandler
 {
@@ -46,23 +42,10 @@ class Handler extends ExceptionHandler
      * @param  \Illuminate\Http\Request $request
      * @param  \Exception $exception
      *
-     * @return array|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
+     * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
-    	if ($exception instanceof ValidatorException) {
-
-		    Notification::send(User::allAdmins(),
-			    new ValidatorExceptionNotification($exception->getFile(), $exception->getLine(),
-				    $exception->getMessageBag()->first()));
-
-		    return [
-			    'error'   => true,
-			    'message' => $exception->getMessageBag()->first()
-		    ];
-
-	    }
-
         return parent::render($request, $exception);
     }
 

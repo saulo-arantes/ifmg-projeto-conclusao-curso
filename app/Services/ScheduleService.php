@@ -3,14 +3,15 @@
 namespace App\Services;
 
 use App\Entities\User;
-use App\Http\Requests\ScheduleCreateRequest;;
+use App\Notifications\ExceptionNotification;
+use App\Notifications\ValidatorExceptionNotification;
 use App\Repositories\ScheduleRepository;
 use App\Validators\ScheduleValidator;
-use BaseLaravel\Notifications\ExceptionNotification;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Notification;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
+
+;
 
 /**
  * Class ScheduleService
@@ -44,6 +45,16 @@ class ScheduleService {
 
 			return $schedule['data']['id'];
 
+		} catch (ValidatorException $exception) {
+
+			Notification::send(User::allAdmins(),
+				new ValidatorExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessageBag()->first()));
+
+			return [
+				'error'   => true,
+				'message' => $exception->getMessageBag()->first()
+			];
 		} catch (\Exception $exception) {
 
 			Notification::send(User::allAdmins(),
@@ -67,6 +78,16 @@ class ScheduleService {
 			$this->repository->update($data, $id);
 
 			return true;
+		} catch (ValidatorException $exception) {
+
+			Notification::send(User::allAdmins(),
+				new ValidatorExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessageBag()->first()));
+
+			return [
+				'error'   => true,
+				'message' => $exception->getMessageBag()->first()
+			];
 		} catch (\Exception $exception) {
 
 			Notification::send(User::allAdmins(),

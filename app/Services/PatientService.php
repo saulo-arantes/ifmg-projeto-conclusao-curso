@@ -10,13 +10,10 @@ namespace App\Services;
 
 
 use App\Entities\User;
-use App\Http\Requests\PatientsCreateRequest;
-use App\Http\Requests\PatientsUpdateRequest;
+use App\Notifications\ExceptionNotification;
+use App\Notifications\ValidatorExceptionNotification;
 use App\Repositories\PatientsRepository;
 use App\Validators\PatientsValidator;
-use BaseLaravel\Notifications\ExceptionNotification;
-use BaseLaravel\Notifications\ValidatorExceptionNotification;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Notification;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -28,103 +25,119 @@ use Prettus\Validator\Exceptions\ValidatorException;
  * @since 14/07/2017
  * @package App\Services
  */
-class PatientService
-{
+class PatientService {
 
-    protected $repository;
-    protected $validator;
+	protected $repository;
+	protected $validator;
 
-    /**
-     * PatientService constructor.
-     *
-     * @param PatientsRepository $repository
-     * @param PatientsValidator $validator
-     */
-    public function __construct(PatientsRepository $repository, PatientsValidator $validator)
-    {
-        $this->repository = $repository;
-        $this->validator = $validator;
-    }
+	/**
+	 * PatientService constructor.
+	 *
+	 * @param PatientsRepository $repository
+	 * @param PatientsValidator $validator
+	 */
+	public function __construct(PatientsRepository $repository, PatientsValidator $validator) {
+		$this->repository = $repository;
+		$this->validator  = $validator;
+	}
 
-    public function store(array $data)
-    {
+	public function store(array $data) {
 
-	    $data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
-	    $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
+		$data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
+		$data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
 
-	    $data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
-		    strtotime($data['birthday_date'])) : null;
+		$data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
+			strtotime($data['birthday_date'])) : null;
 
-	    if (!empty(session('photo'))) {
-		    $data['photo'] = session('photo');
-	    }
+		if (!empty(session('photo'))) {
+			$data['photo'] = session('photo');
+		}
 
-        try {
+		try {
 
-            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $user = $this->repository->create($data);
-            $this->repository->updateContacts($data, $user['data']['id']);
-            $this->repository->updateDoctors($data, $user['data']['id']);
+			$user = $this->repository->create($data);
+			$this->repository->updateContacts($data, $user['data']['id']);
+			$this->repository->updateDoctors($data, $user['data']['id']);
 
-            session()->forget('photo');
+			session()->forget('photo');
 
-            return $user['data']['id'];
+			return $user['data']['id'];
 
-        } catch (\Exception $exception) {
+		} catch (ValidatorException $exception) {
 
-	        Notification::send(User::allAdmins(),
-		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
-			        $exception->getMessage()));
+			Notification::send(User::allAdmins(),
+				new ValidatorExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessageBag()->first()));
 
-            return [
-                'error'   => true,
-                'message' => 'Ocorreu um erro ao adicionar o paciente.'
-            ];
-        }
-    }
+			return [
+				'error'   => true,
+				'message' => $exception->getMessageBag()->first()
+			];
+		} catch (\Exception $exception) {
 
-    public function update(array $data, $id)
-    {
+			Notification::send(User::allAdmins(),
+				new ExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessage()));
 
-	    unset($data['role']);
+			return [
+				'error'   => true,
+				'message' => 'Ocorreu um erro ao adicionar o paciente.'
+			];
+		}
+	}
 
-	    $data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
-	    $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
+	public function update(array $data, $id) {
 
-	    if (!empty($data['birthday_date'])) {
-		    $dateTime = date_create_from_format('d/m/Y', $data['birthday_date']);
-		    $data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
-	    } else {
-		    $data['birthday_date'] = null;
-	    }
+		unset($data['role']);
 
-	    if (!empty(session('photo'))) {
-		    $data['photo'] = session('photo');
-	    }
+		$data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
+		$data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
 
-        try {
+		if (!empty($data['birthday_date'])) {
+			$dateTime              = date_create_from_format('d/m/Y', $data['birthday_date']);
+			$data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
+		} else {
+			$data['birthday_date'] = null;
+		}
 
-            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
-            $this->repository->update($data, $id);
-            $this->repository->updateContacts($data, $id);
-            $this->repository->updateDoctors($data, $id);
+		if (!empty(session('photo'))) {
+			$data['photo'] = session('photo');
+		}
 
-            session()->forget('photo');
+		try {
 
-            return true;
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$this->repository->update($data, $id);
+			$this->repository->updateContacts($data, $id);
+			$this->repository->updateDoctors($data, $id);
 
-        } catch (\Exception $exception) {
+			session()->forget('photo');
 
-	        Notification::send(User::allAdmins(),
-		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
-			        $exception->getMessage()));
+			return true;
 
-            return [
-                'error'   => true,
-                'message' => 'Ocorreu um erro ao editar o paciente.'
-            ];
+		} catch (ValidatorException $exception) {
 
-        }
-    }
+			Notification::send(User::allAdmins(),
+				new ValidatorExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessageBag()->first()));
+
+			return [
+				'error'   => true,
+				'message' => $exception->getMessageBag()->first()
+			];
+		} catch (\Exception $exception) {
+
+			Notification::send(User::allAdmins(),
+				new ExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessage()));
+
+			return [
+				'error'   => true,
+				'message' => 'Ocorreu um erro ao editar o paciente.'
+			];
+
+		}
+	}
 }

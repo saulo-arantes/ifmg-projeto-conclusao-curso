@@ -3,14 +3,11 @@
 namespace App\Services;
 
 use App\Entities\User;
-use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\Repositories\LogRepository;
+use App\Notifications\ExceptionNotification;
+use App\Notifications\ValidatorExceptionNotification;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
-use BaseLaravel\Notifications\ExceptionNotification;
-use BaseLaravel\Notifications\ValidatorExceptionNotification;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
@@ -26,201 +23,214 @@ use Prettus\Validator\Exceptions\ValidatorException;
  * @since 20/06/2017
  * @package App\Services
  */
-class UserService
-{
+class UserService {
 
-    protected $repository;
-    protected $validator;
+	protected $repository;
+	protected $validator;
 
-    /**
-     * UserService constructor.
-     *
-     * @param UserRepository $repository
-     * @param UserValidator $validator
-     */
-    public function __construct(UserRepository $repository, UserValidator $validator)
-    {
-        $this->repository = $repository;
-        $this->validator = $validator;
-    }
+	/**
+	 * UserService constructor.
+	 *
+	 * @param UserRepository $repository
+	 * @param UserValidator $validator
+	 */
+	public function __construct(UserRepository $repository, UserValidator $validator) {
+		$this->repository = $repository;
+		$this->validator  = $validator;
+	}
 
-    public function store(array $data)
-    {
+	public function store(array $data) {
 
-	    $data['password'] = 'senha123';
-	    $data['password_confirmation'] = 'senha123';
-	    $data['status'] = 0;
+		$data['password']              = 'senha123';
+		$data['password_confirmation'] = 'senha123';
+		$data['status']                = 0;
 
-	    $data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
-	    $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
+		$data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
+		$data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
 
-	    $data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
-		    strtotime($data['birthday_date'])) : null;
+		$data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
+			strtotime($data['birthday_date'])) : null;
 
-	    if (!empty(session('photo'))) {
-		    $data['photo'] = session('photo');
-	    }
+		if (!empty(session('photo'))) {
+			$data['photo'] = session('photo');
+		}
 
-        try {
+		try {
 
-            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $user = $this->repository->create($data);
-            $this->repository->updateContacts($data, $user['data']['id']);
+			$user = $this->repository->create($data);
+			$this->repository->updateContacts($data, $user['data']['id']);
 
-            session()->forget('photo');
+			session()->forget('photo');
 
-            return $user['data']['id'];
+			return $user['data']['id'];
 
-        } catch (\Exception $exception) {
+		} catch (ValidatorException $exception) {
 
-	        Notification::send(User::allAdmins(),
-		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
-			        $exception->getMessage()));
+			Notification::send(User::allAdmins(),
+				new ValidatorExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessageBag()->first()));
 
-            return [
-                'error'   => true,
-                'message' => 'Ocorreu um erro ao adicionar o usuário.'
-            ];
-        }
-    }
+			return [
+				'error'   => true,
+				'message' => $exception->getMessageBag()->first()
+			];
+		} catch (\Exception $exception) {
 
-    public function update(array $data, $id)
-    {
+			Notification::send(User::allAdmins(),
+				new ExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessage()));
 
-	    unset($data['role']);
+			return [
+				'error'   => true,
+				'message' => 'Ocorreu um erro ao adicionar o usuário.'
+			];
+		}
+	}
 
-	    $data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
-	    $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
+	public function update(array $data, $id) {
 
-	    if (!empty($data['birthday_date'])) {
-		    $dateTime = date_create_from_format('d/m/Y', $data['birthday_date']);
-		    $data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
-	    } else {
-		    $data['birthday_date'] = null;
-	    }
+		unset($data['role']);
 
-	    if (!empty(session('photo'))) {
-		    $data['photo'] = session('photo');
-	    }
+		$data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
+		$data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
 
-        try {
+		if (!empty($data['birthday_date'])) {
+			$dateTime              = date_create_from_format('d/m/Y', $data['birthday_date']);
+			$data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
+		} else {
+			$data['birthday_date'] = null;
+		}
 
-            $this->validator->setId($id);
-            $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
-            $this->repository->update($data, $id);
-            $this->repository->updateContacts($data, $id);
+		if (!empty(session('photo'))) {
+			$data['photo'] = session('photo');
+		}
 
-            session()->forget('photo');
+		try {
 
-            return true;
-        } catch (\Exception $exception) {
+			$this->validator->setId($id);
+			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
+			$this->repository->update($data, $id);
+			$this->repository->updateContacts($data, $id);
 
-	        Notification::send(User::allAdmins(),
-		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
-			        $exception->getMessage()));
+			session()->forget('photo');
 
-            return [
-                'error'   => true,
-                'message' => 'Ocorreu um erro ao editar o usuário.'
-            ];
+			return true;
+		} catch (ValidatorException $exception) {
 
-        }
-    }
+			Notification::send(User::allAdmins(),
+				new ValidatorExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessageBag()->first()));
 
-    /**
-     * @param $id
-     *
-     * @return array|bool
-     */
-    public function changeUserStatus($id)
-    {
-        try {
-            $user = $this->repository->find($id);
-            $this->repository->changeUserStatus($user['data']['id']);
+			return [
+				'error'   => true,
+				'message' => $exception->getMessageBag()->first()
+			];
+		} catch (\Exception $exception) {
 
-            return true;
-        }  catch (\Exception $exception) {
+			Notification::send(User::allAdmins(),
+				new ExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessage()));
 
-	        Notification::send(User::allAdmins(),
-		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
-			        $exception->getMessage()));
+			return [
+				'error'   => true,
+				'message' => 'Ocorreu um erro ao editar o usuário.'
+			];
 
-            return [
-                'error'   => true,
-                'message' => 'Ocorreu um erro ao alterar o status do usuário.'
-            ];
-        }
-    }
+		}
+	}
 
-    /**
-     * @param UserUpdateRequest $request
-     *
-     * @return array
-     */
-    public function updatePassword(UserUpdateRequest $request)
-    {
-        try {
-            # pt-br for beautify validation response
-            $data['senha_atual'] = $request->input('current_password');
-            $data['senha'] = $request->input('password');
-            $data['confirmar_nova_senha'] = $request->input('password_confirmation');
+	/**
+	 * @param $id
+	 *
+	 * @return array|bool
+	 */
+	public function changeUserStatus($id) {
+		try {
+			$user = $this->repository->find($id);
+			$this->repository->changeUserStatus($user['data']['id']);
 
-            $validator = $this->passwordValidator($data);
+			return true;
+		} catch (\Exception $exception) {
 
-            if ($validator->fails()) {
+			Notification::send(User::allAdmins(),
+				new ExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessage()));
 
-	            return [
-		            'error'   => true,
-		            'message' => $validator->getMessageBag()->first()
-	            ];
-            }
+			return [
+				'error'   => true,
+				'message' => 'Ocorreu um erro ao alterar o status do usuário.'
+			];
+		}
+	}
 
-            if (Hash::check($data['senha_atual'], Auth::user()->password)) {
-                Auth::user()->fill([
-                    'password' => bcrypt($data['senha'])
-                ])->save();
+	/**
+	 * @param UserUpdateRequest $request
+	 *
+	 * @return array
+	 */
+	public function updatePassword(UserUpdateRequest $request) {
+		try {
+			# pt-br for beautify validation response
+			$data['senha_atual']          = $request->input('current_password');
+			$data['senha']                = $request->input('password');
+			$data['confirmar_nova_senha'] = $request->input('password_confirmation');
 
-                return [
-                    'error'   => false,
-                    'message' => 'Senha atualizada com sucesso.'
-                ];
-            }
+			$validator = $this->passwordValidator($data);
 
-	        return [
-		        'error'   => true,
-		        'message' => 'Ocorreu um erro ao atualizar a senha.'
-	        ];
+			if ($validator->fails()) {
 
-        } catch (\Exception $exception) {
+				return [
+					'error'   => true,
+					'message' => $validator->getMessageBag()->first()
+				];
+			}
 
-	        Notification::send(User::allAdmins(),
-		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
-			        $exception->getMessage()));
+			if (Hash::check($data['senha_atual'], Auth::user()->password)) {
+				Auth::user()->fill([
+					'password' => bcrypt($data['senha'])
+				])->save();
 
-            return [
-                'error'   => true,
-                'message' => 'Ocorreu um erro ao atualizar a senha.'
-            ];
+				return [
+					'error'   => false,
+					'message' => 'Senha atualizada com sucesso.'
+				];
+			}
 
-        }
-    }
+			return [
+				'error'   => true,
+				'message' => 'Ocorreu um erro ao atualizar a senha.'
+			];
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    private function passwordValidator(array $data)
-    {
-        return Validator::make($data,
-            [
-                'senha_atual'          => 'required',
-                'senha'                => 'required|min:8',
-                'confirmar_nova_senha' => 'required|same:senha|min:8',
-            ]);
-    }
+		} catch (\Exception $exception) {
+
+			Notification::send(User::allAdmins(),
+				new ExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessage()));
+
+			return [
+				'error'   => true,
+				'message' => 'Ocorreu um erro ao atualizar a senha.'
+			];
+
+		}
+	}
+
+	/**
+	 * Get a validator for an incoming registration request.
+	 *
+	 * @param  array $data
+	 *
+	 * @return \Illuminate\Contracts\Validation\Validator
+	 */
+	private function passwordValidator(array $data) {
+		return Validator::make($data,
+			[
+				'senha_atual'          => 'required',
+				'senha'                => 'required|min:8',
+				'confirmar_nova_senha' => 'required|same:senha|min:8',
+			]);
+	}
 
 }

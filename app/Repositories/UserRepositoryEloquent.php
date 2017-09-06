@@ -11,8 +11,10 @@ use App\Validators\UserValidator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\MessageBag;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class UserRepositoryEloquent
@@ -78,17 +80,19 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         ]);
     }
 
-    /**
-     * Update the contacts of an user.
-     *
-     * @param $data
-     * @param $id
-     *
-     * @return array|bool
-     */
+	/**
+	 * Update the contacts of an user.
+	 *
+	 * @param $data
+	 * @param $id
+	 *
+	 * @return bool
+	 * @throws ValidatorException
+	 */
     public function updateContacts($data, $id)
     {
-        if (!empty($data['contact_type_id']) && !empty($data['description'])) {
+        if ($this->contactExists($data)) {
+    	dd($data['contact_type_id'][0]);
 
             # Check if user pass the same quantity of contacts and contact types
             if (count($data['contact_type_id']) == count($data['description'])) {
@@ -113,16 +117,21 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
                 return true;
             }
 
-            return [
-                'error'   => true,
-                'message' => 'Adicione um contato'
-            ];
         }
 
-        return [
-            'error'   => true,
-            'message' => 'Adicione um contato'
-        ];
+	    throw new ValidatorException(new MessageBag(['Adicione um contato.']));
+    }
+
+    private function contactExists(array $data)
+    {
+	    if (!empty($data['contact_type_id'][0]) && !empty($data['description'][0])) {
+	    	if (!isNull($data['contact_type_id'][0]) && !isNull($data['description'][0])) {
+
+	    		return true;
+		    }
+	    }
+
+	    return false;
     }
 
     /**
