@@ -13,7 +13,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8"/>
-    <title>Metronic Admin Theme #1 | Blank Page Layout</title>
+    <title>{{ env('APP_NAME') }}</title>
     <meta http-equiv="X-UA-Compatible"
           content="IE=edge">
     <meta content="width=device-width, initial-scale=1"
@@ -104,13 +104,7 @@
                 <span></span>
             </a>
             <!-- END RESPONSIVE MENU TOGGLER -->
-            @if (Auth::user()->level == \App\Entities\User::ADMIN)
-                @include ('../layouts.components.admin.top-navigation-admin')
-            @elseif (Auth::user()->level == \App\Entities\User::DOCTOR)
-                @include ('../layouts.components.doctor.top-navigation-doctor')
-            @elseif (Auth::user()->level == \App\Entities\User::SECRETARY)
-                @include ('../layouts.components.secretary.top-navigation-secretary')
-            @endif
+            @include ('../layouts.components.' . \App\Entities\User::getUserMiddleware() . '.top-navigation-admin')
         </div>
         <!-- END HEADER INNER -->
     </div>
@@ -121,13 +115,7 @@
     <!-- BEGIN CONTAINER -->
     <div class="page-container">
         <!-- BEGIN SIDEBAR -->
-    @if (Auth::user()->level == \App\Entities\User::ADMIN)
-        @include ('../layouts.components.admin.side-bar-admin')
-    @elseif (Auth::user()->level == \App\Entities\User::DOCTOR)
-        @include ('../layouts.components.doctor.side-bar-doctor')
-    @elseif (Auth::user()->level == \App\Entities\User::SECRETARY)
-        @include ('../layouts.components.secretary.side-bar-secretary')
-    @endif
+    @include ('../layouts.components.' . \App\Entities\User::getUserMiddleware() . '.side-bar-admin')
     <!-- END SIDEBAR -->
         <!-- BEGIN CONTENT -->
     @yield('content')
@@ -162,12 +150,6 @@
 <script src="{{ asset('assets/global/plugins/jquery.min.js') }}"
         type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/js.cookie.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/jquery.blockui.min.js') }}"
         type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"
         type="text/javascript"></script>

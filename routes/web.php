@@ -59,12 +59,11 @@ Route::group(['middleware' => 'auth'],
                     Route::get('create', 'UsersController@create');
                 });
 
-            Route::group(['prefix' => 'logs'],
-                function () {
-                    Route::get('', 'LogsController@index');
-                    Route::get('{id}/mark-as-seen', 'LogsController@markAsSeen');
-                    Route::get('visualize-all', 'LogsController@visualizeAll');
-                });
+	        Route::group(['prefix' => 'notifications'],
+		        function () {
+			        Route::get('', 'NotificationsController@index')->name('notifications.index');
+			        Route::get('visualize-all', 'NotificationsController@visualizeAll')->name('visualizeAll');
+		        });
 
             Route::group(['prefix' => 'schedules'],
                 function () {
@@ -112,9 +111,9 @@ Route::group(['middleware' => 'auth'],
 
             Route::group(['prefix' => 'logs'],
                 function () {
-                    Route::get('', 'LogsController@index');
-                    Route::get('{id}/mark-as-seen', 'LogsController@markAsSeen');
-                    Route::get('visualize-all', 'LogsController@visualizeAll');
+                    Route::get('', 'NotificationsController@index');
+                    Route::get('{id}/mark-as-seen', 'NotificationsController@markAsSeen');
+                    Route::get('visualize-all', 'NotificationsController@visualizeAll');
                 });
 
             Route::group(['prefix' => 'schedules'],

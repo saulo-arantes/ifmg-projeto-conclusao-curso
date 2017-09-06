@@ -19,7 +19,7 @@ class DoctorTableSeeder extends Seeder
     public function run()
     {
 
-        factory(User::class, 5)->create(['level' => User::DOCTOR])->each(function ($user) {
+        factory(User::class, 5)->create(['role' => User::DOCTOR])->each(function ($user) {
             factory(Doctor::class)->create(['user_id' => $user->id]);
         });
     }

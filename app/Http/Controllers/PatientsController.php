@@ -19,14 +19,7 @@ use App\Services\PatientService;
 class PatientsController extends Controller
 {
 
-    /**
-     * @var PatientsRepository
-     */
     protected $repository;
-
-    /**
-     * @var PatientService
-     */
     protected $service;
 
     public function __construct(PatientsRepository $repository, PatientService $service)
@@ -46,24 +39,12 @@ class PatientsController extends Controller
         return view(User::getUserMiddleware() . '.patients.create', compact('extraData'));
     }
 
-    /**
-     * Stores a patient.
-     *
-     * @param PatientsCreateRequest $request
-     * @param null $otherController
-     *
-     * @return array|\Illuminate\Http\RedirectResponse
-     */
-    public function store(PatientsCreateRequest $request, $otherController = null)
+    public function store(PatientsCreateRequest $request)
     {
-        $resultFromStoreUser = $this->service->store($request, $otherController);
+        $resultFromStorePatient = $this->service->store($request->all());
 
-        if (!empty($otherController)) {
-            return $resultFromStoreUser;
-        }
-
-        if (!empty($resultFromStoreUser['error'])) {
-            alert()->error($resultFromStoreUser['message'], 'Erro :(')->persistent('Fechar');
+        if (!empty($resultFromStorePatient['error'])) {
+            alert()->error($resultFromStorePatient['message'], 'Erro :(')->persistent('Fechar');
 
             return back()->withInput();
         }
@@ -73,14 +54,6 @@ class PatientsController extends Controller
         return redirect('/admin/patients');
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $patient = $this->repository->find($id);
@@ -90,27 +63,13 @@ class PatientsController extends Controller
         return view('admin.patients.edit', compact('patient'), compact('extraData'));
     }
 
-
-    /**
-     * Updates an user.
-     *
-     * @param PatientsUpdateRequest $request
-     * @param $id
-     * @param null $otherController
-     *
-     * @return array|bool|\Illuminate\Http\RedirectResponse
-     */
-    public function update(PatientsUpdateRequest $request, $id, $otherController = null)
+    public function update(PatientsUpdateRequest $request, $id)
     {
 
-        $resultFromUpdateUser = $this->service->update($request, $id);
+        $resultFromUpdatePatient = $this->service->update($request->all(), $id);
 
-        if (!empty($otherController)) {
-            return $resultFromUpdateUser;
-        }
-
-        if (!empty($resultFromUpdateUser['error'])) {
-            alert()->error($resultFromUpdateUser['message'], 'Erro :(')->persistent('Fechar');
+        if (!empty($resultFromUpdatePatient['error'])) {
+            alert()->error($resultFromUpdatePatient['message'], 'Erro :(')->persistent('Fechar');
 
             return back()->withInput();
         }

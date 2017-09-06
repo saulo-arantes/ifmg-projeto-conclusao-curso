@@ -2,14 +2,18 @@
 
 namespace App\Services;
 
+use App\Entities\User;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\LogRepository;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
+use BaseLaravel\Notifications\ExceptionNotification;
+use BaseLaravel\Notifications\ValidatorExceptionNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -25,60 +29,39 @@ use Prettus\Validator\Exceptions\ValidatorException;
 class UserService
 {
 
-    /**
-     * @var UserRepository
-     */
     protected $repository;
-
-    /**
-     * @var UserValidator
-     */
     protected $validator;
-
-    /**
-     * @var LogRepository
-     */
-    protected $log;
 
     /**
      * UserService constructor.
      *
      * @param UserRepository $repository
      * @param UserValidator $validator
-     * @param LogRepository $log
      */
-    public function __construct(UserRepository $repository, UserValidator $validator, LogRepository $log)
+    public function __construct(UserRepository $repository, UserValidator $validator)
     {
         $this->repository = $repository;
         $this->validator = $validator;
-        $this->log = $log;
     }
 
-    /**
-     *
-     * @param UserCreateRequest $request
-     *
-     * @return array
-     */
-    public function store(UserCreateRequest $request)
+    public function store(array $data)
     {
+
+	    $data['password'] = 'senha123';
+	    $data['password_confirmation'] = 'senha123';
+	    $data['status'] = 0;
+
+	    $data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
+	    $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
+
+	    $data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
+		    strtotime($data['birthday_date'])) : null;
+
+	    if (!empty(session('photo'))) {
+		    $data['photo'] = session('photo');
+	    }
+
         try {
-
-            $data = $request->all();
-
-            $data['password'] = 'senha123';
-            $data['password_confirmation'] = 'senha123';
-            $data['status'] = 0;
-
-            $data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
-            $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
-
-            $data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
-                strtotime($data['birthday_date'])) : null;
-
-            if (!empty(session('photo'))) {
-                $data['photo'] = session('photo');
-            }
 
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
@@ -89,15 +72,11 @@ class UserService
 
             return $user['data']['id'];
 
-        } catch (ValidatorException $e) {
-            $this->log->validatorException($e);
+        } catch (\Exception $exception) {
 
-            return [
-                'error'   => true,
-                'message' => $e->getMessageBag()->first()
-            ];
-        } catch (\Exception $e) {
-            $this->log->error($e);
+	        Notification::send(User::allAdmins(),
+		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
+			        $exception->getMessage()));
 
             return [
                 'error'   => true,
@@ -106,32 +85,26 @@ class UserService
         }
     }
 
-    /**
-     *
-     * @param UserUpdateRequest $request
-     * @param $id
-     *
-     * @return array|bool
-     */
-    public function update(UserUpdateRequest $request, $id)
+    public function update(array $data, $id)
     {
 
+	    unset($data['role']);
+
+	    $data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
+	    $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
+
+	    if (!empty($data['birthday_date'])) {
+		    $dateTime = date_create_from_format('d/m/Y', $data['birthday_date']);
+		    $data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
+	    } else {
+		    $data['birthday_date'] = null;
+	    }
+
+	    if (!empty(session('photo'))) {
+		    $data['photo'] = session('photo');
+	    }
+
         try {
-            $data = $request->except('level');
-
-            $data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
-            $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
-
-            if (!empty($data['birthday_date'])) {
-                $dateTime = date_create_from_format('d/m/Y', $data['birthday_date']);
-                $data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
-            } else {
-                $data['birthday_date'] = null;
-            }
-
-            if (!empty(session('photo'))) {
-                $data['photo'] = session('photo');
-            }
 
             $this->validator->setId($id);
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
@@ -141,23 +114,11 @@ class UserService
             session()->forget('photo');
 
             return true;
-        } catch (ValidatorException $e) {
-            $this->log->validatorException($e);
+        } catch (\Exception $exception) {
 
-            return [
-                'error'   => true,
-                'message' => $e->getMessageBag()->first()
-            ];
-        } catch (ModelNotFoundException $e) {
-            $this->log->error($e);
-
-            return [
-                'error'   => true,
-                'message' => 'Usuário não encontrado.'
-            ];
-
-        } catch (\Exception $e) {
-            $this->log->error($e);
+	        Notification::send(User::allAdmins(),
+		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
+			        $exception->getMessage()));
 
             return [
                 'error'   => true,
@@ -179,16 +140,11 @@ class UserService
             $this->repository->changeUserStatus($user['data']['id']);
 
             return true;
-        } catch (ModelNotFoundException $e) {
-            $this->log->error($e);
+        }  catch (\Exception $exception) {
 
-            return [
-                'error'   => true,
-                'message' => 'Usuário não encontrado.'
-            ];
-
-        } catch (\Exception $e) {
-            $this->log->error($e);
+	        Notification::send(User::allAdmins(),
+		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
+			        $exception->getMessage()));
 
             return [
                 'error'   => true,
@@ -214,10 +170,10 @@ class UserService
 
             if ($validator->fails()) {
 
-                return [
-                    'error'   => true,
-                    'message' => $validator->getMessageBag()->first()
-                ];
+	            return [
+		            'error'   => true,
+		            'message' => $validator->getMessageBag()->first()
+	            ];
             }
 
             if (Hash::check($data['senha_atual'], Auth::user()->password)) {
@@ -230,15 +186,17 @@ class UserService
                     'message' => 'Senha atualizada com sucesso.'
                 ];
             }
-        } catch (ModelNotFoundException $e) {
-            $this->log->error($e);
 
-            return [
-                'error'   => true,
-                'message' => 'Usuário não encontrado.'
-            ];
-        } catch (\Exception $e) {
-            $this->log->error($e);
+	        return [
+		        'error'   => true,
+		        'message' => 'Ocorreu um erro ao atualizar a senha.'
+	        ];
+
+        } catch (\Exception $exception) {
+
+	        Notification::send(User::allAdmins(),
+		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
+			        $exception->getMessage()));
 
             return [
                 'error'   => true,

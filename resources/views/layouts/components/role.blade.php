@@ -11,11 +11,11 @@
             <input type="text"
                    class="form-control"
                    placeholder="Nível"
-                   id="level"
-                   name="level"
+                   id="role"
+                   name="role"
                    title="Nível do Usuário"
                    maxlength="255"
-                   value="{{ old('level') ?? $data['level'] ?? null }}"
+                   value="{{ old('role') ?? $data['role'] ?? null }}"
                    required>
         </div>
         <div class="help-block with-errors"></div>

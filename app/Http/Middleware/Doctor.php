@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use App\Entities\User;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class Doctor
 {
@@ -18,7 +17,7 @@ class Doctor
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->level == User::DOCTOR) {
+        if (User::isDoctor()) {
             return $next($request);
         }
 

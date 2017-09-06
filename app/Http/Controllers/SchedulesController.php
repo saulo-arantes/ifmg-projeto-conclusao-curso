@@ -9,7 +9,6 @@ use App\Repositories\ScheduleRepository;
 use App\Services\DataTables\SchedulesDataTable;
 use App\Services\ScheduleService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 /**
  * Class AuditsController
@@ -21,13 +20,7 @@ use Illuminate\Support\Facades\Log;
 class SchedulesController extends Controller
 {
 
-    /**
-     * @var ScheduleRepository
-     */
     protected $repository;
-    /**
-     * @var ScheduleService
-     */
     protected $service;
 
     /**
@@ -84,7 +77,7 @@ class SchedulesController extends Controller
     public function calendarAjax(Request $request)
     {
         $schedules = $this->repository->getSchedulesForCalendar($request);
-        Log::debug($schedules);
+
         return response()->json($schedules);
     }
 
@@ -100,22 +93,9 @@ class SchedulesController extends Controller
         return $dataTable->render(User::getUserMiddleware() . '.schedules.list');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  ScheduleCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ScheduleCreateRequest $request, $otherController = null)
+    public function store(ScheduleCreateRequest $request)
     {
-
-
-        $resultFromStoreSchedule = $this->service->store($request, $otherController);
-
-        if (!empty($otherController)) {
-            return $resultFromStoreSchedule;
-        }
+        $resultFromStoreSchedule = $this->service->store($request->all());
 
         if (!empty($resultFromStoreSchedule['error'])) {
             alert()->error($resultFromStoreSchedule['message'], 'Erro :(')->persistent('Fechar');
@@ -128,36 +108,6 @@ class SchedulesController extends Controller
         return redirect('/' . User::getUserMiddleware() . '/schedules');
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $schedule = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $schedule,
-            ]);
-        }
-
-        return view('schedules.show', compact('schedule'));
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
 	    $extraData = $this->repository->getExtraData();
@@ -182,23 +132,10 @@ class SchedulesController extends Controller
         return view(User::getUserMiddleware() . '.schedules.edit', compact('schedule'), compact('extraData'));
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  ScheduleUpdateRequest $request
-     * @param  string $id
-     *
-     * @return Response
-     */
     public function update(ScheduleUpdateRequest $request, $id)
     {
 
-        $resultFromUpdateSchedule = $this->service->update($request, $id);
-
-        if (!empty($otherController)) {
-            return $resultFromUpdateSchedule;
-        }
+        $resultFromUpdateSchedule = $this->service->update($request->all(), $id);
 
         if (!empty($resultFromUpdateSchedule['error'])) {
             alert()->error($resultFromUpdateSchedule['message'], 'Erro :(')->persistent('Fechar');
@@ -211,26 +148,4 @@ class SchedulesController extends Controller
         return back()->withInput();
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $deleted = $this->repository->delete($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'Schedule deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Schedule deleted.');
-    }
 }

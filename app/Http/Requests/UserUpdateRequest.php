@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: saulo
- * Date: 19/06/17
- * Time: 16:52
- */
 
 namespace App\Http\Requests;
 
 
 use App\Entities\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -22,7 +15,7 @@ class UserUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->level == User::ADMIN;
+        return User::isAdmin();
     }
 
     /**

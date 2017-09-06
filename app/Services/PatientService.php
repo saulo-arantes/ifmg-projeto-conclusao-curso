@@ -9,12 +9,15 @@
 namespace App\Services;
 
 
+use App\Entities\User;
 use App\Http\Requests\PatientsCreateRequest;
 use App\Http\Requests\PatientsUpdateRequest;
-use App\Repositories\LogRepository;
 use App\Repositories\PatientsRepository;
 use App\Validators\PatientsValidator;
+use BaseLaravel\Notifications\ExceptionNotification;
+use BaseLaravel\Notifications\ValidatorExceptionNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Notification;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -28,55 +31,35 @@ use Prettus\Validator\Exceptions\ValidatorException;
 class PatientService
 {
 
-    /**
-     * @var PatientsRepository
-     */
     protected $repository;
-
-    /**
-     * @var PatientsValidator
-     */
     protected $validator;
-
-    /**
-     * @var LogRepository
-     */
-    protected $log;
 
     /**
      * PatientService constructor.
      *
      * @param PatientsRepository $repository
      * @param PatientsValidator $validator
-     * @param LogRepository $log
      */
-    public function __construct(PatientsRepository $repository, PatientsValidator $validator, LogRepository $log)
+    public function __construct(PatientsRepository $repository, PatientsValidator $validator)
     {
         $this->repository = $repository;
         $this->validator = $validator;
-        $this->log = $log;
     }
 
-    /**
-     * @param PatientsCreateRequest $request
-     *
-     * @return array
-     */
-    public function store(PatientsCreateRequest $request)
+    public function store(array $data)
     {
+
+	    $data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
+	    $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
+
+	    $data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
+		    strtotime($data['birthday_date'])) : null;
+
+	    if (!empty(session('photo'))) {
+		    $data['photo'] = session('photo');
+	    }
+
         try {
-
-            $data = $request->all();
-
-            $data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
-            $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
-
-            $data['birthday_date'] = !empty($data['birthday_date']) ? date('Y-m-d',
-                strtotime($data['birthday_date'])) : null;
-
-            if (!empty(session('photo'))) {
-                $data['photo'] = session('photo');
-            }
 
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
@@ -88,15 +71,11 @@ class PatientService
 
             return $user['data']['id'];
 
-        } catch (ValidatorException $e) {
-            $this->log->validatorException($e);
+        } catch (\Exception $exception) {
 
-            return [
-                'error'   => true,
-                'message' => $e->getMessageBag()->first()
-            ];
-        } catch (\Exception $e) {
-            $this->log->error($e);
+	        Notification::send(User::allAdmins(),
+		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
+			        $exception->getMessage()));
 
             return [
                 'error'   => true,
@@ -105,32 +84,27 @@ class PatientService
         }
     }
 
-    /**
-     * @param PatientsUpdateRequest $request
-     * @param $id
-     *
-     * @return array|bool
-     */
-    public function update(PatientsUpdateRequest $request, $id)
+    public function update(array $data, $id)
     {
+
+	    unset($data['role']);
+
+	    $data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
+	    $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
+
+	    if (!empty($data['birthday_date'])) {
+		    $dateTime = date_create_from_format('d/m/Y', $data['birthday_date']);
+		    $data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
+	    } else {
+		    $data['birthday_date'] = null;
+	    }
+
+	    if (!empty(session('photo'))) {
+		    $data['photo'] = session('photo');
+	    }
+
         try {
-            $data = $request->except('level');
 
-            $data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
-            $data['rg'] = !empty($data['rg']) ? $data['rg'] : null;
-
-            if (!empty($data['birthday_date'])) {
-                $dateTime = date_create_from_format('d/m/Y', $data['birthday_date']);
-                $data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
-            } else {
-                $data['birthday_date'] = null;
-            }
-
-            if (!empty(session('photo'))) {
-                $data['photo'] = session('photo');
-            }
-
-            $this->validator->setId($id);
             $this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
             $this->repository->update($data, $id);
             $this->repository->updateContacts($data, $id);
@@ -139,23 +113,12 @@ class PatientService
             session()->forget('photo');
 
             return true;
-        } catch (ValidatorException $e) {
-            $this->log->validatorException($e);
 
-            return [
-                'error'   => true,
-                'message' => $e->getMessageBag()->first()
-            ];
-        } catch (ModelNotFoundException $e) {
-            $this->log->error($e);
+        } catch (\Exception $exception) {
 
-            return [
-                'error'   => true,
-                'message' => 'Usuário não encontrado.'
-            ];
-
-        } catch (\Exception $e) {
-            $this->log->error($e);
+	        Notification::send(User::allAdmins(),
+		        new ExceptionNotification($exception->getFile(), $exception->getLine(),
+			        $exception->getMessage()));
 
             return [
                 'error'   => true,

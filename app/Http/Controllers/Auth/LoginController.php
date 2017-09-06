@@ -37,7 +37,7 @@ class LoginController extends Controller
     }
 
     /**
-     * Log the user out of the application.
+     * Notification the user out of the application.
      *
      * @param \Illuminate\Http\Request $request
      *

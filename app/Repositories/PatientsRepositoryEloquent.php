@@ -88,7 +88,7 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
             }
         }
 
-        if (Auth::user()->level == User::DOCTOR) {
+        if (User::isDoctor()) {
             $doctor = (new Doctor)->where('user_id', Auth::user()->id)->first();
             $extraData['doctor_id'] = $doctor->id;
         }

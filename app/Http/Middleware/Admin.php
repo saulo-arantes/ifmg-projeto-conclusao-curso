@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Entities\Notification;
 use App\Entities\User;
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
 class Admin
 {
@@ -18,7 +18,9 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->level == User::ADMIN) {
+        if (User::isAdmin()) {
+	        Notification::updateBadges();
+
             return $next($request);
         }
 

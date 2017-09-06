@@ -1,18 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: saulo
- * Date: 04/08/17
- * Time: 09:26
- */
 
 namespace App\Services;
 
-use App\Http\Requests\ScheduleCreateRequest;
-use App\Repositories\LogRepository;
+use App\Entities\User;
+use App\Http\Requests\ScheduleCreateRequest;;
 use App\Repositories\ScheduleRepository;
 use App\Validators\ScheduleValidator;
+use BaseLaravel\Notifications\ExceptionNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Notification;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -25,44 +21,22 @@ use Prettus\Validator\Exceptions\ValidatorException;
  */
 class ScheduleService {
 
-	/**
-	 * @var ScheduleRepository
-	 */
 	protected $repository;
-
-	/**
-	 * @var ScheduleValidator
-	 */
 	protected $validator;
-
-	/**
-	 * @var LogRepository
-	 */
-	protected $log;
 
 	/**
 	 * ScheduleService constructor.
 	 *
 	 * @param ScheduleRepository $repository
 	 * @param ScheduleValidator $validator
-	 * @param LogRepository $log
 	 */
-	public function __construct(ScheduleRepository $repository, ScheduleValidator $validator, LogRepository $log) {
+	public function __construct(ScheduleRepository $repository, ScheduleValidator $validator) {
 		$this->repository = $repository;
 		$this->validator  = $validator;
-		$this->log        = $log;
 	}
 
-	/**
-	 *
-	 * @param ScheduleCreateRequest $request
-	 *
-	 * @return array
-	 */
-	public function store(ScheduleCreateRequest $request) {
+	public function store(array $data) {
 		try {
-
-			$data = $request->all();;
 
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
@@ -70,15 +44,11 @@ class ScheduleService {
 
 			return $schedule['data']['id'];
 
-		} catch (ValidatorException $e) {
-			$this->log->validatorException($e);
+		} catch (\Exception $exception) {
 
-			return [
-				'error'   => true,
-				'message' => $e->getMessageBag()->first()
-			];
-		} catch (\Exception $e) {
-			$this->log->error($e);
+			Notification::send(User::allAdmins(),
+				new ExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessage()));
 
 			return [
 				'error'   => true,
@@ -87,32 +57,21 @@ class ScheduleService {
 		}
 	}
 
-	public function update(ScheduleCreateRequest $request, $id) {
-		try {
-			$data = $request->except('level');
+	public function update(array $data, $id) {
 
-			$this->validator->setId($id);
+		unset($data['role']);
+
+		try {
+
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_UPDATE);
 			$this->repository->update($data, $id);
 
 			return true;
-		} catch (ValidatorException $e) {
-			$this->log->validatorException($e);
+		} catch (\Exception $exception) {
 
-			return [
-				'error'   => true,
-				'message' => $e->getMessageBag()->first()
-			];
-		} catch (ModelNotFoundException $e) {
-			$this->log->error($e);
-
-			return [
-				'error'   => true,
-				'message' => 'Agendamento não encontrado.'
-			];
-
-		} catch (\Exception $e) {
-			$this->log->error($e);
+			Notification::send(User::allAdmins(),
+				new ExceptionNotification($exception->getFile(), $exception->getLine(),
+					$exception->getMessage()));
 
 			return [
 				'error'   => true,

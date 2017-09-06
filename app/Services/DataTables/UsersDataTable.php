@@ -30,7 +30,7 @@ class UsersDataTable extends DataTable
                                aria-hidden="true"></i>
                         </a>';
             })->editColumn('level', function (User $model) {
-                switch ($model->level) {
+                switch ($model->role) {
                     case User::ADMIN:
                         return '<label class="label label-sm label-danger center-block">Admin</label>';
                     case User::DOCTOR:

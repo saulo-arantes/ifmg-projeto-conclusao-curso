@@ -110,7 +110,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item start {{ Request::is('admin/logs') ? 'active' : '' }}">
+            <li class="nav-item start {{ Request::is('notifications') ? 'active' : '' }}">
                 <a href="{{ url('/admin/logs') }}">
                     <i class="fa fa-warning" aria-hidden="true"></i>
                     <span class="title">Log</span>

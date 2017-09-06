@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Entities\ContactType;
-use App\Entities\Log;
+use App\Entities\Notification;
 use App\Entities\User;
 use App\Entities\UserContact;
 use App\Presenters\UserPresenter;
@@ -68,13 +68,13 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      */
     public function changeUserStatus($userID)
     {
-        $user = User::find($userID);
+        $user = (new User)->find($userID);
         $user->status ? $user->update(['status' => false]) : $user->update(['status' => true]);
 
-        Log::create([
-            'type'        => Log::INFO,
+	    (new Notification)->create([
+            'type'        => Notification::INFO,
             'user_id'     => Auth::user()->id,
-            'description' => ('Alterou status do usuário ' . User::find($userID)->name . ' (ID: ' . $userID . ') para ' . ($user->status ? 'ATIVO' : 'INATIVO'))
+            'description' => ('Alterou status do usuário ' . (new User)->find($userID)->name . ' (ID: ' . $userID . ') para ' . ($user->status ? 'ATIVO' : 'INATIVO'))
         ]);
     }
 
@@ -93,7 +93,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             # Check if user pass the same quantity of contacts and contact types
             if (count($data['contact_type_id']) == count($data['description'])) {
 
-                $contacts = UserContact::where('user_id', $id)->get()->toArray();
+                $contacts = (new UserContact)->where('user_id', $id)->get()->toArray();
                 foreach ($contacts as $contact) {
                     UserContact::destroy($contact['id']);
                 }
@@ -101,7 +101,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
                 $i = 0;
                 foreach ($data['contact_type_id'] as $contact) {
                     if (!empty($data['description'][$i])) {
-                        UserContact::create([
+	                    (new UserContact)->create([
                             'user_id'         => $id,
                             'contact_type_id' => $contact,
                             'description'     => $data['description'][$i]

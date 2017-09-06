@@ -11,7 +11,6 @@ namespace App\Http\Requests;
 
 use App\Entities\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class UserCreateRequest extends FormRequest
 {
@@ -22,7 +21,7 @@ class UserCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->level == User::ADMIN;
+        return User::isAdmin();
     }
 
     /**

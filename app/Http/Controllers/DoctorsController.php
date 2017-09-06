@@ -19,14 +19,8 @@ use Prettus\Validator\Exceptions\ValidatorException;
 class DoctorsController extends Controller
 {
 
-    /**
-     * @var DoctorRepository
-     */
-    protected $repository;
 
-    /**
-     * @var DoctorValidator
-     */
+    protected $repository;
     protected $validator;
 
     public function __construct(DoctorRepository $repository, DoctorValidator $validator)

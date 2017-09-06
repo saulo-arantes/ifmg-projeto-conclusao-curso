@@ -60,22 +60,10 @@ class UsersController extends Controller
         return view('admin.users.create', compact('extraData'));
     }
 
-    /**
-     * Stores an user.
-     *
-     * @param UserCreateRequest $request
-     * @param null $otherController
-     *
-     * @return array|\Illuminate\Http\RedirectResponse
-     */
-    public function store(UserCreateRequest $request, $otherController = null)
+    public function store(UserCreateRequest $request)
     {
 
-        $resultFromStoreUser = $this->service->store($request, $otherController);
-
-        if (!empty($otherController)) {
-            return $resultFromStoreUser;
-        }
+        $resultFromStoreUser = $this->service->store($request->all());
 
         if (!empty($resultFromStoreUser['error'])) {
             alert()->error($resultFromStoreUser['message'], 'Erro :(')->persistent('Fechar');
@@ -165,23 +153,10 @@ class UsersController extends Controller
         return $this->update($request, Auth::user()->id);
     }
 
-    /**
-     * Updates an user.
-     *
-     * @param UserUpdateRequest $request
-     * @param $id
-     * @param null $otherController
-     *
-     * @return array|bool|\Illuminate\Http\RedirectResponse
-     */
-    public function update(UserUpdateRequest $request, $id, $otherController = null)
+    public function update(UserUpdateRequest $request, $id)
     {
 
-        $resultFromUpdateUser = $this->service->update($request, $id);
-
-        if (!empty($otherController)) {
-            return $resultFromUpdateUser;
-        }
+        $resultFromUpdateUser = $this->service->update($request->all(), $id);
 
         if (!empty($resultFromUpdateUser['error'])) {
             alert()->error($resultFromUpdateUser['message'], 'Erro :(')->persistent('Fechar');

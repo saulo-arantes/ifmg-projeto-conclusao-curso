@@ -50,7 +50,7 @@
                                     </div>
                                     <div class="row">
                                         @include('layouts.components.status')
-                                        @include('layouts.components.level')
+                                        @include('layouts.components.role')
                                     </div>
                                     <div class="row">
                                         @include('layouts.components.new-password')

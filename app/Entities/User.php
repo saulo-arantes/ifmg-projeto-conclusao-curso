@@ -25,7 +25,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property boolean status
  * @property string zipcode
  * @property string password
- * @property int level
+ * @property string role
  * @property UserContact contacts
  * @property \DateTime created_at
  * @property \DateTime updated_at
@@ -35,9 +35,9 @@ class User extends Authenticatable implements AuditableContract
     use Auditable;
     use Notifiable;
 
-    const ADMIN = 0;
-    const DOCTOR = 1;
-    const SECRETARY = 2;
+    const ADMIN = 'admin';
+    const DOCTOR = 'doctor';
+    const SECRETARY = 'secretary';
 
     /**
      * The attributes that are mass assignable.
@@ -48,7 +48,7 @@ class User extends Authenticatable implements AuditableContract
         'address',
         'complement',
         'email',
-        'level',
+        'role',
         'name',
         'neighborhood',
         'number',
@@ -75,15 +75,26 @@ class User extends Authenticatable implements AuditableContract
 
     public static function getUserMiddleware()
     {
-        switch (Auth::user()->level) {
-            case User::ADMIN:
-                return 'admin';
-            case User::DOCTOR:
-                return 'doctor';
-            case User::SECRETARY:
-                return 'secretary';
-            default:
-                return 'secretary';
-        }
+        return Auth::user()->role;
     }
+
+	/**
+	 * Checa se o usuário logado é do tipo ADMIN.
+	 *
+	 * @return bool
+	 */
+	public static function isAdmin()
+	{
+		return Auth::user()->role == User::ADMIN;
+	}
+
+	public static function allAdmins()
+	{
+		return (new User)->where('role', User::ADMIN)->get();
+	}
+
+	public static function isDoctor()
+	{
+		return Auth::user()->role == User::DOCTOR;
+	}
 }
