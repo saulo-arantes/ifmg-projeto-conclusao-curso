@@ -54,6 +54,7 @@ class PatientsTransformer extends TransformerAbstract
             'birth_cephalic_length' => $model->birth_cephalic_length,
             'birth_type'            => $model->birth_type,
             'blood_type'            => $model->blood_type,
+	        'doctors'               => $model->doctors,
             'father_id'             => $model->father_id,
             'mother_id'             => $model->mother_id,
             'city_id'               => $model->city_id,
@@ -94,4 +95,12 @@ class PatientsTransformer extends TransformerAbstract
 
         return null;
     }
+
+	public function includeDoctors(Patient $model)
+	{
+		if (!empty($model->doctors)) {
+
+			return $this->collection($model->doctors, new DoctorPatientTransformer());
+		}
+	}
 }

@@ -73,7 +73,7 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
         $extraData['middleware'] = User::getUserMiddleware();
 
         if (!empty($id)) {
-            $extraData['doctor_patient'] = DoctorPatient::where('patient_id', $id)->get();
+            $extraData['doctor_patient'] = (new DoctorPatient)->where('patient_id', $id)->get();
             $patientDoctors = [];
             foreach ($extraData['doctor_patient'] as $doctors) {
                 $patientDoctors[] = $doctors->doctor_id;
@@ -81,15 +81,15 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
             $extraData['doctor_patient'] = $patientDoctors;
             $data = $this->find($id);
             if (!empty($data['data']['city']['data']['id'])) {
-                $extraData['cities'] = State::find($data['data']['city']['data']['state']['id'])->cities;
+                $extraData['cities'] = (new State)->find($data['data']['city']['data']['state']['id'])->cities;
             }
             if (!empty($data['data']['naturalness']['data']['id'])) {
-                $extraData['naturalness'] = State::find($data['data']['naturalness']['data']['state']['id'])->cities;
+                $extraData['naturalness'] = (new State)->find($data['data']['naturalness']['data']['state']['id'])->cities;
             }
         }
 
         if (Auth::user()->level == User::DOCTOR) {
-            $doctor = Doctor::where('user_id', Auth::user()->id)->first();
+            $doctor = (new Doctor)->where('user_id', Auth::user()->id)->first();
             $extraData['doctor_id'] = $doctor->id;
         }
 
@@ -111,7 +111,7 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
             # Check if patient pass the same quantity of contacts and contact types
             if (count($data['contact_type_id']) == count($data['description'])) {
 
-                $contacts = PatientContact::where('patient_id', $id)->get()->toArray();
+                $contacts = (new PatientContact)->where('patient_id', $id)->get()->toArray();
                 foreach ($contacts as $contact) {
                     PatientContact::destroy($contact['id']);
                 }
@@ -119,7 +119,7 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
                 $i = 0;
                 foreach ($data['contact_type_id'] as $contact) {
                     if (!empty($data['description'][$i])) {
-                        PatientContact::create([
+	                    (new PatientContact)->create([
                             'patient_id'      => $id,
                             'contact_type_id' => $contact,
                             'description'     => $data['description'][$i]
@@ -155,13 +155,13 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
     {
         if (!empty($data['doctors'])) {
 
-            $doctorPatients = DoctorPatient::where('patient_id', $id)->get()->toArray();
+            $doctorPatients = (new DoctorPatient)->where('patient_id', $id)->get()->toArray();
             foreach ($doctorPatients as $doctorPatient) {
                 DoctorPatient::destroy($doctorPatient['id']);
             }
-
+			#dd($data);
             foreach ($data['doctors'] as $doctor) {
-                DoctorPatient::create([
+	            (new DoctorPatient)->create([
                     'patient_id' => $id,
                     'doctor_id'  => $doctor
                 ]);

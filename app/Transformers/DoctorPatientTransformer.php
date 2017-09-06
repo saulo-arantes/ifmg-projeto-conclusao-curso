@@ -27,6 +27,8 @@ class DoctorPatientTransformer extends TransformerAbstract
             'id'         => (int)$model->id,
             'doctor_id'  => $model->doctor_id,
             'patient_id' => $model->patient_id,
+	        'doctor'     => $model->doctor,
+	        'patient'    => $model->patient,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
