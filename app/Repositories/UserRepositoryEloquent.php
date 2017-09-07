@@ -92,7 +92,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function updateContacts($data, $id)
     {
         if ($this->contactExists($data)) {
-    	dd($data['contact_type_id'][0]);
 
             # Check if user pass the same quantity of contacts and contact types
             if (count($data['contact_type_id']) == count($data['description'])) {
@@ -124,8 +123,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     private function contactExists(array $data)
     {
-	    if (!empty($data['contact_type_id'][0]) && !empty($data['description'][0])) {
-	    	if (!isNull($data['contact_type_id'][0]) && !isNull($data['description'][0])) {
+	    if (!empty($data['contact_type_id']) && !empty($data['description'])) {
+	    	if (!is_null($data['contact_type_id']) && !is_null($data['description'])) {
 
 	    		return true;
 		    }
