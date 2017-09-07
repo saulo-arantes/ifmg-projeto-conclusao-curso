@@ -4,19 +4,61 @@
                for="name">Status</label>
         @include('layouts.components.asterisk')
         <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-pencil-square-o"
-                       aria-hidden="true"></i>
-                </span>
-            <input type="text"
-                   class="form-control"
-                   placeholder="Status"
-                   id="status"
-                   name="status"
-                   title="Status"
-                   maxlength="255"
-                   value="{{ old('status') ?? $data['status'] ?? null }}"
-                   required>
+            <div class="md-radio-inline">
+
+                @if(!empty($data['status']))
+
+                    <div class="md-radio">
+                        <input type="radio"
+                               id="active"
+                               name="status"
+                               class="md-radiobtn"
+                               value="1" {{ $data['status'] == 1 ? 'checked' : '' }} >
+                        <label for="active">
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> Ativo </label>
+                    </div>
+                    <div class="md-radio">
+                        <input type="radio"
+                               id="inactive"
+                               name="status"
+                               class="md-radiobtn"
+                               value="0" {{ $data['status'] == 0 ? 'checked' : '' }} >
+                        <label for="active">
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> Inativo </label>
+                    </div>
+
+                @else
+
+                    <div class="md-radio">
+                        <input type="radio"
+                               id="active"
+                               name="status"
+                               class="md-radiobtn"
+                               value="1" {{ old('status') == 1 ? 'checked' : '' }} >
+                        <label for="active">
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> Ativo </label>
+                    </div>
+                    <div class="md-radio">
+                        <input type="radio"
+                               id="inactive"
+                               name="status"
+                               class="md-radiobtn"
+                               value="0" {{ old('status') == 0 ? 'checked' : '' }} >
+                        <label for="active">
+                            <span class="inc"></span>
+                            <span class="check"></span>
+                            <span class="box"></span> Inativo </label>
+                    </div>
+
+                @endif
+
+            </div>
         </div>
         <div class="help-block with-errors"></div>
     </div>

@@ -90,6 +90,10 @@
                                                 @include('layouts.components.name', ['data' => $user['data']])
                                                 @include('layouts.components.email', ['data' => $user['data']])
                                             </div>
+                                            <div class="row">
+                                                @include('layouts.components.status', ['data' => $user['data']])
+                                                @include('layouts.components.role', ['data' => $user['data']])
+                                            </div>
                                             <h4 class="form-section">Endereço</h4>
                                             <div class="row">
                                                 @include('layouts.components.address', ['data' => $user['data']])
