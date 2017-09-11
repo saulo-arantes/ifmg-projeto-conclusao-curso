@@ -17,16 +17,20 @@ class UsersDataTable extends DataTable
 
     public function dataTable()
     {
-	    return (new EloquentDataTable($this->query()))
-		    ->editColumn('created_at', function (User $model) {
+        return (new EloquentDataTable($this->query()))
+            ->editColumn('created_at', function (User $model) {
                 return date('d/m/Y H:i:s', strtotime($model->created_at));
-            })->addColumn('edit', function (User $model) {
+            }
+            )
+            ->addColumn('edit', function (User $model) {
                 return '<a href="users/' . $model->id . '/edit" 
                            class="btn btn-xs btn-primary center-block"> 
                             <i class="fa fa-pencil-square-o" 
                                aria-hidden="true"></i>
                         </a>';
-            })->editColumn('level', function (User $model) {
+            }
+            )
+            ->editColumn('level', function (User $model) {
                 switch ($model->role) {
                     case User::ADMIN:
                         return '<label class="label label-sm label-danger center-block">Admin</label>';
@@ -37,7 +41,9 @@ class UsersDataTable extends DataTable
                     default:
                         return '<label class="label label-sm label-default center-block">Desconhecido</label>';
                 }
-            })->escapeColumns([]);
+            }
+            )
+            ->escapeColumns([]);
     }
 
     /**
@@ -60,38 +66,41 @@ class UsersDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->columns($this->getColumns())
-            ->setTableAttributes([
-                'class' => 'table table-bordered table-hover table-responsive table-full-width',
-            ])
-            ->parameters($this->getBuilderParameters())->parameters([
-                'dom'        => 'Blfrtip',
-                'responsive' => true,
-                'language'   => ['url' => '/assets/global/plugins/datatables/DataTables-1.10.12/portuguese-brasil.json'],
-                'lengthMenu' => [
-                    [
-                        5,
-                        10,
-                        15,
-                        20,
-                        100
-                    ],
-                    [
-                        5,
-                        10,
-                        15,
-                        20,
-                        100
-                    ]
-                ],
-                'pageLength' => 10,
-                'buttons'    => [
-                    'create',
-                    'export',
-                    'print',
-                    'reload',
-                ],
-            ]);
+                    ->columns($this->getColumns())
+                    ->setTableAttributes([
+                                             'class' => 'table table-bordered table-hover table-responsive table-full-width',
+                                         ]
+                    )
+                    ->parameters($this->getBuilderParameters())
+                    ->parameters([
+                                     'dom' => 'Blfrtip',
+                                     'responsive' => true,
+                                     'language' => ['url' => '/assets/global/plugins/datatables/DataTables-1.10.12/portuguese-brasil.json'],
+                                     'lengthMenu' => [
+                                         [
+                                             5,
+                                             10,
+                                             15,
+                                             20,
+                                             100
+                                         ],
+                                         [
+                                             5,
+                                             10,
+                                             15,
+                                             20,
+                                             100
+                                         ]
+                                     ],
+                                     'pageLength' => 10,
+                                     'buttons' => [
+                                         'create',
+                                         'export',
+                                         'print',
+                                         'reload',
+                                     ],
+                                 ]
+                    );
     }
 
     /**
@@ -103,17 +112,20 @@ class UsersDataTable extends DataTable
     {
         return [
             'id',
-            'name'         => ['title' => 'Nome'],
-            'email'        => ['title' => 'E-mail'],
-            'address'      => ['title' => 'Endereço'],
+            'name' => ['title' => 'Nome'],
+            'email' => ['title' => 'E-mail'],
+            'address' => ['title' => 'Endereço'],
             'neighborhood' => ['title' => 'Bairro'],
-            'number'       => ['title' => 'Número'],
-            'level'        => ['title' => 'Nível'],
-            'created_at'   => ['title' => 'Data'],
-            'edit'         => [
-                'title'      => 'Editar',
+            'number' => ['title' => 'Número'],
+            'level' => ['title' => 'Nível',
+                        'searchable' => false,
+                        'orderable' => false,
+                ],
+            'created_at' => ['title' => 'Data'],
+            'edit' => [
+                'title' => 'Editar',
                 'searchable' => false,
-                'orderable'  => false
+                'orderable' => false
             ]
         ];
     }

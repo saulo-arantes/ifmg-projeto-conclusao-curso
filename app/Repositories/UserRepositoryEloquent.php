@@ -123,8 +123,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     private function contactExists(array $data)
     {
-	    if (!empty($data['contact_type_id']) && !empty($data['description'])) {
-	    	if (!is_null($data['contact_type_id']) && !is_null($data['description'])) {
+	    if (!empty($data['contact_type_id'][0]) && !empty($data['description'][0])) {
+	    	if (!is_null($data['contact_type_id'][0]) && !is_null($data['description'][0])) {
 
 	    		return true;
 		    }

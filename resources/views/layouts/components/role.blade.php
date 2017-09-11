@@ -13,7 +13,7 @@
                                id="admin"
                                name="role"
                                class="md-radiobtn"
-                               value="admin" {{ $data['status'] == 'admin' ? 'checked' : '' }} >
+                               value="admin" {{ $data['role'] == 'admin' ? 'checked' : '' }} >
                         <label for="admin">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -24,7 +24,7 @@
                                id="doctor"
                                name="role"
                                class="md-radiobtn"
-                               value="doctor" {{ $data['status'] == 'doctor' ? 'checked' : '' }} >
+                               value="doctor" {{ $data['role'] == 'doctor' ? 'checked' : '' }} >
                         <label for="doctor">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -35,7 +35,7 @@
                                id="secretary"
                                name="role"
                                class="md-radiobtn"
-                               value="secretary" {{ $data['status'] == 'secretary' ? 'checked' : '' }} >
+                               value="secretary" {{ $data['role'] == 'secretary' ? 'checked' : '' }} >
                         <label for="secretary">
                             <span class="inc"></span>
                             <span class="check"></span>

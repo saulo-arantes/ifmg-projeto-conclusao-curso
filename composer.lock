@@ -2890,16 +2890,16 @@
         },
         {
             "name": "uxweb/sweet-alert",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/uxweb/sweet-alert.git",
-                "reference": "d32915471455061d6257448cbb8de16ecc521331"
+                "reference": "92519b916755d673f92343767edd06110b167d05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uxweb/sweet-alert/zipball/d32915471455061d6257448cbb8de16ecc521331",
-                "reference": "d32915471455061d6257448cbb8de16ecc521331",
+                "url": "https://api.github.com/repos/uxweb/sweet-alert/zipball/92519b916755d673f92343767edd06110b167d05",
+                "reference": "92519b916755d673f92343767edd06110b167d05",
                 "shasum": ""
             },
             "require": {
@@ -2912,6 +2912,16 @@
                 "phpunit/phpunit": "^5.5"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "UxWeb\\SweetAlert\\SweetAlertServiceProvider"
+                    ],
+                    "aliases": {
+                        "Alert": "UxWeb\\SweetAlert\\SweetAlert"
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "UxWeb\\SweetAlert\\": "src/SweetAlert/"
@@ -2937,7 +2947,7 @@
                 "notifier",
                 "sweet"
             ],
-            "time": "2017-03-27T03:54:49+00:00"
+            "time": "2017-09-10T17:14:08+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3055,16 +3065,16 @@
         },
         {
             "name": "yajra/laravel-datatables-html",
-            "version": "v3.0.0",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables-html.git",
-                "reference": "b3476eba7fed65ae5b5277d38aa516dbb70a9c3d"
+                "reference": "fbd97837d2021c5ed47d538316a5756efee13882"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables-html/zipball/b3476eba7fed65ae5b5277d38aa516dbb70a9c3d",
-                "reference": "b3476eba7fed65ae5b5277d38aa516dbb70a9c3d",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables-html/zipball/fbd97837d2021c5ed47d538316a5756efee13882",
+                "reference": "fbd97837d2021c5ed47d538316a5756efee13882",
                 "shasum": ""
             },
             "require": {
@@ -3110,7 +3120,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2017-08-31T01:56:10+00:00"
+            "time": "2017-09-09T05:27:28+00:00"
         },
         {
             "name": "yajra/laravel-datatables-oracle",

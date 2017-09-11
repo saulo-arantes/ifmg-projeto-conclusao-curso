@@ -12,8 +12,10 @@ use App\Entities\User;
 use App\Presenters\PatientsPresenter;
 use App\Validators\PatientsValidator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\MessageBag;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
  * Class PatientsRepositoryEloquent
@@ -69,11 +71,13 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
     {
         $extraData['states'] = State::all();
         $extraData['contact_types'] = ContactType::all();
-        $extraData['doctors'] = Doctor::with('user')->get();
+        $extraData['doctors'] = Doctor::with('user')
+                                      ->get();
         $extraData['middleware'] = User::getUserMiddleware();
 
         if (!empty($id)) {
-            $extraData['doctor_patient'] = (new DoctorPatient)->where('patient_id', $id)->get();
+            $extraData['doctor_patient'] = (new DoctorPatient)->where('patient_id', $id)
+                                                              ->get();
             $patientDoctors = [];
             foreach ($extraData['doctor_patient'] as $doctors) {
                 $patientDoctors[] = $doctors->doctor_id;
@@ -89,7 +93,8 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
         }
 
         if (User::isDoctor()) {
-            $doctor = (new Doctor)->where('user_id', Auth::user()->id)->first();
+            $doctor = (new Doctor)->where('user_id', Auth::user()->id)
+                                  ->first();
             $extraData['doctor_id'] = $doctor->id;
         }
 
@@ -102,16 +107,19 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
      * @param $data
      * @param $id
      *
-     * @return array|bool
+     * @return bool
+     * @throws ValidatorException
      */
     public function updateContacts($data, $id)
     {
-        if (!empty($data['contact_type_id']) && !empty($data['description'])) {
+        if ($this->contactExists($data)) {
 
             # Check if patient pass the same quantity of contacts and contact types
             if (count($data['contact_type_id']) == count($data['description'])) {
 
-                $contacts = (new PatientContact)->where('patient_id', $id)->get()->toArray();
+                $contacts = (new PatientContact)->where('patient_id', $id)
+                                                ->get()
+                                                ->toArray();
                 foreach ($contacts as $contact) {
                     PatientContact::destroy($contact['id']);
                 }
@@ -119,28 +127,33 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
                 $i = 0;
                 foreach ($data['contact_type_id'] as $contact) {
                     if (!empty($data['description'][$i])) {
-	                    (new PatientContact)->create([
-                            'patient_id'      => $id,
-                            'contact_type_id' => $contact,
-                            'description'     => $data['description'][$i]
-                        ]);
+                        (new PatientContact)->create([
+                                                         'patient_id' => $id,
+                                                         'contact_type_id' => $contact,
+                                                         'description' => $data['description'][$i]
+                                                     ]
+                        );
                     }
                     $i++;
                 }
 
                 return true;
             }
-
-            return [
-                'error'   => true,
-                'message' => 'Adicione um contato'
-            ];
         }
 
-        return [
-            'error'   => true,
-            'message' => 'Adicione um contato'
-        ];
+        throw new ValidatorException(new MessageBag(['Adicione um contato.']));
+    }
+
+    private function contactExists(array $data)
+    {
+        if (!empty($data['contact_type_id'][0]) && !empty($data['description'][0])) {
+            if (!is_null($data['contact_type_id'][0]) && !is_null($data['description'][0])) {
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -155,23 +168,26 @@ class PatientsRepositoryEloquent extends BaseRepository implements PatientsRepos
     {
         if (!empty($data['doctors'])) {
 
-            $doctorPatients = (new DoctorPatient)->where('patient_id', $id)->get()->toArray();
+            $doctorPatients = (new DoctorPatient)->where('patient_id', $id)
+                                                 ->get()
+                                                 ->toArray();
             foreach ($doctorPatients as $doctorPatient) {
                 DoctorPatient::destroy($doctorPatient['id']);
             }
-			#dd($data);
+            #dd($data);
             foreach ($data['doctors'] as $doctor) {
-	            (new DoctorPatient)->create([
-                    'patient_id' => $id,
-                    'doctor_id'  => $doctor
-                ]);
+                (new DoctorPatient)->create([
+                                                'patient_id' => $id,
+                                                'doctor_id' => $doctor
+                                            ]
+                );
             }
 
             return true;
         }
 
         return [
-            'error'   => true,
+            'error' => true,
             'message' => 'Adicione um Médico'
         ];
     }

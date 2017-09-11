@@ -1,12 +1,12 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="form-group">
         <label class="control-label"
-               for="name">Status</label>
+               for="name">Status de Usuário</label>
         @include('layouts.components.asterisk')
         <div class="input-group">
             <div class="md-radio-inline">
 
-                @if(!empty($data['status']))
+                @if(!empty($user['data']))
 
                     <div class="md-radio">
                         <input type="radio"
@@ -25,7 +25,7 @@
                                name="status"
                                class="md-radiobtn"
                                value="0" {{ $data['status'] == 0 ? 'checked' : '' }} >
-                        <label for="active">
+                        <label for="inactive">
                             <span class="inc"></span>
                             <span class="check"></span>
                             <span class="box"></span> Inativo </label>
@@ -50,7 +50,7 @@
                                name="status"
                                class="md-radiobtn"
                                value="0" {{ old('status') == 0 ? 'checked' : '' }} >
-                        <label for="active">
+                        <label for="inactive">
                             <span class="inc"></span>
                             <span class="check"></span>
                             <span class="box"></span> Inativo </label>
