@@ -22,6 +22,7 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  * @property string name
  * @property string neighborhood
  * @property string number
+ * @property string complement
  * @property boolean status
  * @property string zipcode
  * @property string password
@@ -48,12 +49,12 @@ class User extends Authenticatable implements AuditableContract
         'address',
         'complement',
         'email',
-        'role',
         'name',
         'neighborhood',
         'number',
         'password',
         'photo',
+        'role',
         'status',
         'zipcode'
     ];

@@ -86,12 +86,6 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item start {{ Request::is('notifications') ? 'active' : '' }}">
-                <a href="{{ url('/doctor/logs') }}">
-                    <i class="fa fa-warning" aria-hidden="true"></i>
-                    <span class="title">Log</span>
-                </a>
-            </li>
         </ul>
     </div>
 </div>

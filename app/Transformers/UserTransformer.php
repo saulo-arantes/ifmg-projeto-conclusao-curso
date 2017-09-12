@@ -13,39 +13,41 @@ use League\Fractal\TransformerAbstract;
  */
 class UserTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = ['contacts'];
+	protected $defaultIncludes = ['contacts'];
 
-    /**
-     * Transform the User entity
-     *
-     * @param User $model
-     *
-     * @return array
-     */
-    public function transform(User $model)
-    {
-        return [
-            'id'           => (int)$model->id,
-            'address'      => $model->address,
-            'email'        => $model->email,
-            'name'         => $model->name,
-            'neighborhood' => $model->neighborhood,
-            'number'       => $model->number,
-            'password'     => $model->password,
-            'photo'        => $model->photo,
-            'status'       => $model->status,
-            'zipcode'      => $model->zipcode,
-            'created_at'   => $model->created_at,
-            'updated_at'   => $model->updated_at
-        ];
-    }
+	/**
+	 * Transform the User entity
+	 *
+	 * @param User $model
+	 *
+	 * @return array
+	 */
+	public function transform(User $model)
+	{
+		return [
+			'id'           => (int) $model->id,
+			'address'      => $model->address,
+			'email'        => $model->email,
+			'name'         => $model->name,
+			'neighborhood' => $model->neighborhood,
+			'number'       => $model->number,
+			'complement'   => $model->complement,
+			'password'     => $model->password,
+			'photo'        => $model->photo,
+			'status'       => $model->status,
+			'role'         => $model->role,
+			'zipcode'      => $model->zipcode,
+			'created_at'   => $model->created_at,
+			'updated_at'   => $model->updated_at
+		];
+	}
 
-    public function includeContacts(User $model)
-    {
-        if (!empty($model->contacts)) {
-            return $this->collection($model->contacts, new UserContactTransformer());
-        }
+	public function includeContacts(User $model)
+	{
+		if (!empty($model->contacts)) {
+			return $this->collection($model->contacts, new UserContactTransformer());
+		}
 
-        return null;
-    }
+		return null;
+	}
 }

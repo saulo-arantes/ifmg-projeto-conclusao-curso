@@ -1,7 +1,7 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
     <div class="form-group">
         <label class="control-label"
-               for="name">Nível</label>
+               for="name"> Nível </label>
         @include('layouts.components.asterisk')
         <div class="input-group">
             <div class="md-radio-inline">
@@ -13,7 +13,7 @@
                                id="admin"
                                name="role"
                                class="md-radiobtn"
-                               value="admin" {{ $data['role'] == 'admin' ? 'checked' : '' }} >
+                               value="admin" {{ $data['role'] == \App\Entities\User::ADMIN ? 'checked' : '' }} >
                         <label for="admin">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -24,7 +24,7 @@
                                id="doctor"
                                name="role"
                                class="md-radiobtn"
-                               value="doctor" {{ $data['role'] == 'doctor' ? 'checked' : '' }} >
+                               value="doctor" {{ $data['role'] == \App\Entities\User::DOCTOR ? 'checked' : '' }} >
                         <label for="doctor">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -35,7 +35,7 @@
                                id="secretary"
                                name="role"
                                class="md-radiobtn"
-                               value="secretary" {{ $data['role'] == 'secretary' ? 'checked' : '' }} >
+                               value="secretary" {{ $data['role'] == \App\Entities\User::SECRETARY ? 'checked' : '' }} >
                         <label for="secretary">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -49,7 +49,7 @@
                                id="admin"
                                name="role"
                                class="md-radiobtn"
-                               value="admin" {{ old('role') == 'admin' ? 'checked' : '' }} >
+                               value="admin" {{ old('role') == \App\Entities\User::ADMIN  ? 'checked' : '' }} >
                         <label for="admin">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -60,7 +60,7 @@
                                id="doctor"
                                name="role"
                                class="md-radiobtn"
-                               value="doctor" {{ old('role') == 'doctor' ? 'checked' : '' }} >
+                               value="doctor" {{ old('role') == \App\Entities\User::DOCTOR ? 'checked' : '' }} >
                         <label for="doctor">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -71,7 +71,7 @@
                                id="secretary"
                                name="role"
                                class="md-radiobtn"
-                               value="secretary" {{ old('role') == 'secretary' ? 'checked' : '' }} >
+                               value="secretary" {{ old('role') == \App\Entities\User::SECRETARY ? 'checked' : '' }} >
                         <label for="secretary">
                             <span class="inc"></span>
                             <span class="check"></span>

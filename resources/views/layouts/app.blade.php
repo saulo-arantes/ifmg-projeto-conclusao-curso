@@ -104,7 +104,7 @@
                 <span></span>
             </a>
             <!-- END RESPONSIVE MENU TOGGLER -->
-            @include ('../layouts.components.' . \App\Entities\User::getUserMiddleware() . '.top-navigation-admin')
+            @include ('../layouts.components.' . \App\Entities\User::getUserMiddleware() . '.top-navigation-' . \App\Entities\User::getUserMiddleware())
         </div>
         <!-- END HEADER INNER -->
     </div>
@@ -115,7 +115,7 @@
     <!-- BEGIN CONTAINER -->
     <div class="page-container">
         <!-- BEGIN SIDEBAR -->
-    @include ('../layouts.components.' . \App\Entities\User::getUserMiddleware() . '.side-bar-admin')
+    @include ('../layouts.components.' . \App\Entities\User::getUserMiddleware() . '.side-bar-' . \App\Entities\User::getUserMiddleware())
     <!-- END SIDEBAR -->
         <!-- BEGIN CONTENT -->
     @yield('content')

@@ -9,16 +9,22 @@
                 @if(!empty($data['allergic']))
 
                     <div class="md-radio">
-                        <input type="radio" id="positive" name="allergic"
-                               class="md-radiobtn" value="0" {{ $data['allergic'] == 0 ? 'checked' : '' }} >
+                        <input type="radio"
+                               id="positive"
+                               name="allergic"
+                               class="md-radiobtn"
+                               value="1" {{ $data['allergic'] == 1 ? 'checked' : '' }} >
                         <label for="positive">
                             <span class="inc"></span>
                             <span class="check"></span>
                             <span class="box"></span> Sim </label>
                     </div>
                     <div class="md-radio">
-                        <input type="radio" id="negative" name="allergic"
-                               class="md-radiobtn" value="1" {{ $data['allergic'] == 1 ? 'checked' : '' }} >
+                        <input type="radio"
+                               id="negative"
+                               name="allergic"
+                               class="md-radiobtn"
+                               value="0" {{ $data['allergic'] == 0 ? 'checked' : '' }} >
                         <label for="negative">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -28,16 +34,22 @@
                 @else
 
                     <div class="md-radio">
-                        <input type="radio" id="positive" name="allergic"
-                               class="md-radiobtn" value="0" {{ old('allergic') == 0 ? 'checked' : '' }} >
+                        <input type="radio"
+                               id="positive"
+                               name="allergic"
+                               class="md-radiobtn"
+                               value="1" {{ old('allergic') == 1 ? 'checked' : '' }} >
                         <label for="positive">
                             <span class="inc"></span>
                             <span class="check"></span>
                             <span class="box"></span> Sim </label>
                     </div>
                     <div class="md-radio">
-                        <input type="radio" id="negative" name="allergic"
-                               class="md-radiobtn" value="1" {{ old('allergic') == 1 ? 'checked' : '' }} >
+                        <input type="radio"
+                               id="negative"
+                               name="allergic"
+                               class="md-radiobtn"
+                               value="0" {{ old('allergic') == 0 ? 'checked' : '' }} >
                         <label for="negative">
                             <span class="inc"></span>
                             <span class="check"></span>
