@@ -10,6 +10,11 @@
     textarea {
         resize: none;
     }
+
+    #dates{
+        margin-bottom: 25px;
+    }
+
 </style>
 
 @endpush
@@ -60,7 +65,7 @@
                                         @include('layouts.components.doctor', ['data' => $schedule['data']])
                                         @include('layouts.components.patient', ['data' => $schedule['data']])
                                     </div>
-                                    <div class="row">
+                                    <div class="row" id="dates">
                                         @include('layouts.components.start-at', ['data' => $schedule['data']])
                                         @include('layouts.components.finish-at', ['data' => $schedule['data']])
                                     </div>

@@ -8,6 +8,11 @@
         textarea {
             resize: none;
         }
+
+        #dates{
+            margin-bottom: 25px;
+        }
+
     </style>
 @endpush
 
@@ -53,7 +58,7 @@
                                   novalidate="novalidate">
                                 <div class="form-body">
                                     {{ csrf_field() }}
-                                    <div class="row">
+                                    <div class="row" id="dates">
                                         @include('layouts.components.start-at')
                                         @include('layouts.components.finish-at')
                                     </div>
@@ -76,14 +81,19 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
     <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js') }}"
-            type="text/javascript"></script>
     <script type="text/javascript">
-        $(".form_datetime").datetimepicker({
-            format: "dd MM yyyy - hh:ii",
-            language: 'pt-BR'
+        $('#start_at').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            locale: 'pt-br'
+        });
+        $('#finish_at').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            locale: 'pt-br'
         });
     </script>
 @endpush

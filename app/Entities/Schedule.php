@@ -18,7 +18,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property integer id
  * @property \DateTime start_at
  * @property \DateTime finish_at
- * @property int     doctor_id
+ * @property int doctor_id
  * @property int patient_id
  * @property string description
  * @property int status
@@ -27,32 +27,29 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class Schedule extends Model implements Transformable, AuditableContract
-{
-    use Auditable;
-    use TransformableTrait;
+class Schedule extends Model implements Transformable, AuditableContract {
+	use Auditable;
+	use TransformableTrait;
 
-    const CREATED = 1;
-    const CONFIRMED = 2;
-    const CANCELED = 3;
-    const ACCOMPLISHED = 4;
+	const CREATED = 1;
+	const CONFIRMED = 2;
+	const ACCOMPLISHED = 3;
+	const CANCELED = 4;
 
-    protected $fillable = [
-        'start_at',
-        'finish_at',
-        'status',
-        'description',
-        'doctor_id',
-        'patient_id'
-    ];
+	protected $fillable = [
+		'start_at',
+		'finish_at',
+		'status',
+		'description',
+		'doctor_id',
+		'patient_id'
+	];
 
-    public function doctor()
-    {
-        return $this->hasOne(Doctor::class, 'id', 'doctor_id');
-    }
+	public function doctor() {
+		return $this->hasOne(Doctor::class, 'id', 'doctor_id');
+	}
 
-    public function patient()
-    {
-        return $this->hasOne(Patient::class, 'id', 'patient_id');
-    }
+	public function patient() {
+		return $this->hasOne(Patient::class, 'id', 'patient_id');
+	}
 }
