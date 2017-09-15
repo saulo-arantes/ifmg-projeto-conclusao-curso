@@ -72,6 +72,7 @@ class Patient extends Model implements Transformable, AuditableContract
         'sus_card',
         'observation',
         'marital_status',
+        'blood_type',
         'height',
         'weight',
         'birth_height',
