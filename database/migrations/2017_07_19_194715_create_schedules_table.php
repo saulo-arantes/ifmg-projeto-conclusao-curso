@@ -19,7 +19,7 @@ class CreateSchedulesTable extends Migration
             $table->dateTime('start_at');
             $table->dateTime('finish_at');
             $table->string('description')->nullable();
-            $table->unsignedInteger('status')->default(1)->comment('1-Criado, 2-Confirmado, 3-Cancelado, 4-Realizado');
+            $table->unsignedInteger('status')->default(1)->comment('1-Criado, 2-Confirmado, 3-Realizado, 4-Cancelado');
             $table->unsignedInteger('doctor_id');
             $table->foreign('doctor_id')->references('id')->on('doctors');
             $table->unsignedInteger('patient_id');

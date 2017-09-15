@@ -65,6 +65,9 @@
                                         @include('layouts.components.finish-at', ['data' => $schedule['data']])
                                     </div>
                                     <div class="row">
+                                        @include('layouts.components.schedule-status', ['data' => $schedule['data']])
+                                    </div>
+                                    <div class="row">
                                         @include('layouts.components.description', ['data' => $schedule['data']])
                                     </div>
                                     <div class="row">
@@ -83,20 +86,25 @@
 @endsection
 
 @push('scripts')
+    <script src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
     <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.pt-BR.js') }}"
-            type="text/javascript"></script>
     <script type="text/javascript">
-        $(".form_datetime").datetimepicker({
-            format: "dd MM yyyy - hh:ii",
-            language: 'pt-BR'
+        $('#start_at').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            locale: 'pt-br'
+        });
+        $('#finish_at').datetimepicker({
+            inline: true,
+            sideBySide: true,
+            locale: 'pt-br'
         });
     </script>
     <script>
-        $("#patient").attr("data-placeholder", "Paciente");
-        $("#patient").select2();
-        $("#doctor").attr("data-placeholder", "Médico");
-        $("#doctor").select2();
+        $("#patient_id").attr("data-placeholder", "Paciente");
+        $("#patient_id").select2();
+        $("#doctor_id").attr("data-placeholder", "Médico");
+        $("#doctor_id").select2();
     </script>
 @endpush

@@ -7,15 +7,21 @@
                 <i class="fa fa-wheelchair"
                    aria-hidden="true"></i>
             </span>
-            <select id="patient"
-                    name="patient"
+            <select id="patient_id"
+                    name="patient_id"
                     required
                     class="form-control select2"
                     title="Selecione um paciente para a consulta">
                 <option value="">Selecionar</option>
-                        @foreach ($extraData['patients'] as $patient)
+                @if(!empty($extraData['patients']))
+                    @foreach ($extraData['patients'] as $patient)
+                        @if(!empty($data))
+                            <option value="{{ $data['patient_id'] }}" {{ $patient->id == $data['patient_id'] ? 'selected' : '' }}> {{ $patient->name }}</option>
+                        @else
                             <option value="{{ $patient->id }}"> {{ $patient->name }} </option>
-                        @endforeach
+                        @endif
+                    @endforeach
+                @endif
             </select>
         </div>
     </div>

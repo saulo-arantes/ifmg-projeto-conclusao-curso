@@ -7,24 +7,22 @@
                 <i class="fa fa-user-md"
                    aria-hidden="true"></i>
             </span>
-            <select id="doctor"
-                    name="doctor"
+
+            <select id="doctor_id"
+                    name="doctor_id"
                     class="form-control select2"
                     required
                     title="Selecione um médico para realizar a consuta.">
                 <option value="">Selecionar</option>
-                @if (!$extraData['doctors'])
+                @if (!empty($extraData['doctors']))
                     @foreach ($extraData['doctors'] as $doctor)
-                        @if (!$extraData['schedules_doctors'])
-                            @foreach($extraData['schedules_doctors'] as $d)
-                                <option value="{{ $d }}"
-                                        {{ $d == $doctor->id ? 'selected' : '' }}>{{ $doctor->user->name }}
-                                </option>
-                            @endforeach
+                        @if(!empty($data))
+                            <option value="{{ $doctor->id }}" {{ $doctor->id == $data['doctor_id'] ? 'selected' : '' }}>
+                                {{ $doctor->user->name }} </option>
                         @else
                             <option value="{{ $doctor->id }}"> {{ $doctor->user->name }} </option>
                         @endif
-                        @endforeach
+                    @endforeach
                 @endif
             </select>
         </div>

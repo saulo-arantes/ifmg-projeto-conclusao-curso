@@ -7,6 +7,7 @@ use App\Notifications\ExceptionNotification;
 use App\Notifications\ValidatorExceptionNotification;
 use App\Repositories\ScheduleRepository;
 use App\Validators\ScheduleValidator;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Notification;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -37,6 +38,13 @@ class ScheduleService {
 	}
 
 	public function store(array $data) {
+
+		$data['start_at'] = !empty($data['start_at']) ? date('Y-m-d h:i',
+			strtotime($data['start_at'])) : null;
+
+		$data['finish_at'] = !empty($data['finish_at']) ? date('Y-m-d h:i',
+			strtotime($data['finish_at'])) : null;
+
 		try {
 
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
@@ -70,7 +78,13 @@ class ScheduleService {
 
 	public function update(array $data, $id) {
 
-		unset($data['role']);
+		$startAt = Carbon::createFromFormat('d/m/Y H:i', $data['start_at']);
+		$finishAt = Carbon::createFromFormat('d/m/Y H:i', $data['finish_at']);
+
+		$data['start_at'] = $startAt;
+
+		$data['finish_at'] = $finishAt;
+
 
 		try {
 

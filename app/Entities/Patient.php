@@ -85,10 +85,10 @@ class Patient extends Model implements Transformable, AuditableContract
         'naturalness_id'
     ];
 
-    public function contacts()
-    {
-        return $this->hasMany(PatientContact::class, 'patient_id', 'id');
-    }
+	public function contacts()
+	{
+		return $this->hasMany(PatientContact::class);
+	}
 
     public function naturalness()
     {

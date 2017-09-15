@@ -31,6 +31,8 @@ class SchedulesDataTable extends DataTable
 					foreach ($model->patient->contacts as $contact) {
 						$contactString .= $contact->contactType->name . ' => ' . $contact->description . '<br>';
 					}
+
+					return $contactString;
 				}
 
 				return '<div style="text-align: center">-</div>';
@@ -63,7 +65,8 @@ class SchedulesDataTable extends DataTable
 	{
 		$query = Schedule::with([
 			'doctor.user',
-			'patient'
+			'patient',
+			'patient.contacts'
 		])->select()
 		                 ->addSelect(DB::raw('DATEDIFF(start_at, CURDATE()) AS diff'))
 		                 ->orderByRaw('CASE WHEN diff < 0 THEN 1 ELSE 0 END, diff')

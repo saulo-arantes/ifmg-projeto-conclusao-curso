@@ -33,10 +33,10 @@ class PatientContact extends Model implements Transformable, AuditableContract
         'contact_type_id'
     ];
 
-    public function contactType()
-    {
-        return $this->hasOne(ContactType::class, 'contact_type_id', 'id');
-    }
+	public function contactType()
+	{
+		return $this->hasOne(ContactType::class, 'id', 'contact_type_id');
+	}
 
 
 }
