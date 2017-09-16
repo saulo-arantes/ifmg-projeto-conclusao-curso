@@ -14,9 +14,11 @@ use Yajra\DataTables\Services\DataTable;
  * @author  Saulo Vinícius
  * @package App\DataTables
  */
-class SchedulesDataTable extends DataTable {
+class SchedulesDataTable extends DataTable
+{
 
-	public function dataTable() {
+	public function dataTable()
+	{
 		return (new EloquentDataTable($this->query()))
 			->editColumn('doctor.user.name', function (Schedule $model) {
 				return $model->doctor->user->name ?? '<div style="text-align: center">-</div>';
@@ -52,18 +54,17 @@ class SchedulesDataTable extends DataTable {
 
 				return '<span class="label label-sm label-info center-block" style="color: white; text-align: center;">A</span>';
 			})->editColumn('status', function (Schedule $model) {
-				if ($model->status = Schedule::CREATED) {
-					return '<span class="label label-sm label-warning center-block" style="color: white; text-align: center;">Criado</span>';
-				} elseif ($model->status = Schedule::CONFIRMED) {
-					return '<span class="label label-sm label-info center-block" style="color: white; text-align: center;">Confirmado</span>';
-				} elseif ($model->status = Schedule::ACCOMPLISHED) {
+				if ($model->status == Schedule::CREATED) {
+					return '<span class="label label-sm label-info center-block" style="color: white; text-align: center;">Criado</span>';
+				} elseif ($model->status == Schedule::CONFIRMED) {
+					return '<span class="label label-sm label-warning center-block" style="color: white; text-align: center;">Confirmado</span>';
+				} elseif ($model->status == Schedule::ACCOMPLISHED) {
 					return '<span class="label label-sm label-success center-block" style="color: white; text-align: center;">Realizado</span>';
-				} elseif ($model->status = Schedule::CANCELED) {
-					return '<span class="label label-sm label-warning center-block" style="color: white; text-align: center;">Cancelado</span>';
+				} elseif ($model->status == Schedule::CANCELED) {
+					return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">Cancelado</span>';
+				} else {
+					return '<span class="label label-sm label-warning center-block" style="color: white; text-align: center;">Desconhecido</span>';
 				}
-
-				return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">Desconhecido</span>';
-
 			})->escapeColumns([0]);
 	}
 
@@ -72,15 +73,16 @@ class SchedulesDataTable extends DataTable {
 	 *
 	 * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Support\Collection
 	 */
-	public function query() {
+	public function query()
+	{
 		$query = Schedule::with([
 			'doctor.user',
 			'patient',
 			'patient.contacts'
 		])->select()
-		                 ->addSelect(DB::raw('DATEDIFF(start_at, CURDATE()) AS diff'))
-		                 ->orderByRaw('CASE WHEN diff < 0 THEN 1 ELSE 0 END, diff')
-		                 ->orderBy('start_at');
+		  ->addSelect(DB::raw('DATEDIFF(start_at, CURDATE()) AS diff'))
+		  ->orderByRaw('CASE WHEN diff < 0 THEN 1 ELSE 0 END, diff')
+		  ->orderBy('start_at');
 
 		return $this->applyScopes($query);
 	}
@@ -90,7 +92,8 @@ class SchedulesDataTable extends DataTable {
 	 *
 	 * @return \Yajra\DataTables\Html\Builder
 	 */
-	public function html() {
+	public function html()
+	{
 		return $this->builder()
 		            ->columns($this->getColumns())
 		            ->setTableAttributes([
@@ -139,7 +142,8 @@ class SchedulesDataTable extends DataTable {
 	 *
 	 * @return array
 	 */
-	protected function getColumns() {
+	protected function getColumns()
+	{
 		return [
 			'type'             => [
 				'title'      => 'Tipo',
@@ -175,6 +179,7 @@ class SchedulesDataTable extends DataTable {
 			'status'           => [
 				'title'      => 'Situação',
 				'searchable' => false,
+				'orderable' => false,
 			],
 		];
 	}
@@ -184,7 +189,8 @@ class SchedulesDataTable extends DataTable {
 	 *
 	 * @return string
 	 */
-	protected function filename() {
+	protected function filename()
+	{
 		return 'schedules_' . time();
 	}
 }

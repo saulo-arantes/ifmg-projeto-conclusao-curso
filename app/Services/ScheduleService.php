@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Notification;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
-;
 
 /**
  * Class ScheduleService

@@ -97,7 +97,7 @@ class PatientService {
 
 		if (!empty($data['birthday_date'])) {
 			$dateTime              = date_create_from_format('d/m/Y', $data['birthday_date']);
-			$data['birthday_date'] = date('Y-m-d H:i:s', $dateTime->getTimestamp());
+			$data['birthday_date'] = date('Y-m-d', $dateTime->getTimestamp());
 		} else {
 			$data['birthday_date'] = null;
 		}
