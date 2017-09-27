@@ -1,3 +1,12 @@
+@push('stylesheets')
+
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
+
+@endpush
 <div class="col-xs-12">
     <div class="form-group">
         <label class="control-label"

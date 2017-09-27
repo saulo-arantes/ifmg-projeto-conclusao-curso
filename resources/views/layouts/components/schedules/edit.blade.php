@@ -7,9 +7,6 @@
       type="text/css"/>
 
 <style>
-    textarea {
-        resize: none;
-    }
 
     #dates{
         margin-bottom: 25px;

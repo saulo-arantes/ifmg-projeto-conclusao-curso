@@ -38,11 +38,12 @@ class ScheduleService {
 
 	public function store(array $data) {
 
-		$data['start_at'] = !empty($data['start_at']) ? date('Y-m-d h:i',
-			strtotime($data['start_at'])) : null;
+		$startAt = Carbon::createFromFormat('d/m/Y H:i', $data['start_at']);
+		$finishAt = Carbon::createFromFormat('d/m/Y H:i', $data['finish_at']);
 
-		$data['finish_at'] = !empty($data['finish_at']) ? date('Y-m-d h:i',
-			strtotime($data['finish_at'])) : null;
+		$data['start_at'] = $startAt;
+
+		$data['finish_at'] = $finishAt;
 
 		try {
 

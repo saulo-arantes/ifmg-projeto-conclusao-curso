@@ -1,5 +1,8 @@
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-    <h3 align="center">Término</h3>
+    <h3 align="center">
+        @include('layouts.components.asterisk')
+        Término
+    </h3>
     <input hidden
            type="text"
            id="finish_at"
