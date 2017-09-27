@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +70,17 @@ class User extends Authenticatable implements AuditableContract
 
     ];
 
+    public $email_address;
+
+	public function __construct(array $attributes = [])
+	{
+		parent::__construct($attributes);
+
+		if (!empty(request()->get('email'))) {
+			$this->email_address = request()->get('email');
+		}
+	}
+
     public function contacts()
     {
         return $this->hasMany(UserContact::class, 'user_id', 'id');
@@ -97,5 +109,27 @@ class User extends Authenticatable implements AuditableContract
 	public static function isDoctor()
 	{
 		return Auth::user()->role == User::DOCTOR;
+	}
+
+	/**
+	 * Envia uma notificação de redefinição de senha.
+	 *
+	 * @param  string $token
+	 *
+	 * @return void
+	 */
+	public function sendPasswordResetNotification($token)
+	{
+		$this->notify(new ResetPasswordNotification($token, $this->email_address));
+	}
+
+	/**
+	 * Rota para notificações via email.
+	 *
+	 * @return string
+	 */
+	public function routeNotificationForMail()
+	{
+		return $this->email_address;
 	}
 }
