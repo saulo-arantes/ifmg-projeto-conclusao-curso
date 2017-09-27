@@ -23,7 +23,6 @@ class UserValidator extends LaravelValidator
 			'name'         => 'required|string|max:255',
 			'neighborhood' => 'required|string|max:100',
 			'number'       => 'required|string|max:10',
-			'password'     => 'required|confirmed|string|max:255|min:8',
 			'photo'        => 'nullable|max:255',
 			'status'       => 'boolean',
 			'zipcode'      => 'required|string|size:9'

@@ -6,6 +6,7 @@ use App\Entities\User;
 use App\Http\Requests\UserUpdateRequest;
 use App\Notifications\ExceptionNotification;
 use App\Notifications\ValidatorExceptionNotification;
+use App\Notifications\WelcomeEmailNotification;
 use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,7 @@ class UserService {
 
 	public function store(array $data) {
 
-		$data['status']                = 1;
+		$data['status'] = 1;
 
 		$data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
 		$data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
@@ -56,12 +57,23 @@ class UserService {
 		try {
 
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-			$data['password'] = bcrypt($data['password']);
+
+			$password = $this->repository->generatePassword();
+			$data['password'] = bcrypt($password);
 			$data['password_confirmation'] = $data['password'];
+
+
+
 			$user = $this->repository->create($data);
-			$this->repository->updateContacts($data, $user['data']['id']);
+
+			$user = (new User())->find($user['data']['id']);
+
+			$this->repository->updateContacts($data, $user->id);
 
 			session()->forget('photo');
+
+			Notification::send($user,
+				new WelcomeEmailNotification($data['email'], $password));
 
 			return $user['data']['id'];
 

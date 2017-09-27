@@ -42,4 +42,14 @@ interface UserRepository extends RepositoryInterface
      * @return array
      */
     public function getExtraData($id = null): array;
+
+	/**
+	 * Generate a random password for the new user registered.
+	 *
+	 * @param int $length
+	 * @param int $strong
+	 *
+	 * @return string
+	 */
+	public function generatePassword($length = 8, $strong = 0);
 }

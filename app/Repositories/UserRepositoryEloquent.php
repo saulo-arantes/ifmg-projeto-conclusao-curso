@@ -73,11 +73,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $user = (new User)->find($userID);
         $user->status ? $user->update(['status' => false]) : $user->update(['status' => true]);
 
-	    (new Notification)->create([
-            'type'        => Notification::INFO,
-            'user_id'     => Auth::user()->id,
-            'description' => ('Alterou status do usuário ' . (new User)->find($userID)->name . ' (ID: ' . $userID . ') para ' . ($user->status ? 'ATIVO' : 'INATIVO'))
-        ]);
     }
 
 	/**
@@ -216,4 +211,48 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
         return $extraData;
     }
+
+	/**
+	 * Generate a random password for the new user registered.
+	 *
+	 * @param int $length
+	 * @param int $strong
+	 *
+	 * @return string
+	 */
+	public function generatePassword($length = 8, $strong = 0)
+	{
+		$vogals = 'aeiou';
+		$consoants = 'bdghjmnpqrstvz';
+
+		if ($strong >= 1) {
+			$consoants .= 'BDGHJLMNPQRSTVWXZ';
+		}
+
+		if ($strong >= 2) {
+			$vogals .= "AEIOU";
+		}
+
+		if ($strong >= 4) {
+			$consoants .= '23456789';
+		}
+
+		if ($strong >= 8) {
+			$vogals .= '@#$%';
+		}
+
+		$password = '';
+		$alt = time() % 2;
+		for ($i = 0; $i < $length; $i++) {
+			if ($alt == 1) {
+				$password .= $consoants[(rand() % strlen($consoants))];
+				$alt = 0;
+			} else {
+				$password .= $vogals[(rand() % strlen($vogals))];
+				$alt = 1;
+			}
+		}
+
+		return $password;
+	}
 }

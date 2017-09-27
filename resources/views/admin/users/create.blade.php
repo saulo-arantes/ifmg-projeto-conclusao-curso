@@ -52,10 +52,6 @@
                                         @include('layouts.components.status')
                                         @include('layouts.components.role')
                                     </div>
-                                    <div class="row">
-                                        @include('layouts.components.new-password')
-                                        @include('layouts.components.password-confirmation')
-                                    </div>
                                     <h4 class="form-section">Endereço</h4>
                                     <div class="row">
                                         @include('layouts.components.address')

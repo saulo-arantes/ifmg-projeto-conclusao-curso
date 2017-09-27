@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use App\Notifications\ResetPasswordNotification;
+use App\Notifications\WelcomeEmailNotification;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -67,10 +68,11 @@ class User extends Authenticatable implements AuditableContract
      */
     protected $hidden = [
         'remember_token',
-
     ];
 
     public $email_address;
+
+    private $password;
 
 	public function __construct(array $attributes = [])
 	{
@@ -78,6 +80,8 @@ class User extends Authenticatable implements AuditableContract
 
 		if (!empty(request()->get('email'))) {
 			$this->email_address = request()->get('email');
+		} elseif (!empty(request()->get('password'))) {
+			$this->password = request()->get('password');
 		}
 	}
 
@@ -132,4 +136,17 @@ class User extends Authenticatable implements AuditableContract
 	{
 		return $this->email_address;
 	}
+
+	/**
+	 * Envia uma notificação de redefinição de senha.
+	 *
+	 * @param  string $token
+	 *
+	 * @return void
+	 */
+	public function sendWelcomeNotification()
+	{
+		$this->notify(new WelcomeEmailNotification($this->email_address, $this->password));
+	}
+
 }
