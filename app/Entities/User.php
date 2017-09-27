@@ -65,7 +65,8 @@ class User extends Authenticatable implements AuditableContract
      * @var array
      */
     protected $hidden = [
-        'remember_token'
+        'remember_token',
+
     ];
 
     public function contacts()

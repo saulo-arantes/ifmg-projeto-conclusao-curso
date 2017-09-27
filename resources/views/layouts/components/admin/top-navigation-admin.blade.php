@@ -22,9 +22,11 @@
                     <ul class="dropdown-menu-list scroller"
                         style="height: 250px;"
                         data-handle-color="#637283">
-                        @foreach(session('notificationsNotVisualized') as $notification)
-                            <li>{!! $notification !!}</li>
-                        @endforeach
+                        @if(!empty(session('notificationsNotVisualized')))
+                            @foreach(session('notificationsNotVisualized') as $notification)
+                                <li>{!! $notification !!}</li>
+                            @endforeach
+                        @endif
                     </ul>
                 </li>
             </ul>

@@ -41,9 +41,7 @@ class UserService {
 
 	public function store(array $data) {
 
-		$data['password']              = 'senha123';
-		$data['password_confirmation'] = 'senha123';
-		$data['status']                = 0;
+		$data['status']                = 1;
 
 		$data['cpf'] = !empty($data['icpf']) ? $data['icpf'] : null;
 		$data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
@@ -58,7 +56,8 @@ class UserService {
 		try {
 
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
-
+			$data['password'] = bcrypt($data['password']);
+			$data['password_confirmation'] = $data['password'];
 			$user = $this->repository->create($data);
 			$this->repository->updateContacts($data, $user['data']['id']);
 
