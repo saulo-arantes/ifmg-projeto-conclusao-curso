@@ -48,8 +48,8 @@ class WelcomeEmailNotification extends Notification
 	    return (new MailMessage)
 		    ->subject('Bem-vindo!')
 		    ->line('Olá! Bem-vindo ao nosso sistema de Gerenciamento de Consultas Médicas. Aqui está a sua senha:')
-		    ->line('<b><h1 style="align-content: center">' . $this->password . '</h1></b>')
-		    ->line('Essa senha foi gerada automaticamene e recomendamos que você troque por uma nova. ')
+		    ->line('<b><h1>' . $this->password . '</h1></b>')
+		    ->line('Essa senha foi gerada automaticamene e recomendamos que você a troque por uma nova.')
 		    ->line('E nunca compartilhe sua senha com alguém. Aproveite o sistema!');
     }
 

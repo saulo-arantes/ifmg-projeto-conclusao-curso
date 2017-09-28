@@ -38,29 +38,44 @@
     <link href="{{ asset('assets/pages/css/login.min.css') }}"
           rel="stylesheet"
           type="text/css"/>
-    <link href="{{ asset('assets/global/plugins/bootstrap-sweetalert/sweetalert.css') }}"
+    <link href="{{ asset('assets/global/plugins/sweet-alert/sweetalert2.css') }}"
           rel="stylesheet">
+
+    <style>
+        body {
+            background: url({{ asset('img/login-image.jpg') }}) no-repeat center center fixed;
+            background-size: cover; /*Css padrão*/
+            -webkit-background-size: cover; /*Css safari e chrome*/
+            -moz-background-size: cover; /*Css firefox*/
+            -ms-background-size: cover; /*Css IE não use mer#^@%#*/
+            -o-background-size: cover; /*Css Opera*/
+        }
+
+        #login-div {
+            -webkit-box-shadow: 3px 3px 15px 0px rgba(0, 0, 0, 0.84);
+            -moz-box-shadow:    3px 3px 15px 0px rgba(0, 0, 0, 0.84);
+            box-shadow:         3px 3px 15px 0px rgba(0, 0, 0, 0.84);
+        }
+    </style>
+
     <link rel="shortcut icon"
-          href="{{ asset('assets/favicon.ico') }}"/>
+          href="{{ asset('img/stethoscope-icon.png') }}"/>
 </head>
 
 <body class=" login">
 {{-- BEGIN LOGO --}}
 <div class="logo">
-    <a href="{{ url('/') }}">
-        <img src="{{ asset('assets/pages/img/logo-big.png') }}"
-             alt=""/>
-    </a>
+
 </div>
 {{-- END LOGO --}}
 
 {{-- BEGIN LOGIN --}}
-<div class="content">
+<div class="content" id="login-div">
     {{-- BEGIN LOGIN FORM --}}
     <form class="login-form"
           action="{{ route('login') }}"
           method="post">
-        <h3 class="form-title font-green">Entrar</h3>
+        <h3 class="form-title font-green"><b>Entrar</b></h3>
         @if (session('status'))
             <div class="alert alert-success">
                 <strong>Email enviado com sucesso</strong>
@@ -150,7 +165,7 @@
     {{-- END FORGOT PASSWORD FORM --}}
 </div>
 
-<div class="copyright">2017 &copy; CelulaWeb.</div>
+<div class="copyright" style="color: white;"><b>2017 &copy; Saulo Vinícius.</b></div>
 
 <!--[if lt IE 9]>
 <script src="{{ asset('assets/global/plugins/respond.min.js') }}"></script>
@@ -168,7 +183,7 @@
         type="text/javascript"></script>
 <script src="{{ asset('assets/pages/scripts/login.min.js') }}"
         type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js') }}"
+<script src="{{ asset('assets/global/plugins/sweet-alert/sweetalert2.min.js') }}"
         type="text/javascript"></script>
 @include('sweet::alert')
 </body>
