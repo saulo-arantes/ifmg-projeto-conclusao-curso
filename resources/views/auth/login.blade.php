@@ -52,9 +52,9 @@
         }
 
         #login-div {
-            -webkit-box-shadow: 3px 3px 15px 0px rgba(0, 0, 0, 0.84);
-            -moz-box-shadow:    3px 3px 15px 0px rgba(0, 0, 0, 0.84);
-            box-shadow:         3px 3px 15px 0px rgba(0, 0, 0, 0.84);
+            -webkit-box-shadow: 3px 3px 15px 0 rgba(0, 0, 0, 0.84);
+            -moz-box-shadow:    3px 3px 15px 0 rgba(0, 0, 0, 0.84);
+            box-shadow:         3px 3px 15px 0 rgba(0, 0, 0, 0.84);
         }
     </style>
 
@@ -78,7 +78,7 @@
         <h3 class="form-title font-green"><b>Entrar</b></h3>
         @if (session('status'))
             <div class="alert alert-success">
-                <strong>Email enviado com sucesso</strong>
+                <strong>Email enviado com sucesso.</strong>
                 <button class="close"
                         data-close="alert"></button>
                 <span> </span>
@@ -143,8 +143,8 @@
     <form class="forget-form"
           action="{{ route('password.email') }}"
           method="post">
-        <h3 class="font-green">Esqueceu a senha ?</h3>
-        <p>Entre com seu email cadastrado para solicitar a redefinição de senha. </p>
+        <h3 class="font-green"><b>Esqueceu a senha?</b></h3>
+        <p style="text-align: center;">Entre com seu email cadastrado para solicitar a redefinição de senha. </p>
         <div class="form-body">
             {{ csrf_field() }}
             <div class="form-group">
