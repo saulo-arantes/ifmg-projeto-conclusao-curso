@@ -18,11 +18,12 @@ class CreateSchedulesTable extends Migration
             $table->increments('id');
             $table->dateTime('start_at');
             $table->dateTime('finish_at');
+            $table->boolean('type')->comment('0-Appointment, 1-Scheduling');
             $table->string('description')->nullable();
             $table->unsignedInteger('status')->default(1)->comment('1-Criado, 2-Confirmado, 3-Realizado, 4-Cancelado');
-            $table->unsignedInteger('doctor_id');
+            $table->unsignedInteger('doctor_id')->nullable();
             $table->foreign('doctor_id')->references('id')->on('doctors');
-            $table->unsignedInteger('patient_id');
+            $table->unsignedInteger('patient_id')->nullable();
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->timestamps();
         });

@@ -17,18 +17,20 @@ class ScheduleValidator extends LaravelValidator {
 		ValidatorInterface::RULE_CREATE => [
 			'start_at'    => 'required|date',
 			'finish_at'   => 'required|date',
+			'type'        => 'nullable|boolean',
 			'description' => 'nullable|string|max:255',
-			'status'      => 'required|integer|in:1,2,3,4',
-			'doctor_id'   => 'required|integer|exists:doctors,id',
-			'patient_id'  => 'required|integer|exists:patients,id'
+			'status'      => 'nullable|integer|in:1,2,3,4',
+			'doctor_id'   => 'nullable|integer|exists:doctors,id',
+			'patient_id'  => 'nullable|integer|exists:patients,id'
 		],
 		ValidatorInterface::RULE_UPDATE => [
 			'start_at'    => 'required|date',
 			'finish_at'   => 'required|date',
+			'type'        => 'nullable|boolean',
 			'description' => 'nullable|string|max:255',
-			'status'      => 'required|integer|in:1,2,3,4',
-			'doctor_id'   => 'required|integer|exists:doctors,id',
-			'patient_id'  => 'required|integer|exists:patients,id'
+			'status'      => 'nullable|integer|in:1,2,3,4',
+			'doctor_id'   => 'nullable|integer|exists:doctors,id',
+			'patient_id'  => 'nullable|integer|exists:patients,id'
 		],
 	];
 }

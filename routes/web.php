@@ -69,12 +69,12 @@ Route::group(['middleware' => 'auth'],
                 function () {
                     Route::get('', 'SchedulesController@index');
                     Route::get('calendar', 'SchedulesController@calendar');
-                    Route::get('create/appointment', 'SchedulesController@createAppointment');
-                    Route::get('create/scheduling', 'SchedulesController@createScheduling');
+                    Route::get('create/appointment', 'SchedulesController@createAppointment')->name('appointment');
+                    Route::get('create/scheduling', 'SchedulesController@createScheduling')->name('scheduling');
                     Route::post('calendar-ajax', 'SchedulesController@calendarAjax');
                     Route::post('create', 'SchedulesController@store');
-                    Route::get('create', 'SchedulesController@create');
-	                Route::get('{id}/edit', 'SchedulesController@edit');
+	                Route::get('{id}/edit/appointment', 'SchedulesController@editAppointment');
+	                Route::get('{id}/edit/scheduling', 'SchedulesController@editScheduling');
 	                Route::post('{id}/edit', 'SchedulesController@update');
                 });
 
@@ -116,12 +116,17 @@ Route::group(['middleware' => 'auth'],
                     Route::get('visualize-all', 'NotificationsController@visualizeAll');
                 });
 
-            Route::group(['prefix' => 'schedules'],
-                function () {
-                    Route::get('', 'SchedulesController@index');
-                    Route::get('calendar', 'SchedulesController@calendar');
-                    Route::post('calendar-ajax', 'SchedulesController@calendarAjax');
-                });
+	        Route::group(['prefix' => 'schedules'],
+		        function () {
+			        Route::get('', 'SchedulesController@index');
+			        Route::get('calendar', 'SchedulesController@calendar');
+			        Route::get('create/appointment', 'SchedulesController@createAppointment');
+			        Route::get('create/scheduling', 'SchedulesController@createScheduling');
+			        Route::post('calendar-ajax', 'SchedulesController@calendarAjax');
+			        Route::post('create', 'SchedulesController@store');
+			        Route::get('{id}/edit', 'SchedulesController@edit');
+			        Route::post('{id}/edit', 'SchedulesController@update');
+		        });
         });
 
     });

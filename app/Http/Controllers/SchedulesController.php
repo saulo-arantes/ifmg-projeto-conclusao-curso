@@ -41,6 +41,7 @@ class SchedulesController extends Controller
     public function createAppointment()
     {
         $extraData = $this->repository->getExtraData();
+	    session(['type' => 0]);
 
         return view(User::getUserMiddleware() . '.schedules.create.appointment', compact('extraData'));
     }
@@ -51,6 +52,7 @@ class SchedulesController extends Controller
     public function createScheduling()
     {
         $extraData = $this->repository->getExtraData();
+        session(['type' => 1]);
 
         return view(User::getUserMiddleware() . '.schedules.create.scheduling', compact('extraData'));
     }
@@ -108,7 +110,7 @@ class SchedulesController extends Controller
         return redirect('/' . User::getUserMiddleware() . '/schedules');
     }
 
-    public function edit($id)
+    public function editAppointment($id)
     {
 	    $extraData = $this->repository->getExtraData();
         $schedule = $this->repository->find($id);
@@ -117,9 +119,24 @@ class SchedulesController extends Controller
 	    $finishAt = date_create_from_format('Y-m-d H:i:s', $schedule['data']['finish_at']);
 	    $schedule['data']['start_at'] = $startAt->format('d/m/Y H:i:s');
 	    $schedule['data']['finish_at'] = $finishAt->format('d/m/Y H:i:s');
+	    session(['type' => 0]);
 
-        return view(User::getUserMiddleware() . '.schedules.edit', compact('schedule'), compact('extraData'));
+	    return view(User::getUserMiddleware() . '.schedules.edit-appointment', compact('schedule'), compact('extraData'));
     }
+
+	public function editScheduling($id)
+	{
+		$extraData = $this->repository->getExtraData();
+		$schedule = $this->repository->find($id);
+
+		$startAt = date_create_from_format('Y-m-d H:i:s', $schedule['data']['start_at']);
+		$finishAt = date_create_from_format('Y-m-d H:i:s', $schedule['data']['finish_at']);
+		$schedule['data']['start_at'] = $startAt->format('d/m/Y H:i:s');
+		$schedule['data']['finish_at'] = $finishAt->format('d/m/Y H:i:s');
+		session(['type' => 1]);
+
+		return view(User::getUserMiddleware() . '.schedules.edit-scheduling', compact('schedule'), compact('extraData'));
+	}
 
     public function update(ScheduleUpdateRequest $request, $id)
     {

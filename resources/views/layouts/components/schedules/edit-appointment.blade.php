@@ -27,7 +27,9 @@
                            aria-hidden="true"></i>
                     </li>
                     <li>
-                        <span>Agenda e Compromissos</span>
+                        <a href="{{ url(App\Entities\User::getUserMiddleware() . '/schedules') }}">
+                            <span>Agenda e Compromissos</span>
+                        </a>
                         <i class="fa fa-circle"
                            aria-hidden="true"></i>
                     </li>

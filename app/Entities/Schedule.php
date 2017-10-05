@@ -18,6 +18,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property integer id
  * @property \DateTime start_at
  * @property \DateTime finish_at
+ * @property bool type
  * @property int doctor_id
  * @property int patient_id
  * @property string description
@@ -39,6 +40,7 @@ class Schedule extends Model implements Transformable, AuditableContract {
 	protected $fillable = [
 		'start_at',
 		'finish_at',
+		'type',
 		'status',
 		'description',
 		'doctor_id',

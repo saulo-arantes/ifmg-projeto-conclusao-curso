@@ -4,6 +4,7 @@ namespace App\Services\DataTables;
 
 use App\Entities\Schedule;
 use App\Entities\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
@@ -43,27 +44,49 @@ class SchedulesDataTable extends DataTable
 			})->setRowAttr([
 				'href' =>
 					function (Schedule $model) {
-						return '/' . User::getUserMiddleware() . '/schedules/' . $model->id . '/edit';
+
+						switch ($model['type']) {
+							case 0:
+								return '/' . User::getUserMiddleware() . '/schedules/' . $model->id . '/edit/appointment';
+
+							case 1:
+								return '/' . User::getUserMiddleware() . '/schedules/' . $model->id . '/edit/scheduling';
+						}
 					},
 			])->editColumn('type', function (Schedule $model) {
-				if ($model->start_at < date('Y-m-d')) {
-					return '<span class="label label-sm label-success center-block" style="color: white; text-align: center;">P</span>';
-				} elseif (empty($model->vaccine)) {
-					return '<span class="label label-sm label-info center-block" style="color: white; text-align: center;">C</span>';
+				if ($model['type'] == 0) {
+					if ($model['finish_at'] < Carbon::now()) {
+
+						return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">Consulta</span>';
+					}
+
+					return '<span class="label label-sm label-info center-block" style="color: white; text-align: center;">Consulta</span>';
+				} elseif ($model['type'] == 1) {
+					if ($model['finish_at'] < Carbon::now()) {
+
+						return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">Compromisso</span>';
+					}
+
+					return '<span class="label label-sm label-success center-block" style="color: white; text-align: center;">Compromisso</span>';
 				}
 
-				return '<span class="label label-sm label-info center-block" style="color: white; text-align: center;">A</span>';
+				return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">???</span>';
 			})->editColumn('status', function (Schedule $model) {
-				if ($model->status == Schedule::CREATED) {
-					return '<span class="label label-sm label-info center-block" style="color: white; text-align: center;">Criado</span>';
-				} elseif ($model->status == Schedule::CONFIRMED) {
-					return '<span class="label label-sm label-warning center-block" style="color: white; text-align: center;">Confirmado</span>';
-				} elseif ($model->status == Schedule::ACCOMPLISHED) {
-					return '<span class="label label-sm label-success center-block" style="color: white; text-align: center;">Realizado</span>';
-				} elseif ($model->status == Schedule::CANCELED) {
-					return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">Cancelado</span>';
-				} else {
-					return '<span class="label label-sm label-warning center-block" style="color: white; text-align: center;">Desconhecido</span>';
+				if ($model['type'] == 0) {
+					if ($model->status == Schedule::CREATED) {
+						return '<span class="label label-sm label-info center-block" style="color: white; text-align: center;">Criado</span>';
+					} elseif ($model->status == Schedule::CONFIRMED) {
+						return '<span class="label label-sm label-warning center-block" style="color: white; text-align: center;">Confirmado</span>';
+					} elseif ($model->status == Schedule::ACCOMPLISHED) {
+						return '<span class="label label-sm label-success center-block" style="color: white; text-align: center;">Realizado</span>';
+					} elseif ($model->status == Schedule::CANCELED) {
+						return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">Cancelado</span>';
+					} else {
+						return '<span class="label label-sm label-warning center-block" style="color: white; text-align: center;">Desconhecido</span>';
+					}
+				} elseif ($model['type'] == 1) {
+
+					return '<span class="label center-block" style="color: white; text-align: center;">-</span>';
 				}
 			})->escapeColumns([0]);
 	}

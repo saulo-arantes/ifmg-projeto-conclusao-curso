@@ -27,6 +27,7 @@ class ScheduleTransformer extends TransformerAbstract
             'id'          => (int)$model->id,
             'start_at'    => $model->start_at,
             'finish_at'   => $model->finish_at,
+	        'type'        => $model->type,
             'description' => $model->description,
             'status'      => $model->status,
             'doctor_id'   => $model->doctor_id,
