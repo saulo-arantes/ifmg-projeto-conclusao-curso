@@ -67,7 +67,7 @@ class SchedulesDataTable extends DataTable
 						return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">Compromisso</span>';
 					}
 
-					return '<span class="label label-sm label-success center-block" style="color: white; text-align: center;">Compromisso</span>';
+					return '<span class="fa fa-circle label-sm label-success center-block" style="color: white; text-align: center;">Compromisso</span>';
 				}
 
 				return '<span class="label label-sm label-default center-block" style="color: white; text-align: center;">???</span>';
@@ -86,7 +86,7 @@ class SchedulesDataTable extends DataTable
 					}
 				} elseif ($model['type'] == 1) {
 
-					return '<span class="label center-block" style="color: white; text-align: center;">-</span>';
+					return '<span class="label label-sm center-block" style="color: black; text-align: center;">-</span>';
 				}
 			})->escapeColumns([0]);
 	}

@@ -58,6 +58,11 @@
                                   novalidate="novalidate">
                                 <div class="form-body">
                                     {{ csrf_field() }}
+                                    @if (App\Entities\User::getUserMiddleware() != App\Entities\User::DOCTOR)
+                                        <div class="row">
+                                            @include('layouts.components.doctor')
+                                        </div>
+                                    @endif
                                     <div class="row" id="dates">
                                         @include('layouts.components.start-at')
                                         @include('layouts.components.finish-at')
