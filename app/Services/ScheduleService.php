@@ -149,15 +149,20 @@ class ScheduleService
 
         $data['type'] = session('type');
 
-        if ($data['type'] == 1) {
-            $data['doctor_id'] = Auth::id();
+        if ($data['type'] == 1 && User::isDoctor()) {
+            $doctors = Doctor::all();
+            foreach ($doctors as $doctor) {
+                if  (Auth::id() == $doctor['user_id']) {
+                    $data['doctor_id'] = $doctor['id'];
+                }
+            }
         }
 
         $schedules = Schedule::all();
 
         if ($data['type'] == 0) {
             foreach ($schedules as $schedule) {
-                if ($data['doctor_id'] = $schedule['doctor_id']) {
+                if ($data['doctor_id'] == $schedule['doctor_id']) {
                     if ($data['start_at'] >= $schedule['start_at'] && $data['start_at'] < $schedule['finish_at']) {
                         if ($data['status'] != Schedule::ACCOMPLISHED && $data['status'] != Schedule::CANCELED) {
                             return [
