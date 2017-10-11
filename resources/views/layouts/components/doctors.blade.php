@@ -12,6 +12,7 @@
                     class="form-control select2"
                     data-placeholder="Médicos"
                     multiple
+                    required
                     title="Associe médicos a esse paciente">
                 <option value="">Selecionar</option>
 

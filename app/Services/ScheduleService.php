@@ -55,14 +55,6 @@ class ScheduleService {
 			];
 		}
 
-		if ($data['start_at'] < Carbon::now()) {
-			return [
-				'error'   => true,
-				'message' => 'Opeação inválida. 
-				Defina uma data maior ou igual a data de agora.'
-			];
-		}
-
 		$data['type'] = session('type');
 
 		if ($data['type'] == 1 && User::isDoctor()) {
@@ -153,14 +145,6 @@ class ScheduleService {
 				'error'   => true,
 				'message' => 'Opeação inválida. 
 				A data de Término não pode ser menor que a data de Início.'
-			];
-		}
-
-		if ($data['start_at'] < Carbon::now()) {
-			return [
-				'error'   => true,
-				'message' => 'Opeação inválida. 
-				Defina uma data maior ou igual a data de agora.'
 			];
 		}
 
