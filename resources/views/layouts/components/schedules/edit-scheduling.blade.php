@@ -98,10 +98,4 @@
             locale: 'pt-br'
         });
     </script>
-    <script>
-        $("#patient_id").attr("data-placeholder", "Paciente");
-        $("#patient_id").select2();
-        $("#doctor_id").attr("data-placeholder", "Médico");
-        $("#doctor_id").select2();
-    </script>
 @endpush

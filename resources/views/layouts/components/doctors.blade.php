@@ -10,6 +10,7 @@
             <select id="doctors"
                     name="doctors[]"
                     class="form-control select2"
+                    data-placeholder="Médicos"
                     multiple
                     title="Associe médicos a esse paciente">
                 <option value="">Selecionar</option>

@@ -5,6 +5,7 @@
         <select id="city_id"
                 name="city_id"
                 class="form-control select2"
+                data-placeholder="Cidade"
                 tabindex="-1"
                 aria-hidden="true"
                 title="Cidade onde mora"

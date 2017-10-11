@@ -5,6 +5,7 @@
         <select id="naturalness_id"
                 name="naturalness_id"
                 class="form-control select2"
+                data-placeholder="Naturalidade"
                 aria-hidden="true"
                 title="Cidade natal"
                 data-error="Campo obrigatório. Preencha o estado e depois a cidade."

@@ -125,14 +125,4 @@
             type="text/javascript"></script>
     <script src="{{ asset('global/plugins/jquery-validation/js/jquery.validate.min.js') }}"
             type="text/javascript"></script>
-    <script>
-        $("#doctors").attr("data-placeholder", "Médicos");
-        $("#doctors").select2();
-        $("#city_id").attr("data-placeholder", "Cidade");
-        $("#city_id").select2();
-        $("#states").attr("data-placeholder", "Estado");
-        $("#state").select2();
-        $("#naturalness_id").attr("data-placeholder", "Naturalidade");
-        $("#naturalness_id").select2();
-    </script>
 @endpush

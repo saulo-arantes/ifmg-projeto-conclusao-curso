@@ -5,6 +5,7 @@
         <select id="state"
                 name="state"
                 class="form-control select2"
+                data-placeholder="Estado"
                 tabindex="-1"
                 aria-hidden="true"
                 title="Estado de nascimento"
@@ -82,4 +83,5 @@
     }
 
 </script>
+
 @endpush

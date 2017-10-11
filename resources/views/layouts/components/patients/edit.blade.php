@@ -179,8 +179,4 @@
 <script src="{{ asset('assets/global/plugins/dropzone/dropzone.min.js') }}"
         type="text/javascript"></script>
 
-<script>
-    $("#doctors").attr("data-placeholder","Médicos");
-    $("#doctors").select2();
-</script>
 @endpush

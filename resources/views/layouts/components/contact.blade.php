@@ -8,17 +8,25 @@
                         @include('layouts.components.asterisk')
                         <div class="input-group"
                              style="width: 100%">
-                            <select name="contact_type_id[]"
-                                    class="form-control"
-                                    required
-                                    data-error="Campo obrigatório. Preencha um contato seu ou de um responsável."
-                                    title="Preencha o tipo de contato">
-                                <option value="">Selecione o tipo de contato</option>
-                                @foreach ($extraData['contact_types'] as $c)
-                                    <option value="{{ $c->id }}"
-                                            {{ $c->id == $contact['contact_type_id'] ? 'selected' : '' }}>{{ $c->name }}</option>
-                                @endforeach
-                            </select>
+                            <div class="input-group select2-bootstrap-prepend">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-address-card"
+                                       aria-hidden="true"></i>
+                                </span>
+                                <select name="contact_type_id[]"
+                                        id="contact_type_id[]"
+                                        class="form-control select2"
+                                        data-placeholder="Tipo de Contato"
+                                        required
+                                        data-error="Campo obrigatório. Preencha um contato seu ou de um responsável."
+                                        title="Preencha o tipo de contato">
+                                    <option value="">Selecione o tipo de contato</option>
+                                    @foreach ($extraData['contact_types'] as $c)
+                                        <option value="{{ $c->id }}"
+                                                {{ $c->id == $contact['contact_type_id'] ? 'selected' : '' }}>{{ $c->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -55,16 +63,24 @@
                     @include('layouts.components.asterisk')
                     <div class="input-group"
                          style="width: 100%">
-                        <select name="contact_type_id[]"
-                                class="form-control"
-                                required
-                                data-error="Campo obrigatório. Preencha um contato seu ou de um responsável."
-                                title="Preencha o tipo de contato">
-                            <option value="">Selecione o tipo de contato</option>
-                            @foreach ($extraData['contact_types'] as $c)
-                                <option value="{{ $c->id }}">{{ $c->name }}</option>
-                            @endforeach
-                        </select>
+                        <div class="input-group select2-bootstrap-prepend">
+                            <span class="input-group-addon">
+                                <i class="fa fa-address-card"
+                                   aria-hidden="true"></i>
+                            </span>
+                            <select name="contact_type_id[]"
+                                    id="contact_type_id[]"
+                                    class="form-control select2"
+                                    data-placeholder="Tipo de Contato"
+                                    required
+                                    data-error="Campo obrigatório. Preencha um contato seu ou de um responsável."
+                                    title="Preencha o tipo de contato">
+                                <option value="">Selecione o tipo de contato</option>
+                                @foreach ($extraData['contact_types'] as $c)
+                                    <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="help-block with-errors"></div>
                 </div>

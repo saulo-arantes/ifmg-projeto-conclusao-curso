@@ -26,3 +26,10 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $("#patient_id").attr("data-placeholder", "Paciente");
+        $("#patient_id").select2();
+    </script>
+@endpush

@@ -11,6 +11,7 @@
             <select id="doctor_id"
                     name="doctor_id"
                     class="form-control select2"
+                    data-placeholder="Médico"
                     required
                     title="Selecione um médico para realizar a consuta.">
                 <option value="">Selecionar</option>
