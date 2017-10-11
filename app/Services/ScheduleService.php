@@ -66,6 +66,30 @@ class ScheduleService {
 			}
 		}
 
+		if (empty($data['doctor_id'])) {
+			return [
+				'error'   => true,
+				'message' => 'Opeação inválida. 
+				Selecione um médico.'
+			];
+		}
+
+		if ($data['type'] == 0) {
+			if (empty($data['doctor_id'])) {
+				return [
+					'error'   => true,
+					'message' => 'Opeação inválida. 
+					Selecione um médico.'
+				];
+			} elseif (empty($data['patient_id'])) {
+				return [
+					'error'   => true,
+					'message' => 'Opeação inválida. 
+					Selecione um paciente.'
+				];
+			}
+		}
+
 		$schedules = Schedule::all();
 
 		if ($data['type'] == 0) {
@@ -73,7 +97,8 @@ class ScheduleService {
 				if ($data['doctor_id'] == $schedule['doctor_id']) {
 					if (($data['start_at'] >= $schedule['start_at'] && $data['start_at'] < $schedule['finish_at']) ||
 					    ($data['start_at'] <= $schedule['start_at'] && $schedule['start_at'] <= $data['finish_at']) ||
-					    ($data['start_at'] < $schedule['start_at'] && $data['finish_at'] > $schedule['finish_at'])) {
+					    ($data['start_at'] < $schedule['start_at'] && $data['finish_at'] > $schedule['finish_at'])
+					) {
 						if ($data['status'] != Schedule::ACCOMPLISHED && $data['status'] != Schedule::CANCELED) {
 							return [
 								'error'   => true,
@@ -90,7 +115,8 @@ class ScheduleService {
 				if ($data['doctor_id'] == $schedule['doctor_id']) {
 					if (($data['start_at'] >= $schedule['start_at'] && $data['start_at'] < $schedule['finish_at']) ||
 					    ($data['start_at'] <= $schedule['start_at'] && $schedule['start_at'] <= $data['finish_at']) ||
-					    ($data['start_at'] < $schedule['start_at'] && $data['finish_at'] > $schedule['finish_at'])) {
+					    ($data['start_at'] < $schedule['start_at'] && $data['finish_at'] > $schedule['finish_at'])
+					) {
 						return [
 							'error'   => true,
 							'message' => 'Opeação inválida. 
@@ -159,6 +185,30 @@ class ScheduleService {
 			}
 		}
 
+		if (empty($data['doctor_id'])) {
+			return [
+				'error'   => true,
+				'message' => 'Opeação inválida. 
+				Selecione um médico.'
+			];
+		}
+
+		if ($data['type'] == 0) {
+			if (empty($data['doctor_id'])) {
+				return [
+					'error'   => true,
+					'message' => 'Opeação inválida. 
+					Selecione um médico.'
+				];
+			} elseif (empty($data['patient_id'])) {
+				return [
+					'error'   => true,
+					'message' => 'Opeação inválida. 
+					Selecione um paciente.'
+				];
+			}
+		}
+
 		$schedules = Schedule::all();
 
 		if ($data['type'] == 0) {
@@ -166,7 +216,8 @@ class ScheduleService {
 				if ($data['doctor_id'] == $schedule['doctor_id']) {
 					if (($data['start_at'] >= $schedule['start_at'] && $data['start_at'] < $schedule['finish_at']) ||
 					    ($data['start_at'] <= $schedule['start_at'] && $schedule['start_at'] <= $data['finish_at']) ||
-					    ($data['start_at'] < $schedule['start_at'] && $data['finish_at'] > $schedule['finish_at'])) {
+					    ($data['start_at'] < $schedule['start_at'] && $data['finish_at'] > $schedule['finish_at'])
+					) {
 						if ($data['status'] != Schedule::ACCOMPLISHED && $data['status'] != Schedule::CANCELED) {
 							return [
 								'error'   => true,
@@ -183,7 +234,8 @@ class ScheduleService {
 				if ($data['doctor_id'] == $schedule['doctor_id']) {
 					if (($data['start_at'] >= $schedule['start_at'] && $data['start_at'] < $schedule['finish_at']) ||
 					    ($data['start_at'] <= $schedule['start_at'] && $schedule['start_at'] <= $data['finish_at']) ||
-					    ($data['start_at'] < $schedule['start_at'] && $data['finish_at'] > $schedule['finish_at'])) {
+					    ($data['start_at'] < $schedule['start_at'] && $data['finish_at'] > $schedule['finish_at'])
+					) {
 						return [
 							'error'   => true,
 							'message' => 'Opeação inválida. 

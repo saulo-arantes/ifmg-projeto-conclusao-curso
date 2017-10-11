@@ -3,6 +3,7 @@
 namespace App\Services\DataTables;
 
 use App\Entities\Audit;
+use App\Helpers\Translate;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
 
@@ -49,8 +50,7 @@ class AuditsDataTable extends DataTable
                         continue;
                     }
 
-                    #$key = Translate::PTBR['$key'];
-                    $beautified .= '<li><b>' . $key . ':</b>' . $value;
+	                $beautified .= '<li><b>' . $key . ':</b>' . $value;
                 }
 
                 $beautified .= '</ul>';

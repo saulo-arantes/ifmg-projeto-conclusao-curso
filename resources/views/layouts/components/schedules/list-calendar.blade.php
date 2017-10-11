@@ -114,9 +114,9 @@
                         if (finish_at < now) {
                             color = '#777777';
                         } else if (value.patient !== null) {
-                            color = '#60C0DC';
+                            color = '#659be0';
                         } else {
-                            color = '#31B89A';
+                            color = '#36c6d3';
                         }
 
                         events.push({
