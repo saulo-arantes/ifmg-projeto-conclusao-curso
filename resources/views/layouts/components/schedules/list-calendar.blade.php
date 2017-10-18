@@ -12,6 +12,30 @@
             margin: 3px;
         }
 
+        .fc-today {
+            background: #eff9ff !important;
+            border: none !important;
+            border-top: 1px solid #ddd !important;
+            font-weight: bold;
+        }
+
+        #schedule .fc-content {
+            color: #FFF;
+            font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+            font-size: 100%;
+            font-weight: bold;
+        }
+
+        #schedule .fc-event {
+            box-shadow: 2px 2px 2px #706868;
+        }
+
+        #schedule .fc-event:hover{
+            font-weight: bolder;
+            transform: scale(1.02);
+        }
+
+
     </style>
 @endpush
 
@@ -92,6 +116,9 @@
         eventLimit: true,
         defaultView: 'agendaWeek',
         refetchResourcesOnNavigate: true,
+        eventRender: function(event, element) {
+            $(element).tooltip({title: event.title});
+        },
         events: function(start, end, timezone, callback) {
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -119,13 +146,23 @@
                             color = '#36c6d3';
                         }
 
-                        events.push({
-                            title: value.description,
-                            start: value.start_at,
-                            end: value.finish_at,
-                            url: value.id,
-                            color: color,
-                        });
+                        if (value.patient !== null) {
+                            events.push({
+                                title: value.description,
+                                start: value.start_at,
+                                end: value.finish_at,
+                                url: value.id + '/edit/appointment',
+                                color: color
+                            });
+                        } else {
+                            events.push({
+                                title: value.description,
+                                start: value.start_at,
+                                end: value.finish_at,
+                                url: value.id + '/edit/scheduling',
+                                color: color
+                            });
+                        }
                     });
 
                     callback(events);

@@ -60,6 +60,9 @@
                                 novalidate="novalidate">
                                 <div class="form-body">
                                     {{ csrf_field() }}
+                                    <div class="row">
+                                        @include('layouts.components.doctor', ['data' => $schedule['data']])
+                                    </div>
                                     <div class="row" id="dates">
                                         @include('layouts.components.start-at', ['data' => $schedule['data']])
                                         @include('layouts.components.finish-at', ['data' => $schedule['data']])
