@@ -11,6 +11,7 @@ use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -67,7 +68,7 @@ class UserService {
 			$user = $this->repository->create($data);
 
 			$user = (new User())->find($user['data']['id']);
-
+			$user->email_address = $user->email;
 			$this->repository->updateContacts($data, $user->id);
 
 			session()->forget('photo');

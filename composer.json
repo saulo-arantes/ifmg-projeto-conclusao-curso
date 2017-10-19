@@ -9,6 +9,7 @@
         "barryvdh/laravel-snappy": "^0.4.0",
         "highideas/laravel-users-online": "^2.2",
         "laravel/framework": "5.5.*",
+        "laravel/horizon": "^1.0",
         "laravel/tinker": "~1.0",
         "league/fractal": "^0.14.0",
         "owen-it/laravel-auditing": "^4.1",
