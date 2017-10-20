@@ -6,6 +6,7 @@ use App\Entities\User;
 use App\Http\Requests\DocumentTypeCreateRequest;
 use App\Http\Requests\DocumentTypeUpdateRequest;
 use App\Repositories\DocumentTypeRepository;
+use App\Services\DataTables\DocumentTypesDataTable;
 use App\Validators\DocumentTypeValidator;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -42,9 +43,9 @@ class DocumentTypesController extends Controller
         return view(User::getUserMiddleware() . '.document-types.create');
     }
 
-    public function index()
+    public function index(DocumentTypesDataTable $dataTable)
     {
-
+        return $dataTable->render(User::getUserMiddleware() . 'documents.list');
     }
 
     /**
