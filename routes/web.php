@@ -87,6 +87,12 @@ Route::group(['middleware' => 'auth'],
                     Route::post('create', 'PatientsController@store');
                     Route::get('create', 'PatientsController@create');
                 });
+
+            Route::group(['prefix' => 'documents'],
+                function () {
+                    Route::get('create', 'DocumentTypesController@create');
+                    Route::post('create', 'DocumentTypesController@store');
+                });
         });
 
         #########################################################################

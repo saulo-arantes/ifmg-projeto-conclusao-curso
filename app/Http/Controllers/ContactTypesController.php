@@ -10,7 +10,7 @@ use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 /**
- * Class AuditsController
+ * Class ContactTypesController
  *
  * @author Saulo Vinícius
  * @since 20/06/2017

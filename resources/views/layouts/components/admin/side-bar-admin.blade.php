@@ -110,6 +110,36 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item start {{ Request::is('admin/documents') ? 'active' : '' }} {{ Request::is('admin/documents/create') ? 'active' : '' }}">
+                <a href="javascript:;"
+                   class="nav-link nav-toggle">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                    <span class="title">Receituário</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start {{ Request::is('admin/documents/create') ? 'active' : '' }}">
+                        <a href="{{ url('/admin/documents/create') }}"
+                           class="nav-link ">
+                            <i class="fa fa-plus-square" aria-hidden="true"></i>
+                            <span class="title">Adicionar Tipo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start {{ Request::is('admin/documents') ? 'active' : '' }}">
+                        <a href="{{ url('/admin/documents') }}"
+                           class="nav-link ">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span class="title">Listar Tipo</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item start {{ Request::is('admin/audits') ? 'active' : '' }}">
+                <a href="{{ url('/admin/audits') }}">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    <span class="title">Gerar Receita</span>
+                </a>
+            </li>
             <li class="nav-item start {{ Request::is('admin/audits') ? 'active' : '' }}">
                 <a href="{{ url('/admin/audits') }}">
                     <i class="fa fa-list" aria-hidden="true"></i>
