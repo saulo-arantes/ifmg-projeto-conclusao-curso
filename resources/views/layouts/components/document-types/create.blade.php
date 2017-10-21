@@ -4,6 +4,15 @@
     <link href="{{ asset('assets/global/plugins/summernote/css/summernote.css') }}"
           rel="stylesheet"
           type="text/css"/>
+
+    <style>
+        @font-face {
+            font-family: summernote;
+            src: url({{ asset('assets/global/plugins/summernote/fonts/summernote.ttf') }});
+            src: local('summernote.ttf');
+            src: url({{ asset('assets/global/plugins/summernote/fonts/summernote.woff') }});
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -32,8 +41,11 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-edit"></i>
-                                <span class="caption-subject bold uppercase"> Novo Tipo </span>
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-file-text"
+                                       aria-hidden="true"></i>
+                                    Listar Tipos
+                                </span>
                             </div>
                         </div>
                         <div class="portlet-body form">
@@ -55,10 +67,10 @@
                                                                for="name">Nome do documento</label>
                                                         @include('layouts.components.asterisk')
                                                         <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-book"
-                                                               aria-hidden="true"></i>
-                                                        </span>
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-book"
+                                                                   aria-hidden="true"></i>
+                                                            </span>
                                                             <input class="form-control"
                                                                    placeholder="Nome do documento"
                                                                    id="name"
@@ -121,8 +133,6 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/global/plugins/summernote/js/validator.min.js') }}"
-            type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote.min.js') }}"
             type="text/javascript"></script>
     <script>

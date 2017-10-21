@@ -14,8 +14,7 @@
                    name="height"
                    title="Altura"
                    maxlength="10"
-                   value="{{ old('height') ?? $data['height'] ?? null }}"
-                   required>
+                   value="{{ old('height') ?? $data['height'] ?? null }}">
         </div>
         <div class="help-block with-errors"></div>
     </div>

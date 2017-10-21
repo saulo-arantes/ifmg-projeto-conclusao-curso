@@ -39,6 +39,7 @@
                             <form action="{{ url('/admin/users/create') }}"
                                   id="form_sample_2"
                                   method="post"
+                                  data-toggle="validator"
                                   class="horizontal-form"
                                   novalidate="novalidate">
                                 <div class="form-body">
@@ -83,8 +84,6 @@
 
 @push('scripts')
 <script src="{{ asset('global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('pages/scripts/form-validation.min.js') }}"
         type="text/javascript"></script>
 <script src="{{ asset('global/plugins/jquery-validation/js/jquery.validate.min.js') }}"
         type="text/javascript"></script>

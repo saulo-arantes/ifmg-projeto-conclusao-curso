@@ -15,6 +15,7 @@
                    name="zipcode"
                    title="CEP"
                    maxlength="255"
+                   data-error="Campo obrigatório. Digite o CEP de seu endereço."
                    value="{{ old('zipcode') ?? $data['zipcode'] ?? null }}"
                    required>
         </div>

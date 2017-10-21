@@ -8,11 +8,12 @@
                    aria-hidden="true"></i>
             </span>
 
-            <select id="doctor_id"
+            <select required
+                    id="doctor_id"
                     name="doctor_id"
                     class="form-control select2"
                     data-placeholder="Médico"
-                    required
+                    data-error="Campo obrigatório. Selecione um médico."
                     title="Selecione um médico para realizar a consuta.">
                 <option value="">Selecionar</option>
                 @if (!empty($extraData['doctors']))

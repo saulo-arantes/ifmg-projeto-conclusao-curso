@@ -21,173 +21,172 @@ use Prettus\Validator\Exceptions\ValidatorException;
 class DocumentTypesController extends Controller
 {
 
-    /**
-     * @var DocumentTypeRepository
-     */
-    protected $repository;
+	/**
+	 * @var DocumentTypeRepository
+	 */
+	protected $repository;
 
-    /**
-     * @var DocumentTypeValidator
-     */
-    protected $validator;
+	/**
+	 * @var DocumentTypeValidator
+	 */
+	protected $validator;
 
-    public function __construct(DocumentTypeRepository $repository, DocumentTypeValidator $validator)
-    {
-        $this->repository = $repository;
-        $this->validator = $validator;
-    }
+	public function __construct(DocumentTypeRepository $repository, DocumentTypeValidator $validator)
+	{
+		$this->repository = $repository;
+		$this->validator  = $validator;
+	}
 
-    public function create()
-    {
+	public function create()
+	{
+		return view(User::getUserMiddleware() . '.document-types.create');
+	}
 
-        return view(User::getUserMiddleware() . '.document-types.create');
-    }
+	public function index(DocumentTypesDataTable $dataTable)
+	{
+		return $dataTable->render(User::getUserMiddleware() . '.document-types.list');
+	}
 
-    public function index(DocumentTypesDataTable $dataTable)
-    {
-        return $dataTable->render(User::getUserMiddleware() . 'documents.list');
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  DocumentTypeCreateRequest $request
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(DocumentTypeCreateRequest $request)
+	{
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  DocumentTypeCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(DocumentTypeCreateRequest $request)
-    {
+		try {
 
-        try {
+			$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+			$DocumentType = $this->repository->create($request->all());
 
-            $DocumentType = $this->repository->create($request->all());
+			$response = [
+				'message' => 'DocumentType created.',
+				'data'    => $DocumentType->toArray(),
+			];
 
-            $response = [
-                'message' => 'DocumentType created.',
-                'data'    => $DocumentType->toArray(),
-            ];
+			if ($request->wantsJson()) {
 
-            if ($request->wantsJson()) {
+				return response()->json($response);
+			}
 
-                return response()->json($response);
-            }
+			return redirect()->back()->with('message', $response['message']);
+		} catch (ValidatorException $e) {
+			if ($request->wantsJson()) {
+				return response()->json([
+					'error'   => true,
+					'message' => $e->getMessageBag()
+				]);
+			}
 
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $DocumentType = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $DocumentType,
-            ]);
-        }
-
-        return view('DocumentTypes.show', compact('DocumentType'));
-    }
+			return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+		}
+	}
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($id)
+	{
+		$DocumentType = $this->repository->find($id);
 
-        $DocumentType = $this->repository->find($id);
+		if (request()->wantsJson()) {
 
-        return view('DocumentTypes.edit', compact('DocumentType'));
-    }
+			return response()->json([
+				'data' => $DocumentType,
+			]);
+		}
 
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  DocumentTypeUpdateRequest $request
-     * @param  string $id
-     *
-     * @return Response
-     */
-    public function update(DocumentTypeUpdateRequest $request, $id)
-    {
-
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $DocumentType = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'DocumentType updated.',
-                'data'    => $DocumentType->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
-    }
+		return view('DocumentTypes.show', compact('DocumentType'));
+	}
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $deleted = $this->repository->delete($id);
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit($id)
+	{
 
-        if (request()->wantsJson()) {
+		$DocumentType = $this->repository->find($id);
 
-            return response()->json([
-                'message' => 'DocumentType deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
+		return view('DocumentTypes.edit', compact('DocumentType'));
+	}
 
-        return redirect()->back()->with('message', 'DocumentType deleted.');
-    }
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  DocumentTypeUpdateRequest $request
+	 * @param  string $id
+	 *
+	 * @return Response
+	 */
+	public function update(DocumentTypeUpdateRequest $request, $id)
+	{
+
+		try {
+
+			$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+
+			$DocumentType = $this->repository->update($request->all(), $id);
+
+			$response = [
+				'message' => 'DocumentType updated.',
+				'data'    => $DocumentType->toArray(),
+			];
+
+			if ($request->wantsJson()) {
+
+				return response()->json($response);
+			}
+
+			return redirect()->back()->with('message', $response['message']);
+		} catch (ValidatorException $e) {
+
+			if ($request->wantsJson()) {
+
+				return response()->json([
+					'error'   => true,
+					'message' => $e->getMessageBag()
+				]);
+			}
+
+			return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+		}
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy($id)
+	{
+		$deleted = $this->repository->delete($id);
+
+		if (request()->wantsJson()) {
+
+			return response()->json([
+				'message' => 'DocumentType deleted.',
+				'deleted' => $deleted,
+			]);
+		}
+
+		return redirect()->back()->with('message', 'DocumentType deleted.');
+	}
 }

@@ -52,6 +52,7 @@
                         </div>
                         <div class="portlet-body form">
                             <form action="{{ url($extraData['middleware'].'/schedules/create/') }}"
+                                  data-toggle="validator"
                                   id="form_sample_2"
                                   method="post"
                                   class="horizontal-form"

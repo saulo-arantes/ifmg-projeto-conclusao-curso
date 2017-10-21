@@ -18,9 +18,9 @@
                    id="birthday_date"
                    name="birthday_date"
                    title="Data de nascimento"
-                   data-error="Campo obrigatório."
                    data-minlength="10"
                    maxlength="10"
+                   data-error="Campo obrigatório. Escolha uma data de nascimento."
                    value="{{ old('birthday_date') ?? $data['birthday_date'] ?? null }}"
                    required>
         </div>

@@ -14,8 +14,7 @@
                    name="weight"
                    title="Peso"
                    maxlength="10"
-                   value="{{ old('weight') ?? $data['weight'] ?? null }}"
-                   required>
+                   value="{{ old('weight') ?? $data['weight'] ?? null }}">
         </div>
         <div class="help-block with-errors"></div>
     </div>

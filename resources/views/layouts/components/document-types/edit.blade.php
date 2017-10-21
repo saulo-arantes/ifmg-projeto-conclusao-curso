@@ -5,6 +5,13 @@
           rel="stylesheet"
           type="text/css"/>
     <style>
+        @font-face {
+            font-family: summernote;
+            src: url({{ asset('assets/global/plugins/summernote/fonts/summernote.ttf') }});
+            src: local('summernote.ttf');
+            src: url({{ asset('assets/global/plugins/summernote/fonts/summernote.woff') }});
+        }
+
         @media print {
             body {
                 display: table;
@@ -42,8 +49,11 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-edit"></i>
-                                <span class="caption-subject bold uppercase"> Novo Tipo </span>
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-pencil-square-o"
+                                       aria-hidden="true"></i>
+                                    Listar Tipos
+                                </span>
                             </div>
                         </div>
                         <div class="portlet-body form">
@@ -130,8 +140,8 @@
                         ['para', ['ul', 'ol', 'paragraph']],
                         ['height', ['height']],
                         ['table', ['table']],
-                        ['misc', ['print']],
-                    ],
+                        ['misc', ['print']]
+                    ]
                 }
             );
         });

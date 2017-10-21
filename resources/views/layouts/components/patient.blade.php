@@ -7,9 +7,9 @@
                 <i class="fa fa-wheelchair"
                    aria-hidden="true"></i>
             </span>
-            <select id="patient_id"
+            <select required
+                    id="patient_id"
                     name="patient_id"
-                    required
                     class="form-control select2"
                     title="Selecione um paciente para a consulta">
                 <option value="">Selecionar</option>

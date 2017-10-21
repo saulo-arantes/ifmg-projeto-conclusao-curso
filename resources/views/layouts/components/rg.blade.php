@@ -15,6 +15,7 @@
                    name="rg"
                    title="RG"
                    maxlength="10"
+                   data-error="Campo obrigatório. Digite um RG válido."
                    value="{{ old('rg') ?? $data['rg'] ?? null }}"
                    required>
         </div>

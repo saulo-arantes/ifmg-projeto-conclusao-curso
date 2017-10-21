@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-    <link href="{{ asset('css/datatables/dataTables.bootstrap.min.css') }}"
+    <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/dataTables.bootstrap.min.css') }}"
           rel="stylesheet">
-    <link rel="stylesheet"
-          href="{{ asset('css/datatables/dataTables.buttons.min.css') }}">
-    <link href="{{ asset('css/datatables/dataTables.responsive.min.css') }}"
+    <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/buttons/dataTables.buttons.min.css') }}"
+          rel="stylesheet">
+    <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/responsive/dataTables.responsive.min.css') }}"
           rel="stylesheet">
 @endpush
 
@@ -35,8 +35,11 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-edit"></i>
-                                <span class="caption-subject bold uppercase"> Novo Tipo </span>
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-files-o"
+                                       aria-hidden="true"></i>
+                                    Listar Tipos
+                                </span>
                             </div>
                         </div>
                         <div class="portlet-body">
@@ -51,13 +54,15 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/global/scripts/datatable.min.js') }}"
+    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/jquery/dataTables.jquery.min.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('assets/pages/scripts/table-datatables-buttons.min.js') }}"
+    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/buttons/dataTables.buttons.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/responsive/dataTables.responsive.min.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
     {!! $dataTable->scripts() !!}

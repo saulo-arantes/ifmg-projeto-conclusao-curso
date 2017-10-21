@@ -169,6 +169,8 @@
         type="text/javascript"></script>
 <script src="{{ asset('assets/pages/scripts/components-select2.min.js') }}"
         type="text/javascript"></script>
+<script src="{{ asset('assets/global/scripts/validator.min.js') }}"
+        type="text/javascript"></script>
 @stack('scripts')
 @include('sweet::alert')
 </body>

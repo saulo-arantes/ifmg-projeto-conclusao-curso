@@ -13,7 +13,9 @@
                                id="active"
                                name="status"
                                class="md-radiobtn"
-                               value="1" {{ $data['status'] == 1 ? 'checked' : '' }} >
+                               value="1"
+                               {{ $data['status'] == 1 ? 'checked' : '' }}
+                               required>
                         <label for="active">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -38,7 +40,9 @@
                                id="active"
                                name="status"
                                class="md-radiobtn"
-                               value="1" {{ old('status') == 1 ? 'checked' : '' }} >
+                               value="1"
+                               {{ old('status') == 1 ? 'checked' : '' }}
+                               required>
                         <label for="active">
                             <span class="inc"></span>
                             <span class="check"></span>

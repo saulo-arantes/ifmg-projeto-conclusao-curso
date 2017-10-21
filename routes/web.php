@@ -92,6 +92,7 @@ Route::group(['middleware' => 'auth'],
                 function () {
                     Route::get('create', 'DocumentTypesController@create');
                     Route::post('create', 'DocumentTypesController@store');
+                    Route::get('', 'DocumentTypesController@index');
                 });
         });
 

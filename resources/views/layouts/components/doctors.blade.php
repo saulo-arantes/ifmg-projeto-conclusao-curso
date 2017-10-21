@@ -7,12 +7,13 @@
                 <i class="fa fa-user-md"
                    aria-hidden="true"></i>
             </span>
-            <select id="doctors"
+            <select required
+                    id="doctors"
                     name="doctors[]"
                     class="form-control select2"
                     data-placeholder="Médicos"
                     multiple
-                    required
+                    data-error="Campo obrigatório. Selecione ao menos um médico."
                     title="Associe médicos a esse paciente">
                 <option value="">Selecionar</option>
 

@@ -24,6 +24,7 @@
                    name="name"
                    title="Nome"
                    maxlength="255"
+                   data-error="Campo obrigatório. Digite um nome."
                    value="{{ old('name') ?? $data['name'] ?? null }}"
                    required>
         </div>

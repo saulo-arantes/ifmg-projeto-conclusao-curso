@@ -13,7 +13,9 @@
                                id="admin"
                                name="role"
                                class="md-radiobtn"
-                               value="admin" {{ $data['role'] == \App\Entities\User::ADMIN ? 'checked' : '' }} >
+                               value="admin"
+                               {{ $data['role'] == \App\Entities\User::ADMIN ? 'checked' : '' }}
+                               required>
                         <label for="admin">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -49,7 +51,9 @@
                                id="admin"
                                name="role"
                                class="md-radiobtn"
-                               value="admin" {{ old('role') == \App\Entities\User::ADMIN  ? 'checked' : '' }} >
+                               value="admin"
+                               {{ old('role') == \App\Entities\User::ADMIN  ? 'checked' : '' }}
+                               required>
                         <label for="admin">
                             <span class="inc"></span>
                             <span class="check"></span>

@@ -15,6 +15,7 @@
                    name="cpf"
                    title="cpf"
                    maxlength="255"
+                   data-error="Campo obrigatório. Digite um CPF válido."
                    value="{{ old('cpf') ?? $data['cpf'] ?? null }}"
                    required>
         </div>

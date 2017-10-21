@@ -13,7 +13,9 @@
                                id="positive"
                                name="allergic"
                                class="md-radiobtn"
-                               value="1" {{ $data['allergic'] == 1 ? 'checked' : '' }} >
+                               value="1"
+                               {{ $data['allergic'] == 1 ? 'checked' : '' }}
+                               required>
                         <label for="positive">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -38,7 +40,9 @@
                                id="positive"
                                name="allergic"
                                class="md-radiobtn"
-                               value="1" {{ old('allergic') == 1 ? 'checked' : '' }} >
+                               value="1"
+                               {{ old('allergic') == 1 ? 'checked' : '' }}
+                               required>
                         <label for="positive">
                             <span class="inc"></span>
                             <span class="check"></span>
