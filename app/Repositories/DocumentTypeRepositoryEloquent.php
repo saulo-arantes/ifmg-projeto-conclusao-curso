@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Entities\DocumentType;
+use App\Entities\Patient;
 use App\Entities\User;
 use App\Presenters\DocumentTypePresenter;
 use App\Validators\DocumentTypeValidator;
@@ -57,7 +58,9 @@ class DocumentTypeRepositoryEloquent extends BaseRepository implements DocumentT
 	 */
 	public function getExtraData($id = null): array
 	{
-		$extraData['middleware'] = User::getUserMiddleware();
+		$extraData['middleware']    = User::getUserMiddleware();
+		$extraData['documentTypes'] = DocumentType::all();
+		$extraData['patients'] = Patient::all();
 
 		return $extraData;
 	}

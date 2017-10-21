@@ -60,7 +60,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active"
                                      id="personalInfo">
-                                    <form action="{{ url($extraData['middleware'] . '/documents/' . $documentType['data']['id'] . '/edit') }}"
+                                    <form action="{{ url($extraData['middleware'] . '/document/types/' . $documentType['data']['id'] . '/edit') }}"
                                           data-toggle="validator"
                                           id="form_sample_2"
                                           class="horizontal-form"

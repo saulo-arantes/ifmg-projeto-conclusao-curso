@@ -110,7 +110,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item start {{ Request::is('admin/documents') ? 'active' : '' }} {{ Request::is('admin/documents/create') ? 'active' : '' }}">
+            <li class="nav-item start {{ Request::is('admin/document/types') ? 'active' : '' }} {{ Request::is('admin/document/types/create') ? 'active' : '' }}">
                 <a href="javascript:;"
                    class="nav-link nav-toggle">
                     <i class="fa fa-file-text" aria-hidden="true"></i>
@@ -118,15 +118,15 @@
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li class="nav-item start {{ Request::is('admin/documents/create') ? 'active' : '' }}">
-                        <a href="{{ url('/admin/documents/create') }}"
+                    <li class="nav-item start {{ Request::is('admin/document/types/create') ? 'active' : '' }}">
+                        <a href="{{ url('/admin/document/types/create') }}"
                            class="nav-link ">
                             <i class="fa fa-plus-square" aria-hidden="true"></i>
                             <span class="title">Adicionar Tipo</span>
                         </a>
                     </li>
-                    <li class="nav-item start {{ Request::is('admin/documents') ? 'active' : '' }}">
-                        <a href="{{ url('/admin/documents') }}"
+                    <li class="nav-item start {{ Request::is('admin/document/types') ? 'active' : '' }}">
+                        <a href="{{ url('/admin/document/types') }}"
                            class="nav-link ">
                             <i class="fa fa-list" aria-hidden="true"></i>
                             <span class="title">Listar Tipo</span>
@@ -134,8 +134,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item start {{ Request::is('admin/audits') ? 'active' : '' }}">
-                <a href="{{ url('/admin/audits') }}">
+            <li class="nav-item start {{ Request::is('admin/document') ? 'active' : '' }}">
+                <a href="{{ url('/admin/document') }}">
                     <i class="fa fa-print" aria-hidden="true"></i>
                     <span class="title">Gerar Receita</span>
                 </a>

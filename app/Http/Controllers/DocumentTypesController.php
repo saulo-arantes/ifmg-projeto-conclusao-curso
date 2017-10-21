@@ -45,6 +45,13 @@ class DocumentTypesController extends Controller
 		return $dataTable->render(User::getUserMiddleware() . '.document-types.list');
 	}
 
+	public function generateDocument()
+	{
+		$extraData = $this->repository->getExtraData();
+
+		return view('layouts.components.document', compact('extraData'));
+	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -65,7 +72,7 @@ class DocumentTypesController extends Controller
 
 		alert()->success('Tipo de Documento adicionado com sucesso!', 'Feito :)');
 
-		return redirect('/' . User::getUserMiddleware() . '/documents');
+		return redirect('/' . User::getUserMiddleware() . '/document/types');
 	}
 
 

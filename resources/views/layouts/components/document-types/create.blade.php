@@ -52,7 +52,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active"
                                      id="personalInfo">
-                                    <form action="{{ url('/' . \App\Entities\User::getUserMiddleware() . '/documents/create') }}"
+                                    <form action="{{ url('/' . \App\Entities\User::getUserMiddleware() . '/document/types/create') }}"
                                           data-toggle="validator"
                                           id="form_sample_2"
                                           class="horizontal-form"
