@@ -11,7 +11,6 @@ use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Prettus\Validator\Contracts\ValidatorInterface;
@@ -25,7 +24,8 @@ use Prettus\Validator\Exceptions\ValidatorException;
  * @since 20/06/2017
  * @package App\Services
  */
-class UserService {
+class UserService
+{
 
 	protected $repository;
 	protected $validator;
@@ -36,12 +36,14 @@ class UserService {
 	 * @param UserRepository $repository
 	 * @param UserValidator $validator
 	 */
-	public function __construct(UserRepository $repository, UserValidator $validator) {
+	public function __construct(UserRepository $repository, UserValidator $validator)
+	{
 		$this->repository = $repository;
 		$this->validator  = $validator;
 	}
 
-	public function store(array $data) {
+	public function store(array $data)
+	{
 
 		$data['status'] = 1;
 
@@ -59,15 +61,14 @@ class UserService {
 
 			$this->validator->with($data)->passesOrFail(ValidatorInterface::RULE_CREATE);
 
-			$password = $this->repository->generatePassword();
-			$data['password'] = bcrypt($password);
+			$password                      = $this->repository->generatePassword();
+			$data['password']              = bcrypt($password);
 			$data['password_confirmation'] = $data['password'];
-
 
 
 			$user = $this->repository->create($data);
 
-			$user = (new User())->find($user['data']['id']);
+			$user                = (new User())->find($user['data']['id']);
 			$user->email_address = $user->email;
 			$this->repository->updateContacts($data, $user->id);
 
@@ -101,7 +102,8 @@ class UserService {
 		}
 	}
 
-	public function update(array $data, $id) {
+	public function update(array $data, $id)
+	{
 
 		unset($data['role']);
 
@@ -158,7 +160,8 @@ class UserService {
 	 *
 	 * @return array|bool
 	 */
-	public function changeUserStatus($id) {
+	public function changeUserStatus($id)
+	{
 		try {
 			$user = $this->repository->find($id);
 			$this->repository->changeUserStatus($user['data']['id']);
@@ -182,7 +185,8 @@ class UserService {
 	 *
 	 * @return array
 	 */
-	public function updatePassword(UserUpdateRequest $request) {
+	public function updatePassword(UserUpdateRequest $request)
+	{
 		try {
 			# pt-br for beautify validation response
 			$data['senha_atual']          = $request->input('current_password');
@@ -236,7 +240,8 @@ class UserService {
 	 *
 	 * @return \Illuminate\Contracts\Validation\Validator
 	 */
-	private function passwordValidator(array $data) {
+	private function passwordValidator(array $data)
+	{
 		return Validator::make($data,
 			[
 				'senha_atual'          => 'required',

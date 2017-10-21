@@ -60,7 +60,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane active"
                                      id="personalInfo">
-                                    <form action="{{ route('document-types.update', $documentType['data']['id']) }}"
+                                    <form action="{{ url($extraData['middleware'] . '/documents/' . $documentType['data']['id'] . '/edit') }}"
                                           data-toggle="validator"
                                           id="form_sample_2"
                                           class="horizontal-form"
@@ -69,18 +69,18 @@
                                         <div class="form-body">
                                             {{ method_field('PUT') }}
                                             {{ csrf_field() }}
-                                            <div class="form-body">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="row">
+                                            <div class="row">
+                                                <div class="form-body">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                         <div class="form-group">
                                                             <label class="control-label"
                                                                    for="name">Nome do documento</label>
                                                             @include('layouts.components.asterisk')
                                                             <div class="input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="fa fa-book"
-                                                               aria-hidden="true"></i>
-                                                        </span>
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-book"
+                                                                       aria-hidden="true"></i>
+                                                                </span>
                                                                 <input class="form-control"
                                                                        placeholder="Nome do documento"
                                                                        id="name"
@@ -88,21 +88,21 @@
                                                                        title="Nome do documento"
                                                                        maxlength="50"
                                                                        data-error="Campo obrigatório. Digite o nome do documento."
-                                                                       value="{{ old('name') }}"
+                                                                       value="{{ old('name') ?? $documentType['data']['name'] ?? null }}"
                                                                        required>
                                                             </div>
                                                             <div class="help-block with-errors"></div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="form-group">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
                                                         <textarea class="summernote"
                                                                   id="description"
                                                                   name="description"
                                                                   title="Modelo de documento">
                                                             {!! $documentType['data']['description'] !!}
                                                         </textarea>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,7 +128,7 @@
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote-ext-print.js') }}"
             type="text/javascript"></script>
     <script>
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
             $('#description').summernote(
                 {
                     toolbar: [

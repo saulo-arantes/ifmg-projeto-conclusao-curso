@@ -22,7 +22,7 @@ class DocumentTypesDataTable extends DataTable
 				return date('d/m/Y H:i:s', strtotime($model->created_at));
 			})
 			->addColumn('edit', function (DocumentType $model) {
-				return '<a href=' . User::getUserMiddleware() . '"documents/' . $model->id . '/edit" 
+				return '<a href="/' . User::getUserMiddleware() . '/documents/' . $model->id . '/edit"
                            class="btn btn-xs btn-primary center-block"> 
                             <i class="fa fa-pencil-square-o" 
                                aria-hidden="true"></i>
@@ -97,7 +97,9 @@ class DocumentTypesDataTable extends DataTable
 		return [
 			'id',
 			'name'        => ['title' => 'Nome'],
-			'description' => ['title' => 'Descrição'],
+			'description' => ['title'     => 'Descrição',
+			                  'orderable' => false
+			],
 			'created_at'  => ['title' => 'Criado em'],
 			'edit'        => [
 				'title'      => 'Editar',

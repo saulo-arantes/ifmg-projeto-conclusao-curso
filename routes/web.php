@@ -93,6 +93,8 @@ Route::group(['middleware' => 'auth'],
                     Route::get('create', 'DocumentTypesController@create');
                     Route::post('create', 'DocumentTypesController@store');
                     Route::get('', 'DocumentTypesController@index');
+                    Route::get('{id}/edit', 'DocumentTypesController@edit');
+                    Route::put('{id}/edit', 'DocumentTypesController@update');
                 });
         });
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-    <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/dataTables.bootstrap.min.css') }}"
+    <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.css') }}"
           rel="stylesheet">
     <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/buttons/dataTables.buttons.min.css') }}"
           rel="stylesheet">
@@ -56,9 +56,9 @@
 @push('scripts')
     <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/jquery/dataTables.jquery.min.js') }}"
             type="text/javascript"></script>
-    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.js') }}"
-            type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/buttons/dataTables.buttons.min.js') }}"
             type="text/javascript"></script>

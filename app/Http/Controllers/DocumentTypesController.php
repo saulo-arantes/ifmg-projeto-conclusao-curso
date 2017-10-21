@@ -7,9 +7,7 @@ use App\Http\Requests\DocumentTypeCreateRequest;
 use App\Http\Requests\DocumentTypeUpdateRequest;
 use App\Repositories\DocumentTypeRepository;
 use App\Services\DataTables\DocumentTypesDataTable;
-use App\Validators\DocumentTypeValidator;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
+use App\Services\DocumentTypeService;
 
 /**
  * Class DocumentTypesController
@@ -27,14 +25,14 @@ class DocumentTypesController extends Controller
 	protected $repository;
 
 	/**
-	 * @var DocumentTypeValidator
+	 * @var DocumentTypeService
 	 */
-	protected $validator;
+	protected $service;
 
-	public function __construct(DocumentTypeRepository $repository, DocumentTypeValidator $validator)
+	public function __construct(DocumentTypeRepository $repository, DocumentTypeService $service)
 	{
 		$this->repository = $repository;
-		$this->validator  = $validator;
+		$this->service    = $service;
 	}
 
 	public function create()
@@ -57,33 +55,17 @@ class DocumentTypesController extends Controller
 	public function store(DocumentTypeCreateRequest $request)
 	{
 
-		try {
+		$resultFromStoreDocumentType = $this->service->store($request->all());
 
-			$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+		if (!empty($resultFromStoreDocumentType['error'])) {
+			alert()->error($resultFromStoreDocumentType['message'], 'Erro :(')->persistent('Fechar');
 
-			$DocumentType = $this->repository->create($request->all());
-
-			$response = [
-				'message' => 'DocumentType created.',
-				'data'    => $DocumentType->toArray(),
-			];
-
-			if ($request->wantsJson()) {
-
-				return response()->json($response);
-			}
-
-			return redirect()->back()->with('message', $response['message']);
-		} catch (ValidatorException $e) {
-			if ($request->wantsJson()) {
-				return response()->json([
-					'error'   => true,
-					'message' => $e->getMessageBag()
-				]);
-			}
-
-			return redirect()->back()->withErrors($e->getMessageBag())->withInput();
+			return back()->withInput();
 		}
+
+		alert()->success('Tipo de Documento adicionado com sucesso!', 'Feito :)');
+
+		return redirect('/' . User::getUserMiddleware() . '/documents');
 	}
 
 
@@ -118,10 +100,10 @@ class DocumentTypesController extends Controller
 	 */
 	public function edit($id)
 	{
+		$documentType = $this->repository->find($id);
+		$extraData    = $this->repository->getExtraData($id);
 
-		$DocumentType = $this->repository->find($id);
-
-		return view('DocumentTypes.edit', compact('DocumentType'));
+		return view(User::getUserMiddleware() . '.document-types.edit', compact('documentType'), compact('extraData'));
 	}
 
 
@@ -135,58 +117,17 @@ class DocumentTypesController extends Controller
 	 */
 	public function update(DocumentTypeUpdateRequest $request, $id)
 	{
+		$resultFromUpdateDocumentType = $this->service->update($request->all(), $id);
 
-		try {
+		if (!empty($resultFromUpdateDocumentType['error'])) {
+			alert()->error($resultFromUpdateDocumentType['message'], 'Erro :(')->persistent('Fechar');
 
-			$this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-			$DocumentType = $this->repository->update($request->all(), $id);
-
-			$response = [
-				'message' => 'DocumentType updated.',
-				'data'    => $DocumentType->toArray(),
-			];
-
-			if ($request->wantsJson()) {
-
-				return response()->json($response);
-			}
-
-			return redirect()->back()->with('message', $response['message']);
-		} catch (ValidatorException $e) {
-
-			if ($request->wantsJson()) {
-
-				return response()->json([
-					'error'   => true,
-					'message' => $e->getMessageBag()
-				]);
-			}
-
-			return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-		}
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int $id
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy($id)
-	{
-		$deleted = $this->repository->delete($id);
-
-		if (request()->wantsJson()) {
-
-			return response()->json([
-				'message' => 'DocumentType deleted.',
-				'deleted' => $deleted,
-			]);
+			return back()->withInput();
 		}
 
-		return redirect()->back()->with('message', 'DocumentType deleted.');
+		alert()->success('Tipo de Documento atualizado com sucesso!', 'Feito :)');
+
+		return back()->withInput();
 	}
+
 }
