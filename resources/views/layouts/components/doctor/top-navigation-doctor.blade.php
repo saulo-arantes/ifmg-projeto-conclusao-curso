@@ -30,7 +30,6 @@
                 <li>
                     <a href="{{ url('/doctor/schedules') }}">
                         <i class="fa fa-address-book-o"></i> Compromissos
-                        <span class="badge badge-success"> 7 </span>
                     </a>
                 </li>
                 <li class="divider"></li>

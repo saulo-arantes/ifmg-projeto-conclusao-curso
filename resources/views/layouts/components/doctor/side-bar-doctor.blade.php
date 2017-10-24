@@ -92,6 +92,36 @@
                         </a>
                     </li>
                 </ul>
+            <li class="nav-item start {{ Request::is('doctor/document/types') ? 'active' : '' }} {{ Request::is('doctor/document/types/create') ? 'active' : '' }}">
+                <a href="javascript:;"
+                   class="nav-link nav-toggle">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                    <span class="title">Receituário</span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item start {{ Request::is('doctor/document/types/create') ? 'active' : '' }}">
+                        <a href="{{ url('/doctor/document/types/create') }}"
+                           class="nav-link ">
+                            <i class="fa fa-plus-square" aria-hidden="true"></i>
+                            <span class="title">Adicionar Tipo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item start {{ Request::is('doctor/document/types') ? 'active' : '' }}">
+                        <a href="{{ url('/doctor/document/types') }}"
+                           class="nav-link ">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span class="title">Listar Tipo</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item start {{ Request::is('doctor/document') ? 'active' : '' }}">
+                <a href="{{ url('/doctor/document') }}">
+                    <i class="fa fa-print" aria-hidden="true"></i>
+                    <span class="title">Gerar Receita</span>
+                </a>
+            </li>
             </li>
         </ul>
     </div>

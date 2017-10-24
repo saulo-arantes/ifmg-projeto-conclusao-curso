@@ -54,16 +54,6 @@
                     <a href="{{ url('/profile') }}">
                         <i class="fa fa-user"></i> Meu perfil </a>
                 </li>
-                <li>
-                    <a href="{{ url('admin/schedules/calendar') }}">
-                        <i class="fa fa-calendar"></i> Calendário </a>
-                </li>
-                <li>
-                    <a href="{{ url('admin/schedules/') }}">
-                        <i class="fa fa-address-book-o"></i> Agenda
-                        <span class="badge badge-success"> 7 </span>
-                    </a>
-                </li>
                 <li class="divider"></li>
                 <li>
                     <a onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

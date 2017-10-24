@@ -107,7 +107,7 @@
             @include ('../layouts.components.' . \App\Entities\User::getUserMiddleware() . '.top-navigation-' . \App\Entities\User::getUserMiddleware())
         </div>
         <!-- END HEADER INNER -->
-    </div>
+    </div>anna29@example.org
     <!-- END HEADER -->
     <!-- BEGIN HEADER & CONTENT DIVIDER -->
     <div class="clearfix"></div>
