@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @push('stylesheets')
+    <link href="{{ asset('assets/global/plugins/jquery-smartWizard/css/smart_wizard.css') }}"
+          rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ asset('assets/global/plugins/jquery-smartWizard/css/smart_wizard_theme_circles.css') }}"
+          rel="stylesheet"
+          type="text/css"/>
     <link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}"
           rel="stylesheet"
           type="text/css"/>
@@ -27,122 +33,175 @@
 @endpush
 
 @section('content')
-    <div class="row">
-        <div id="wizard"
-             class="form_wizard wizard_horizontal">
-            <ul class="wizard_steps">
-                <li>
-                    <a href="#step-1">
-                        <span class="step_no">1</span>
-                        <span class="step_descr">
-                        Passo 1<br/>
-                        <small>Selecione o documento</small>
-                    </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#step-2">
-                        <span class="step_no">2</span>
-                        <span class="step_descr">Passo 2<br/>
-                          <small>Preencha os dados</small>
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#step-3">
-                        <span class="step_no">3</span>
-                        <span class="step_descr">Passo 3<br/>
-                        <small>Edite e imprima o documento</small>
-                    </span>
-                    </a>
-                </li>
-            </ul>
 
-            {{-- STEP 1 --}}
-            <div id="step-1"
-                 style="height: 400px">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4 align="center">Selecione o tipo de documento e um exemplo do modelo será apresentado
-                                           abaixo.</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-                        <div class="form-group">
-                            <select id="document_type_id"
-                                    name="document_type_id"
-                                    class="form-control"
-                                    onchange="updateDocumentExibition(this.value);"
-                                    title="Tipo de documento">
-                                <option value=""
-                                        selected>Selecionar o tipo de documento
-                                </option>
-                                @foreach ($extraData['documentTypes'] as $document)
-                                    <option value="{{ $document->description }}">{{ $document->name }}</option>
-                                @endforeach
-                            </select>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
-                        <div id="documentExibition"
-                             class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12"
-                             style="margin-top: 20px; color: black"></div>
-                    </div>
-                </div>
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <ul class="page-breadcrumb">
+                    <li>
+                        <span>Menu</span>
+                        <i class="fa fa-circle"></i>
+                    </li>
+                    <li>
+                        <span>Gerar Receita</span>
+                    </li>
+                </ul>
+                @include('layouts.components.back')
             </div>
-
-            {{-- STEP 2 --}}
-            <div id="step-2">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4 align="center">Preencha os dados</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-                        <label class="control-label"
-                               for="patient_id">Selecione o paciente</label>
-                        @include('layouts.components.asterisk')
-                        <div class="form-group">
-                            <select id="patient_id"
-                                    name="patient_id"
-                                    class="form-control"
-                                    onchange="updatePatientInDocumentExibition(this.value);"
-                                    title="Paciente">
-                                <option value=""
-                                        selected>Selecionar o paciente
-                                </option>
-                                @foreach ($extraData['patients'] as $patient)
-                                    <option value="{{ $patient->name }}" {{ @$extraData['patient'] == $patient->name ? 'selected' : '' }}>{{ $patient->name }}</option>
-                                @endforeach
-                            </select>
-                            <div class="help-block with-errors"></div>
+            <div class="row"
+                 style="margin-top: 20px">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="portlet box blue-dark">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-print"
+                                       aria-hidden="true"></i>
+                                    Gerar Receita
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    @include('layouts.components.document-date', ['extraData' => $extraData])
-                </div>
-            </div>
+                        <div class="portlet-body form">
+                            <div class="tab-content">
+                                <div class="tab-pane active"
+                                     id="personalInfo">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div id="wizard">
+                                                    <ul>
+                                                        <li>
+                                                            <a href="#step-1">
+                                                                <span>
+                                                                    Passo 1<br/>
+                                                                    <small>Selecione o documento</small>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#step-2">
+                                                                <span>Passo 2<br/>
+                                                                    <small>Preencha os dados</small>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#step-3">
+                                                                <span>Passo 3<br/>
+                                                                    <small>Edite e imprima o documento</small>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
 
-            {{-- STEP 3 --}}
-            <div id="step-3"
-                 style="height: 400px">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4 align="center">Edite e imprima o documento</h4>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <div class="summernote"
-                             id="description"
-                             title="Documento">
+                                                    {{-- STEP 1 --}}
+                                                    <div>
+                                                        <div id="step-1"
+                                                             style="height: 400px">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <h4 align="center">Selecione o tipo de documento e
+                                                                                       um
+                                                                                       exemplo do modelo será
+                                                                                       apresentado
+                                                                                       abaixo.
+                                                                    </h4>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <select id="document_type_id"
+                                                                                name="document_type_id"
+                                                                                class="form-control"
+                                                                                data-placeholder="Tipo"
+                                                                                onchange="updateDocumentExibition(this.value);"
+                                                                                title="Tipo de documento">
+                                                                            <option value=""
+                                                                                    selected>Selecionar o tipo de
+                                                                                             documento
+                                                                            </option>
+                                                                            @foreach ($extraData['documentTypes'] as $document)
+                                                                                <option value="{{ $document->description }}">{{ $document->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <div class="help-block with-errors"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
+                                                                    <div id="documentExibition"
+                                                                         class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12"
+                                                                         style="margin-top: 20px; color: black"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
+                                                    {{-- STEP 2 --}}
+                                                    <div>
+                                                        <div id="step-2">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <h4 align="center">Preencha os dados</h4>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                                                    <label class="control-label"
+                                                                           for="patient_id">Selecione o paciente</label>
+                                                                    @include('layouts.components.asterisk')
+                                                                    <div class="form-group">
+                                                                        <select id="patient_id"
+                                                                                name="patient_id"
+                                                                                class="form-control"
+                                                                                data-placeholder="Paciente"
+                                                                                onchange="updatePatientInDocumentExibition(this.value);"
+                                                                                title="Paciente">
+                                                                            <option value=""
+                                                                                    selected>Selecionar o paciente
+                                                                            </option>
+                                                                            @foreach ($extraData['patients'] as $patient)
+                                                                                <option value="{{ $patient->name }}" {{ @$extraData['patient'] == $patient->name ? 'selected' : '' }}>{{ $patient->name }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <div class="help-block with-errors"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                @include('layouts.components.document-date', ['extraData' => $extraData])
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- STEP 3 --}}
+                                                    <div>
+                                                        <div id="step-3"
+                                                             style="height: 400px">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <h4 align="center">Edite e imprima o documento</h4>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                <div class="form-group">
+                                                                    <div class="summernote"
+                                                                         id="description"
+                                                                         title="Documento">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -152,18 +211,22 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/global/plugins/select2/js/select2.min.js') }}"
-            type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/jquery-smartWizard/js/jquery.smartWizard.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/select2/js/select2.min.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote.min.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote-ext-print.js') }}"
             type="text/javascript"></script>
-    <script src="https://raw.githubusercontent.com/taalendigitaal/bootstrap-summernote/master/lang/summernote-pt-BR.js"
+    <script src="{{ asset('assets/global/plugins/summernote/js/summernote-pt-BR.js') }}"
             type="text/javascript"></script>
     <script>
         $('select').select2();
+
+        $(document).ready(function () {
+            $('#wizard').smartWizard();
+        });
 
         $('#date_input').on('change', function () {
             var dateInput = $('#date_input').val();
@@ -270,8 +333,8 @@
                         ['para', ['ul', 'ol', 'paragraph']],
                         ['height', ['height']],
                         ['table', ['table']],
-                        ['misc', ['print']],
-                    ],
+                        ['misc', ['print']]
+                    ]
                 }
             );
         });

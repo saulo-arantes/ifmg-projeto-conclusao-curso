@@ -127,10 +127,14 @@
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote-ext-print.js') }}"
             type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/summernote/js/summernote-pt-BR.js') }}"
+            type="text/javascript"></script>
     <script>
+
         jQuery(document).ready(function () {
             $('#description').summernote(
                 {
+                    lang: 'pt-BR',
                     toolbar: [
                         ['style', ['style']],
                         ['fontsize', ['fontsize']],

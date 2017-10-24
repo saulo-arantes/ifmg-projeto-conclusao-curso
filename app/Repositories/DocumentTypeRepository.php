@@ -11,9 +11,9 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface DocumentTypeRepository extends RepositoryInterface
 {
 	/**
-	 * @param null $id
-	 *
 	 * @return array
+	 * @internal param null $id
+	 *
 	 */
-	public function getExtraData($id = null): array;
+	public function getExtraData();
 }
