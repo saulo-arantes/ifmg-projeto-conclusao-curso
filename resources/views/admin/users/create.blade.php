@@ -81,10 +81,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-<script src="{{ asset('global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('global/plugins/jquery-validation/js/jquery.validate.min.js') }}"
-        type="text/javascript"></script>
-@endpush

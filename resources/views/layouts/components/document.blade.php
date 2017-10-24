@@ -61,59 +61,82 @@
                                      id="personalInfo">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="portlet light bordered" id="form_wizard_1">
+                                            <div class="portlet light bordered"
+                                                 id="form_wizard_1">
                                                 <div class="portlet-title">
                                                     <div class="caption">
                                                         <i class=" icon-layers font-red"></i>
-                                                        <span class="caption-subject font-red bold uppercase"> Gerar Receita -
-                                                            <span class="step-title"> Passos de 1 a 3 </span>
+                                                        <span class="caption-subject font-blue-hoki bold uppercase"> Gerar Receita -
+                                                            <span class="step-title"> Passo 1 de 3 </span>
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body form">
-                                                    <form class="form-horizontal" action="#" id="submit_form" method="POST">
+                                                    <form class="form-horizontal"
+                                                          action="#"
+                                                          id="submit_form"
+                                                          method="POST">
                                                         <div class="form-wizard">
                                                             <div class="form-body">
                                                                 <ul class="nav nav-pills nav-justified steps">
                                                                     <li>
-                                                                        <a href="#tab1" data-toggle="tab" class="step">
+                                                                        <a href="#tab1"
+                                                                           data-toggle="tab"
+                                                                           class="step">
                                                                             <span class="number"> 1 </span>
                                                                             <span class="desc">
                                                                     <i class="fa fa-check"></i> Selecione o documento </span>
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#tab2" data-toggle="tab" class="step">
+                                                                        <a href="#tab2"
+                                                                           data-toggle="tab"
+                                                                           class="step">
                                                                             <span class="number"> 2 </span>
                                                                             <span class="desc">
                                                                     <i class="fa fa-check"></i> Preencha os dados </span>
                                                                         </a>
                                                                     </li>
                                                                     <li>
-                                                                        <a href="#tab3" data-toggle="tab" class="step active">
+                                                                        <a href="#tab3"
+                                                                           data-toggle="tab"
+                                                                           class="step active">
                                                                             <span class="number"> 3 </span>
                                                                             <span class="desc">
                                                                     <i class="fa fa-check"></i> Edite e imprima o documento </span>
                                                                         </a>
                                                                     </li>
                                                                 </ul>
-                                                                <div id="bar" class="progress progress-striped" role="progressbar">
-                                                                    <div class="progress-bar progress-bar-success"> </div>
+                                                                <div id="bar"
+                                                                     class="progress progress-striped"
+                                                                     role="progressbar">
+                                                                    <div class="progress-bar progress-bar-success"></div>
                                                                 </div>
                                                                 <div class="tab-content">
                                                                     <div class="alert alert-danger display-none">
-                                                                        <button class="close" data-dismiss="alert"></button> You have some form errors. Please check below. </div>
+                                                                        <button class="close"
+                                                                                data-dismiss="alert"></button>
+                                                                        Preencha todos os campos obrigatórios antes de prosseguir.
+                                                                    </div>
                                                                     <div class="alert alert-success display-none">
-                                                                        <button class="close" data-dismiss="alert"></button> Your form validation is successful! </div>
+                                                                        <button class="close"
+                                                                                data-dismiss="alert"></button>
+                                                                        Your form validation is successful!
+                                                                    </div>
 
                                                                     {{-- STEP 1 --}}
-                                                                    <div class="tab-pane active" id="tab1">
-                                                                        <div class="row">
+                                                                    <div class="tab-pane active"
+                                                                         id="tab1">
+                                                                        <div class="form-group">
                                                                             <div class="col-md-12">
-                                                                                <h4 align="center">Selecione o tipo de documento e um exemplo do modelo será apresentado abaixo.</h4>
+                                                                                <h4 align="center">Selecione o tipo de
+                                                                                                   documento e um
+                                                                                                   exemplo do modelo
+                                                                                                   será apresentado
+                                                                                                   abaixo.</h4>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row">
+                                                                        <div class="form-group">
                                                                             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
                                                                                 <div class="form-group">
                                                                                     <select id="document_type_id"
@@ -121,9 +144,13 @@
                                                                                             class="form-control"
                                                                                             data-placeholder="Tipo de Documento"
                                                                                             onchange="updateDocumentExibition(this.value);"
-                                                                                            title="Tipo de documento">
+                                                                                            title="Tipo de documento"
+                                                                                            required>
                                                                                         <option value=""
-                                                                                                selected>Selecionar o tipo de documento</option>
+                                                                                                selected>Selecionar o
+                                                                                                         tipo de
+                                                                                                         documento
+                                                                                        </option>
                                                                                         @foreach ($extraData['documentTypes'] as $document)
                                                                                             <option value="{{ $document->description }}">{{ $document->name }}</option>
                                                                                         @endforeach
@@ -135,25 +162,31 @@
                                                                     </div>
 
                                                                     {{-- STEP 2 --}}
-                                                                    <div class="tab-pane" id="tab2">
-                                                                        <div class="row">
+                                                                    <div class="tab-pane"
+                                                                         id="tab2">
+                                                                        <div class="form-group">
                                                                             <div class="col-md-12">
-                                                                                <h4 align="center">Preencha os dados</h4>
+                                                                                <h4 align="center">Preencha os
+                                                                                                   dados</h4>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row">
+                                                                        <div class="form-group">
                                                                             <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
                                                                                 <label class="control-label"
-                                                                                       for="patient_id">Selecione o paciente</label>
+                                                                                       for="patient_id">Selecione o
+                                                                                                        paciente</label>
                                                                                 @include('layouts.components.asterisk')
                                                                                 <div class="form-group">
                                                                                     <select id="patient_id"
                                                                                             name="patient_id"
                                                                                             class="form-control"
                                                                                             onchange="updatePatientInDocumentExibition(this.value);"
-                                                                                            title="Paciente">
+                                                                                            title="Paciente"
+                                                                                            required>
                                                                                         <option value=""
-                                                                                                selected>Selecionar o paciente</option>
+                                                                                                selected>Selecionar o
+                                                                                                         paciente
+                                                                                        </option>
                                                                                         @foreach ($extraData['patients'] as $patient)
                                                                                             <option value="{{ $patient->name }}" {{ @$extraData['patient'] == $patient->name ? 'selected' : '' }}>{{ $patient->name }}</option>
                                                                                         @endforeach
@@ -162,16 +195,18 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row">
+                                                                        <div class="form-group">
                                                                             @include('layouts.components.document-date', ['extraData' => $extraData])
                                                                         </div>
                                                                     </div>
 
                                                                     {{-- STEP 3 --}}
-                                                                    <div class="tab-pane" id="tab3">
-                                                                        <div class="row">
+                                                                    <div class="tab-pane"
+                                                                         id="tab3">
+                                                                        <div class="form-group">
                                                                             <div class="col-md-12">
-                                                                                <h4 align="center">Edite e imprima o documento</h4>
+                                                                                <h4 align="center">Edite e imprima o
+                                                                                                   documento</h4>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -188,10 +223,13 @@
                                                             </div>
                                                             <div class="form-actions">
                                                                 <div class="row">
-                                                                    <div class="col-md-offset-3 col-md-9">
-                                                                        <a href="javascript:;" class="btn default button-previous">
-                                                                            <i class="fa fa-angle-left"></i> Back </a>
-                                                                        <a href="javascript:;" class="btn btn-outline green button-next"> Continue
+                                                                    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                                                        <a href="javascript:;"
+                                                                           class="btn default button-previous">
+                                                                            <i class="fa fa-angle-left"></i> Voltar </a>
+                                                                        <a href="javascript:;"
+                                                                           class="btn btn-outline green button-next">
+                                                                            Prosseguir
                                                                             <i class="fa fa-angle-right"></i>
                                                                         </a>
                                                                     </div>
@@ -214,7 +252,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/global/plugins/select2/js/select2.min.js') }}"
+    <script src="{{ asset('assets/global/plugins/select2/js/select2.full.min.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') }}"
             type="text/javascript"></script>
@@ -227,16 +265,12 @@
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote-pt-BR.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"
-        type="text/javascript"></script>
+            type="text/javascript"></script>
     <script src="{{ asset('assets/pages/scripts/form-wizard.min.js') }}"
-        type="text/javascript"></script>
+            type="text/javascript"></script>
     <script>
 
-        $(document).ready(function () {
-            $('#wizard').smartWizard();
-        });
-
-        $('#date_input').on('change', function() {
+        $('#date_input').on('change', function () {
             var dateInput = $('#date_input').val();
             $('.date').html(dateInput);
             $('.extensive_date').html(getExtensiveDate());

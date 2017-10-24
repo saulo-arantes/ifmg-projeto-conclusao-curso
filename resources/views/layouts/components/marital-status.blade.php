@@ -33,9 +33,3 @@
         <div class="help-block with-errors"></div>
     </div>
 </div>
-
-@push('scripts')
-
-<script src="{{ asset('assets/global/scripts/jquery-1.2.6.pack.js') }}" type="text/javascript"></script>
-
-@endpush
