@@ -1,12 +1,6 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-    <link href="{{ asset('assets/global/plugins/jquery-smartWizard/css/smart_wizard.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
-    <link href="{{ asset('assets/global/plugins/jquery-smartWizard/css/smart_wizard_theme_circles.css') }}"
-          rel="stylesheet"
-          type="text/css"/>
     <link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}"
           rel="stylesheet"
           type="text/css"/>
@@ -65,137 +59,146 @@
                             <div class="tab-content">
                                 <div class="tab-pane active"
                                      id="personalInfo">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div id="wizard">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#step-1">
-                                                                <span>
-                                                                    Passo 1<br/>
-                                                                    <small>Selecione o documento</small>
-                                                                </span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#step-2">
-                                                                <span>Passo 2<br/>
-                                                                    <small>Preencha os dados</small>
-                                                                </span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#step-3">
-                                                                <span>Passo 3<br/>
-                                                                    <small>Edite e imprima o documento</small>
-                                                                </span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-
-                                                    {{-- STEP 1 --}}
-                                                    <div>
-                                                        <div id="step-1"
-                                                             style="height: 400px">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <h4 align="center">Selecione o tipo de documento e
-                                                                                       um
-                                                                                       exemplo do modelo será
-                                                                                       apresentado
-                                                                                       abaixo.
-                                                                    </h4>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light bordered" id="form_wizard_1">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class=" icon-layers font-red"></i>
+                                                        <span class="caption-subject font-red bold uppercase"> Gerar Receita -
+                                                            <span class="step-title"> Passos de 1 a 3 </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body form">
+                                                    <form class="form-horizontal" action="#" id="submit_form" method="POST">
+                                                        <div class="form-wizard">
+                                                            <div class="form-body">
+                                                                <ul class="nav nav-pills nav-justified steps">
+                                                                    <li>
+                                                                        <a href="#tab1" data-toggle="tab" class="step">
+                                                                            <span class="number"> 1 </span>
+                                                                            <span class="desc">
+                                                                    <i class="fa fa-check"></i> Selecione o documento </span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#tab2" data-toggle="tab" class="step">
+                                                                            <span class="number"> 2 </span>
+                                                                            <span class="desc">
+                                                                    <i class="fa fa-check"></i> Preencha os dados </span>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#tab3" data-toggle="tab" class="step active">
+                                                                            <span class="number"> 3 </span>
+                                                                            <span class="desc">
+                                                                    <i class="fa fa-check"></i> Edite e imprima o documento </span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                                <div id="bar" class="progress progress-striped" role="progressbar">
+                                                                    <div class="progress-bar progress-bar-success"> </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-                                                                    <div class="form-group">
-                                                                        <select id="document_type_id"
-                                                                                name="document_type_id"
-                                                                                class="form-control"
-                                                                                data-placeholder="Tipo"
-                                                                                onchange="updateDocumentExibition(this.value);"
-                                                                                title="Tipo de documento">
-                                                                            <option value=""
-                                                                                    selected>Selecionar o tipo de
-                                                                                             documento
-                                                                            </option>
-                                                                            @foreach ($extraData['documentTypes'] as $document)
-                                                                                <option value="{{ $document->description }}">{{ $document->name }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        <div class="help-block with-errors"></div>
+                                                                <div class="tab-content">
+                                                                    <div class="alert alert-danger display-none">
+                                                                        <button class="close" data-dismiss="alert"></button> You have some form errors. Please check below. </div>
+                                                                    <div class="alert alert-success display-none">
+                                                                        <button class="close" data-dismiss="alert"></button> Your form validation is successful! </div>
+
+                                                                    {{-- STEP 1 --}}
+                                                                    <div class="tab-pane active" id="tab1">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <h4 align="center">Selecione o tipo de documento e um exemplo do modelo será apresentado abaixo.</h4>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <select id="document_type_id"
+                                                                                            name="document_type_id"
+                                                                                            class="form-control"
+                                                                                            data-placeholder="Tipo de Documento"
+                                                                                            onchange="updateDocumentExibition(this.value);"
+                                                                                            title="Tipo de documento">
+                                                                                        <option value=""
+                                                                                                selected>Selecionar o tipo de documento</option>
+                                                                                        @foreach ($extraData['documentTypes'] as $document)
+                                                                                            <option value="{{ $document->description }}">{{ $document->name }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    <div class="help-block with-errors"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {{-- STEP 2 --}}
+                                                                    <div class="tab-pane" id="tab2">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <h4 align="center">Preencha os dados</h4>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                                                                                <label class="control-label"
+                                                                                       for="patient_id">Selecione o paciente</label>
+                                                                                @include('layouts.components.asterisk')
+                                                                                <div class="form-group">
+                                                                                    <select id="patient_id"
+                                                                                            name="patient_id"
+                                                                                            class="form-control"
+                                                                                            onchange="updatePatientInDocumentExibition(this.value);"
+                                                                                            title="Paciente">
+                                                                                        <option value=""
+                                                                                                selected>Selecionar o paciente</option>
+                                                                                        @foreach ($extraData['patients'] as $patient)
+                                                                                            <option value="{{ $patient->name }}" {{ @$extraData['patient'] == $patient->name ? 'selected' : '' }}>{{ $patient->name }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                    <div class="help-block with-errors"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            @include('layouts.components.document-date', ['extraData' => $extraData])
+                                                                        </div>
+                                                                    </div>
+
+                                                                    {{-- STEP 3 --}}
+                                                                    <div class="tab-pane" id="tab3">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <h4 align="center">Edite e imprima o documento</h4>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                            <div class="form-group">
+                                                                                <textarea class="summernote"
+                                                                                          id="description"
+                                                                                          name="description"
+                                                                                          title="Modelo de documento">
+                                                                                </textarea>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-sm-12">
-                                                                    <div id="documentExibition"
-                                                                         class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12"
-                                                                         style="margin-top: 20px; color: black"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {{-- STEP 2 --}}
-                                                    <div>
-                                                        <div id="step-2">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <h4 align="center">Preencha os dados</h4>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-                                                                    <label class="control-label"
-                                                                           for="patient_id">Selecione o paciente</label>
-                                                                    @include('layouts.components.asterisk')
-                                                                    <div class="form-group">
-                                                                        <select id="patient_id"
-                                                                                name="patient_id"
-                                                                                class="form-control"
-                                                                                data-placeholder="Paciente"
-                                                                                onchange="updatePatientInDocumentExibition(this.value);"
-                                                                                title="Paciente">
-                                                                            <option value=""
-                                                                                    selected>Selecionar o paciente
-                                                                            </option>
-                                                                            @foreach ($extraData['patients'] as $patient)
-                                                                                <option value="{{ $patient->name }}" {{ @$extraData['patient'] == $patient->name ? 'selected' : '' }}>{{ $patient->name }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                        <div class="help-block with-errors"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                @include('layouts.components.document-date', ['extraData' => $extraData])
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {{-- STEP 3 --}}
-                                                    <div>
-                                                        <div id="step-3"
-                                                             style="height: 400px">
-                                                            <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <h4 align="center">Edite e imprima o documento</h4>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                <div class="form-group">
-                                                                    <div class="summernote"
-                                                                         id="description"
-                                                                         title="Documento">
+                                                            <div class="form-actions">
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-3 col-md-9">
+                                                                        <a href="javascript:;" class="btn default button-previous">
+                                                                            <i class="fa fa-angle-left"></i> Back </a>
+                                                                        <a href="javascript:;" class="btn btn-outline green button-next"> Continue
+                                                                            <i class="fa fa-angle-right"></i>
+                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,9 +214,11 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/global/plugins/jquery-smartWizard/js/jquery.smartWizard.js') }}"
-            type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/select2/js/select2.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/jquery-validation/js/jquery.validate.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/jquery-validation/js/additional-methods.min.js') }}"
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote.min.js') }}"
             type="text/javascript"></script>
@@ -221,14 +226,17 @@
             type="text/javascript"></script>
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote-pt-BR.js') }}"
             type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"
+        type="text/javascript"></script>
+    <script src="{{ asset('assets/pages/scripts/form-wizard.min.js') }}"
+        type="text/javascript"></script>
     <script>
-        $('select').select2();
 
         $(document).ready(function () {
             $('#wizard').smartWizard();
         });
 
-        $('#date_input').on('change', function () {
+        $('#date_input').on('change', function() {
             var dateInput = $('#date_input').val();
             $('.date').html(dateInput);
             $('.extensive_date').html(getExtensiveDate());
@@ -249,7 +257,6 @@
             @if (!empty($extraData['patient']))
             $('.patient').html('{{ $extraData['patient'] }}');
             @endif
-
         }
 
         function updatePatientInDocumentExibition(value) {
@@ -320,7 +327,7 @@
             return diaext;
         }
 
-        $(document).ready(function () {
+        jQuery(document).ready(function () {
             $('#description').summernote(
                 {
                     lang: 'pt-BR',

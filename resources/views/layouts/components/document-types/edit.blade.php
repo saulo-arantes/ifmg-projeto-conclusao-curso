@@ -130,7 +130,6 @@
     <script src="{{ asset('assets/global/plugins/summernote/js/summernote-pt-BR.js') }}"
             type="text/javascript"></script>
     <script>
-
         jQuery(document).ready(function () {
             $('#description').summernote(
                 {
