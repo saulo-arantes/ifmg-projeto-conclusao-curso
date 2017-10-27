@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Entities\ContactType;
+use App\Entities\Doctor;
 use App\Entities\Notification;
 use App\Entities\User;
 use App\Entities\UserContact;
@@ -208,6 +209,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function getExtraData($id = null): array
     {
         $extraData['contact_types'] = ContactType::all();
+
+        $extraData['doctor'] = Doctor::where('user_id', Auth::user()->id)->get()->toArray();
 
         return $extraData;
     }
