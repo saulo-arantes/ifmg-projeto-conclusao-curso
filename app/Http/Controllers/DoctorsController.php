@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Doctor;
 use App\Http\Requests\DoctorCreateRequest;
 use App\Http\Requests\DoctorUpdateRequest;
 use App\Repositories\DoctorRepository;
 use App\Validators\DoctorValidator;
+use Illuminate\Support\Facades\Auth;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 
@@ -168,6 +170,13 @@ class DoctorsController extends Controller
 
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
         }
+    }
+
+    public function updateProfile(DoctorUpdateRequest $request)
+    {
+    	$doctor = Doctor::where('user_id', Auth::user()->id);
+
+    	return $this->update($request, $doctor->id);
     }
 
 

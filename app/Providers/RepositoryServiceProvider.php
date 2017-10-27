@@ -10,8 +10,8 @@ use App\Repositories\DoctorPatientRepository;
 use App\Repositories\DoctorPatientRepositoryEloquent;
 use App\Repositories\DoctorRepository;
 use App\Repositories\DoctorRepositoryEloquent;
-use App\Repositories\LogRepository;
-use App\Repositories\LogRepositoryEloquent;
+use App\Repositories\DocumentTypeRepository;
+use App\Repositories\DocumentTypeRepositoryEloquent;
 use App\Repositories\PatientContactRepository;
 use App\Repositories\PatientContactRepositoryEloquent;
 use App\Repositories\PatientsRepository;
@@ -56,7 +56,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ScheduleRepository::class, ScheduleRepositoryEloquent::class);
         $this->app->bind(DoctorRepository::class, DoctorRepositoryEloquent::class);
         $this->app->bind(DoctorPatientRepository::class, DoctorPatientRepositoryEloquent::class);
-        $this->app->bind(\App\Repositories\DocumentTypeRepository::class, \App\Repositories\DocumentTypeRepositoryEloquent::class);
+        $this->app->bind(DocumentTypeRepository::class, DocumentTypeRepositoryEloquent::class);
         //:end-bindings:
     }
 }

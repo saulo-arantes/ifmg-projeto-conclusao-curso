@@ -10,27 +10,6 @@
                     <span></span>
                 </div>
             </li>
-            <li class="sidebar-search-wrapper">
-                <form class="sidebar-search  sidebar-search-bordered"
-                      action="page_general_search_3.html"
-                      method="POST">
-                    <a href="javascript:;"
-                       class="remove">
-                        <i class="icon-close"></i>
-                    </a>
-                    <div class="input-group">
-                        <input type="text"
-                               class="form-control"
-                               placeholder="Search...">
-                        <span class="input-group-btn">
-                            <a href="javascript:;"
-                               class="btn submit">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </span>
-                    </div>
-                </form>
-            </li>
             <li class="nav-item start {{ Request::is('profile') ? 'active' : '' }}">
                 <a href="{{ url('/profile') }}"
                    class="nav-link ">

@@ -26,6 +26,7 @@ class DoctorTransformer extends TransformerAbstract
         return [
             'id'         => (int)$model->id,
             'crm'        => $model->crm,
+	        'user_id'    => $model->user_id,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];

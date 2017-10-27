@@ -19,7 +19,7 @@
             body {
                 display: table;
                 table-layout: fixed;
-                padding: 2.5cm;
+                padding: 40cm;
                 height: auto;
             }
         }

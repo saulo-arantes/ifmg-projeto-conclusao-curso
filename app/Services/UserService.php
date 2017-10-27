@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Entities\Doctor;
 use App\Entities\User;
 use App\Http\Requests\UserUpdateRequest;
 use App\Notifications\ExceptionNotification;
@@ -77,6 +78,12 @@ class UserService
 			Notification::send($user,
 				new WelcomeEmailNotification($data['email'], $password));
 
+			if ($user->role == User::DOCTOR) {
+				Doctor::create([
+					'user_id' => $user->id
+				]);
+			}
+
 			return $user['data']['id'];
 
 		} catch (ValidatorException $exception) {
@@ -129,6 +136,13 @@ class UserService
 			$this->repository->updateContacts($data, $id);
 
 			session()->forget('photo');
+
+			if (Auth::user()->role == User::DOCTOR) {
+				$doctor = Doctor::where('user_id', '=', Auth::user()->id)->get();
+				$doctor->crm = $data['crm'];
+
+				$doctor->save();
+			}
 
 			return true;
 		} catch (ValidatorException $exception) {

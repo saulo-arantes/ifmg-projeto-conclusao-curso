@@ -42,9 +42,9 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <span class="caption-subject bold uppercase">
-                                    <i class="fa fa-file-text"
+                                    <i class="fa fa-plus-square"
                                        aria-hidden="true"></i>
-                                    Listar Tipos
+                                    Novo Tipo
                                 </span>
                             </div>
                         </div>
@@ -95,11 +95,10 @@
                                                             <h3 style="text-align: center; "><u>ATESTADO</u></h3>
                                                             <p style="text-align: center;"><br></p>
 
-                                                            <p style="text-align: left;"><span
-                                                                        style="color: rgb(51, 51, 51); font-family: sans-serif, Arial, Verdana, 'Trebuchet MS'; text-align: center;">Atesto que o(a) paciente </span><span
-                                                                        class="patient"><b>PACIENTE</b></span> necessitou ausentar-se da escola no dia <span
-                                                                        class="date"><b>DATA</b></span> para aplicação de vacina <span
-                                                                        class="vaccine"><b>VACINA</b></span>.</p>
+                                                            <p style="text-align: left;">
+                                                                <span style="color: rgb(51, 51, 51); font-family: sans-serif, Arial, Verdana, 'Trebuchet MS'; text-align: center;">Atesto que o(a) paciente </span>
+                                                                <span class="patient"><b>PACIENTE</b></span> necessitou ausentar-se da escola no dia
+                                                                <span class="date"><b>DATA</b></span> por motivos de...</p>
 
                                                             <p style="text-align: left;"><span
                                                                         style="color: rgb(51, 51, 51); font-family: sans-serif, Arial, Verdana, 'Trebuchet MS'; text-align: center;"><br></span></p>
@@ -110,9 +109,9 @@
                                                             </p>
 
                                                             <p style="text-align: center;"><br></p>
-                                                            <p style="text-align: center;">_______________________________________</p>
+                                                            <p style="text-align: center;">______________________________________________</p>
                                                             <div class="doctor"
-                                                                 style="text-align: center;"><b>DOUTOR</b></div>
+                                                                 style="text-align: center;"><b>MÉDICO</b></div>
                                                         </textarea>
                                                     </div>
                                                 </div>

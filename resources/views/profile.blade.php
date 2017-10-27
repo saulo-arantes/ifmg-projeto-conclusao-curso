@@ -88,6 +88,11 @@
                                                 @include('layouts.components.name', ['data' => $user['data']])
                                                 @include('layouts.components.email', ['data' => $user['data']])
                                             </div>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->role == \App\Entities\User::DOCTOR)
+                                                <div class="row">
+                                                    @include('layouts.components.crm', ['data' => $doctor['data']])
+                                                </div>
+                                            @endif
                                             <h4 class="form-section">Endereço</h4>
                                             <div class="row">
                                                 @include('layouts.components.address', ['data' => $user['data']])

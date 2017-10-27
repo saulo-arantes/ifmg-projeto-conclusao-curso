@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Entities\User;
 
 Route::get('/', function () {
     return view('auth/login');
@@ -28,7 +29,7 @@ Route::group(['middleware' => 'auth'],
         Route::group(['prefix' => 'profile'],
             function () {
                 Route::get('', 'UsersController@profile');
-                Route::post('', 'UsersController@updateProfile');
+	            Route::post('', 'UsersController@updateProfile');
                 Route::post('password', 'UsersController@updatePassword');
             });
 

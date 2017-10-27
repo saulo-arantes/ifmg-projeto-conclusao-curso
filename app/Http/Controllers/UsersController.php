@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Doctor;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
@@ -140,9 +141,10 @@ class UsersController extends Controller
 	public function profile()
 	{
 		$user      = $this->repository->find(Auth::user()->id);
+		$doctor = Doctor::where('user_id', '=', Auth::user()->id)->get();
 		$extraData = $this->repository->getExtraData();
 
-		return view('profile', compact('user'), compact('extraData'));
+		return view('profile', compact('user'), compact('extraData'), compact('doctor'));
 	}
 
 	/**

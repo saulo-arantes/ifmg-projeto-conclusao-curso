@@ -762,16 +762,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.18",
+            "version": "v5.5.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "1cc21baac11551377734b8c17ead17db4c34fe21"
+                "reference": "c678100e84934ec85c9f8bc26bd0a60222682719"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/1cc21baac11551377734b8c17ead17db4c34fe21",
-                "reference": "1cc21baac11551377734b8c17ead17db4c34fe21",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/c678100e84934ec85c9f8bc26bd0a60222682719",
+                "reference": "c678100e84934ec85c9f8bc26bd0a60222682719",
                 "shasum": ""
             },
             "require": {
@@ -889,7 +889,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-10-19T12:50:26+00:00"
+            "time": "2017-10-25T19:10:45+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -1776,16 +1776,16 @@
         },
         {
             "name": "prettus/l5-repository",
-            "version": "2.6.23",
+            "version": "2.6.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andersao/l5-repository.git",
-                "reference": "929119b6e96f6b223163db26f31c6de9971cedf3"
+                "reference": "154651bcadc4d81c22e2b621c3d291dc9eafb015"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/929119b6e96f6b223163db26f31c6de9971cedf3",
-                "reference": "929119b6e96f6b223163db26f31c6de9971cedf3",
+                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/154651bcadc4d81c22e2b621c3d291dc9eafb015",
+                "reference": "154651bcadc4d81c22e2b621c3d291dc9eafb015",
                 "shasum": ""
             },
             "require": {
@@ -1837,7 +1837,7 @@
                 "model",
                 "repository"
             ],
-            "time": "2017-10-23T19:39:30+00:00"
+            "time": "2017-10-26T16:44:53+00:00"
         },
         {
             "name": "prettus/laravel-validation",
@@ -3291,16 +3291,16 @@
         },
         {
             "name": "yajra/laravel-datatables-buttons",
-            "version": "v3.0.2",
+            "version": "v3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables-buttons.git",
-                "reference": "d730cf7df4c08c65bfcf5ca188cdb50481666b70"
+                "reference": "bdac3a82432388381bab6d83a3ea5fe4f4b3ace3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables-buttons/zipball/d730cf7df4c08c65bfcf5ca188cdb50481666b70",
-                "reference": "d730cf7df4c08c65bfcf5ca188cdb50481666b70",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables-buttons/zipball/bdac3a82432388381bab6d83a3ea5fe4f4b3ace3",
+                "reference": "bdac3a82432388381bab6d83a3ea5fe4f4b3ace3",
                 "shasum": ""
             },
             "require": {
@@ -3351,7 +3351,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2017-10-17T03:19:43+00:00"
+            "time": "2017-10-27T07:50:56+00:00"
         },
         {
             "name": "yajra/laravel-datatables-html",
@@ -3414,16 +3414,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v8.1.1",
+            "version": "v8.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "70ea9184e00cc2e09a9c8772858c5fe04338b3fc"
+                "reference": "b5ecb425414b1baf2ce2f82fe2849e77e51230e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/70ea9184e00cc2e09a9c8772858c5fe04338b3fc",
-                "reference": "70ea9184e00cc2e09a9c8772858c5fe04338b3fc",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/b5ecb425414b1baf2ce2f82fe2849e77e51230e0",
+                "reference": "b5ecb425414b1baf2ce2f82fe2849e77e51230e0",
                 "shasum": ""
             },
             "require": {
@@ -3480,7 +3480,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2017-10-17T03:09:05+00:00"
+            "time": "2017-10-27T06:13:31+00:00"
         }
     ],
     "packages-dev": [

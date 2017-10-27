@@ -16,6 +16,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @package App\Entities
  *
  * @property integer id
+ * @property integer user_id
  * @property string crm
  * @property User user
  * @property DoctorPatient patients
@@ -27,7 +28,10 @@ class Doctor extends Model implements Transformable, AuditableContract
     use Auditable;
     use TransformableTrait;
 
-    protected $fillable = ['crm'];
+    protected $fillable = [
+    	'crm',
+	    'user_id'
+    ];
 
     public function user()
     {
