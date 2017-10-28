@@ -24,11 +24,11 @@
                         <i class="fa fa-user-o"></i> Meu perfil </a>
                 </li>
                 <li>
-                    <a href="{{ url('/doctor/schedules/calendar') }}">
+                    <a href="{{ url('/secretary/schedules/calendar') }}">
                         <i class="fa fa-calendar"></i> Calendário </a>
                 </li>
                 <li>
-                    <a href="{{ url('/doctor/schedules') }}">
+                    <a href="{{ url('/secretary/schedules') }}">
                         <i class="fa fa-address-book-o"></i> Compromissos
                     </a>
                 </li>

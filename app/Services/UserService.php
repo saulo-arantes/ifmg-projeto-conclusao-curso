@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entities\Doctor;
+use App\Entities\Secretary;
 use App\Entities\User;
 use App\Http\Requests\UserUpdateRequest;
 use App\Notifications\ExceptionNotification;
@@ -80,6 +81,10 @@ class UserService
 
 			if ($user->role == User::DOCTOR) {
 				Doctor::create([
+					'user_id' => $user->id
+				]);
+			} elseif ($user->role == User::SECRETARY) {
+				Secretary::create([
 					'user_id' => $user->id
 				]);
 			}

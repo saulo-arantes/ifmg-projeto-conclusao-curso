@@ -122,12 +122,6 @@ Route::group(['middleware' => 'auth'],
                     Route::get('create', 'PatientsController@create');
                 });
 
-            Route::group(['prefix' => 'logs'],
-                function () {
-                    Route::get('', 'NotificationsController@index');
-                    Route::get('{id}/mark-as-seen', 'NotificationsController@markAsSeen');
-                    Route::get('visualize-all', 'NotificationsController@visualizeAll');
-                });
 
 	        Route::group(['prefix' => 'schedules'],
 		        function () {
@@ -153,4 +147,36 @@ Route::group(['middleware' => 'auth'],
 	        Route::get('document', 'DocumentTypesController@generateDocument');
         });
 
+	    #########################################################################
+	    # Secretary
+	    #########################################################################
+	    Route::group([
+		    'middleware' => 'secretary',
+		    'prefix'     => 'secretary'
+	    ], function () {
+
+		    Route::get('dashboard', 'HomeController@dashboard');
+
+		    Route::group(['prefix' => 'patients'],
+			    function () {
+				    Route::get('', 'PatientsController@index');
+				    Route::get('{id}/edit', 'PatientsController@edit');
+				    Route::post('{id}/edit', 'PatientsController@update');
+				    Route::get('{id}/delete', 'PatientsController@destroy');
+				    Route::post('create', 'PatientsController@store');
+				    Route::get('create', 'PatientsController@create');
+			    });
+
+		    Route::group(['prefix' => 'schedules'],
+			    function () {
+				    Route::get('', 'SchedulesController@index');
+				    Route::get('calendar', 'SchedulesController@calendar');
+				    Route::get('create/appointment', 'SchedulesController@createAppointment');
+				    Route::get('create/scheduling', 'SchedulesController@createScheduling');
+				    Route::post('calendar-ajax', 'SchedulesController@calendarAjax');
+				    Route::post('create', 'SchedulesController@store');
+				    Route::get('{id}/edit', 'SchedulesController@edit');
+				    Route::post('{id}/edit', 'SchedulesController@update');
+			    });
+	    });
     });

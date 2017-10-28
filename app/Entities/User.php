@@ -115,6 +115,11 @@ class User extends Authenticatable implements AuditableContract
 		return Auth::user()->role == User::DOCTOR;
 	}
 
+	public static function isSecretary()
+	{
+		return Auth::user()->role == User::SECRETARY;
+	}
+
 	/**
 	 * Envia uma notificação de redefinição de senha.
 	 *
