@@ -29,7 +29,7 @@
                             <div class="caption">
 
                                 <span class="caption-subject bold uppercase">
-                                    <i class="fa fa-user"
+                                    <i class="fa fa-plus-square"
                                        aria-hidden="true"></i>
                                     Adicionar usuário
                                 </span>

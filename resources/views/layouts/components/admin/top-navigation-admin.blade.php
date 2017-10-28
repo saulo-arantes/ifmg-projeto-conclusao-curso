@@ -8,7 +8,7 @@
                data-hover="dropdown"
                data-close-others="true">
                 <i class="fa fa-bell-o"></i>
-                <span class="badge badge-danger"> {{ session('notificationsNotVisualizedCount') ?? 0 }} </span>
+                <span class="badge badge-default"> {{ session('notificationsNotVisualizedCount') ?? 0 }} </span>
             </a>
             <ul class="dropdown-menu">
                 <li class="external">

@@ -1,35 +1,13 @@
 <div class="page-sidebar-wrapper">
     <div class="page-sidebar navbar-collapse collapse">
-        <ul class="page-sidebar-menu page-header-fixed page-sidebar-menu-closed page-sidebar-menu-light hidden-sm hidden-xs"
+        <ul class="page-sidebar-menu page-header-fixed page-sidebar-menu-closed"
             data-keep-expanded="false"
             data-auto-scroll="true"
-            data-slide-speed="200"
-            style="padding-top: 10px">
+            data-slide-speed="200">
             <li class="sidebar-toggler-wrapper hide">
                 <div class="sidebar-toggler">
                     <span></span>
                 </div>
-            </li>
-            <li class="sidebar-search-wrapper">
-                <form class="sidebar-search  sidebar-search-bordered"
-                      action="page_general_search_3.html"
-                      method="POST">
-                    <a href="javascript:;"
-                       class="remove">
-                        <i class="icon-close"></i>
-                    </a>
-                    <div class="input-group">
-                        <input type="text"
-                               class="form-control"
-                               placeholder="Search...">
-                        <span class="input-group-btn">
-                            <a href="javascript:;"
-                               class="btn submit">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </span>
-                    </div>
-                </form>
             </li>
             <li class="nav-item start {{ Request::is('profile') ? 'active' : '' }}">
                 <a href="{{ url('/profile') }}"

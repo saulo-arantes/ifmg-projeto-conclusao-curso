@@ -15,7 +15,7 @@
                                 </span>
                                 <select name="contact_type_id[]"
                                         id="contact_type_id[]"
-                                        class="form-control select2"
+                                        class="form-control"
                                         data-placeholder="Tipo de Contato"
                                         required
                                         data-error="Campo obrigatório. Preencha um contato seu ou de um responsável."
@@ -70,7 +70,7 @@
                             </span>
                             <select name="contact_type_id[]"
                                     id="contact_type_id[]"
-                                    class="form-control select2"
+                                    class="form-control"
                                     data-placeholder="Tipo de Contato"
                                     required
                                     data-error="Campo obrigatório. Preencha um contato seu ou de um responsável."

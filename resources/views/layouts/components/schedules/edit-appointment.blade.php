@@ -46,7 +46,7 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <span class="caption-subject bold uppercase">
-                                    <i class="fa fa-wheelchair"
+                                    <i class="fa fa-pencil-square-o"
                                        aria-hidden="true"></i>
                                     Editar Consulta
                                 </span>

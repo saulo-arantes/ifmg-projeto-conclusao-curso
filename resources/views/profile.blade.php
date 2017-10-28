@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-<link href="{{ asset('assets/global/plugins/dropzone/dropzone.min.css') }}"
-      rel="stylesheet"
-      type="text/css"/>
+    <link href="{{ asset('assets/global/plugins/dropzone/dropzone.min.css') }}"
+          rel="stylesheet"
+          type="text/css"/>
 @endpush
 
 @section('content')
@@ -27,8 +27,11 @@
                     <div class="portlet box blue-dark">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-edit"></i>
-                                <span class="caption-subject bold uppercase"> Meu perfil</span>
+                                <span class="caption-subject bold uppercase">
+                                    <i class="fa fa-user-circle-o"
+                                       aria-hidden="true"></i>
+                                    Meu Perfil
+                                </span>
                             </div>
                             <ul class="nav nav-tabs">
                                 <li class="active">
@@ -149,25 +152,26 @@
 @endsection
 
 @push('scripts')
-<script>
-    jQuery(document).ready(function () {
-        Dropzone.autoDiscover = false;
-        // Dropzone to upload avatar
-        $('#avatar').dropzone({
-            url: '/uploads/upload-avatar',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            method: 'post',
-            maxFiles: 1,
-            maxfilesexceeded: function (file) {
-                this.removeFile(file);
-            },
+    <script>
+        jQuery(document).ready(function () {
+            Dropzone.autoDiscover = false;
+            // Dropzone to upload avatar
+            $('#avatar').dropzone({
+                url: '/uploads/upload-avatar',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'post',
+                maxFiles: 1,
+                maxfilesexceeded: function (file) {
+                    this.removeFile(file);
+                },
 
-            error: function (file, responseText) {
-                file.previewElement.classList.add('dz-error');
-                swal('Erro :(', responseText, 'error')
-            }
+                error: function (file, responseText) {
+                    file.previewElement.classList.add('dz-error');
+                    swal('Erro :(', responseText, 'error')
+                }
+            });
         });
-    });
-</script>
-<script src="{{ asset('assets/global/plugins/dropzone/dropzone.min.js') }}" type="text/javascript"></script>
+    </script>
+    <script src="{{ asset('assets/global/plugins/dropzone/dropzone.min.js') }}"
+            type="text/javascript"></script>
 @endpush

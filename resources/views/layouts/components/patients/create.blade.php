@@ -36,7 +36,7 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <span class="caption-subject bold uppercase">
-                                    <i class="fa fa-wheelchair"
+                                    <i class="fa fa-plus-square"
                                        aria-hidden="true"></i>
                                     Adicionar paciente
                                 </span>
