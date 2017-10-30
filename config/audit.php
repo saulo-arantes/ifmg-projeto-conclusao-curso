@@ -12,6 +12,8 @@
  * with this source code.
  */
 
+use Illuminate\Support\Facades\Auth;
+
 return [
 
     /*
@@ -38,7 +40,7 @@ return [
     'user' => [
         'primary_key' => 'id',
         'foreign_key' => 'user_id',
-        'model'       => App\User::class,
+        'model'       => App\Entities\User::class,
         'resolver'    => function () {
             return Auth::check() ? Auth::user()->getAuthIdentifier() : null;
         },

@@ -29,7 +29,7 @@ class CreateSecretariesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('secretaries');
+		Schema::dropIfExists('secretaries');
 	}
 
 }
