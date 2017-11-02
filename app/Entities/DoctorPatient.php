@@ -25,22 +25,22 @@ use Prettus\Repository\Traits\TransformableTrait;
  */
 class DoctorPatient extends Model implements Transformable, AuditableContract
 {
-    use Auditable;
-    use TransformableTrait;
+	use Auditable;
+	use TransformableTrait;
 
-    protected $fillable = [
-        'doctor_id',
-        'patient_id'
-    ];
+	protected $fillable = [
+		'doctor_id',
+		'patient_id'
+	];
 
-    public function doctor()
-    {
-        return $this->hasOne(Doctor::class, 'id', 'doctor_id');
-    }
+	public function doctor()
+	{
+		return $this->hasOne(Doctor::class, 'id', 'doctor_id');
+	}
 
-    public function patient()
-    {
-    	return $this->hasOne(Patient::class, 'id', 'patient_id');
-    }
+	public function patient()
+	{
+		return $this->hasOne(Patient::class, 'id', 'patient_id');
+	}
 
 }

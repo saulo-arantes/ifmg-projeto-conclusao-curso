@@ -23,15 +23,15 @@ use Prettus\Repository\Traits\TransformableTrait;
  */
 class City extends Model implements Transformable, AuditableContract
 {
-    use Auditable;
-    use TransformableTrait;
+	use Auditable;
+	use TransformableTrait;
 
-    public $timestamps = false;
-    protected $fillable = [];
+	public $timestamps = false;
+	protected $fillable = [];
 
-    public function state()
-    {
-        return $this->belongsTo(State::class);
-    }
+	public function state()
+	{
+		return $this->belongsTo(State::class);
+	}
 
 }

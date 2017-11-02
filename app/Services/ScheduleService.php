@@ -23,7 +23,8 @@ use Prettus\Validator\Exceptions\ValidatorException;
  * @since 04/08/2017
  * @package App\Services
  */
-class ScheduleService {
+class ScheduleService
+{
 
 	protected $repository;
 	protected $validator;
@@ -34,12 +35,14 @@ class ScheduleService {
 	 * @param ScheduleRepository $repository
 	 * @param ScheduleValidator $validator
 	 */
-	public function __construct(ScheduleRepository $repository, ScheduleValidator $validator) {
+	public function __construct(ScheduleRepository $repository, ScheduleValidator $validator)
+	{
 		$this->repository = $repository;
 		$this->validator  = $validator;
 	}
 
-	public function store(array $data) {
+	public function store(array $data)
+	{
 
 		$startAt  = Carbon::createFromFormat('d/m/Y H:i', $data['start_at']);
 		$finishAt = Carbon::createFromFormat('d/m/Y H:i', $data['finish_at']);
@@ -158,7 +161,8 @@ class ScheduleService {
 		}
 	}
 
-	public function update(array $data, $id) {
+	public function update(array $data, $id)
+	{
 
 		$startAt  = Carbon::createFromFormat('d/m/Y H:i', $data['start_at']);
 		$finishAt = Carbon::createFromFormat('d/m/Y H:i', $data['finish_at']);

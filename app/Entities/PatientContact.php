@@ -24,14 +24,14 @@ use Prettus\Repository\Traits\TransformableTrait;
  */
 class PatientContact extends Model implements Transformable, AuditableContract
 {
-    use Auditable;
-    use TransformableTrait;
+	use Auditable;
+	use TransformableTrait;
 
-    protected $fillable = [
-        'description',
-        'patient_id',
-        'contact_type_id'
-    ];
+	protected $fillable = [
+		'description',
+		'patient_id',
+		'contact_type_id'
+	];
 
 	public function contactType()
 	{

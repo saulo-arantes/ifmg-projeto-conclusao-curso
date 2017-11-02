@@ -13,8 +13,8 @@ use Prettus\Validator\LaravelValidator;
  */
 class StateValidator extends LaravelValidator
 {
-    protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
-        ValidatorInterface::RULE_UPDATE => [],
-    ];
+	protected $rules = [
+		ValidatorInterface::RULE_CREATE => [],
+		ValidatorInterface::RULE_UPDATE => [],
+	];
 }

@@ -40,48 +40,48 @@
 </div>
 
 @push('scripts')
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    /** * Ajax function to get cities that corresponds to a state id, for naturalness
-     */
-    function selectCitiesOfState(stateID, isCity) {
+        /** * Ajax function to get cities that corresponds to a state id, for naturalness
+         */
+        function selectCitiesOfState(stateID, isCity) {
 
-        var baseurl = window.location.protocol + "//" + window.location.host + "/";
-        var city;
+            var baseurl = window.location.protocol + "//" + window.location.host + "/";
+            var city;
 
-        if (isCity) {
-            city = $('#city_id');
-        } else {
-            city = $('#naturalness_id');
+            if (isCity) {
+                city = $('#city_id');
+            } else {
+                city = $('#naturalness_id');
+            }
+
+            swal({
+                title: 'Atualizando',
+                text: 'Aguarde...',
+                imageUrl: '/img/loading.svg',
+                cancelButtonText: 'Cancelar',
+                showCancelButton: true,
+                showConfirmButton: false
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: baseurl + 'get-cities/' + stateID,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: 'stateID=' + stateID,
+                cache: false,
+                error: function (response) {
+                    alert(response.responseText);
+                    swal('Oops :(', 'Houve um erro com a requisição, tente novamente.', 'error');
+                },
+                success: function (html) {
+                    swal.close();
+                    city.empty();
+                    city.append(html);
+                }
+            });
         }
 
-        swal({
-            title: 'Atualizando',
-            text: 'Aguarde...',
-            imageUrl: '/img/loading.svg',
-            cancelButtonText: 'Cancelar',
-            showCancelButton: true,
-            showConfirmButton: false
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: baseurl + 'get-cities/' + stateID,
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data: 'stateID=' + stateID,
-            cache: false,
-            error: function (response) {
-                alert(response.responseText);
-                swal('Oops :(', 'Houve um erro com a requisição, tente novamente.', 'error');
-            },
-            success: function (html) {
-                swal.close();
-                city.empty();
-                city.append(html);
-            }
-        });
-    }
-
-</script>
+    </script>
 
 @endpush

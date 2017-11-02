@@ -97,8 +97,9 @@ class DocumentTypesDataTable extends DataTable
 		return [
 			'id',
 			'name'        => ['title' => 'Nome'],
-			'description' => ['title'     => 'Descrição',
-			                  'orderable' => false
+			'description' => [
+				'title'     => 'Descrição',
+				'orderable' => false
 			],
 			'created_at'  => ['title' => 'Criado em'],
 			'edit'        => [

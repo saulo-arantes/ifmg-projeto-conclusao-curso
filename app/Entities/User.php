@@ -35,44 +35,44 @@ use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
  */
 class User extends Authenticatable implements AuditableContract
 {
-    use Auditable;
-    use Notifiable;
+	use Auditable;
+	use Notifiable;
 
-    const ADMIN = 'admin';
-    const DOCTOR = 'doctor';
-    const SECRETARY = 'secretary';
+	const ADMIN = 'admin';
+	const DOCTOR = 'doctor';
+	const SECRETARY = 'secretary';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'address',
-        'complement',
-        'email',
-        'name',
-        'neighborhood',
-        'number',
-        'password',
-        'photo',
-        'role',
-        'status',
-        'zipcode'
-    ];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'address',
+		'complement',
+		'email',
+		'name',
+		'neighborhood',
+		'number',
+		'password',
+		'photo',
+		'role',
+		'status',
+		'zipcode'
+	];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'remember_token',
-    ];
+	/**
+	 * The attributes that should be hidden for arrays.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+		'remember_token',
+	];
 
-    public $email_address;
+	public $email_address;
 
-    private $password;
+	private $password;
 
 	public function __construct(array $attributes = [])
 	{
@@ -85,15 +85,15 @@ class User extends Authenticatable implements AuditableContract
 		}
 	}
 
-    public function contacts()
-    {
-        return $this->hasMany(UserContact::class, 'user_id', 'id');
-    }
+	public function contacts()
+	{
+		return $this->hasMany(UserContact::class, 'user_id', 'id');
+	}
 
-    public static function getUserMiddleware()
-    {
-        return Auth::user()->role;
-    }
+	public static function getUserMiddleware()
+	{
+		return Auth::user()->role;
+	}
 
 	/**
 	 * Checa se o usuário logado é do tipo ADMIN.

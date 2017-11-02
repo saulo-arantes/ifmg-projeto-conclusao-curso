@@ -19,63 +19,64 @@ use App\Services\PatientService;
 class PatientsController extends Controller
 {
 
-    protected $repository;
-    protected $service;
+	protected $repository;
+	protected $service;
 
-    public function __construct(PatientsRepository $repository, PatientService $service)
-    {
-        $this->repository = $repository;
-        $this->service = $service;
-    }
+	public function __construct(PatientsRepository $repository, PatientService $service)
+	{
+		$this->repository = $repository;
+		$this->service    = $service;
+	}
 
-    public function index(PatientsDataTable $dataTable)
-    {
-        return $dataTable->render('admin.patients.list');
-    }
+	public function index(PatientsDataTable $dataTable)
+	{
+		return $dataTable->render('admin.patients.list');
+	}
 
-    public function create()
-    {
-        $extraData = $this->repository->getExtraData();
-        return view(User::getUserMiddleware() . '.patients.create', compact('extraData'));
-    }
+	public function create()
+	{
+		$extraData = $this->repository->getExtraData();
 
-    public function store(PatientsCreateRequest $request)
-    {
-        $resultFromStorePatient = $this->service->store($request->all());
+		return view(User::getUserMiddleware() . '.patients.create', compact('extraData'));
+	}
 
-        if (!empty($resultFromStorePatient['error'])) {
-            alert()->error($resultFromStorePatient['message'], 'Erro :(')->persistent('Fechar');
+	public function store(PatientsCreateRequest $request)
+	{
+		$resultFromStorePatient = $this->service->store($request->all());
 
-            return back()->withInput();
-        }
+		if (!empty($resultFromStorePatient['error'])) {
+			alert()->error($resultFromStorePatient['message'], 'Erro :(')->persistent('Fechar');
 
-        alert()->success('Paciente adicionado com sucesso!', 'Feito :)');
+			return back()->withInput();
+		}
 
-        return redirect('/admin/patients');
-    }
+		alert()->success('Paciente adicionado com sucesso!', 'Feito :)');
 
-    public function edit($id)
-    {
-        $patient = $this->repository->find($id);
-        $extraData = $this->repository->getExtraData($id);
-        $patient['data']['birthday_date'] = date('d/m/Y', strtotime($patient['data']['birthday_date']));
+		return redirect('/' . User::getUserMiddleware() . '/patients');
+	}
 
-        return view('admin.patients.edit', compact('patient'), compact('extraData'));
-    }
+	public function edit($id)
+	{
+		$patient                          = $this->repository->find($id);
+		$extraData                        = $this->repository->getExtraData($id);
+		$patient['data']['birthday_date'] = date('d/m/Y', strtotime($patient['data']['birthday_date']));
 
-    public function update(PatientsUpdateRequest $request, $id)
-    {
+		return view('admin.patients.edit', compact('patient'), compact('extraData'));
+	}
 
-        $resultFromUpdatePatient = $this->service->update($request->all(), $id);
+	public function update(PatientsUpdateRequest $request, $id)
+	{
 
-        if (!empty($resultFromUpdatePatient['error'])) {
-            alert()->error($resultFromUpdatePatient['message'], 'Erro :(')->persistent('Fechar');
+		$resultFromUpdatePatient = $this->service->update($request->all(), $id);
 
-            return back()->withInput();
-        }
+		if (!empty($resultFromUpdatePatient['error'])) {
+			alert()->error($resultFromUpdatePatient['message'], 'Erro :(')->persistent('Fechar');
 
-        alert()->success('Paciente atualizado com sucesso!', 'Feito :)');
+			return back()->withInput();
+		}
 
-        return back()->withInput();
-    }
+		alert()->success('Paciente atualizado com sucesso!', 'Feito :)');
+
+		return back()->withInput();
+	}
 }

@@ -116,7 +116,8 @@
                                                                     <div class="alert alert-danger display-none">
                                                                         <button class="close"
                                                                                 data-dismiss="alert"></button>
-                                                                        Preencha todos os campos obrigatórios antes de prosseguir.
+                                                                        Preencha todos os campos obrigatórios antes de
+                                                                        prosseguir.
                                                                     </div>
                                                                     <div class="alert alert-success display-none">
                                                                         <button class="close"

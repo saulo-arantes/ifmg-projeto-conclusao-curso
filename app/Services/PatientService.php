@@ -25,7 +25,8 @@ use Prettus\Validator\Exceptions\ValidatorException;
  * @since 14/07/2017
  * @package App\Services
  */
-class PatientService {
+class PatientService
+{
 
 	protected $repository;
 	protected $validator;
@@ -36,12 +37,14 @@ class PatientService {
 	 * @param PatientsRepository $repository
 	 * @param PatientsValidator $validator
 	 */
-	public function __construct(PatientsRepository $repository, PatientsValidator $validator) {
+	public function __construct(PatientsRepository $repository, PatientsValidator $validator)
+	{
 		$this->repository = $repository;
 		$this->validator  = $validator;
 	}
 
-	public function store(array $data) {
+	public function store(array $data)
+	{
 
 		$data['cpf'] = !empty($data['cpf']) ? $data['cpf'] : null;
 		$data['rg']  = !empty($data['rg']) ? $data['rg'] : null;
@@ -88,7 +91,8 @@ class PatientService {
 		}
 	}
 
-	public function update(array $data, $id) {
+	public function update(array $data, $id)
+	{
 
 		unset($data['role']);
 

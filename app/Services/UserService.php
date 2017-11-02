@@ -143,7 +143,7 @@ class UserService
 			session()->forget('photo');
 
 			if (Auth::user()->role == User::DOCTOR) {
-				$doctor = Doctor::where('user_id',  Auth::user()->id)->first();
+				$doctor      = Doctor::where('user_id', Auth::user()->id)->first();
 				$doctor->crm = $data['crm'];
 				$doctor->save();
 			}

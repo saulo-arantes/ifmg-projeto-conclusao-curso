@@ -12,13 +12,13 @@ use Prettus\Repository\Presenter\FractalPresenter;
  */
 class DocumentTypePresenter extends FractalPresenter
 {
-    /**
-     * Transformer
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new DocumentTypeTransformer();
-    }
+	/**
+	 * Transformer
+	 *
+	 * @return \League\Fractal\TransformerAbstract
+	 */
+	public function getTransformer()
+	{
+		return new DocumentTypeTransformer();
+	}
 }

@@ -2,7 +2,7 @@
 
 @push('stylesheets')
     <link href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.css') }}"
-          rel='stylesheet' />
+          rel='stylesheet'/>
 
     <style>
 
@@ -30,7 +30,7 @@
             box-shadow: 2px 2px 2px #706868;
         }
 
-        #schedule .fc-event:hover{
+        #schedule .fc-event:hover {
             font-weight: bolder;
             transform: scale(1.02);
         }
@@ -105,70 +105,70 @@
     <script src="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('assets/global/plugins/fullcalendar/fullcalendar-pt-br.min.js') }}"></script>
     <script>
-    $('#schedule').fullCalendar({
-        header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'listWeek,agendaDay,agendaWeek,month',
-        },
-        navLinks: true,
-        editable: false,
-        eventLimit: true,
-        defaultView: 'agendaWeek',
-        refetchResourcesOnNavigate: true,
-        eventRender: function(event, element) {
-            $(element).tooltip({title: event.title});
-        },
-        events: function(start, end, timezone, callback) {
-            $.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                url: '/{{ $extraData['middleware'] }}/schedules/calendar-ajax',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    start: start.unix(),
-                    end: end.unix(),
-                },
-                success: function(response) {
-                    var events = [];
-                    var color;
-                    var finish_at;
-                    var now = new Date();
+        $('#schedule').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'listWeek,agendaDay,agendaWeek,month',
+            },
+            navLinks: true,
+            editable: false,
+            eventLimit: true,
+            defaultView: 'agendaWeek',
+            refetchResourcesOnNavigate: true,
+            eventRender: function (event, element) {
+                $(element).tooltip({title: event.title});
+            },
+            events: function (start, end, timezone, callback) {
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                    url: '/{{ $extraData['middleware'] }}/schedules/calendar-ajax',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        start: start.unix(),
+                        end: end.unix(),
+                    },
+                    success: function (response) {
+                        var events = [];
+                        var color;
+                        var finish_at;
+                        var now = new Date();
 
-                    $.each(response, function(index, value) {
-                        finish_at = new Date(value.finish_at.split(' ')[0]);
+                        $.each(response, function (index, value) {
+                            finish_at = new Date(value.finish_at.split(' ')[0]);
 
-                        if (finish_at < now) {
-                            color = '#777777';
-                        } else if (value.patient !== null) {
-                            color = '#659be0';
-                        } else {
-                            color = '#36c6d3';
-                        }
+                            if (finish_at < now) {
+                                color = '#777777';
+                            } else if (value.patient !== null) {
+                                color = '#659be0';
+                            } else {
+                                color = '#36c6d3';
+                            }
 
-                        if (value.patient !== null) {
-                            events.push({
-                                title: value.description,
-                                start: value.start_at,
-                                end: value.finish_at,
-                                url: value.id + '/edit/appointment',
-                                color: color
-                            });
-                        } else {
-                            events.push({
-                                title: value.description,
-                                start: value.start_at,
-                                end: value.finish_at,
-                                url: value.id + '/edit/scheduling',
-                                color: color
-                            });
-                        }
-                    });
+                            if (value.patient !== null) {
+                                events.push({
+                                    title: value.description,
+                                    start: value.start_at,
+                                    end: value.finish_at,
+                                    url: value.id + '/edit/appointment',
+                                    color: color
+                                });
+                            } else {
+                                events.push({
+                                    title: value.description,
+                                    start: value.start_at,
+                                    end: value.finish_at,
+                                    url: value.id + '/edit/scheduling',
+                                    color: color
+                                });
+                            }
+                        });
 
-                    callback(events);
-                },
-            });
-        },
-    });
-</script>
+                        callback(events);
+                    },
+                });
+            },
+        });
+    </script>
 @endpush

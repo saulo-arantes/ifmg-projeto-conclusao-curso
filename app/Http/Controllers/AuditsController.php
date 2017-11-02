@@ -13,15 +13,15 @@ use App\Services\DataTables\AuditsDataTable;
  */
 class AuditsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param AuditsDataTable $dataTable
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
-     */
-    public function index(AuditsDataTable $dataTable)
-    {
-        return $dataTable->render('admin.audits.list');
-    }
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @param AuditsDataTable $dataTable
+	 *
+	 * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
+	 */
+	public function index(AuditsDataTable $dataTable)
+	{
+		return $dataTable->render('admin.audits.list');
+	}
 }

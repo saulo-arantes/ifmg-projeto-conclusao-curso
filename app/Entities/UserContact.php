@@ -24,17 +24,17 @@ use Prettus\Repository\Traits\TransformableTrait;
  */
 class UserContact extends Model implements Transformable, AuditableContract
 {
-    use Auditable;
-    use TransformableTrait;
+	use Auditable;
+	use TransformableTrait;
 
-    protected $fillable = [
-        'description',
-        'user_id',
-        'contact_type_id',
-    ];
+	protected $fillable = [
+		'description',
+		'user_id',
+		'contact_type_id',
+	];
 
-    public function contactType()
-    {
-        return $this->hasOne(ContactType::class, 'contact_type_id', 'id');
-    }
+	public function contactType()
+	{
+		return $this->hasOne(ContactType::class, 'contact_type_id', 'id');
+	}
 }

@@ -13,13 +13,13 @@ use Prettus\Repository\Presenter\FractalPresenter;
  */
 class CityPresenter extends FractalPresenter
 {
-    /**
-     * Transformer
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new CityTransformer();
-    }
+	/**
+	 * Transformer
+	 *
+	 * @return \League\Fractal\TransformerAbstract
+	 */
+	public function getTransformer()
+	{
+		return new CityTransformer();
+	}
 }

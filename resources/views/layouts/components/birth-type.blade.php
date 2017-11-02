@@ -8,16 +8,22 @@
                 @if(!empty($data['birth_type']))
 
                     <div class="md-radio">
-                        <input type="radio" id="normal" name="birth_type"
-                               class="md-radiobtn" value="0" {{ $data['birth_type'] == 0 ? 'checked' : '' }} >
+                        <input type="radio"
+                               id="normal"
+                               name="birth_type"
+                               class="md-radiobtn"
+                               value="0" {{ $data['birth_type'] == 0 ? 'checked' : '' }} >
                         <label for="normal">
                             <span class="inc"></span>
                             <span class="check"></span>
                             <span class="box"></span> Normal </label>
                     </div>
                     <div class="md-radio">
-                        <input type="radio" id="cesaria" name="birth_type"
-                               class="md-radiobtn" value="1" {{ $data['birth_type'] == 1 ? 'checked' : '' }} >
+                        <input type="radio"
+                               id="cesaria"
+                               name="birth_type"
+                               class="md-radiobtn"
+                               value="1" {{ $data['birth_type'] == 1 ? 'checked' : '' }} >
                         <label for="cesaria">
                             <span class="inc"></span>
                             <span class="check"></span>
@@ -27,16 +33,22 @@
                 @else
 
                     <div class="md-radio">
-                        <input type="radio" id="normal" name="birth_type"
-                               class="md-radiobtn" value="0" {{ old('birth_type') == 0 ? 'checked' : '' }} >
+                        <input type="radio"
+                               id="normal"
+                               name="birth_type"
+                               class="md-radiobtn"
+                               value="0" {{ old('birth_type') == 0 ? 'checked' : '' }} >
                         <label for="normal">
                             <span class="inc"></span>
                             <span class="check"></span>
                             <span class="box"></span> Normal </label>
                     </div>
                     <div class="md-radio">
-                        <input type="radio" id="cesaria" name="birth_type"
-                               class="md-radiobtn" value="1" {{ old('birth_type') == 1 ? 'checked' : '' }} >
+                        <input type="radio"
+                               id="cesaria"
+                               name="birth_type"
+                               class="md-radiobtn"
+                               value="1" {{ old('birth_type') == 1 ? 'checked' : '' }} >
                         <label for="cesaria">
                             <span class="inc"></span>
                             <span class="check"></span>

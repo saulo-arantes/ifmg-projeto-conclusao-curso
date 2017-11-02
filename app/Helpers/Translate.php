@@ -11,5 +11,5 @@ namespace App\Helpers;
 
 class Translate
 {
-    const PTBR = [];
+	const PTBR = [];
 }

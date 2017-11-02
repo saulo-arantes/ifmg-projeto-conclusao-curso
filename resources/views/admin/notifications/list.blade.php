@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @push('stylesheets')
-<link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.css') }}"
-      rel="stylesheet"
-      type="text/css" />
+    <link href="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.css') }}"
+          rel="stylesheet"
+          type="text/css"/>
 @endpush
 
 @section('content')
@@ -42,15 +42,15 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/global/scripts/datatable.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('assets/pages/scripts/table-datatables-buttons.min.js') }}"
-        type="text/javascript"></script>
-<script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
+    <script src="{{ asset('assets/global/scripts/datatable.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/datatables.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/global/plugins/datatables/DataTables-1.10.12/plugins/bootstrap/datatables.bootstrap.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('assets/pages/scripts/table-datatables-buttons.min.js') }}"
+            type="text/javascript"></script>
+    <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 
-{!! $dataTable->scripts() !!}
+    {!! $dataTable->scripts() !!}
 @endpush

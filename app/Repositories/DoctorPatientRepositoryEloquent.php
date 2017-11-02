@@ -16,42 +16,42 @@ use Prettus\Repository\Eloquent\BaseRepository;
  */
 class DoctorPatientRepositoryEloquent extends BaseRepository implements DoctorPatientRepository
 {
-    /**
-     * Specify Model class name
-     *
-     * @return string
-     */
-    public function model()
-    {
-        return DoctorPatient::class;
-    }
+	/**
+	 * Specify Model class name
+	 *
+	 * @return string
+	 */
+	public function model()
+	{
+		return DoctorPatient::class;
+	}
 
-    /**
-     * Specify Validator class name
-     *
-     * @return mixed
-     */
-    public function validator()
-    {
+	/**
+	 * Specify Validator class name
+	 *
+	 * @return mixed
+	 */
+	public function validator()
+	{
 
-        return DoctorPatientValidator::class;
-    }
+		return DoctorPatientValidator::class;
+	}
 
-    /**
-     * Specify Presenter class name
-     *
-     * @return string
-     */
-    public function presenter()
-    {
-        return DoctorPatientPresenter::class;
-    }
+	/**
+	 * Specify Presenter class name
+	 *
+	 * @return string
+	 */
+	public function presenter()
+	{
+		return DoctorPatientPresenter::class;
+	}
 
-    /**
-     * Boot up the repository, pushing criteria
-     */
-    public function boot()
-    {
-        $this->pushCriteria(app(RequestCriteria::class));
-    }
+	/**
+	 * Boot up the repository, pushing criteria
+	 */
+	public function boot()
+	{
+		$this->pushCriteria(app(RequestCriteria::class));
+	}
 }

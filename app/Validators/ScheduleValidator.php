@@ -11,7 +11,8 @@ use Prettus\Validator\LaravelValidator;
  * @author  Saulo Vinícius
  * @package namespace App\Validators;
  */
-class ScheduleValidator extends LaravelValidator {
+class ScheduleValidator extends LaravelValidator
+{
 
 	protected $rules = [
 		ValidatorInterface::RULE_CREATE => [

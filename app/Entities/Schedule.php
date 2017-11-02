@@ -28,7 +28,8 @@ use Prettus\Repository\Traits\TransformableTrait;
  * @property \DateTime created_at
  * @property \DateTime updated_at
  */
-class Schedule extends Model implements Transformable, AuditableContract {
+class Schedule extends Model implements Transformable, AuditableContract
+{
 	use Auditable;
 	use TransformableTrait;
 
@@ -47,11 +48,13 @@ class Schedule extends Model implements Transformable, AuditableContract {
 		'patient_id'
 	];
 
-	public function doctor() {
+	public function doctor()
+	{
 		return $this->hasOne(Doctor::class, 'id', 'doctor_id');
 	}
 
-	public function patient() {
+	public function patient()
+	{
 		return $this->hasOne(Patient::class, 'id', 'patient_id');
 	}
 }

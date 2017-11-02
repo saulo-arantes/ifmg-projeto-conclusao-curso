@@ -12,13 +12,13 @@ use Prettus\Repository\Presenter\FractalPresenter;
  */
 class PatientsPresenter extends FractalPresenter
 {
-    /**
-     * Transformer
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new PatientsTransformer();
-    }
+	/**
+	 * Transformer
+	 *
+	 * @return \League\Fractal\TransformerAbstract
+	 */
+	public function getTransformer()
+	{
+		return new PatientsTransformer();
+	}
 }

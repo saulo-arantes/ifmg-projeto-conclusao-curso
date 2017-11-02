@@ -2,17 +2,17 @@
 
 @push('stylesheets')
 
-<link href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}"
-      rel="stylesheet"
-      type="text/css"/>
+    <link href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}"
+          rel="stylesheet"
+          type="text/css"/>
 
-<style>
+    <style>
 
-    #dates{
-        margin-bottom: 25px;
-    }
+        #dates {
+            margin-bottom: 25px;
+        }
 
-</style>
+    </style>
 
 @endpush
 
@@ -54,16 +54,17 @@
                         </div>
                         <div class="portlet-body form">
                             <form action="{{ url($extraData['middleware'].'/schedules/'.$schedule['data']['id'].'/edit') }}"
-                                id="form_sample_2"
-                                method="post"
-                                class="horizontal-form"
-                                novalidate="novalidate">
+                                  id="form_sample_2"
+                                  method="post"
+                                  class="horizontal-form"
+                                  novalidate="novalidate">
                                 <div class="form-body">
                                     {{ csrf_field() }}
                                     <div class="row">
                                         @include('layouts.components.doctor', ['data' => $schedule['data']])
                                     </div>
-                                    <div class="row" id="dates">
+                                    <div class="row"
+                                         id="dates">
                                         @include('layouts.components.start-at', ['data' => $schedule['data']])
                                         @include('layouts.components.finish-at', ['data' => $schedule['data']])
                                     </div>

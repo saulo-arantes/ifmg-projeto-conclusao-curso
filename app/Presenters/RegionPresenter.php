@@ -13,13 +13,13 @@ use Prettus\Repository\Presenter\FractalPresenter;
  */
 class RegionPresenter extends FractalPresenter
 {
-    /**
-     * Transformer
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new RegionTransformer();
-    }
+	/**
+	 * Transformer
+	 *
+	 * @return \League\Fractal\TransformerAbstract
+	 */
+	public function getTransformer()
+	{
+		return new RegionTransformer();
+	}
 }

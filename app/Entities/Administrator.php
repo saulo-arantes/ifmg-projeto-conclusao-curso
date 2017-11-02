@@ -17,9 +17,9 @@ use Prettus\Repository\Traits\TransformableTrait;
  * */
 class Administrator extends Model implements Transformable, AuditableContract
 {
-    use Auditable;
-    use TransformableTrait;
+	use Auditable;
+	use TransformableTrait;
 
-    protected $fillable = [];
+	protected $fillable = [];
 
 }

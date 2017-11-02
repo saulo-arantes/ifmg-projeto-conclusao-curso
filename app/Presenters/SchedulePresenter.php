@@ -12,13 +12,13 @@ use Prettus\Repository\Presenter\FractalPresenter;
  */
 class SchedulePresenter extends FractalPresenter
 {
-    /**
-     * Transformer
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new ScheduleTransformer();
-    }
+	/**
+	 * Transformer
+	 *
+	 * @return \League\Fractal\TransformerAbstract
+	 */
+	public function getTransformer()
+	{
+		return new ScheduleTransformer();
+	}
 }

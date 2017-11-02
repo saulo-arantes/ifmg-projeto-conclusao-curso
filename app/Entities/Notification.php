@@ -4,7 +4,6 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 /**
@@ -67,7 +66,7 @@ class Notification extends Model
 			->where('type', Notification::INFO)
 			->count();
 
-		$notificationsTransformed = [];
+		$notificationsTransformed   = [];
 		$notificationsTransformed[] = '<span style="margin: 5px;" class="btn btn-xs btn-warning center-block">Validator <small class="pull-right">' . $notificationsValidatorsCount . '</small></span>';
 		$notificationsTransformed[] = '<span style="margin: 5px;" class="btn btn-xs btn-danger center-block">Exception <small class="pull-right">' . $notificationsErrorsCount . '</small></span>';
 		$notificationsTransformed[] = '<span style="margin: 5px;" class="btn btn-xs btn-warning center-block">Denied <small class="pull-right">' . $notificationsDeniedCount . '</small></span>';

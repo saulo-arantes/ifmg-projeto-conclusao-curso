@@ -52,57 +52,57 @@ use Prettus\Repository\Traits\TransformableTrait;
  */
 class Patient extends Model implements Transformable, AuditableContract
 {
-    use Auditable;
-    use TransformableTrait;
+	use Auditable;
+	use TransformableTrait;
 
-    protected $fillable = [
-        'name',
-        'photo',
-        'birthday_date',
-        'sex',
-        'type',
-        'cpf',
-        'rg',
-        'address',
-        'neighborhood',
-        'number',
-        'complement',
-        'zipcode',
-        'allergic',
-        'sus_card',
-        'observation',
-        'marital_status',
-        'blood_type',
-        'height',
-        'weight',
-        'birth_height',
-        'birth_weight',
-        'birth_cephalic_length',
-        'birth_type',
-        'father_id',
-        'mother_id',
-        'city_id',
-        'naturalness_id'
-    ];
+	protected $fillable = [
+		'name',
+		'photo',
+		'birthday_date',
+		'sex',
+		'type',
+		'cpf',
+		'rg',
+		'address',
+		'neighborhood',
+		'number',
+		'complement',
+		'zipcode',
+		'allergic',
+		'sus_card',
+		'observation',
+		'marital_status',
+		'blood_type',
+		'height',
+		'weight',
+		'birth_height',
+		'birth_weight',
+		'birth_cephalic_length',
+		'birth_type',
+		'father_id',
+		'mother_id',
+		'city_id',
+		'naturalness_id'
+	];
 
 	public function contacts()
 	{
 		return $this->hasMany(PatientContact::class);
 	}
 
-    public function naturalness()
-    {
-        return $this->belongsTo(City::class, 'naturalness_id', 'id');
-    }
+	public function naturalness()
+	{
+		return $this->belongsTo(City::class, 'naturalness_id', 'id');
+	}
 
-    public function city()
-    {
-        return $this->belongsTo(City::class, 'city_id', 'id');
-    }
+	public function city()
+	{
+		return $this->belongsTo(City::class, 'city_id', 'id');
+	}
 
-    public function doctors()
-    {
-        return $this->hasMany(DoctorPatient::class, 'patient_id', 'id');
-    }
+	public function doctors()
+	{
+		return $this->hasMany(DoctorPatient::class, 'patient_id', 'id');
+	}
 
 }

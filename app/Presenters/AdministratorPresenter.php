@@ -12,13 +12,13 @@ use Prettus\Repository\Presenter\FractalPresenter;
  */
 class AdministratorPresenter extends FractalPresenter
 {
-    /**
-     * Transformer
-     *
-     * @return \League\Fractal\TransformerAbstract
-     */
-    public function getTransformer()
-    {
-        return new AdministratorTransformer();
-    }
+	/**
+	 * Transformer
+	 *
+	 * @return \League\Fractal\TransformerAbstract
+	 */
+	public function getTransformer()
+	{
+		return new AdministratorTransformer();
+	}
 }

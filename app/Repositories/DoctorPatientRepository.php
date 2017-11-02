@@ -12,5 +12,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface DoctorPatientRepository extends RepositoryInterface
 {
-    //
+	//
 }

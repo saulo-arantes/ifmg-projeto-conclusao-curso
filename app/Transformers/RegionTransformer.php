@@ -14,20 +14,20 @@ use League\Fractal\TransformerAbstract;
 class RegionTransformer extends TransformerAbstract
 {
 
-    /**
-     * Transform the \Region entity
-     *
-     * @param Region $model
-     *
-     * @return array
-     */
-    public function transform(Region $model)
-    {
-        return [
-            'id'         => (int)$model->id,
-            'name'       => $model->name,
-            'pib'        => $model->pib,
-            'population' => $model->population,
-        ];
-    }
+	/**
+	 * Transform the \Region entity
+	 *
+	 * @param Region $model
+	 *
+	 * @return array
+	 */
+	public function transform(Region $model)
+	{
+		return [
+			'id'         => (int) $model->id,
+			'name'       => $model->name,
+			'pib'        => $model->pib,
+			'population' => $model->population,
+		];
+	}
 }

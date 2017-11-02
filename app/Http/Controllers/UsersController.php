@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Doctor;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;

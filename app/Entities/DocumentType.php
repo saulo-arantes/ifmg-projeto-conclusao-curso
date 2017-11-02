@@ -21,11 +21,11 @@ use Prettus\Repository\Traits\TransformableTrait;
  **/
 class DocumentType extends Model implements Transformable
 {
-    use TransformableTrait;
+	use TransformableTrait;
 
-    protected $fillable = [
-        'name',
-        'description'
-    ];
+	protected $fillable = [
+		'name',
+		'description'
+	];
 
 }

@@ -7,7 +7,7 @@
           type="text/css"/>
 
     <style>
-        #dates{
+        #dates {
             margin-bottom: 25px;
         }
     </style>
@@ -61,7 +61,8 @@
                                         @include('layouts.components.doctor')
                                         @include('layouts.components.patient')
                                     </div>
-                                    <div class="row" id="dates">
+                                    <div class="row"
+                                         id="dates">
                                         @include('layouts.components.start-at')
                                         @include('layouts.components.finish-at')
                                     </div>

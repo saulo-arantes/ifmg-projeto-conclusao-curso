@@ -33,6 +33,7 @@ class NotificationsController extends Controller
 	public function visualizeAll()
 	{
 		Auth::user()->unreadNotifications->markAsRead();
+
 		return redirect('admin/notifications');
 	}
 

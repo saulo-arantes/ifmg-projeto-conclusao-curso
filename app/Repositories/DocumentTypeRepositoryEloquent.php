@@ -57,11 +57,11 @@ class DocumentTypeRepositoryEloquent extends BaseRepository implements DocumentT
 	 */
 	public function getExtraData()
 	{
-		$patient = new Patient();
-		$extraData['patients'] = Patient::all();
+		$patient                    = new Patient();
+		$extraData['patients']      = Patient::all();
 		$extraData['documentTypes'] = DocumentType::all();
-		$extraData['middleware'] = User::getUserMiddleware();
-		$extraData['doctor'] = Auth::user()->name;
+		$extraData['middleware']    = User::getUserMiddleware();
+		$extraData['doctor']        = Auth::user()->name;
 		if (!empty(session('patient_id'))) {
 			$extraData['patient'] = $patient->find(session('patient_id'))->name;
 		}

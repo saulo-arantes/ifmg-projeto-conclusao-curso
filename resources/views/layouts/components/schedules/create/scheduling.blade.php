@@ -9,7 +9,7 @@
             resize: none;
         }
 
-        #dates{
+        #dates {
             margin-bottom: 25px;
         }
 
@@ -64,7 +64,8 @@
                                             @include('layouts.components.doctor')
                                         </div>
                                     @endif
-                                    <div class="row" id="dates">
+                                    <div class="row"
+                                         id="dates">
                                         @include('layouts.components.start-at')
                                         @include('layouts.components.finish-at')
                                     </div>

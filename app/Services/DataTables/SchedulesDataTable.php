@@ -103,9 +103,9 @@ class SchedulesDataTable extends DataTable
 			'patient',
 			'patient.contacts'
 		])->select()
-		  ->addSelect(DB::raw('DATEDIFF(start_at, CURDATE()) AS diff'))
-		  ->orderByRaw('CASE WHEN diff < 0 THEN 1 ELSE 0 END, diff')
-		  ->orderBy('start_at');
+		                 ->addSelect(DB::raw('DATEDIFF(start_at, CURDATE()) AS diff'))
+		                 ->orderByRaw('CASE WHEN diff < 0 THEN 1 ELSE 0 END, diff')
+		                 ->orderBy('start_at');
 
 		return $this->applyScopes($query);
 	}
@@ -201,7 +201,7 @@ class SchedulesDataTable extends DataTable
 			'status'           => [
 				'title'      => 'Situação',
 				'searchable' => false,
-				'orderable' => false,
+				'orderable'  => false,
 			],
 		];
 	}

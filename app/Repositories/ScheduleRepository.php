@@ -14,15 +14,15 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 interface ScheduleRepository extends RepositoryInterface
 {
 
-    public function getExtraData($id = null);
+	public function getExtraData($id = null);
 
-    /**
-     * Return events by date range.
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    public function getSchedulesForCalendar(Request $request);
+	/**
+	 * Return events by date range.
+	 *
+	 * @param Request $request
+	 *
+	 * @return array
+	 */
+	public function getSchedulesForCalendar(Request $request);
 
 }

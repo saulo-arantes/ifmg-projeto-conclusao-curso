@@ -14,12 +14,12 @@ use Prettus\Validator\LaravelValidator;
 class ContactTypeValidator extends LaravelValidator
 {
 
-    protected $rules = [
-        ValidatorInterface::RULE_CREATE => [
-            'name' => 'required|string|max:30'
-        ],
-        ValidatorInterface::RULE_UPDATE => [
-            'name' => 'required|string|max:30'
-        ],
-    ];
+	protected $rules = [
+		ValidatorInterface::RULE_CREATE => [
+			'name' => 'required|string|max:30'
+		],
+		ValidatorInterface::RULE_UPDATE => [
+			'name' => 'required|string|max:30'
+		],
+	];
 }

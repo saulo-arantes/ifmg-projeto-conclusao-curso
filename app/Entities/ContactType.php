@@ -22,11 +22,11 @@ use Prettus\Repository\Traits\TransformableTrait;
  */
 class ContactType extends Model implements Transformable, AuditableContract
 {
-    use Auditable;
-    use TransformableTrait;
+	use Auditable;
+	use TransformableTrait;
 
-    protected $fillable = [
-        'name'
-    ];
+	protected $fillable = [
+		'name'
+	];
 
 }

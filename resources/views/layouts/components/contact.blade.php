@@ -119,29 +119,29 @@
 
 @push('scripts')
 
-<script>
+    <script>
 
-    jQuery(document).ready(function () {
+        jQuery(document).ready(function () {
 
-        $('#newContact').click(function () {
-            try {
-                $('.contactType').select2('destroy');
-            } catch (e) {
+            $('#newContact').click(function () {
+                try {
+                    $('.contactType').select2('destroy');
+                } catch (e) {
 
-            }
+                }
 
-            $('#nextContact .row:last-child').clone().appendTo('#nextContact');
+                $('#nextContact .row:last-child').clone().appendTo('#nextContact');
+            });
+
+            $('#removeContact').click(function () {
+                const n = $('#nextContact .row').length;
+
+                if (n >= 2) {
+                    $('#nextContact .row:last-child').remove();
+                }
+            });
         });
 
-        $('#removeContact').click(function () {
-            const n = $('#nextContact .row').length;
-
-            if (n >= 2) {
-                $('#nextContact .row:last-child').remove();
-            }
-        });
-    });
-
-</script>
+    </script>
 
 @endpush

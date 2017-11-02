@@ -12,5 +12,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface UserContactRepository extends RepositoryInterface
 {
-    //
+	//
 }

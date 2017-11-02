@@ -53,8 +53,8 @@
 
         #login-div {
             -webkit-box-shadow: 3px 3px 15px 0 rgba(0, 0, 0, 0.84);
-            -moz-box-shadow:    3px 3px 15px 0 rgba(0, 0, 0, 0.84);
-            box-shadow:         3px 3px 15px 0 rgba(0, 0, 0, 0.84);
+            -moz-box-shadow: 3px 3px 15px 0 rgba(0, 0, 0, 0.84);
+            box-shadow: 3px 3px 15px 0 rgba(0, 0, 0, 0.84);
         }
     </style>
 
@@ -70,7 +70,8 @@
 {{-- END LOGO --}}
 
 {{-- BEGIN LOGIN --}}
-<div class="content" id="login-div">
+<div class="content"
+     id="login-div">
     {{-- BEGIN LOGIN FORM --}}
     <form class="login-form"
           action="{{ route('login') }}"
@@ -165,7 +166,8 @@
     {{-- END FORGOT PASSWORD FORM --}}
 </div>
 
-<div class="copyright" style="color: white;"><b>2017 &copy; Saulo Vinícius.</b></div>
+<div class="copyright"
+     style="color: white;"><b>2017 &copy; Saulo Vinícius.</b></div>
 
 <!--[if lt IE 9]>
 <script src="{{ asset('assets/global/plugins/respond.min.js') }}"></script>
