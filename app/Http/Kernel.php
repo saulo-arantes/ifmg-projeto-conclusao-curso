@@ -2,7 +2,7 @@
 
 namespace App\Http;
 
-use App\Entities\Secretary;
+use App\Http\Middleware\Secretary;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Doctor;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
