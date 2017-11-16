@@ -13,9 +13,19 @@
                    id="weight"
                    name="weight"
                    title="Peso"
-                   maxlength="10"
+                   maxlength="6"
+                   minlength="6"
                    value="{{ old('weight') ?? $data['weight'] ?? null }}">
         </div>
         <div class="help-block with-errors"></div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $(document).ready(function () { 
+        var $weight = $("#weight");
+        $weight.mask('000.00', {reverse: true});
+    });
+    </script>
+@endpush

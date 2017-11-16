@@ -14,7 +14,8 @@
                    id="cpf"
                    name="cpf"
                    title="cpf"
-                   maxlength="255"
+                   maxlength="14"
+                   minlength="14"
                    data-error="Campo obrigatório. Digite um CPF válido."
                    value="{{ old('cpf') ?? $data['cpf'] ?? null }}"
                    required>
@@ -22,3 +23,14 @@
         <div class="help-block with-errors"></div>
     </div>
 </div>
+
+@push('scripts')
+
+<script>
+    $(document).ready(function () { 
+        var $seuCampoCpf = $("#cpf");
+        $seuCampoCpf.mask('000.000.000-00', {reverse: true});
+    });
+</script>
+
+@endpush

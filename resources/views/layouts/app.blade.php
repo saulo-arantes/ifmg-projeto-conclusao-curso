@@ -126,6 +126,7 @@
 
 <script src="{{ asset('assets/global/plugins/jquery.min.js') }}"
         type="text/javascript"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 <script src="{{ asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}"
         type="text/javascript"></script>
 <script src="{{ asset('assets/global/plugins/js.cookie.min.js') }}"

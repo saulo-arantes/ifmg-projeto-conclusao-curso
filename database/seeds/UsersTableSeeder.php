@@ -18,13 +18,16 @@ class UsersTableSeeder extends Seeder
 	public function run()
 	{
 		factory(User::class)->create([
-			'email'    => 'saulo@email.com',
-			'name'     => 'Saulo',
-			'password' => bcrypt('123456'),
-			'role'     => User::ADMIN
-
+			'email'        => 'saulovinicius@gmail.com',
+			'name'         => 'Saulo Vinícius',
+			'password'     => bcrypt('saulo123'),
+			'role'         => User::ADMIN,
+			'address' 	   => 'Rua Exemplo',
+			'number'       => '125',
+			'neighborhood' => 'Bairro Exemplo',
+			'complement'   => 'Casa',
+			'zipcode'      => '35570-000',
+			'status'	   => 1
 		]);
-
-		factory(User::class, 50)->create();
 	}
 }

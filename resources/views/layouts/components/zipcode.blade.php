@@ -14,7 +14,8 @@
                    id="zipcode"
                    name="zipcode"
                    title="CEP"
-                   maxlength="255"
+                   maxlength="9"
+                   minlength="9"
                    data-error="Campo obrigatório. Digite o CEP de seu endereço."
                    value="{{ old('zipcode') ?? $data['zipcode'] ?? null }}"
                    required>
@@ -22,3 +23,12 @@
         <div class="help-block with-errors"></div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $(document).ready(function () { 
+        var $seuCampoZIP = $("#zipcode");
+        $seuCampoZIP.mask('00000-000', {reverse: true});
+    });
+    </script>
+@endpush

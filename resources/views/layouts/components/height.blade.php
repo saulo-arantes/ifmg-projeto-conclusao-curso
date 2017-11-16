@@ -13,9 +13,19 @@
                    id="height"
                    name="height"
                    title="Altura"
-                   maxlength="10"
+                   maxlength="4"
+                   minlength="4"
                    value="{{ old('height') ?? $data['height'] ?? null }}">
         </div>
         <div class="help-block with-errors"></div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $(document).ready(function () { 
+        var $height = $("#height");
+        $height.mask('0.00', {reverse: true});
+    });
+    </script>
+@endpush
