@@ -19,11 +19,5 @@ class PatientsTableSeeder extends Seeder
     public function run()
     {
 
-        factory(Patient::class, 100)->create()->each(function ($patient) {
-            DoctorPatient::create([
-                'patient_id' => $patient->id,
-                'doctor_id'  => rand(1, 5)
-            ]);
-        });
     }
 }

@@ -36,7 +36,19 @@ class PatientsDataTable extends DataTable
 
 				return $doctors;
 			})
-			->escapeColumns([]);
+			->editColumn('patient.contacts', function (Patient $model) {
+				
+				if (!empty($model->contacts)) {
+					$contactString = '';
+					foreach ($model->contacts as $contact) {
+						$contactString .= $contact->contactType->name . ' => ' . $contact->description . '<br>';
+					}
+				
+						return $contactString;
+				}
+				
+				return '<div style="text-align: center">-</div>';
+			})->escapeColumns([]);
 	}
 
 	/**
@@ -110,8 +122,11 @@ class PatientsDataTable extends DataTable
 			'address'      => ['title' => 'Endereço'],
 			'neighborhood' => ['title' => 'Bairro'],
 			'number'       => ['title' => 'Número'],
-			'height'       => ['title' => 'Altura'],
-			'weight'       => ['title' => 'Peso'],
+			'patient.contacts' => [
+				'title'      => 'Contato',
+				'orderable'  => false,
+				'searchable' => false,
+			],
 			'created_at'   => ['title' => 'Data'],
 			'edit'         => [
 				'title'      => 'Editar',

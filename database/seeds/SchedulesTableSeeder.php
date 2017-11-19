@@ -18,10 +18,6 @@ class SchedulesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Schedule::class, 100)->create([
-            'doctor_id' => rand(1, 5),
-            'patient_id' => rand(1, 100)
-        ]);
-
+    
     }
 }

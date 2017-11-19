@@ -20,7 +20,7 @@ class SecretaryTableSeeder extends Seeder
     public function run()
     {
 
-        factory(User::class, 5)->create(['role' => User::SECRETARY])->each(function ($user) {
+        factory(User::class, 1)->create(['role' => User::SECRETARY])->each(function ($user) {
             factory(Secretary::class)->create(['user_id' => $user->id]);
         });
     }
